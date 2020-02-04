@@ -47,6 +47,12 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login
+  },
+  //注册页面
+  {
+    path: "/register",
+    name: "register",
+    component: () => import("../views/register")
   }
 
   // {

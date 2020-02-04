@@ -10,7 +10,7 @@ NProgress.configure({
   showSpinner: false
 }) // NProgress Configuration
 
-const whiteList = ["/login", "/auth-redirect"] // no redirect whitelist
+const whiteList = ["/login", "/register"] // no redirect whitelist
 
 // permission judge function
 function hasPermission(roles, permissionRoles) {
@@ -25,7 +25,7 @@ router.beforeEach((to, from, next) => {
   //如果有就拉取用户信息;
   //如果没有就跳转到登陆页面
   if (getToken()) {
-    if (to.path === "/login") {
+    if (whiteList.indexOf(to.path) != -1) {
       next({ path: "/" })
       NProgress.done()
     } else {
