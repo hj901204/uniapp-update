@@ -1,0 +1,119 @@
+<template>
+  <div class="second-step">
+    <PageTitle />
+    <ProcessTitle />
+    <!-- 注册成功提示 -->
+    <div class="submit-success">
+      <i class="el-icon-circle-check"></i>
+      <span>尊敬的 木村文乃，您的信息已经提交成功。</span>
+    </div>
+    <!-- 注册信息 -->
+    <ul class="register-info">
+      <li>
+        <h4>我的企业</h4>
+        <span>上海谷器数据科技有限公司</span>
+      </li>
+      <li>
+        <h4>我的企业税号</h4>
+        <span>KLIO0989766GH</span>
+      </li>
+      <li>
+        <h4>我的手机</h4>
+        <span>13916708888</span>
+      </li>
+      <li>
+        <h4>我的联系邮件</h4>
+        <span>kimula·fumino@zkyda.com</span>
+      </li>
+      <li>
+        <h4>我的公司地址</h4>
+        <span>东京都品川区曺鸭3-2-1</span>
+      </li>
+    </ul>
+    <!-- 提示信息 -->
+    <div class="prompt-info">
+      <p>我们已经收到您的信息，我们会马上进行审核。</p>
+      <p>一旦通过，平台将通过您提交的信箱发送您企业登陆账号和唯一ID。</p>
+      <p>您也可以通过拨打电话400-880-XXXX联系我们，我们将很荣幸为您服务。</p>
+    </div>
+
+    <!-- 返回按钮 -->
+    <div class="back-btn">
+      <span @click="handleBackLogin">返回</span>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "second-step",
+  components: {
+    ProcessTitle: reslove =>
+      require(["@/components/ProcessTitle/index.vue"], reslove),
+    PageTitle: reslove => require(["@/components/PageTitle.vue"], reslove)
+  },
+  data() {
+    return {}
+  },
+  methods: {
+    handleBackLogin() {
+      this.$router.push({ path: "/login" })
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.second-step {
+  .submit-success {
+    margin-top: 30px;
+    .el-icon-circle-check {
+      color: #009966;
+      font-size: 30px;
+      font-weight: bold;
+      vertical-align: middle;
+      margin-right: 15px;
+    }
+  }
+  .register-info {
+    width: 60%;
+    margin: 20px auto;
+    li {
+      text-align: left;
+      border: 1px solid black;
+      height: 30px;
+      margin-top: -1px;
+      line-height: 30px;
+      h4 {
+        width: 200px;
+        display: inline-block;
+        text-align: center;
+        background-color: rgb(215, 215, 215);
+      }
+      span {
+        border-left: 1px solid black;
+        line-height: 30px;
+        display: inline-block;
+        padding-left: 20px;
+        box-sizing: border-box;
+      }
+    }
+  }
+  .prompt-info {
+    margin-top: 20px;
+    p {
+      line-height: 26px;
+    }
+  }
+  .back-btn {
+    margin-top: 20px;
+    span {
+      padding: 10px 30px;
+      color: #fff;
+      display: inline-block;
+      background-color: #009966;
+      cursor: pointer;
+    }
+  }
+}
+</style>

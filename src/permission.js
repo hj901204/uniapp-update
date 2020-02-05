@@ -10,7 +10,14 @@ NProgress.configure({
   showSpinner: false
 }) // NProgress Configuration
 
-const whiteList = ["/login", "/register"] // no redirect whitelist
+const whiteList = [
+  "/login",
+  "/register",
+  "/register/firstStep",
+  "/register/secondStep",
+  "/register/thirdStep",
+  "/register/fourthStep"
+] // no redirect whitelist
 
 // permission judge function
 function hasPermission(roles, permissionRoles) {

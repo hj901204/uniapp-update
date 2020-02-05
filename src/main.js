@@ -6,6 +6,7 @@ import "./permission"
 import "@/styles/reset.css"
 import Element from "element-ui"
 import "element-ui/lib/theme-chalk/index.css"
+import "./styles/index.scss"
 
 import Api from "./api/server/Api" // api 放置
 import Path from "./api/server/path" // path放置

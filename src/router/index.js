@@ -46,13 +46,57 @@ const routes = [
   {
     path: "/login",
     name: "login",
-    component: Login
+    component: Login,
+    meta: {
+      title: "登陆"
+    }
   },
   //注册页面
   {
     path: "/register",
     name: "register",
-    component: () => import("../views/register")
+    meta: {
+      title: "企业注册流程"
+    },
+    component: () => import("../views/register"),
+    children: [
+      {
+        path: "firstStep",
+        name: "firstStep",
+        meta: {
+          title: "填写详细信息",
+          showRoute: false
+        },
+        component: () => import("../views/register/firstStep.vue")
+      },
+      {
+        path: "secondStep",
+        name: "secondStep",
+        meta: {
+          title: "注册信息提交结果",
+          showRoute: false
+        },
+        component: () => import("../views/register/secondStep.vue")
+      },
+      {
+        path: "thirdStep",
+        name: "thirdStep",
+        meta: {
+          title: "获得企业ID和管理账号",
+          showRoute: false
+        },
+        component: () => import("../views/register/thirdStep.vue")
+      },
+      {
+        path: "fourthStep",
+        name: "fourthStep",
+        meta: {
+          title: "登陆访问系统",
+          showRoute: false
+        },
+        component: () => import("../views/register/fourthStep.vue")
+      }
+    ]
   }
 
   // {
