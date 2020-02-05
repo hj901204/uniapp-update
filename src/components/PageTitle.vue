@@ -1,7 +1,7 @@
 <template>
   <div class="page-title">
     <h2 class="title">{{ $route.meta.title }}</h2>
-    <Breadcrumb style="float:right;padding-top:20px" :routeArr="routeArr" />
+    <Breadcrumb style="float:right;padding-top:20px" />
   </div>
 </template>
 
@@ -12,18 +12,7 @@ export default {
     Breadcrumb: resolve => require(["./Breadcrumb/index"], resolve)
   },
   data() {
-    return {
-      routeArr: [
-        {
-          path: "/login",
-          title: "登陆"
-        },
-        {
-          path: "/register",
-          title: "注册"
-        }
-      ]
-    }
+    return {}
   }
 }
 </script>

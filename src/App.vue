@@ -10,7 +10,7 @@
 import HeaderNav from "./components/Header"
 export default {
   components: { HeaderNav },
-  data () {
+  data() {
     return {}
   },
   methods: {}

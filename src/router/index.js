@@ -22,25 +22,29 @@ const routes = [
   {
     path: "/dashboard",
     component: Dashboard,
-    name: "dashboard"
+    name: "dashboard",
+    breadcrumb: true
   },
   //应用中心
   {
     path: "/application",
     component: ApplicationCenter,
-    name: "applicaApplicationCentertion"
+    name: "applicaApplicationCentertion",
+    breadcrumb: true
   },
   // 企业中心
   {
     path: "/enterprise",
     component: EnterpriseCenter,
-    name: "EnterpriseCenter"
+    name: "EnterpriseCenter",
+    breadcrumb: true
   },
   //帮助
   {
     path: "/help",
     component: Help,
-    name: "Help"
+    name: "Help",
+    breadcrumb: true
   },
   //登陆页面
   {
@@ -48,7 +52,9 @@ const routes = [
     name: "login",
     component: Login,
     meta: {
-      title: "登陆"
+      title: "登陆",
+      breadcrumbTitle: "登陆",
+      breadcrumb: true
     }
   },
   //注册页面
@@ -56,7 +62,9 @@ const routes = [
     path: "/register",
     name: "register",
     meta: {
-      title: "企业注册流程"
+      title: "企业注册流程",
+      breadcrumbTitle: "注册",
+      breadcrumb: true
     },
     component: () => import("../views/register"),
     children: [
@@ -65,7 +73,8 @@ const routes = [
         name: "firstStep",
         meta: {
           title: "填写详细信息",
-          showRoute: false
+          showRoute: false,
+          breadcrumb: false
         },
         component: () => import("../views/register/firstStep.vue")
       },
@@ -74,7 +83,8 @@ const routes = [
         name: "secondStep",
         meta: {
           title: "注册信息提交结果",
-          showRoute: false
+          showRoute: false,
+          breadcrumb: false
         },
         component: () => import("../views/register/secondStep.vue")
       },
@@ -83,7 +93,8 @@ const routes = [
         name: "thirdStep",
         meta: {
           title: "获得企业ID和管理账号",
-          showRoute: false
+          showRoute: false,
+          breadcrumb: false
         },
         component: () => import("../views/register/thirdStep.vue")
       },
@@ -92,7 +103,8 @@ const routes = [
         name: "fourthStep",
         meta: {
           title: "登陆访问系统",
-          showRoute: false
+          showRoute: false,
+          breadcrumb: false
         },
         component: () => import("../views/register/fourthStep.vue")
       }
