@@ -16,35 +16,56 @@ const routes = [
   // },
   {
     path: "/",
-    redirect: "/dashboard"
+    redirect: "/dashboard",
+    meta: {
+      title: "首页",
+      breadcrumbTitle: "首页",
+      breadcrumb: true
+    }
   },
   //首页
   {
     path: "/dashboard",
     component: Dashboard,
     name: "dashboard",
-    breadcrumb: true
+    meta: {
+      title: "首页",
+      breadcrumbTitle: "首页",
+      breadcrumb: true
+    }
   },
   //应用中心
   {
     path: "/application",
     component: ApplicationCenter,
     name: "applicaApplicationCentertion",
-    breadcrumb: true
+    meta: {
+      title: "应用中心",
+      breadcrumbTitle: "应用中心",
+      breadcrumb: true
+    }
   },
   // 企业中心
   {
     path: "/enterprise",
     component: EnterpriseCenter,
     name: "EnterpriseCenter",
-    breadcrumb: true
+    meta: {
+      title: "企业中心",
+      breadcrumbTitle: "企业中心",
+      breadcrumb: true
+    }
   },
   //帮助
   {
     path: "/help",
     component: Help,
     name: "Help",
-    breadcrumb: true
+    meta: {
+      title: "帮助",
+      breadcrumbTitle: "帮助",
+      breadcrumb: true
+    }
   },
   //登陆页面
   {

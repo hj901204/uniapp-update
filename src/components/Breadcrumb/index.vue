@@ -42,24 +42,25 @@ export default {
           return true
         }
       })
+
       const first = matched[0]
       if (
         first &&
-        first.name.trim().toLocaleLowerCase() != "Login".toLocaleLowerCase()
+        first.name.trim().toLocaleLowerCase() == "register".toLocaleLowerCase()
       ) {
         matched = [
           { path: "/login", meta: { breadcrumbTitle: "登陆" } }
         ].concat(matched)
       }
-      //   if (
-      //     first &&
-      //     first.name.trim().toLocaleLowerCase() !==
-      //       "Dashboard".toLocaleLowerCase()
-      //   ) {
-      //     matched = [{ path: "/dashboard", meta: { title: "dashboard" } }].concat(
-      //       matched
-      //     )
-      //   }
+      if (
+        first &&
+        first.name.trim().toLocaleLowerCase() !==
+          "Dashboard".toLocaleLowerCase()
+      ) {
+        matched = [
+          { path: "/dashboard", meta: { breadcrumbTitle: "首页" } }
+        ].concat(matched)
+      }
       this.levelList = matched
     }
   }
