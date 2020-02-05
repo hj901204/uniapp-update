@@ -41,6 +41,14 @@
     <div class="back-btn">
       <span @click="handleBackLogin">返回</span>
     </div>
+    <!-- 第二部分提示信息 -->
+    <div class="prompt-info-bottom prompt-info">
+      <p>需要发送一封确认邮件给到注册企业；</p>
+      <p>
+        其中要包含一个用户的唯一企业登陆账号；也就是企业的管理账号，以及一个唯一的企业编码
+      </p>
+      <p>这个编码以后会用做和别的企业沟通的桥梁</p>
+    </div>
   </div>
 </template>
 
@@ -104,6 +112,10 @@ export default {
     p {
       line-height: 26px;
     }
+  }
+  .prompt-info-bottom {
+    margin-top: 60px;
+    border: 1px solid black;
   }
   .back-btn {
     margin-top: 20px;
