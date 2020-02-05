@@ -44,6 +44,7 @@ export default {
       })
 
       const first = matched[0]
+      // const notMatchPaths = ["dashboard", "register"]
       if (
         first &&
         first.name.trim().toLocaleLowerCase() == "register".toLocaleLowerCase()
@@ -52,10 +53,20 @@ export default {
           { path: "/login", meta: { breadcrumbTitle: "登陆" } }
         ].concat(matched)
       }
+      // notMatchPaths.forEach(item => {
+      //   if (first && first.name.trim().toLocaleLowerCase() == item) {
+      //     return true
+      //   } else {
+      //     matched = [
+      //       { path: "/dashboard", meta: { breadcrumbTitle: "首页" } }
+      //     ].concat(matched)
+      //   }
+      // })
       if (
         first &&
         first.name.trim().toLocaleLowerCase() !==
-          "Dashboard".toLocaleLowerCase()
+          "Dashboard".toLocaleLowerCase() &&
+        first.name.trim().toLocaleLowerCase() !== "register".toLocaleLowerCase()
       ) {
         matched = [
           { path: "/dashboard", meta: { breadcrumbTitle: "首页" } }

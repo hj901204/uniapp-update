@@ -1,10 +1,30 @@
 <template>
   <div class="header-nav" v-if="handleJudgePath">
     <div class="top-nav">
-      <router-link to="/" tag="li">首页</router-link>
-      <router-link to="/application" tag="li">应用中心</router-link>
-      <router-link to="/enterprise" tag="li">企业中心</router-link>
-      <router-link to="/help" tag="li">帮助</router-link>
+      <router-link
+        to="/"
+        tag="li"
+        :class="$route.path == '/dashboard' ? 'nav-active' : ''"
+        >首页
+      </router-link>
+      <router-link
+        to="/application"
+        tag="li"
+        :class="$route.path == '/application' ? 'nav-active' : ''"
+        >应用中心
+      </router-link>
+      <router-link
+        to="/enterprise"
+        tag="li"
+        :class="$route.path == '/enterprise' ? 'nav-active' : ''"
+        >企业中心
+      </router-link>
+      <router-link
+        to="/help"
+        tag="li"
+        :class="$route.path == '/help' ? 'nav-active' : ''"
+        >帮助
+      </router-link>
     </div>
     <right-nav />
   </div>
@@ -49,6 +69,10 @@ export default {
     flex-grow: 1;
     line-height: 50px;
     cursor: pointer;
+  }
+  .nav-active {
+    background-color: #409eff;
+    color: #fff;
   }
 }
 </style>

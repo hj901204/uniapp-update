@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <div class="views">
-      <HeaderNav />
-      <Breadcrumb v-if="handleJudgePath" />
+      <Layout />
       <router-view />
     </div>
   </div>
@@ -10,33 +9,13 @@
 <script>
 export default {
   components: {
-    HeaderNav: reslove => require(["./components/Header"], reslove),
-    Breadcrumb: reslove =>
-      require(["./components/Breadcrumb/index.vue"], reslove)
+    Layout: reslove => require(["./views/layout/index.vue"], reslove)
   },
   data() {
     return {}
   },
   methods: {},
-  computed: {
-    // 判断路由即将跳转的页面，从而不显示路由导航
-    handleJudgePath() {
-      let paths = [
-        "/login",
-        "/register",
-        "/register/firstStep",
-        "/register/secondStep",
-        "/register/thirdStep",
-        "/register/fourthStep"
-      ]
-      let routePath = this.$route.path
-      if (paths.indexOf(routePath) != -1) {
-        return false
-      }
-      return true
-      // const routePath = this.$route.path
-    }
-  }
+  computed: {}
 }
 </script>
 
