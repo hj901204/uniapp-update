@@ -34,7 +34,7 @@ body {
   height: 100%;
 }
 .views {
-  width: 1200px;
+  width: 79.2%;
   margin: 0 auto;
   height: 100%;
 }

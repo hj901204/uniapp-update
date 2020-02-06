@@ -1,40 +1,49 @@
 <template>
   <div class="header-nav" v-if="handleJudgePath">
+    <div class="logo-img">
+      <img src="../assets/logo.png" alt="" />
+    </div>
     <div class="top-nav">
       <router-link
         to="/"
         tag="li"
         :class="$route.path == '/dashboard' ? 'nav-active' : ''"
-        >首页
+      >
+        <i class="el-icon-s-home"></i>
+        首页
       </router-link>
       <router-link
         to="/application"
         tag="li"
         :class="$route.path == '/application' ? 'nav-active' : ''"
-        >应用中心
+      >
+        <i class="el-icon-menu"></i>
+        应用中心
       </router-link>
       <router-link
         to="/enterprise"
         tag="li"
         :class="$route.path == '/enterprise' ? 'nav-active' : ''"
-        >企业中心
+      >
+        <i class="el-icon-office-building"></i>
+        企业中心
       </router-link>
       <router-link
         to="/help"
         tag="li"
         :class="$route.path == '/help' ? 'nav-active' : ''"
-        >帮助
+      >
+        <i class="el-icon-s-opportunity"></i>
+        帮助
       </router-link>
     </div>
-    <right-nav />
   </div>
 </template>
 
 <script>
-import RightNav from "./RightNav/index"
 export default {
   name: "headerNav",
-  components: { RightNav },
+  components: {},
   data() {
     return {}
   },
@@ -61,18 +70,26 @@ export default {
 </script>
 
 <style lang="scss">
-.top-nav {
-  height: 50px;
-  display: flex;
-  display: -webkit-flex;
-  li {
-    flex-grow: 1;
-    line-height: 50px;
-    cursor: pointer;
+.header-nav {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  .logo-img {
+    float: left;
+    margin-right: 10px;
+    margin-top: 7px;
   }
-  .nav-active {
-    background-color: #409eff;
-    color: #fff;
+  .top-nav {
+    height: 50px;
+    display: flex;
+    display: -webkit-flex;
+    li {
+      flex-grow: 1;
+      line-height: 50px;
+      cursor: pointer;
+    }
+    .nav-active {
+      background-color: #409eff;
+      color: #fff;
+    }
   }
 }
 </style>

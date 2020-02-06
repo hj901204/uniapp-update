@@ -1,8 +1,8 @@
 <template>
   <div class="layout">
     <HeaderNav />
-    <div style="overflow:hidden">
-      <Breadcrumb v-if="handleJudgePath" style="float:left" />
+    <div style="overflow:hidden" v-if="handleJudgePath" class="second-nav">
+      <Breadcrumb style="float:left" />
       <UserCenterNav style="float:right" />
     </div>
   </div>
@@ -41,4 +41,12 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.second-nav {
+  padding: 20px 0 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  & > div {
+    vertical-align: middle;
+  }
+}
+</style>
