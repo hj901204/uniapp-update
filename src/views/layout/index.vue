@@ -44,7 +44,7 @@ export default {
 <style lang="scss" scoped>
 .second-nav {
   padding: 20px 0 10px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
   & > div {
     vertical-align: middle;
   }
