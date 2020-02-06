@@ -1,7 +1,7 @@
 <template>
   <div class="page-title">
     <h2 class="title">{{ $route.meta.title }}</h2>
-    <Breadcrumb style="float:right;padding-top:20px" />
+    <Breadcrumb style="float:right;padding-top:20px" v-if="isShowBreadcrub" />
   </div>
 </template>
 
@@ -10,6 +10,9 @@ export default {
   name: "page-title",
   components: {
     Breadcrumb: resolve => require(["./Breadcrumb/index"], resolve)
+  },
+  props: {
+    isShowBreadcrub: { type: Boolean, default: true }
   },
   data() {
     return {}

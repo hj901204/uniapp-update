@@ -15,7 +15,7 @@
       <router-link
         to="/application"
         tag="li"
-        :class="$route.path == '/application' ? 'nav-active' : ''"
+        :class="$route.path.indexOf('/application') == 0 ? 'nav-active' : ''"
       >
         <i class="el-icon-menu"></i>
         应用中心
@@ -23,7 +23,7 @@
       <router-link
         to="/enterprise"
         tag="li"
-        :class="$route.path == '/enterprise' ? 'nav-active' : ''"
+        :class="$route.path.indexOf('/enterprise') == 0 ? 'nav-active' : ''"
       >
         <i class="el-icon-office-building"></i>
         企业中心
@@ -34,7 +34,7 @@
         :class="$route.path == '/help' ? 'nav-active' : ''"
       >
         <i class="el-icon-s-opportunity"></i>
-        帮助
+        帮助中心
       </router-link>
     </div>
   </div>

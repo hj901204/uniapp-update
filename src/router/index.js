@@ -2,10 +2,11 @@ import Vue from "vue"
 import VueRouter from "vue-router"
 import Login from "@/views/login/index.vue"
 import Dashboard from "@/views/dashboard/index"
-import ApplicationCenter from "@/views/applicationCenter/index"
-import EnterpriseCenter from "@/views/enterpriseCenter/index"
+
 import Help from "@/views/help/index"
 
+import applicationRouter from "./application"
+import enterprise from "./enterprise"
 Vue.use(VueRouter)
 
 const routes = [
@@ -35,35 +36,17 @@ const routes = [
     }
   },
   //应用中心
-  {
-    path: "/application",
-    component: ApplicationCenter,
-    name: "applicaApplicationCentertion",
-    meta: {
-      title: "应用中心",
-      breadcrumbTitle: "应用中心",
-      breadcrumb: true
-    }
-  },
+  applicationRouter,
   // 企业中心
-  {
-    path: "/enterprise",
-    component: EnterpriseCenter,
-    name: "EnterpriseCenter",
-    meta: {
-      title: "企业中心",
-      breadcrumbTitle: "企业中心",
-      breadcrumb: true
-    }
-  },
+  enterprise,
   //帮助
   {
     path: "/help",
     component: Help,
     name: "Help",
     meta: {
-      title: "帮助",
-      breadcrumbTitle: "帮助",
+      title: "帮助中心",
+      breadcrumbTitle: "帮助中心",
       breadcrumb: true
     }
   },
