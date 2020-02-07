@@ -9,7 +9,8 @@ const applicationRouter = {
     title: "应用中心",
     breadcrumbTitle: "应用中心",
     breadcrumb: true,
-    path: "/application"
+    path: "/application",
+    leftNav: true
   },
   redirect: "/application/appStore",
   children: [
@@ -21,35 +22,82 @@ const applicationRouter = {
         title: "应用商城",
         breadcrumbTitle: "应用商城",
         breadcrumb: true,
-        path: "/application/appStore"
-      }
+        path: "/application/appStore",
+        isOnlyRoute: true //用来左侧菜单栏隐藏路由的作用
+      },
+      children: [
+        {
+          path: "applicationDetails",
+          component: () =>
+            import(
+              "../views/applicationCenter/appStore/applicationDetails/index.vue"
+            ),
+          name: "applicationDetails",
+          meta: {
+            title: "应用详情",
+            breadcrumbTitle: "应用详情",
+            breadcrumb: true,
+            path: "/application/appStore/applicationDetails"
+          }
+        },
+        {
+          path: "apply",
+          component: () =>
+            import("../views/applicationCenter/appStore/apply/index.vue"),
+          name: "apply",
+          meta: {
+            title: "应用申请",
+            breadcrumbTitle: "应用申请",
+            breadcrumb: true,
+            path: "/application/appStore/apply"
+          }
+        }
+      ]
     },
     {
       path: "enterpriseApplications",
       component: () =>
         import("../views/applicationCenter/enterpriseApplications/index.vue"),
       name: "enterpriseApplications",
-      redirect: "/application/enterpriseApplications/myApplication",
+      // redirect: "/application/enterpriseApplications/myApplication",
       meta: {
         title: "我的企业应用",
         breadcrumbTitle: "我的企业应用",
         breadcrumb: true,
-        path: "/application/enterpriseApplications"
+        path: "/application/enterpriseApplications",
+        isOnlyRoute: true //用来左侧菜单栏隐藏路由的作用
       },
       children: [
         {
-          path: "myApplication",
+          path: "applicationStatus",
           component: () =>
             import(
-              "../views/applicationCenter/enterpriseApplications/myApplication"
+              "../views/applicationCenter/enterpriseApplications/applicationStatus"
             ),
-          name: "myApplication",
+          name: "applicationStatus",
           meta: {
-            title: "我的应用",
-            breadcrumbTitle: "我的应用",
+            title: "应用状态",
+            breadcrumbTitle: "应用状态",
             breadcrumb: true,
-            path: "/application/enterpriseApplications/myApplication"
-          }
+            path: "/application/enterpriseApplications/applicationStatus"
+          },
+          children: [
+            {
+              path: "Renew",
+              component: () =>
+                import(
+                  "../views/applicationCenter/enterpriseApplications/applicationStatus/Renew"
+                ),
+              name: "Renew",
+              meta: {
+                title: "应用续费",
+                breadcrumbTitle: "应用续费",
+                breadcrumb: true,
+                path:
+                  "/application/enterpriseApplications/applicationStatus/Renew"
+              }
+            }
+          ]
         },
         {
           path: "applicationSetting",
@@ -59,8 +107,8 @@ const applicationRouter = {
             ),
           name: "applicationSetting",
           meta: {
-            title: "应用用户设置",
-            breadcrumbTitle: "应用用户设置",
+            title: "用户设定",
+            breadcrumbTitle: "用户设定",
             breadcrumb: true,
             path: "/application/enterpriseApplications/applicationSetting"
           }

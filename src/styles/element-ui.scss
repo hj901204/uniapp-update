@@ -19,3 +19,20 @@ $blue:#409EFF;
     margin-bottom: 20px;
   }
 }
+
+//应用商城 查看详情按钮
+.detail-btn {
+  float: right;
+}
+
+//应用详情-立即申请按钮
+.apply-btn {
+  width: 200px;
+}
+
+//应用申请-返回商城&&查看我的企业应用按钮
+.apply-btns {
+  .el-button {
+    width: 200px;
+  }
+}
