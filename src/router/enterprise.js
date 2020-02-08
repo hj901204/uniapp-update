@@ -60,6 +60,7 @@ const enterprise = {
       component: () =>
         import("../views/enterpriseCenter/messageCenter/index.vue"),
       name: "messageCenter",
+      redirect: "/enterprise/messageCenter/systemInfo",
       meta: {
         title: "消息中心",
         breadcrumbTitle: "消息中心",
