@@ -6,11 +6,9 @@
 
 <script>
 export default {
-  name: 'third-step',
-  data () {
-    return {
-
-    }
+  name: "third-step",
+  data() {
+    return {}
   }
 }
 </script>

@@ -17,6 +17,7 @@ const enterprise = {
       component: () =>
         import("../views/enterpriseCenter/enterpriseInfo/index.vue"),
       name: "enterpriseInfo",
+      redirect: "/enterprise/enterpriseInfo/basicInfo",
       meta: {
         title: "企业信息",
         breadcrumbTitle: "企业信息",
