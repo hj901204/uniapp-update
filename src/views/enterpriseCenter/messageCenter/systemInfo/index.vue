@@ -1,5 +1,6 @@
 <template>
   <div class="system-info">
+    <!-- 消息中心-系统信息 -->
     <ul>
       <li>
         <div class="info-title">
@@ -82,6 +83,7 @@ export default {
       }
       .info-description {
         padding: 10px;
+        font-size: 14px;
         & > div {
           line-height: 20px;
         }

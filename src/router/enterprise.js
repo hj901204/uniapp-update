@@ -102,6 +102,7 @@ const enterprise = {
       path: "userCenter",
       component: () => import("../views/enterpriseCenter/userCenter/index.vue"),
       name: "userCenter",
+      redirect: "/enterprise/userCenter/userManagement",
       meta: {
         title: "用户中心",
         breadcrumbTitle: "用户中心",
