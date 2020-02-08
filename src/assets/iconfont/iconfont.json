@@ -1,0 +1,135 @@
+{
+  "id": "1631108",
+  "name": "supply",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "660500",
+      "name": "消息",
+      "font_class": "xiaoxi",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "1103687",
+      "name": "费用-改",
+      "font_class": "feiyong",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "1303184",
+      "name": "感叹号",
+      "font_class": "gantanhao",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "1303187",
+      "name": "关闭",
+      "font_class": "guanbi",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
+      "icon_id": "1303195",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
+    },
+    {
+      "icon_id": "1303224",
+      "name": "提示",
+      "font_class": "tishi",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
+      "icon_id": "2193864",
+      "name": "停用",
+      "font_class": "tingyong",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "6039923",
+      "name": "体验",
+      "font_class": "tiyan",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "6194887",
+      "name": "企业",
+      "font_class": "qiye",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "6248283",
+      "name": "check-circle",
+      "font_class": "check-circle",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "6639153",
+      "name": "身份",
+      "font_class": "shenfen",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
+      "icon_id": "6714668",
+      "name": "等待",
+      "font_class": "dengdai",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "8017336",
+      "name": "正常",
+      "font_class": "Fillx",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "8589595",
+      "name": "应用 (2)",
+      "font_class": "yingyong",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "10981380",
+      "name": "重置",
+      "font_class": "zhongzhi",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "11494385",
+      "name": "商城",
+      "font_class": "shangcheng",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "12136019",
+      "name": "用户",
+      "font_class": "yonghu",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "12158491",
+      "name": "提交",
+      "font_class": "tijiao",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    }
+  ]
+}
