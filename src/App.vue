@@ -1,17 +1,20 @@
 <template>
   <div id="app" :class="$route.path != '/login' ? 'app' : ''">
     <HeaderNav />
-    <div class="views">
+    <div :class="$route.path == '/login' ? 'views views-height' : 'views'">
       <Layout />
       <router-view />
+      <!-- 页脚 -->
     </div>
+    <PageFooter v-if="$route.path !== '/login'" />
   </div>
 </template>
 <script>
 export default {
   components: {
     Layout: reslove => require(["./views/layout/index.vue"], reslove),
-    HeaderNav: reslove => require(["@/components/Header"], reslove)
+    HeaderNav: reslove => require(["@/components/Header"], reslove),
+    PageFooter: reslove => require(["@/components/PageFooter"], reslove)
   },
   data() {
     return {}
@@ -29,18 +32,27 @@ export default {
   text-align: center;
   color: #2c3e50;
   height: 100%;
+  overflow: auto;
 }
 .app {
   background-color: rgb(241, 242, 245);
+  position: relative;
+  min-height: 100%;
+  height: auto !important; /* 页脚向下推送，浏览器自动计算高度 */
 }
 html,
 body {
   width: 100%;
   height: 100%;
 }
+
 .views {
   width: 79.2%;
   margin: 0 auto;
+  margin-bottom: 140px;
+}
+.views-height {
   height: 100%;
+  margin-bottom: 0;
 }
 </style>

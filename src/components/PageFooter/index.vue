@@ -1,0 +1,61 @@
+<template>
+  <div class="page-footer">
+    <div class="page-footer-box">
+      <img src="@/assets/img/QR-code.png" alt="" />
+      <div class="footer-content">
+        <div>北京智科云达信息技术有限公司<span>@2020</span></div>
+        <p>联系电话：010-12345678</p>
+        <p>Email：market@zkyd.com</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "page-footer",
+  data() {
+    return {}
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.page-footer {
+  background-color: #fff;
+  // margin-top: 100%;
+  margin-top: 48px;
+  height: 112px;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .page-footer-box {
+    text-align: left;
+    overflow: hidden;
+    width: 79.2%;
+    margin: 0 auto;
+    padding: 24px 0;
+    & > img {
+      float: left;
+      width: 64px;
+      margin-right: 24px;
+    }
+    .footer-content {
+      margin-top: 8px;
+      & > div,
+      & > p {
+        font-size: 12px;
+        line-height: 20px;
+        letter-spacing: 2px;
+      }
+      & > p {
+        float: left;
+        margin-right: 16px;
+      }
+    }
+  }
+}
+</style>

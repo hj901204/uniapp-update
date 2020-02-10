@@ -1,25 +1,20 @@
 <template>
   <!-- 我的企业信息 -->
   <div class="my-corporate-info">
-    <fieldset>
-      <legend>我的企业信息</legend>
-      <div class="detail-info">
-        <div class="corporate-id-box">
-          <h4>
-            <img src="../../../assets/logo.png" alt="" class="id-logo" />
-            <span>ID</span>
-          </h4>
-          <p class="corporate-id">KALZ2081920</p>
-        </div>
-        <p>上海谷器数据科技有限公司</p>
-        <p>上海市宝山区长江西路1888号万达广场2栋9008 （200443）</p>
-      </div>
+    <div class="my-corporate-title">
+      <h3>我的企业信息</h3>
       <div class="edit-btn">
-        <el-button type="primary" plain icon="el-icon-edit" size="small"
-          >修改
+        <el-button type="primary" size="small" @click="handleToJump"
+          >修 改
         </el-button>
       </div>
-    </fieldset>
+    </div>
+    <div class="detail-info">
+      <h4>SupplyX ID:<span class="corporate-id">KALZ2081920</span></h4>
+      <!-- <p class="corporate-id">KALZ2081920</p> -->
+      <p>上海谷器数据科技有限公司</p>
+      <p>上海市宝山区长江西路1888号万达广场2栋9008 （200443）</p>
+    </div>
   </div>
 </template>
 
@@ -28,35 +23,48 @@ export default {
   name: "my-corporate-info",
   data() {
     return {}
+  },
+  methods: {
+    handleToJump() {
+      this.$router.push({ path: "/enterprise/enterpriseInfo/basicInfo" })
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .my-corporate-info {
-  .detail-info {
-    width: 60%;
-    float: left;
-    .corporate-id-box {
-      .id-logo {
-        width: 100px;
-        vertical-align: middle;
-        margin-right: 8px;
-      }
-      span {
-        font-weight: bold;
-      }
-      .corporate-id {
-        width: 300px;
-        background-color: #c6e2ff;
-        padding-left: 10px;
-        box-sizing: border-box;
-      }
+  background-color: #fff;
+  overflow: hidden;
+  padding: 16px;
+  .my-corporate-title {
+    overflow: hidden;
+    border-bottom: 2px solid #f1f2f5;
+    & > h3 {
+      float: left;
+      line-height: 40px;
+      font-size: 18px;
+    }
+    .edit-btn {
+      float: right;
     }
   }
-  p {
-    line-height: 30px;
-    font-size: 14px;
+  .detail-info {
+    margin-top: 16px;
+    & > h4,
+    .corporate-id {
+      font-weight: bold;
+    }
+    & > h4 {
+      margin-bottom: 8px;
+    }
+    .corporate-id {
+      margin-left: 20px;
+    }
+    & > p {
+      line-height: 24px;
+      font-size: 14px;
+    }
   }
 }
 </style>

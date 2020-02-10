@@ -1,9 +1,7 @@
 <template>
   <div class="layout">
-    <!-- <HeaderNav /> -->
     <div style="overflow:hidden" v-if="handleJudgePath" class="second-nav">
       <Breadcrumb style="float:left" />
-      <!-- <UserCenterNav style="float:right" /> -->
     </div>
   </div>
 </template>
@@ -12,8 +10,6 @@
 export default {
   name: "",
   components: {
-    HeaderNav: reslove => require(["@/components/Header"], reslove),
-    UserCenterNav: reslove => require(["@/components/UserCenterNav"], reslove),
     Breadcrumb: reslove =>
       require(["@/components/Breadcrumb/index.vue"], reslove)
   },

@@ -30,9 +30,9 @@ export default {
 .home {
   text-align: left;
   & > div {
-    margin-top: 10px;
+    margin-bottom: 16px;
     & > fieldset {
-      padding: 20px;
+      padding: 16px;
       box-sizing: border-box;
       .edit-btn {
         float: right;
