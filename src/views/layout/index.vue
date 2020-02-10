@@ -1,9 +1,9 @@
 <template>
   <div class="layout">
-    <HeaderNav />
+    <!-- <HeaderNav /> -->
     <div style="overflow:hidden" v-if="handleJudgePath" class="second-nav">
       <Breadcrumb style="float:left" />
-      <UserCenterNav style="float:right" />
+      <!-- <UserCenterNav style="float:right" /> -->
     </div>
   </div>
 </template>
@@ -44,7 +44,6 @@ export default {
 <style lang="scss" scoped>
 .second-nav {
   padding: 20px 0 10px 0;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
   & > div {
     vertical-align: middle;
   }

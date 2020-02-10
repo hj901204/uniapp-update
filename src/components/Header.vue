@@ -1,41 +1,40 @@
 <template>
   <div class="header-nav" v-if="handleJudgePath">
-    <div class="logo-img">
-      <img src="../assets/logo.png" alt="" />
-    </div>
-    <div class="top-nav">
-      <router-link
-        to="/"
-        tag="li"
-        :class="$route.path == '/dashboard' ? 'nav-active' : ''"
-      >
-        <i class="el-icon-s-home"></i>
-        首页
-      </router-link>
-      <router-link
-        to="/application"
-        tag="li"
-        :class="$route.path.indexOf('/application') == 0 ? 'nav-active' : ''"
-      >
-        <i class="el-icon-menu"></i>
-        应用中心
-      </router-link>
-      <router-link
-        to="/enterprise"
-        tag="li"
-        :class="$route.path.indexOf('/enterprise') == 0 ? 'nav-active' : ''"
-      >
-        <i class="el-icon-office-building"></i>
-        企业中心
-      </router-link>
-      <router-link
-        to="/help"
-        tag="li"
-        :class="$route.path == '/help' ? 'nav-active' : ''"
-      >
-        <i class="el-icon-s-opportunity"></i>
-        帮助中心
-      </router-link>
+    <div class="nav-content">
+      <div class="logo-img" @click="handleToDashboard">
+        <img src="@/assets/img/logo-w.png" alt="" />
+      </div>
+      <div class="top-nav">
+        <router-link
+          to="/"
+          tag="li"
+          :class="$route.path == '/dashboard' ? 'nav-active' : ''"
+        >
+          <span>首页</span>
+        </router-link>
+        <router-link
+          to="/application"
+          tag="li"
+          :class="$route.path.indexOf('/application') == 0 ? 'nav-active' : ''"
+        >
+          <span>应用中心</span>
+        </router-link>
+        <router-link
+          to="/enterprise"
+          tag="li"
+          :class="$route.path.indexOf('/enterprise') == 0 ? 'nav-active' : ''"
+        >
+          <span>企业中心</span>
+        </router-link>
+        <router-link
+          to="/help"
+          tag="li"
+          :class="$route.path == '/help' ? 'nav-active' : ''"
+        >
+          <span>帮助中心</span>
+        </router-link>
+      </div>
+      <UserCenterNav style="float:right;" />
     </div>
   </div>
 </template>
@@ -43,7 +42,9 @@
 <script>
 export default {
   name: "headerNav",
-  components: {},
+  components: {
+    UserCenterNav: reslove => require(["@/components/UserCenterNav"], reslove)
+  },
   data() {
     return {}
   },
@@ -65,30 +66,52 @@ export default {
       return true
       // const routePath = this.$route.path
     }
+  },
+  methods: {
+    handleToDashboard() {
+      this.$router.push({ path: "/" })
+    }
   }
 }
 </script>
 
 <style lang="scss">
 .header-nav {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  .logo-img {
-    float: left;
-    margin-right: 10px;
-    margin-top: 7px;
-  }
-  .top-nav {
-    height: 50px;
-    display: flex;
-    display: -webkit-flex;
-    li {
-      flex-grow: 1;
-      line-height: 50px;
+  // border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #31425b;
+  .nav-content {
+    overflow: hidden;
+    width: 79.2%;
+    margin: 0 auto;
+    .logo-img {
+      float: left;
+      margin-right: 80px;
+      margin-top: 25px;
       cursor: pointer;
+      & > img {
+        width: 190px;
+      }
     }
-    .nav-active {
-      background-color: #409eff;
-      color: #fff;
+    .top-nav {
+      float: left;
+      height: 72px;
+      display: flex;
+      display: -webkit-flex;
+      width: 50%;
+      li {
+        flex-grow: 1;
+        line-height: 72px;
+        cursor: pointer;
+        color: #fff;
+        & > span {
+          padding: 8px;
+        }
+      }
+      .nav-active {
+        & > span {
+          border-bottom: 1px solid #fff;
+        }
+      }
     }
   }
 }

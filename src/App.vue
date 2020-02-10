@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+  <div id="app" :class="$route.path != '/login' ? 'app' : ''">
+    <HeaderNav />
     <div class="views">
       <Layout />
       <router-view />
@@ -9,7 +10,8 @@
 <script>
 export default {
   components: {
-    Layout: reslove => require(["./views/layout/index.vue"], reslove)
+    Layout: reslove => require(["./views/layout/index.vue"], reslove),
+    HeaderNav: reslove => require(["@/components/Header"], reslove)
   },
   data() {
     return {}
@@ -27,6 +29,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   height: 100%;
+}
+.app {
+  background-color: rgb(241, 242, 245);
 }
 html,
 body {

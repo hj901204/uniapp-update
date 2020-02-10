@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <LeftNav />
-    <PageTitle :isShowBreadcrub="false" style="padding-left:10px;" />
+    <!-- <PageTitle :isShowBreadcrub="false" style="padding-left:10px;" /> -->
     <router-view />
   </div>
 </template>
