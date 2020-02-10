@@ -88,6 +88,14 @@
           </div>
         </div>
       </div>
+      <div class="company-info-box">
+        <img src="@/assets/img/QR-code.png" alt="" />
+        <div class="company-info">
+          <div>北京智科云达信息技术有限公司<span>@2020</span></div>
+          <p>联系电话：010-12345678</p>
+          <p>Email：market@zkyd.com</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -158,15 +166,13 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-  // .logo-container {
-  //   width: 50%;
-  //   height: 100%;
-  //   position: relative;
+
   .logo-box {
     width: 50%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
     position: relative;
+    float: left;
     & > img {
       width: 100%;
       height: 100%;
@@ -191,22 +197,16 @@ export default {
     }
   }
 
-  // }
-
   .login-box {
-    position: absolute;
-    right: 0;
+    float: left;
     width: 50%;
-    // left: 50%;
-    // margin-left: -225px;
-    top: 50%;
-    margin-top: -240px;
-    height: 300px;
-    width: 450px;
-    vertical-align: middle;
+    height: 100%;
+    overflow: hidden;
+
     .login-background {
       width: 350px;
       margin: 0 auto;
+      margin-top: 20%;
       a {
         font-size: 12px;
         color: #409eff;
@@ -242,6 +242,19 @@ export default {
       }
       .register {
         margin-top: 10px;
+      }
+    }
+  }
+  .company-info-box {
+    margin-top: 40%;
+    & > img {
+      width: 100px;
+    }
+    .company-info {
+      & > div,
+      & > p {
+        font-size: 12px;
+        line-height: 16px;
       }
     }
   }
