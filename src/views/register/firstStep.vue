@@ -1,86 +1,133 @@
 <template>
   <div class="first-step">
-    <PageTitle />
-    <ProcessTitle />
+    <!-- <PageTitle /> -->
+    <ProcessTitle :activeNum="1" />
     <!-- 表单部分 -->
     <div class="form-part">
-      <fieldset>
-        <legend>企业详细信息</legend>
+      <div class="detail-info-form">
+        <h3>企业详细信息</h3>
         <el-form
           ref="form"
           :model="form"
           size="mini"
-          label-width="80px"
+          label-width="100px"
           class="infor-form"
         >
-          <el-form-item label="企业名称">
-            <el-input v-model="form.name"></el-input>
-          </el-form-item>
-          <el-form-item label="企业地址">
-            <el-input v-model="form.address"></el-input>
-          </el-form-item>
-          <el-form-item label="企业编码">
-            <el-input v-model="form.num"></el-input>
-          </el-form-item>
-          <el-form-item label="企业简称">
-            <el-input v-model="form.shortname"></el-input>
-          </el-form-item>
+          <el-row>
+            <el-col :span="11">
+              <el-form-item label="企业名称" style="width:90%">
+                <el-input v-model="form.name"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="11">
+              <el-form-item label="联系电话" style="width:90%">
+                <el-input v-model="form.tel"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="11">
+              <el-form-item label="企业地址" style="width:90%">
+                <el-input v-model="form.address"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="11">
+              <el-form-item label="联系邮件" style="width:90%">
+                <el-input v-model="form.email"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="11">
+              <el-form-item label="企业简称" style="width:90%">
+                <el-input v-model="form.shortname"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
         </el-form>
-      </fieldset>
-      <fieldset>
-        <legend>主要联系人信息</legend>
+      </div>
+      <div class="detail-info-form">
+        <h3>主要联系人信息</h3>
         <el-form
           ref="form"
           :model="form"
           size="mini"
-          label-width="80px"
+          label-width="100px"
           class="infor-form"
         >
-          <el-form-item label="姓名">
-            <el-input v-model="form.username"></el-input>
-          </el-form-item>
-          <el-form-item label="职位">
-            <el-select
-              v-model="form.position"
-              placeholder="请选择"
-              style="width:100%"
-            >
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
+          <el-row>
+            <el-col :span="11">
+              <el-form-item label="姓名" style="width:90%">
+                <el-input v-model="form.username"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="11">
+              <el-form-item label="职位">
+                <el-select
+                  v-model="form.position"
+                  placeholder="请选择"
+                  style="width:88%"
+                >
+                  <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  >
+                  </el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+      </div>
+
+      <div class="detail-info-form">
+        <h3>企业账户信息</h3>
+        <el-form
+          ref="form"
+          :model="form"
+          size="mini"
+          label-width="100px"
+          class="infor-form"
+        >
+          <el-row>
+            <el-col :span="11">
+              <el-form-item
+                label="管理员账号"
+                style="width:90%;position:relative"
               >
-              </el-option>
-            </el-select>
-          </el-form-item>
+                <el-input v-model="form.adminName"></el-input>
+                <i
+                  class="el-icon-info"
+                  style="position:absolute;right:-200px;top:6px;"
+                  ><span>管理员账号设置后不允许修改!</span>
+                </i>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="11">
+              <el-form-item label="登陆密码" style="width:90%">
+                <el-input v-model="form.loginPsd" type="password"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="11">
+              <el-form-item label="确认密码" style="width:90%">
+                <el-input v-model="form.checkPsd" type="password"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
         </el-form>
-      </fieldset>
-      <fieldset>
-        <legend>企业账户信息</legend>
-        <el-form
-          ref="form"
-          :model="form"
-          size="mini"
-          label-width="80px"
-          class="infor-form"
-        >
-          <el-form-item label="联系邮件">
-            <el-input v-model="form.username"></el-input>
-          </el-form-item>
-          <el-form-item label="联系电话">
-            <el-input v-model="form.username"></el-input>
-          </el-form-item>
-          <el-form-item label="登陆密码">
-            <el-input v-model="form.username"></el-input>
-          </el-form-item>
-          <el-form-item label="确认密码">
-            <el-input v-model="form.username"></el-input>
-          </el-form-item>
-        </el-form>
-      </fieldset>
+      </div>
     </div>
-    <div @click="handleNextStep" class="next-btn"><span>下一步</span></div>
+    <div class="edit-btn">
+      <el-button size="small" @click="handleBack">返回</el-button>
+      <el-button type="primary" size="small" @click="handleNextStep"
+        >下一步</el-button
+      >
+      <!-- <div @click="handleNextStep" class="next-btn"><span>下一步</span></div> -->
+    </div>
   </div>
 </template>
 
@@ -94,7 +141,7 @@ export default {
   },
   data() {
     return {
-      form: {}, //表单
+      form: { adminName: "" }, //表单
       options: [
         //职位选项
         {
@@ -123,6 +170,10 @@ export default {
   methods: {
     handleNextStep() {
       this.$router.push({ path: "/register/secondStep" })
+    },
+    //返回
+    handleBack() {
+      this.$router.go(-1)
     }
   }
 }
@@ -131,19 +182,34 @@ export default {
 <style lang="scss" scoped>
 .first-step {
   .form-part {
-    fieldset {
-      text-align: left;
-      padding-top: 20px;
-      padding-left: 40px;
-      box-sizing: border-box;
-      margin-top: 20px;
+    text-align: left;
+    .detail-info-form {
+      margin-top: 32px;
+      background-color: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      padding: 16px;
+      & > h3 {
+        line-height: 40px;
+        font-size: 18px;
+        border-bottom: 2px solid #f1f2f5;
+        // font-weight: bold;
+      }
       .infor-form {
-        width: 70%;
+        margin-top: 16px;
+        .el-icon-info {
+          color: #4a90e2;
+          span {
+            color: #606266;
+            padding-left: 8px;
+            font-size: 12px;
+          }
+        }
       }
     }
   }
-  .next-btn {
-    text-align: right;
+  .edit-btn {
+    text-align: left;
     margin-top: 20px;
     span {
       padding: 10px 30px;

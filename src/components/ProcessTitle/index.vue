@@ -1,21 +1,38 @@
 <template>
   <div class="process-title">
-    <ul>
-      <li>
-        <h4 :class="$route.path == '/register/firstStep' ? 'active' : ''">
-          1. 填写基本信息
-        </h4>
+    <ul class="process-list">
+      <li
+        :class="
+          $route.path == '/register/firstStep' || activeNum == 1 ? 'active' : ''
+        "
+      >
+        <i>1</i>
+        <span>基本信息</span>
       </li>
-      <li>
-        <h4 :class="$route.path == '/register/secondStep' ? 'active' : ''">
-          2. 提交您的信息并等待确认
-        </h4>
+      <li
+        :class="
+          $route.path == '/register/secondStep' ? 'line active-line' : 'line'
+        "
+      ></li>
+      <li
+        :class="
+          $route.path == '/register/secondStep' || activeNum == 2
+            ? 'active'
+            : ''
+        "
+      >
+        <i>2</i>
+        <span>提交确认</span>
       </li>
+      <li class="line"></li>
       <li>
-        <h4>3. 获得企业ID以及管理账号</h4>
+        <i>3</i>
+        <span>获取企业账号</span>
       </li>
+      <li class="line"></li>
       <li>
-        <h4>4. 登陆访问系统</h4>
+        <i>4</i>
+        <span>访问系统</span>
       </li>
     </ul>
   </div>
@@ -24,6 +41,7 @@
 <script>
 export default {
   name: "process-title",
+  props: { activeNum: { type: [Number, String], default: 0 } },
   data() {
     return {}
   }
@@ -32,19 +50,59 @@ export default {
 
 <style lang="scss" scoped>
 .process-title {
-  ul {
+  // ul {
+  //   overflow: hidden;
+  //   li {
+  //     box-sizing: border-box;
+  //     float: left;
+  //     width: 25%;
+  //     h4 {
+  //       border: 1px solid black;
+  //       line-height: 40px;
+  //     }
+  //     .active {
+  //       background-color: rgb(255, 153, 51);
+  //     }
+  //   }
+  // }
+  .process-list {
     overflow: hidden;
-    li {
-      box-sizing: border-box;
-      float: left;
-      width: 25%;
-      h4 {
-        border: 1px solid black;
-        line-height: 40px;
+    padding: 0;
+    margin: 0;
+    padding-top: 24px;
+    & > li {
+      font-size: 14px;
+      width: 14%;
+      display: inline-block;
+      vertical-align: middle;
+      & > i {
+        border-radius: 50%;
+        border: 1px solid #7e7e7e7e;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        font-style: normal;
+        background-color: #fff;
+        line-height: 25px;
+        margin-right: 12px;
       }
-      .active {
-        background-color: rgb(255, 153, 51);
+    }
+    .line {
+      width: 14%;
+      height: 2px;
+      background-color: #7e7e7e7e;
+    }
+    .active {
+      // background-color: rgb(255, 153, 51);
+      & > i {
+        background-color: #4a90e2;
+        color: #fff;
       }
+    }
+    .active-line {
+      background-color: #4a90e2;
     }
   }
 }

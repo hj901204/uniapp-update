@@ -1,37 +1,50 @@
 <template>
   <div class="register-page">
     <div v-if="$route.path == '/register'">
-      <PageTitle />
-      <h3 class="process-title">注册流程说明</h3>
+      <!-- <PageTitle />
+      <h3 class="process-title">注册流程说明</h3> -->
       <ul class="process-list">
         <li>
-          <h4>1. 填写基本信息</h4>
-          <p>填写您企业的基本信息；</p>
+          <i>1</i>
+          <span>基本信息</span>
         </li>
+        <li class="line"></li>
         <li>
-          <h4>2. 提交您的信息并等待确认</h4>
-          <p>您的信息将会提交到系统，系统将对您的信息进行必要的审核</p>
+          <i>2</i>
+          <span>提交确认</span>
         </li>
+        <li class="line"></li>
         <li>
-          <h4>3. 获得企业ID以及管理账号</h4>
-          <p>
-            审核通过之后将发送一封邮件到您的邮箱，您将获得：<br />
-            1. 您企业的唯一ID<br />
-            2. 平台管理员账号
-          </p>
+          <i>3</i>
+          <span>获取企业账号</span>
         </li>
+        <li class="line"></li>
         <li>
-          <h4>4. 登陆访问系统</h4>
-          <p>登陆系统，开始您的业务！</p>
+          <i>4</i>
+          <span>访问系统</span>
         </li>
       </ul>
-      <!-- 勾选用户协议 -->
-      <div class="check-protocol">
-        <el-checkbox v-model="checked">我同意用户协议</el-checkbox>
-      </div>
-      <div class="register-btn">
-        <div class="confirm-register" @click="handleStartResgister">
-          确定开始注册
+      <!-- 协议内容 -->
+      <div class="protocol-content-box">
+        <div class="protocol-content">
+          协议条款内容
+        </div>
+        <!-- 勾选用户协议 -->
+        <div class="start-register">
+          <div class="check-protocol">
+            <el-checkbox v-model="checked">我同意用户协议</el-checkbox>
+          </div>
+          <div class="register-btn">
+            <!-- <div class="confirm-register" @click="handleStartResgister">
+              确定开始注册
+            </div> -->
+            <el-button
+              type="primary"
+              class="confirm-register"
+              @click="handleStartResgister"
+              >确定开始注册</el-button
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -66,44 +79,70 @@ export default {
 
 <style lang="scss" scoped>
 .register-page {
-  .process-title {
-    line-height: 40px;
-    text-align: left;
-  }
+  // .process-title {
+  //   line-height: 40px;
+  //   text-align: left;
+  // }
   .process-list {
     overflow: hidden;
-    li {
-      box-sizing: border-box;
-      float: left;
-      width: 25%;
-      h4 {
-        border: 1px solid black;
-        line-height: 40px;
-        background-color: rgb(255, 153, 51);
-      }
-      p {
-        border: 1px solid black;
-        height: 100px;
-        text-align: left;
-        padding: 10px;
-        box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    padding-top: 24px;
+    & > li {
+      font-size: 14px;
+      width: 14%;
+      display: inline-block;
+      vertical-align: middle;
+      & > i {
+        border-radius: 50%;
+        border: 1px solid #7e7e7e7e;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        font-style: normal;
+        background-color: #fff;
+        line-height: 25px;
+        margin-right: 12px;
       }
     }
+    .line {
+      width: 14%;
+      height: 2px;
+      background-color: #7e7e7e7e;
+    }
   }
-  // 用户协议样式
-  .check-protocol {
-    margin: 50px 0 20px;
-  }
-  // 确定开始注册按钮
+  .protocol-content-box {
+    background-color: #fff;
+    margin-top: 24px;
+    position: relative;
+    width: 100%;
+    height: 450px;
+    padding: 32px 32px 120px 32px;
 
-  .confirm-register {
-    background-color: rgb(0, 153, 102);
-    width: 300px;
-    color: #fff;
-    line-height: 40px;
-    border: none;
-    margin: 0 auto;
-    cursor: pointer;
+    .protocol-content {
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+    }
+    .start-register {
+      // position: absolute;
+      .check-protocol {
+        margin: 20px 0 20px;
+      }
+      .confirm-register {
+        // background-color: rgb(0, 153, 102);
+        width: 300px;
+        // color: #fff;
+        // line-height: 40px;
+        // border: none;
+        // margin: 0 auto;
+        // cursor: pointer;
+        border-radius: 8px;
+      }
+    }
   }
 }
 </style>
