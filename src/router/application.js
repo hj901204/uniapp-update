@@ -23,7 +23,8 @@ const applicationRouter = {
         breadcrumbTitle: "应用商城",
         breadcrumb: true,
         path: "/application/appStore",
-        isOnlyRoute: true //用来左侧菜单栏隐藏路由的作用
+        isOnlyRoute: true, //用来左侧菜单栏隐藏路由的作用
+        icon: "el-icon-my-shangcheng"
       },
       children: [
         {
@@ -65,7 +66,8 @@ const applicationRouter = {
         breadcrumbTitle: "我的企业应用",
         breadcrumb: true,
         path: "/application/enterpriseApplications",
-        isOnlyRoute: true //用来左侧菜单栏隐藏路由的作用
+        isOnlyRoute: true, //用来左侧菜单栏隐藏路由的作用
+        icon: "el-icon-my-yingyong"
       },
       children: [
         {

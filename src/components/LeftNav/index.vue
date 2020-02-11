@@ -1,5 +1,6 @@
 <template>
   <div class="left-nav">
+    <!-- <i class="icon iconfont">&#xe608;</i> -->
     <el-menu
       router
       :default-active="
@@ -20,19 +21,26 @@
               ? true
               : !item.children && item.meta.isOnlyRoute
           "
-          >{{ item.meta.title }}</el-menu-item
         >
+          <i v-if="item.meta.icon" :class="item.meta.icon"></i>
+          <span>{{ item.meta.title }}</span>
+        </el-menu-item>
         <el-submenu
           :index="item.meta.path"
           v-if="item.meta.isOnlyRoute ? false : item.children"
         >
-          <template slot="title">{{ item.meta.title }}</template>
+          <template slot="title">
+            <i v-if="item.meta.icon" :class="item.meta.icon"></i>
+            <span>{{ item.meta.title }}</span>
+          </template>
           <el-menu-item
             :index="i.meta.path"
             v-for="i in item.children"
             :key="i.path"
-            >{{ i.meta.title }}</el-menu-item
           >
+            <i v-if="i.meta.icon" :class="i.meta.icon"></i>
+            <span>{{ i.meta.title }}</span>
+          </el-menu-item>
         </el-submenu>
       </div>
     </el-menu>
@@ -73,6 +81,18 @@ export default {
   .left-nav-part {
     width: 200px;
     float: left;
+
+    .el-submenu__title i,
+    .el-menu-item i {
+      color: #303133;
+      vertical-align: middle;
+    }
+    .el-menu-item.is-active i {
+      color: #4a90e2;
+    }
+    span {
+      vertical-align: middle;
+    }
   }
 }
 </style>

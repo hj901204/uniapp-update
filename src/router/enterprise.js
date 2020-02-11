@@ -22,7 +22,8 @@ const enterprise = {
         title: "企业信息",
         breadcrumbTitle: "企业信息",
         breadcrumb: true,
-        path: "/enterprise/enterpriseInfo"
+        path: "/enterprise/enterpriseInfo",
+        icon: "el-icon-my-qiye"
       },
       children: [
         {
@@ -36,7 +37,8 @@ const enterprise = {
             title: "企业基本信息",
             breadcrumbTitle: "企业基本信息",
             breadcrumb: true,
-            path: "/enterprise/enterpriseInfo/basicInfo"
+            path: "/enterprise/enterpriseInfo/basicInfo",
+            icon: "el-icon-my-dian"
           }
         },
         {
@@ -50,7 +52,8 @@ const enterprise = {
             title: "管理员信息",
             breadcrumbTitle: "管理员信息",
             breadcrumb: true,
-            path: "/enterprise/enterpriseInfo/adminInfo"
+            path: "/enterprise/enterpriseInfo/adminInfo",
+            icon: "el-icon-my-dian"
           }
         }
       ]
@@ -65,7 +68,8 @@ const enterprise = {
         title: "消息中心",
         breadcrumbTitle: "消息中心",
         breadcrumb: true,
-        path: "/enterprise/messageCenter"
+        path: "/enterprise/messageCenter",
+        icon: "el-icon-my-xiaoxi"
       },
       children: [
         {
@@ -79,7 +83,8 @@ const enterprise = {
             title: "系统信息",
             breadcrumbTitle: "系统信息",
             breadcrumb: true,
-            path: "/enterprise/messageCenter/systemInfo"
+            path: "/enterprise/messageCenter/systemInfo",
+            icon: "el-icon-my-dian"
           }
         },
         {
@@ -93,7 +98,8 @@ const enterprise = {
             title: "应用信息",
             breadcrumbTitle: "应用信息",
             breadcrumb: true,
-            path: "/enterprise/messageCenter/applyInfo"
+            path: "/enterprise/messageCenter/applyInfo",
+            icon: "el-icon-my-dian"
           }
         }
       ]
@@ -107,7 +113,8 @@ const enterprise = {
         title: "用户中心",
         breadcrumbTitle: "用户中心",
         breadcrumb: true,
-        path: "/enterprise/userCenter"
+        path: "/enterprise/userCenter",
+        icon: "el-icon-my-yonghu"
       },
       children: [
         {
@@ -121,7 +128,8 @@ const enterprise = {
             title: "用户管理",
             breadcrumbTitle: "用户管理",
             breadcrumb: true,
-            path: "/enterprise/userCenter/userManagement"
+            path: "/enterprise/userCenter/userManagement",
+            icon: "el-icon-my-dian"
           }
         },
         {
@@ -135,7 +143,8 @@ const enterprise = {
             title: "部门管理",
             breadcrumbTitle: "部门管理",
             breadcrumb: true,
-            path: "/enterprise/userCenter/departmentManagement"
+            path: "/enterprise/userCenter/departmentManagement",
+            icon: "el-icon-my-dian"
           }
         }
       ]
@@ -148,7 +157,8 @@ const enterprise = {
         title: "费用中心",
         breadcrumbTitle: "费用中心",
         breadcrumb: true,
-        path: "/enterprise/costCenter"
+        path: "/enterprise/costCenter",
+        icon: "el-icon-my-feiyong"
       },
       children: [
         {
@@ -162,7 +172,8 @@ const enterprise = {
             title: "账单查询",
             breadcrumbTitle: "账单查询",
             breadcrumb: true,
-            path: "/enterprise/costCenter/billInquiry"
+            path: "/enterprise/costCenter/billInquiry",
+            icon: "el-icon-my-dian"
           }
         },
         {
@@ -176,7 +187,8 @@ const enterprise = {
             title: "历史账单",
             breadcrumbTitle: "历史账单",
             breadcrumb: true,
-            path: "/enterprise/costCenter/historicalBill"
+            path: "/enterprise/costCenter/historicalBill",
+            icon: "el-icon-my-dian"
           }
         }
       ]
