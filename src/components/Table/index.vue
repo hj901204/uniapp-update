@@ -1,7 +1,18 @@
 <template>
   <!-- 表格组件 -->
   <div class="table-component">
-    <el-table show-header :data="tableData" border style="width: 100%" fit>
+    <el-table
+      size="small"
+      show-header
+      highlight-current-row
+      :data="tableData"
+      stripe
+      style="width: 100%"
+      fit
+      :height="maxHeight"
+      :max-height="maxHeight"
+      :header-row-style="{ color: '#4a90e2' }"
+    >
       <el-table-column
         type="index"
         width="50"
@@ -22,31 +33,58 @@
       <el-table-column
         fixed="right"
         label="操作"
-        width="200"
         align="center"
         v-if="isShowOperation"
       >
         <template slot-scope="scope">
+          <div v-if="isShowStopBtns">
+            <el-button
+              @click="handleStop(scope.row)"
+              type="primary"
+              plain
+              size="small"
+              v-if="scope.row.isDisabled ? false : true"
+              >禁用
+            </el-button>
+            <el-button
+              @click="handleStart(scope.row)"
+              type="primary"
+              plain
+              size="small"
+              v-if="scope.row.isDisabled ? true : false"
+              >启用
+            </el-button>
+          </div>
           <el-button
-            @click="handleStop(scope.row)"
+            @click="handleEdit(scope.row)"
             type="primary"
             plain
             size="small"
-            v-if="scope.row.isDisabled ? false : true"
-            >禁用
+            v-if="isShowEditBtn"
+            >编辑
           </el-button>
-          <el-button
-            @click="handleStart(scope.row)"
-            type="primary"
-            plain
-            size="small"
-            v-if="scope.row.isDisabled ? true : false"
-            >启用
-          </el-button>
-          <el-button type="danger" size="small" plain>删除</el-button>
+          <el-button type="danger" size="small" plain v-if="isShowDeleteBtn"
+            >删除</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
+    <div class="tablePagination">
+      <el-pagination
+        small
+        v-show="isShowPage"
+        :page-sizes="[10, 20, 30, 40]"
+        :current-page="currentPage"
+        :page-size="currentSize"
+        :total="total"
+        class="pagination"
+        align="right"
+        background
+        layout="total, sizes, prev, pager, next, jumper"
+        @size-change="sizeChange"
+        @current-change="currentChange"
+      />
+    </div>
   </div>
 </template>
 
@@ -56,13 +94,18 @@ export default {
   props: {
     tableHead: { type: Array, default: () => [] },
     tableData: { type: Array, default: () => [] },
-    isShowOperation: { type: Boolean, default: false }
+    isShowOperation: { type: Boolean, default: false },
+    isShowEditBtn: { type: Boolean, default: false },
+    isShowStopBtns: { type: Boolean, default: false },
+    isShowDeleteBtn: { type: Boolean, default: false },
+    isShowPage: { type: Boolean, default: true },
+    currentPage: { type: Number, default: 1 },
+    currentSize: { type: Number, default: 10 },
+    total: { type: Number, default: 0 },
+    maxHeight: { type: Number, default: document.body.clientHeight - 420 }
   },
   data() {
-    return {
-      isStart: true,
-      isStop: false
-    }
+    return {}
   },
   methods: {
     // 禁用
@@ -72,12 +115,33 @@ export default {
     //启用
     handleStart(row) {
       this.$emit("handleStart", row)
+    },
+    //编辑
+    handleEdit(row) {
+      this.$emit("handleEdit", row)
+    },
+    // 分页
+    sizeChange(val) {
+      this.$emit("sizeChange", val)
+    },
+    currentChange(val) {
+      this.$emit("currentChange", val)
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .table-component {
+  .el-table__body tr.current-row > td {
+    background-color: #b3cff4;
+  }
+  .tablePagination {
+    padding: 16px 16px 10px 16px;
+  }
+  // .el-table--striped .el-table__body tr.el-table__row--striped.current-row td {
+  //   background-color: #b3cff4;
+  //   border: 1px solid gainsboro;
+  // }
 }
 </style>
