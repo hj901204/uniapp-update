@@ -100,5 +100,8 @@ export default {
       vertical-align: middle;
     }
   }
+  .el-menu-item.is-active {
+    border-right: 2px solid #4a90e2;
+  }
 }
 </style>
