@@ -77,14 +77,14 @@ export default {
 
 <style lang="scss">
 .header-nav {
-  // border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   background-color: #31425b;
   .nav-content {
     overflow: hidden;
     width: 79.2%;
     margin: 0 auto;
+    display: flex;
     .logo-img {
-      float: left;
+      // float: left;
       margin-right: 80px;
       margin-top: 25px;
       cursor: pointer;
@@ -93,7 +93,7 @@ export default {
       }
     }
     .top-nav {
-      float: left;
+      // float: left;
       height: 72px;
       display: flex;
       display: -webkit-flex;

@@ -1,8 +1,10 @@
 <template>
   <div class="enterprise">
     <LeftNav />
-    <PageTitle :isShowBreadcrub="false" style="padding-left:10px;" />
-    <router-view />
+    <PageTitle :isShowBreadcrub="false" style="padding-left:210px;" />
+    <div style="padding-left:210px;">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -19,4 +21,4 @@ export default {
 }
 </script>
 
-<style lang="" scoped></style>
+<style lang="scss" scoped></style>

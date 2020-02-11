@@ -24,7 +24,7 @@ export default {
 .page-title {
   overflow: hidden;
   margin-bottom: 20px;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   .title {
     float: left;
     line-height: 50px;

@@ -50,13 +50,8 @@ export default {
   // line-height: 72px;
   padding-top: 20px;
   box-sizing: border-box;
-  & > div {
-    float: left;
-  }
-  // .username {
-  //   margin-right: 10px;
-  //   margin-left: 20px;
-  // }
+  display: flex;
+
   .user-center {
     width: 200px;
     box-sizing: border-box;

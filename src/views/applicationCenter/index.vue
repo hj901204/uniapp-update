@@ -2,7 +2,9 @@
   <div class="">
     <LeftNav />
     <!-- <PageTitle :isShowBreadcrub="false" style="padding-left:10px;" /> -->
-    <router-view />
+    <div style="padding-left:210px;">
+      <router-view />
+    </div>
   </div>
 </template>
 
