@@ -5,7 +5,7 @@
     <div class="register-sucess-box">
       <!-- 注册成功提示 -->
       <div class="submit-success">
-        <i class="icon iconfont">&#xe620;</i>
+        <i class="el-icon-my-tijiao"></i>
         <span>尊敬的 <span>木村文乃</span>，您的信息已经提交成功。</span>
       </div>
       <!-- 注册信息 -->
@@ -86,7 +86,7 @@ export default {
   }
   .submit-success {
     margin-top: 30px;
-    .iconfont {
+    .el-icon-my-tijiao {
       color: #009966;
       font-size: 34px;
       font-weight: bold;
