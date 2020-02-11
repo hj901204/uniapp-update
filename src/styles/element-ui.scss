@@ -49,6 +49,13 @@ $blue:#409EFF;
   }
 }
 
+//部门管理 按钮修改
+.depart-btns {
+  .el-button {
+    width: 80px;
+  }
+}
+
 //表单字段
 .infor-form {
   .el-form-item__label {
@@ -66,12 +73,20 @@ $blue:#409EFF;
     .el-form-item--small .el-form-item__content,
     .el-form-item--small .el-form-item__label {
       line-height: 40px !important;
-      font-size: 16px;
+      font-size: 14px;
     }
 
     .el-form-item--small .el-form-item__label {
       font-weight: bold;
-      ;
+
     }
+  }
+}
+
+// 用户管理表单字段修改
+.user-form {
+  .el-form-item--small .el-form-item__label {
+    font-weight: bold;
+
   }
 }

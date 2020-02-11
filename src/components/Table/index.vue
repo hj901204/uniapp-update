@@ -133,15 +133,11 @@ export default {
 
 <style lang="scss">
 .table-component {
-  .el-table__body tr.current-row > td {
-    background-color: #b3cff4;
-  }
+  // .el-table__body tr.current-row > td {
+  //   background-color: #b3cff4;
+  // }
   .tablePagination {
     padding: 16px 16px 10px 16px;
   }
-  // .el-table--striped .el-table__body tr.el-table__row--striped.current-row td {
-  //   background-color: #b3cff4;
-  //   border: 1px solid gainsboro;
-  // }
 }
 </style>

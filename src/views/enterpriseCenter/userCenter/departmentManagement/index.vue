@@ -1,7 +1,18 @@
 <template>
   <div class="department-management">
-    <Tree :treeData="treeData" class="tree" />
-    <Table :tableHead="tableHead" :tableData="tableData" class="table-box" />
+    <Tree :treeData="treeData" class="tree" @handleGetNode="handleGetNode" />
+    <div class="table-box">
+      <div class="depart-btns">
+        <el-button type="primary" size="small" @click="handleAdd"
+          >添加</el-button
+        >
+      </div>
+      <Table
+        :tableHead="tableHead"
+        :tableData="tableData"
+        :maxHeight="maxHeight"
+      />
+    </div>
   </div>
 </template>
 
@@ -14,12 +25,15 @@ export default {
   },
   data() {
     return {
+      maxHeight: document.body.clientHeight - 390,
       treeData: [
         {
           label: "一级 1",
+          id: 1,
           children: [
             {
               label: "二级 1-1",
+              id: 11,
               children: [
                 {
                   label: "三级 1-1-1"
@@ -30,6 +44,7 @@ export default {
         },
         {
           label: "一级 2",
+          id: 2,
           children: [
             {
               label: "二级 2-1",
@@ -95,6 +110,20 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    //  点击节点获取节点id
+    handleGetNode(obj, node) {
+      this.nodeId = obj.id
+    },
+    handleAdd() {
+      if (!this.nodeId) {
+        return this.$message({
+          message: "请选择节点",
+          type: "warning"
+        })
+      }
+    }
   }
 }
 </script>
@@ -103,17 +132,21 @@ export default {
 .department-management {
   overflow: hidden;
   text-align: left;
-  padding: 10px;
   .tree {
     width: 35%;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
     float: left;
-    height: 500px;
+    height: calc(100vh - 290px);
     overflow: auto;
   }
   .table-box {
     float: right;
-    width: 63%;
+    padding: 8px;
+    box-sizing: border-box;
+    width: 65%;
+    .depart-btns {
+      text-align: right;
+    }
   }
 }
 </style>

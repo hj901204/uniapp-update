@@ -1,8 +1,13 @@
 <template>
   <div class="tree">
     <!-- 树-组件 -->
-    <el-tree :data="treeData" :props="defaultProps">
-      <span class="custom-tree-node" slot-scope="{ node, data }">
+    <el-tree
+      :data="treeData"
+      ref="tree"
+      :props="defaultProps"
+      @node-click="handleGetNode"
+    >
+      <!-- <span class="custom-tree-node" slot-scope="{ node, data }">
         <span>{{ node.label }}</span>
         <span>
           <el-button type="text" size="mini" @click="() => edit(data)">
@@ -15,7 +20,7 @@
             <i class="el-icon-delete"></i>
           </el-button>
         </span>
-      </span>
+      </span> -->
     </el-tree>
   </div>
 </template>
@@ -35,6 +40,12 @@ export default {
     }
   },
   methods: {
+    // 单击节点
+    handleGetNode(obj, node) {
+      // console.log(obj, node, nodeSelf)
+      console.log(obj.id)
+      this.$emit("handleGetNode", obj, node)
+    },
     //   编辑
     edit(data) {
       console.log(data)
@@ -49,6 +60,8 @@ export default {
 
 <style lang="scss" scoped>
 .tree {
+  // padding: 12px;
+  box-sizing: border-box;
   .custom-tree-node {
     flex: 1;
     display: flex;
