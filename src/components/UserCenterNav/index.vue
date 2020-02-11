@@ -78,7 +78,7 @@ export default {
         }
         & > span {
           display: inline-block;
-          width: 143px;
+          width: 150px;
         }
       }
     }
