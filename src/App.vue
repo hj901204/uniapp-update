@@ -49,7 +49,7 @@ body {
 .views {
   width: 79.2%;
   margin: 0 auto;
-  margin-bottom: 140px;
+  margin-bottom: 120px;
 }
 .views-height {
   height: 100%;

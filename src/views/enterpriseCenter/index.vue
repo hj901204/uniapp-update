@@ -1,8 +1,8 @@
 <template>
   <div class="enterprise">
     <LeftNav />
-    <PageTitle :isShowBreadcrub="false" style="padding-left:210px;" />
-    <div style="padding-left:210px;">
+    <PageTitle :isShowBreadcrub="false" style="margin-left:210px;" />
+    <div style="" class="enterprise-views">
       <router-view />
     </div>
   </div>
@@ -21,4 +21,14 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.enterprise {
+  height: calc(100vh - 240px);
+  .enterprise-views {
+    margin-left: 210px;
+    background-color: #fff;
+    height: calc(100% - 52px);
+    // height: 100%;
+  }
+}
+</style>

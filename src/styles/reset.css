@@ -74,6 +74,8 @@ mark,
 audio,
 video,
 fieldset,
+ul,
+li,
 input {
     margin: 0;
     padding: 0;

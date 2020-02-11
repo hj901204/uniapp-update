@@ -77,12 +77,12 @@ export default {
 
 <style lang="scss">
 .left-nav {
-  height: calc(100% - 245px);
+  height: calc(100vh - 240px);
   width: 200px;
   background-color: #fff;
   position: absolute;
   left: 10.4%;
-  top: 120px;
+  top: 116px;
   text-align: left;
   .left-nav-part {
     width: 200px;

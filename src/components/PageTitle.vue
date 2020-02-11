@@ -23,7 +23,7 @@ export default {
 <style lang="scss" scoped>
 .page-title {
   overflow: hidden;
-  margin-bottom: 20px;
+  background-color: #fff;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   .title {
     float: left;
@@ -31,6 +31,7 @@ export default {
     font-size: 18px;
     text-align: left;
     font-weight: bold;
+    padding-left: 16px;
   }
   .breadcrumb {
   }
