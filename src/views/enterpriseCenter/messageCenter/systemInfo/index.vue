@@ -4,44 +4,44 @@
     <ul>
       <li>
         <div class="info-title">
-          <h3>应用申请结果通知</h3>
-          <i class="el-icon-error"></i>
+          <div class="info-title-box">
+            <h3>消息标题</h3>
+            <span class="time">
+              2020年1月19日 20:09
+            </span>
+          </div>
+          <i class="el-icon-my-guanbi"></i>
         </div>
         <div class="info-description">
-          <div class="time">
-            2020年1月19日 20:09
-          </div>
-          <div class="">
-            您的<span>XXX</span>应用申请已经通过，请查收您的邮件进行确认。
-          </div>
+          您的<span>XXX</span>应用申请已经通过，请查收您的邮件进行确认。
         </div>
       </li>
       <li>
         <div class="info-title">
-          <h3>应用申请结果通知</h3>
-          <i class="el-icon-error"></i>
+          <div class="info-title-box">
+            <h3>消息标题</h3>
+            <span class="time">
+              2020年1月19日 20:09
+            </span>
+          </div>
+          <i class="el-icon-my-guanbi"></i>
         </div>
         <div class="info-description">
-          <div class="time">
-            2020年1月19日 20:09
-          </div>
-          <div class="">
-            您的<span>XXX</span>应用申请已经通过，请查收您的邮件进行确认。
-          </div>
+          您的<span>XXX</span>应用申请已经通过，请查收您的邮件进行确认。
         </div>
       </li>
       <li>
         <div class="info-title">
-          <h3>应用申请结果通知</h3>
-          <i class="el-icon-error"></i>
+          <div class="info-title-box">
+            <h3>消息标题</h3>
+            <span class="time">
+              2020年1月19日 20:09
+            </span>
+          </div>
+          <i class="el-icon-my-guanbi"></i>
         </div>
         <div class="info-description">
-          <div class="time">
-            2020年1月19日 20:09
-          </div>
-          <div class="">
-            您的<span>XXX</span>应用申请已经通过，请查收您的邮件进行确认。
-          </div>
+          您的<span>XXX</span>应用申请已经通过，请查收您的邮件进行确认。
         </div>
       </li>
     </ul>
@@ -60,25 +60,36 @@ export default {
 <style lang="scss" scoped>
 .system-info {
   text-align: left;
-  overflow: hidden;
-  padding: 10px;
+  height: 100%;
+  // padding: 10px;
+  box-sizing: border-box;
   & > ul {
-    padding: 0;
+    padding-top: 20px;
     & > li {
-      border: 1px solid rgba(0, 0, 0, 0.1);
       margin-bottom: 10px;
+      background-color: #fff;
+      border: 2px solid rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
       .info-title {
         overflow: hidden;
-        background-color: #c6e2ff;
         padding: 10px;
-        & > h3 {
+        .info-title-box {
           float: left;
+          & > h3 {
+            display: inline-block;
+            font-weight: bold;
+            margin-right: 12px;
+          }
+          & > span {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.5);
+          }
         }
         & > i {
           float: right;
           cursor: pointer;
           font-size: 20px;
-          color: #409eff;
+          color: #7e7e7e;
         }
       }
       .info-description {

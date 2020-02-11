@@ -15,5 +15,8 @@ export default {
 
 <style lang="scss" scoped>
 .message-center {
+  height: 100%;
+  background-color: #f1f2f5;
+  overflow: auto;
 }
 </style>
