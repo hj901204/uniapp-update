@@ -1,8 +1,8 @@
 {
-  "id": "1631108",
-  "name": "supply",
-  "font_family": "iconfont",
-  "css_prefix_text": "icon-",
+  "id": "1634228",
+  "name": "supply-X",
+  "font_family": "element-icons",
+  "css_prefix_text": "el-icon-my-",
   "description": "",
   "glyphs": [
     {
@@ -53,6 +53,13 @@
       "font_class": "tingyong",
       "unicode": "e650",
       "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "4933869",
+      "name": "点",
+      "font_class": "dian",
+      "unicode": "ec1e",
+      "unicode_decimal": 60446
     },
     {
       "icon_id": "6039923",

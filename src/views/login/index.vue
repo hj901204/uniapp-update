@@ -135,6 +135,9 @@ export default {
     handleLogin(form) {
       this.$refs[form].validate(valid => {
         if (valid) {
+          // this.$router.push({
+          //   path: "/"
+          // })
           this.loading = true
           this.$store
             .dispatch("user/LoginByUsername", this[form])

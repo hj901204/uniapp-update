@@ -6,7 +6,7 @@
     <div class="user-center">
       <el-dropdown>
         <span class="el-dropdown-link">
-          <i class="icon iconfont">&#xe604;</i>
+          <i class="icon element-icons">&#xe604;</i>
           <span> 用户名称</span
           ><i class="el-icon-arrow-down el-icon--right"></i>
         </span>
