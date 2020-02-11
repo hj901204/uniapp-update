@@ -1,64 +1,26 @@
 <template>
   <div class="user-management">
-    <EditBtns @handleEdit="handleEdit" @handleSave="handleSave" />
-    <el-form
-      :model="userForm"
-      status-icon
-      hide-required-asterisk
-      ref="ruleForm"
-      label-width="100px"
-      class="user-form"
-      size="small"
-      :disabled="isFormDisabled"
-      :rules="rules"
-    >
-      <el-form-item label="姓名" prop="name">
-        <el-input v-model="userForm.name" style="width:50%"></el-input>
-      </el-form-item>
-      <el-form-item label="电子邮件" prop="email">
-        <el-input
-          v-model="userForm.email"
-          type="email"
-          style="width:50%"
-        ></el-input>
-      </el-form-item>
-      <el-form-item label="登陆密码" prop="loginPsd">
-        <el-input
-          type="password"
-          v-model="userForm.loginPsd"
-          autocomplete="off"
-          style="width:50%;margin-right:10px;"
-        ></el-input>
-        <el-button type="primary" plain size="small" @click="handleResetPsd"
-          >重置密码</el-button
+    <template v-if="isShowMainPage">
+      <div class="add-btn">
+        <el-button type="primary" size="small" @click="handleAdd"
+          >添加用户</el-button
         >
-      </el-form-item>
-      <el-form-item label="联系电话">
-        <el-input
-          v-model="userForm.tel"
-          type="tel"
-          style="width:50%"
-        ></el-input>
-      </el-form-item>
-      <el-form-item label="所属部门">
-        <el-select
-          v-model="userForm.depart"
-          placeholder="请选择"
-          style="width:50%"
-        >
-          <el-option
-            v-for="item in departOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item>
-        <el-checkbox v-model="userForm.checked">禁止访问系统</el-checkbox>
-      </el-form-item>
-    </el-form>
+      </div>
+      <Table
+        :tableHead="tableHead"
+        :tableData="tableData"
+        :isShowOperation="true"
+        :isShowEditBtn="true"
+        @handleEdit="handleEdit"
+      />
+    </template>
+    <template v-else>
+      <UserForm
+        @handleBack="handleBack"
+        :userForm="userForm"
+        :isShowResetBtn="isShowResetBtn"
+      />
+    </template>
   </div>
 </template>
 
@@ -66,55 +28,90 @@
 export default {
   name: "user-management",
   components: {
-    EditBtns: resolve =>
-      require(["../../enterpriseInfo/components/EditBtns"], resolve)
+    Table: resolve => require(["@/components/Table"], resolve),
+    UserForm: resolve => require(["../components/UserForm"], resolve)
   },
   data() {
     return {
-      isFormDisabled: true,
-      userForm: { name: "aa" },
-      rules: {
-        name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
-        email: [
-          { required: true, message: "请输入邮箱地址", trigger: "blur" },
-          {
-            type: "email",
-            message: "请输入正确的邮箱地址",
-            trigger: ["blur", "change"]
-          }
-        ],
-        loginPsd: [
-          { required: true, message: "请输入登陆密码", trigger: "blur" }
-        ]
-      },
-      departOptions: [
+      isShowMainPage: true,
+      isShowResetBtn: false,
+      userForm: {},
+      tableHead: [
         {
-          value: "选项1",
-          label: "黄金糕"
+          fieldNo: "userName",
+          fieldName: "姓名",
+          id: 1
         },
         {
-          value: "选项2",
-          label: "双皮奶"
+          fieldNo: "email",
+          fieldName: "Email",
+          id: 2
         },
         {
-          value: "选项3",
-          label: "蚵仔煎"
+          fieldNo: "telPhone",
+          fieldName: "联系电话",
+          id: 3
         },
         {
-          value: "选项4",
-          label: "龙须面"
+          fieldNo: "depart",
+          fieldName: "所属部门",
+          id: 4
         },
         {
-          value: "选项5",
-          label: "北京烤鸭"
+          fieldNo: "isAllowed",
+          fieldName: "是否访问系统",
+          id: 5
+        }
+      ],
+      tableData: [
+        {
+          userName: "userName",
+          email: "11111@qq.com",
+          telPhone: "1234567890",
+          depart: "研发部",
+          isAllowed: "是"
+        },
+        {
+          userName: "userName",
+          email: "11111@qq.com",
+          telPhone: "1234567890",
+          depart: "研发部",
+          isAllowed: "是"
+        },
+        {
+          userName: "userName",
+          email: "11111@qq.com",
+          telPhone: "1234567890",
+          depart: "研发部",
+          isAllowed: "是"
+        },
+        {
+          userName: "userName",
+          email: "11111@qq.com",
+          telPhone: "1234567890",
+          depart: "研发部",
+          isAllowed: "是"
         }
       ]
     }
   },
   methods: {
+    //添加用户
+    handleAdd() {
+      this.isShowMainPage = false
+      this.isShowResetBtn = false // 是否显示重置按钮
+      this.userForm = {}
+    },
+    //返回
+    handleBack() {
+      this.isShowMainPage = true
+    },
     // 点击修改按钮
-    handleEdit() {
-      this.isFormDisabled = false
+    handleEdit(row) {
+      this.isShowMainPage = false
+      this.isShowResetBtn = true //是否显示重置按钮
+      this.userForm = row
+      // this.userForm.isAllowed = true
     },
     //点击保存按钮
     handleSave() {
@@ -126,10 +123,6 @@ export default {
           return false
         }
       })
-    },
-    //重置密码
-    handleResetPsd() {
-      this.userForm.loginPsd = ""
     }
   }
 }
@@ -139,5 +132,8 @@ export default {
 .user-management {
   text-align: left;
   overflow: hidden;
+  .add-btn {
+    padding: 16px 24px;
+  }
 }
 </style>

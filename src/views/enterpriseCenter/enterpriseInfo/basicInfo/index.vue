@@ -168,6 +168,7 @@ export default {
   .main-page {
     & > ul {
       & > li {
+        font-size: 14px;
         line-height: 40px;
         & > div {
           display: inline-block;
