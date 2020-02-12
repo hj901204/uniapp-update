@@ -29,34 +29,14 @@ module.exports = {
       errors: true
     },
     proxy: {
-      // change xxx-api/login => mock/login
-      // detail: https://cli.vuejs.org/config/#devserver-proxy
-      // '/jwt': {
-      //   target: 'http://zkyd-gate:8765',
-      //   pathRewrite: {
-      //     '^/jwt': '/jwt'
-      //   }
-      // },
-      "/api": {
-        target: "http://zkyd-gate:8765",
-        // target: 'http://192.168.31.146:8765',
-        // target: 'http://192.168.31.66:8765',
+      "/supplyx": {
+        target: "http://47.104.160.121:8862/supplyx",
         changeOrigin: true,
         pathRewrite: {
-          "^/api": "/api"
+          "^/supplyx": "/supplyx"
         }
       }
-      // ,
-      // [process.env.VUE_APP_BASE_API]: {
-      //   target: `http://127.0.0.1:${port}/mock`,
-      //   changeOrigin: true,
-      //   pathRewrite: {
-      //     ['^' + process.env.VUE_APP_BASE_API]: ''
-      //   }
-      // }
     }
-    // ,
-    // after: require('./mock/mock-server.js')
   },
   configureWebpack: {
     plugins: [
