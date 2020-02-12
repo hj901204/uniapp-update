@@ -1,36 +1,31 @@
 <template>
-  <div class="header-nav" v-if="handleJudgePath">
+  <div class="header-nav"
+       v-if="handleJudgePath">
     <div class="nav-content">
-      <div class="logo-img" @click="handleToDashboard">
-        <img src="@/assets/img/logo-w.png" alt="" />
+      <div class="logo-img"
+           @click="handleToDashboard">
+        <img src="@/assets/img/logo-w.png"
+             alt="" />
       </div>
       <div class="top-nav">
-        <router-link
-          to="/"
-          tag="li"
-          :class="$route.path == '/dashboard' ? 'nav-active' : ''"
-        >
+        <router-link to="/"
+                     tag="li"
+                     :class="$route.path == '/dashboard' ? 'nav-active' : ''">
           <span>首页</span>
         </router-link>
-        <router-link
-          to="/application"
-          tag="li"
-          :class="$route.path.indexOf('/application') == 0 ? 'nav-active' : ''"
-        >
+        <router-link to="/application"
+                     tag="li"
+                     :class="$route.path.indexOf('/application') == 0 ? 'nav-active' : ''">
           <span>应用中心</span>
         </router-link>
-        <router-link
-          to="/enterprise"
-          tag="li"
-          :class="$route.path.indexOf('/enterprise') == 0 ? 'nav-active' : ''"
-        >
+        <router-link to="/enterprise"
+                     tag="li"
+                     :class="$route.path.indexOf('/enterprise') == 0 ? 'nav-active' : ''">
           <span>企业中心</span>
         </router-link>
-        <router-link
-          to="/help"
-          tag="li"
-          :class="$route.path == '/help' ? 'nav-active' : ''"
-        >
+        <router-link to="/help"
+                     tag="li"
+                     :class="$route.path == '/help' ? 'nav-active' : ''">
           <span>帮助中心</span>
         </router-link>
       </div>
@@ -45,12 +40,12 @@ export default {
   components: {
     UserCenterNav: reslove => require(["@/components/UserCenterNav"], reslove)
   },
-  data() {
+  data () {
     return {}
   },
   computed: {
     // 判断路由即将跳转的页面，从而不显示路由导航
-    handleJudgePath() {
+    handleJudgePath () {
       let paths = [
         "/login",
         "/register",
@@ -68,7 +63,7 @@ export default {
     }
   },
   methods: {
-    handleToDashboard() {
+    handleToDashboard () {
       this.$router.push({ path: "/" })
     }
   }
@@ -85,7 +80,7 @@ export default {
     display: flex;
     .logo-img {
       // float: left;
-      margin-right: 80px;
+      margin-right: 6%;
       margin-top: 25px;
       cursor: pointer;
       & > img {
@@ -97,7 +92,7 @@ export default {
       height: 72px;
       display: flex;
       display: -webkit-flex;
-      width: 50%;
+      width: 60%;
       li {
         flex-grow: 1;
         line-height: 72px;
