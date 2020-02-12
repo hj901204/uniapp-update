@@ -1,6 +1,5 @@
-const baseUrl = "/supplyx"
 // 登陆
-const login = "/baseUrl" + "/system/login/"
+const login = "/system/login/"
 export default {
   install(Vue) {
     Vue.prototype.$lesUiPath = {
