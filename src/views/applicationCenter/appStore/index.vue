@@ -8,15 +8,14 @@
           <div class="app-title-box">
             <div class="app-title">
               <img src="../../../assets/img/appStore/log1.png" alt="" />
-              <span>{{ item.title }}</span>
+              <span><i>SupplyX</i>{{ item.title }}</span>
             </div>
-            <el-button
-              type="primary"
-              plain
-              size="small"
-              class="detail-btn"
+            <el-button 
               @click="handleJumpRpute(item)"
-              >查看详情
+              size="small"
+              type="primary"
+              style="float: right;"
+            >查看详情
             </el-button>
           </div>
           <div class="app-describe">
@@ -76,7 +75,6 @@ img,ul,li {
   .app-list {
     box-sizing: border-box;
     & > ul {
-      // padding: 10px;
       box-sizing: border-box;
       overflow: hidden;
       & > li {
@@ -88,31 +86,28 @@ img,ul,li {
         float: left;
         box-sizing: border-box;
         margin-right: 10px;
-        padding: 20px;
+        padding: 10px 20px;
         margin-bottom: 10px;
         .app-title-box {
           overflow: hidden;
-          border-bottom: 1px solid rgb(226, 226, 226);
+          border-bottom: 2px solid rgb(226, 226, 226);
           padding: 10px;
           margin-bottom: 10px;
           .app-title {
             float: left;
             & > img {
-              width: 38px;
-              height: 40px;
-              vertical-align: middle;
-              margin-right: 20px;
-              vertical-align:middle;
+              width: 32px;
+            margin-right: 8px;
+            vertical-align: middle;
             }
-            & > span {
-              font-size: 24px;
-              font-weight: bold;
-              vertical-align:middle;
-              font-family:PingFangSC-Medium;
-              font-size:18px;
-              color:#404040;
-              text-align:left;
+            & > span,i {
+            font-weight: bold;
+            font-size: 18px;
+            font-style: normal;
+            i {
+              margin: 0 5px;
             }
+          }
           }
         }
         .app-describe {
@@ -124,6 +119,7 @@ img,ul,li {
             overflow: hidden;
             font-family:PingFangSC-Regular;
             font-size:14px;
+            line-height: 1.5;
             color:#666666;
             text-align:left;
             padding: 10px;
