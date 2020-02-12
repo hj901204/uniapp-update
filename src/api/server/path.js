@@ -1,11 +1,10 @@
-import globalData from "@/api/global"
-
-// 工厂信息
-const getTmOrg = globalData.baseUrl + "/tmOrg/"
+const baseUrl = "/supplyx"
+// 登陆
+const login = "/baseUrl" + "/system/login/"
 export default {
   install(Vue) {
     Vue.prototype.$lesUiPath = {
-      getTmOrg
+      login
     }
   }
 }
