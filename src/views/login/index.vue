@@ -123,34 +123,16 @@ export default {
       this.$refs[form].validate(valid => {
         if (valid) {
           this.loading = true
-          this.$api.post(this.$lesUiPath.login, this[form]).then(result => {
-            if (result.msg) {
-              return this.$message.error(result.msg)
-            }
-            if (result.code == 1) {
+          this.$store
+            .dispatch("user/LoginByUsername", this[form])
+            .then(() => {
               this.$router.push({
                 path: "/"
               })
-            }
-
-          })
-          // this.$store
-          //   .dispatch("user/LoginByUsername", this[form])
-          //   .then(() => {
-          //     // loginAndLogoutLogApi({
-          //     //   opt: "登录",
-          //     //   menu: "登录"
-          //     // }).then(() => {
-          //     this.$router.push({
-          //       path: "/"
-          //     })
-          //     // })
-
-          //     // this.showDialog = true;
-          //   })
-          //   .catch(e => {
-          //     this.loading = false
-          //   })
+            })
+            .catch(e => {
+              this.loading = false
+            })
         } else {
           return false
         }
