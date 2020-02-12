@@ -4,7 +4,7 @@ BUILD_TAG=`date +%Y%m%d%H%M`
 
 echo 'new tag is: '${BUILD_TAG}
 echo 'registry is: '${REGISTRY_URL}
-NAME_SPACE="zkyd-supplier-x"
+NAME_SPACE="zkyd-mes"
 
 if [ "$2" != "" ];
     then
@@ -19,11 +19,11 @@ push_tag()
 	npm run build
 
     # push mes-ui
-  docker build -t $REGISTRY_URL/$NAME_SPACE/zkyd-supplier-x:$BUILD_TAG -t $REGISTRY_URL/$NAME_SPACE/zkyd-supplier-x:latest .
-  docker push $REGISTRY_URL/$NAME_SPACE/zkyd-supplier-x:$BUILD_TAG
-  docker push $REGISTRY_URL/$NAME_SPACE/zkyd-supplier-x:latest
-  docker rmi $REGISTRY_URL/$NAME_SPACE/zkyd-supplier-x:$BUILD_TAG
-  docker rmi $REGISTRY_URL/$NAME_SPACE/zkyd-supplier-x:latest
+  docker build -t $REGISTRY_URL/$NAME_SPACE/zkyd-srm-ui:$BUILD_TAG -t $REGISTRY_URL/$NAME_SPACE/zkyd-srm-ui:latest .
+  docker push $REGISTRY_URL/$NAME_SPACE/zkyd-srm-ui:$BUILD_TAG
+  docker push $REGISTRY_URL/$NAME_SPACE/zkyd-srm-ui:latest
+  docker rmi $REGISTRY_URL/$NAME_SPACE/zkyd-srm-ui:$BUILD_TAG
+  docker rmi $REGISTRY_URL/$NAME_SPACE/zkyd-srm-ui:latest
 }
 
 if [ "$1" = "test" ];
@@ -32,14 +32,14 @@ if [ "$1" = "test" ];
     sed -i "s|^const API_URL.*$|const API_URL = 'http://localhost:8765'|g" $WORKSPACE/config/prod.env.js
     # login
     REGISTRY_URL="172.172.172.201:5000"
-    NAME_SPACE="zkyd-supplier-x"
+    NAME_SPACE="zkyd-mes"
     docker login --username=123 $REGISTRY_URL --password=123
     push_tag
 elif [ "$1" = "prod" ];
     then
 #    REGISTRY_URL="registry.cn-qingdao.aliyuncs.com"
     REGISTRY_URL="registry-vpc.cn-qingdao.aliyuncs.com"
-    NAME_SPACE="zkyd-supplier-x"
+    NAME_SPACE="zkyd-mes"
     # 修改API地址
     # sed -i "s|^const API_URL.*$|const API_URL = 'API_URL'|g" $WORKSPACE/config/prod.env.js
     docker login --username=zkyd@1448612826005342 $REGISTRY_URL --password="zkyd1225"
