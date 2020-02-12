@@ -1,16 +1,5 @@
 import request from "@/utils/request"
 
-// export function loginByUsername(username, password) {
-//   const data = {
-//     username,
-//     password
-//   };
-//   return request({
-//     url: '/api/auth/jwt/token',
-//     method: 'post',
-//     data
-//   });
-// }
 //添加登录日志接口
 export function loginAndLogoutLogApi(data) {
   return request({
@@ -22,27 +11,26 @@ export function loginAndLogoutLogApi(data) {
 export function loginByUsername(username, password) {
   const data = {
     username,
-    password,
-    grant_type: "password"
+    password
   }
   return request({
-    url: "/api/auth/oauth/token",
+    url: "/supplyx/system/login",
     method: "post",
-    data,
-    transformRequest: [
-      function(data) {
-        // Do whatever you want to transform the data
-        let ret = ""
-        for (const it in data) {
-          ret +=
-            encodeURIComponent(it) + "=" + encodeURIComponent(data[it]) + "&"
-        }
-        return ret
-      }
-    ],
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    }
+    data
+    // transformRequest: [
+    //   function(data) {
+    //     // Do whatever you want to transform the data
+    //     let ret = ""
+    //     for (const it in data) {
+    //       ret +=
+    //         encodeURIComponent(it) + "=" + encodeURIComponent(data[it]) + "&"
+    //     }
+    //     return ret
+    //   }
+    // ],
+    // headers: {
+    //   "Content-Type": "application/x-www-form-urlencoded"
+    // }
   })
 }
 export function logout(token) {

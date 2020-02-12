@@ -1,89 +1,75 @@
 <template>
   <!-- 表格组件 -->
   <div class="table-component">
-    <el-table
-      size="small"
-      show-header
-      highlight-current-row
-      :data="tableData"
-      stripe
-      style="width: 100%"
-      fit
-      :height="maxHeight"
-      :max-height="maxHeight"
-      :header-row-style="{ color: '#4a90e2' }"
-    >
-      <el-table-column
-        type="index"
-        width="50"
-        label="#"
-        align="center"
-      ></el-table-column>
+    <el-table size="small"
+              show-header
+              highlight-current-row
+              :data="tableData"
+              stripe
+              style="width: 100%"
+              fit
+              :height="maxHeight"
+              :max-height="maxHeight"
+              :header-row-style="{ color: '#4a90e2' }">
+      <el-table-column type="index"
+                       width="50"
+                       label="#"
+                       align="center"></el-table-column>
 
-      <el-table-column
-        v-for="item in tableHead"
-        :key="item.id"
-        :prop="item.fieldNo"
-        :label="item.fieldName"
-        align="center"
-        :width="item.width ? item.width : ''"
-      >
+      <el-table-column v-for="item in tableHead"
+                       :key="item.id"
+                       :prop="item.fieldNo"
+                       :label="item.fieldName"
+                       align="center"
+                       :width="item.width ? item.width : ''">
       </el-table-column>
 
-      <el-table-column
-        fixed="right"
-        label="操作"
-        align="center"
-        v-if="isShowOperation"
-      >
+      <el-table-column fixed="right"
+                       label="操作"
+                       align="center"
+                       v-if="isShowOperation">
         <template slot-scope="scope">
-          <div v-if="isShowStopBtns">
-            <el-button
-              @click="handleStop(scope.row)"
-              type="primary"
-              plain
-              size="small"
-              v-if="scope.row.isDisabled ? false : true"
-              >禁用
+          <div v-if="isShowStopBtns"
+               style="display:inline-block;margin:0 10px">
+            <el-button @click="handleStop(scope.row)"
+                       type="primary"
+                       plain
+                       size="mini"
+                       v-if="scope.row.isDisabled ? false : true">禁用
             </el-button>
-            <el-button
-              @click="handleStart(scope.row)"
-              type="primary"
-              plain
-              size="small"
-              v-if="scope.row.isDisabled ? true : false"
-              >启用
+            <el-button @click="handleStart(scope.row)"
+                       type="primary"
+                       plain
+                       size="mini"
+                       v-if="scope.row.isDisabled ? true : false">启用
             </el-button>
           </div>
-          <el-button
-            @click="handleEdit(scope.row)"
-            type="primary"
-            plain
-            size="small"
-            v-if="isShowEditBtn"
-            >编辑
+          <el-button @click="handleEdit(scope.row)"
+                     type="primary"
+                     plain
+                     size="small"
+                     v-if="isShowEditBtn">编辑
           </el-button>
-          <el-button type="danger" size="small" plain v-if="isShowDeleteBtn"
-            >删除</el-button
-          >
+          <el-button type="danger"
+                     size="mini"
+                     plain
+                     v-if="isShowDeleteBtn">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
     <div class="tablePagination">
-      <el-pagination
-        small
-        v-show="isShowPage"
-        :page-sizes="[10, 20, 30, 40]"
-        :current-page="currentPage"
-        :page-size="currentSize"
-        :total="total"
-        class="pagination"
-        align="right"
-        background
-        layout="total, sizes, prev, pager, next, jumper"
-        @size-change="sizeChange"
-        @current-change="currentChange"
-      />
+      <el-pagination small
+                     v-show="isShowPage"
+                     :page-sizes="[10, 20, 30, 40]"
+                     :current-page="currentPage"
+                     :page-size="currentSize"
+                     :total="total"
+                     class="pagination"
+                     align="right"
+                     background
+                     layout="total, sizes, prev, pager, next, jumper"
+                     @size-change="sizeChange"
+                     @current-change="currentChange" />
     </div>
   </div>
 </template>
@@ -104,27 +90,27 @@ export default {
     total: { type: Number, default: 0 },
     maxHeight: { type: Number, default: document.body.clientHeight - 420 }
   },
-  data() {
+  data () {
     return {}
   },
   methods: {
     // 禁用
-    handleStop(row) {
+    handleStop (row) {
       this.$emit("handleStop", row)
     },
     //启用
-    handleStart(row) {
+    handleStart (row) {
       this.$emit("handleStart", row)
     },
     //编辑
-    handleEdit(row) {
+    handleEdit (row) {
       this.$emit("handleEdit", row)
     },
     // 分页
-    sizeChange(val) {
+    sizeChange (val) {
       this.$emit("sizeChange", val)
     },
-    currentChange(val) {
+    currentChange (val) {
       this.$emit("currentChange", val)
     }
   }
