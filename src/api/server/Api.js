@@ -2,7 +2,7 @@ import request from "@/utils/request"
 
 const pathSuffix = {
   get: "page",
-  add: "insert",
+  add: "add",
   update: "update",
   del: "delete",
   details: "details",

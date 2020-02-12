@@ -1,12 +1,11 @@
 <template>
   <div class="tree">
     <!-- 树-组件 -->
-    <el-tree
-      :data="treeData"
-      ref="tree"
-      :props="defaultProps"
-      @node-click="handleGetNode"
-    >
+    <el-tree :data="treeData"
+             ref="tree"
+             :props="defaultProps"
+             default-expand-all
+             @node-click="handleGetNode">
       <!-- <span class="custom-tree-node" slot-scope="{ node, data }">
         <span>{{ node.label }}</span>
         <span>
@@ -31,29 +30,29 @@ export default {
   props: {
     treeData: { type: Array, default: () => [] }
   },
-  data() {
+  data () {
     return {
       defaultProps: {
         children: "children",
-        label: "label"
+        label: "name"
       }
     }
   },
   methods: {
     // 单击节点
-    handleGetNode(obj, node) {
+    handleGetNode (obj, node) {
       // console.log(obj, node, nodeSelf)
       console.log(obj.id)
       this.$emit("handleGetNode", obj, node)
     },
     //   编辑
-    edit(data) {
+    edit (data) {
       console.log(data)
     },
     //删除
-    remove() {},
+    remove () { },
     //新建
-    add() {}
+    add () { }
   }
 }
 </script>
