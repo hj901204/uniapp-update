@@ -1,4 +1,4 @@
-import { loginByUsername, logout, getUserInfo, getMenus } from "@/api/login"
+import { loginByUsername } from "@/api/login"
 import {
   getToken,
   setToken,
@@ -12,7 +12,7 @@ const state = {
   status: "",
   code: "",
   token: getToken(),
-  name: getUserName(),
+  name: getUserName(), // 登录名
   avatar: "",
   introduction: "",
   roles: [],
