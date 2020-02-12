@@ -5,26 +5,26 @@
 <script>
 export default {
   name: "pie-chart",
-  data() {
+  data () {
     return {
       data: [
-        { item: "事例一", count: 40, percent: 0.4 },
-        { item: "事例二", count: 21, percent: 0.21 },
-        { item: "事例三", count: 17, percent: 0.17 },
-        { item: "事例四", count: 13, percent: 0.13 },
-        { item: "事例五", count: 9, percent: 0.09 }
+        { item: "用户一", count: 40, percent: 0.4 },
+        { item: "用户二", count: 21, percent: 0.21 },
+        { item: "用户三", count: 17, percent: 0.17 },
+        { item: "用户四", count: 13, percent: 0.13 },
+        { item: "用户五", count: 9, percent: 0.09 }
       ]
     }
   },
-  mounted() {
+  mounted () {
     this.handleChart()
   },
   methods: {
-    handleChart() {
+    handleChart () {
       const chart = new G2.Chart({
         container: "container-pie",
-        // forceFit: true,
-        width: 250,
+        forceFit: true,
+        // width: 250,
         height: 400
       })
       chart.source(this.data, {

@@ -2,33 +2,44 @@
   <div class="application-status">
     <div v-if="$route.path.indexOf('/Renew') == -1">
       <div class="application-part">
-        <div class="apply-title">
-          <img src="../../../../assets/logo.png" alt="" />
-          <span><i>·</i>{{ paramsObj.title }}</span>
+        <div class="apply-title-box">
+          <div class="apply-title">
+            <img src="@/assets/img/application/biaoqian.png"
+                 alt="" />
+            <span><i>SupplyX </i>{{ paramsObj.title }}</span>
+          </div>
+          <img src="@/assets/img/application/goc-logo.png"
+               alt="">
         </div>
-        <div class="start-date">开始日期:<span>2020/01/21 12:32:34</span></div>
-        <div class="expiration-date">
-          有效期:<span>一年</span>
-          <el-button type="primary" plain size="small" @click="handleRenew"
-            >续费</el-button
-          >
+        <div class="apply-info">
+          <div class="start-date">
+            <p>开始日期 :</p><span>2020/01/21 12:32:34</span>
+          </div>
+          <div class="expiration-date">
+            <p>有效期 :</p><span>一年</span>
+            <el-button type="danger"
+                       size="mini"
+                       @click="handleRenew">续 费</el-button>
+          </div>
         </div>
       </div>
       <!-- 用户状态 -->
       <div class="users-status">
-        <fieldset>
-          <legend>用户状态</legend>
-          <!-- 饼图 -->
+        <h3>用户状态</h3>
+        <!-- 饼图 -->
+        <div class="chart-box">
           <PieChart />
           <LineChart />
-        </fieldset>
+        </div>
       </div>
       <!-- 用户活跃排行榜 -->
       <div class="user-list">
-        <fieldset>
-          <legend>用户活跃排行榜</legend>
-          <Table :tableHead="tableHead" :tableData="tableData" />
-        </fieldset>
+        <h3>用户活跃排行榜</h3>
+        <!-- <fieldset> -->
+        <!-- <legend>用户活跃排行榜</legend> -->
+        <Table :tableHead="tableHead"
+               :tableData="tableData" />
+        <!-- </fieldset> -->
       </div>
     </div>
     <router-view />
@@ -42,7 +53,7 @@ export default {
     LineChart: resolve => require(["./components/LineChart"], resolve),
     Table: resolve => require(["@/components/Table"], resolve)
   },
-  data() {
+  data () {
     return {
       paramsObj: this.$route.query.params,
       tableHead: [
@@ -87,7 +98,7 @@ export default {
     }
   },
   methods: {
-    handleRenew() {
+    handleRenew () {
       let _this = this
       this.$router.push({
         path: "/application/enterpriseApplications/applicationStatus/Renew",
@@ -103,49 +114,91 @@ export default {
 <style lang="scss" scoped>
 .application-status {
   overflow: hidden;
-  padding: 10px 20px;
   .application-part {
-    border: 1px solid black;
-    padding: 10px;
-    .apply-title {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    .apply-title-box {
       overflow: hidden;
-      padding: 10px 0;
-      & > img {
-        width: 110px;
-        vertical-align: middle;
-      }
-      & > span,
-      i {
-        font-weight: bold;
-        font-size: 18px;
-        font-style: italic;
-        i {
-          margin: 0 5px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+      .apply-title {
+        float: left;
+        & > img {
+          width: 30px;
+          vertical-align: middle;
+          margin-right: 8px;
+        }
+        & > span {
+          font-weight: bold;
+          font-size: 18px;
+          & > i {
+            font-weight: bold;
+            font-style: normal;
+          }
         }
       }
-    }
-    .start-date,
-    .expiration-date {
-      line-height: 30px;
-      & > span {
-        margin-left: 10px;
+      & > img {
+        width: 110px;
+        float: right;
       }
-      .el-button {
-        margin-left: 20px;
+    }
+    .apply-info {
+      margin-top: 16px;
+      & > div {
+        line-height: 30px;
+        & > p {
+          width: 100px;
+          display: inline-block;
+          margin-right: 16px;
+          text-align: right;
+        }
+      }
+      .expiration-date {
+        .el-button {
+          margin-left: 24px;
+          width: 90px;
+        }
       }
     }
   }
   .users-status {
-    & > fieldset {
-      margin-top: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    margin-top: 8px;
+    padding: 16px;
+    padding-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    & > h3 {
+      padding-bottom: 12px;
+      color: #4a90e2;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+    }
+    .chart-box {
+      overflow: hidden;
       & > div {
         float: left;
+      }
+      & > div:first-child {
+        width: 40%;
+      }
+      & > div:last-child {
+        width: 60%;
       }
     }
   }
   .user-list {
-    & > fieldset {
-      margin-top: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    margin-top: 8px;
+    padding: 16px;
+    padding-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    & > h3 {
+      padding-bottom: 12px;
+      color: #4a90e2;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.05);
     }
   }
 }

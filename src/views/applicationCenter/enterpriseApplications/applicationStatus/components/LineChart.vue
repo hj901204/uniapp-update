@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       data: [
         { week: "星期一", value: 3 },
@@ -16,15 +16,16 @@ export default {
       ]
     }
   },
-  mounted() {
+  mounted () {
     this.handleChart()
   },
   methods: {
-    handleChart() {
+    handleChart () {
       const chart = new G2.Chart({
         container: "container-line",
         height: 400,
-        width: 600,
+        // width: 600,
+        forceFit: true,
         title: true
       })
 
