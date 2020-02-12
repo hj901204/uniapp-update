@@ -172,18 +172,25 @@ export default {
     },
     handleAdd () {
       this.ruleForm = {}
-      if (this.treeData.length == 1 && this.treeData[0].parentId == '-1' && this.treeData[0].children.length == 0) {
-        this.ruleForm.parentId = this.treeData[0].id
-        this.dialogVisible = true
-      } else if (!this.nodeId && this.treeData[0].children.length != 0) {
-        return this.$message({
-          message: "请选择部门",
-          type: "warning"
-        })
+      if (this.treeData && this.treeData.length != 0) {
+        if (this.treeData.length == 1 && this.treeData[0].children.length == 0) {
+          this.ruleForm.parentId = this.treeData[0].id
+          this.dialogVisible = true
+        }
+        else if (!this.nodeId && this.treeData[0].children.length != 0) {
+          return this.$message({
+            message: "请选择部门",
+            type: "warning"
+          })
+        } else {
+          this.ruleForm.parentId = this.nodeId
+          this.dialogVisible = true
+        }
       } else {
-        this.ruleForm.parentId = this.nodeId
+        this.ruleForm.parentId = '-1'
         this.dialogVisible = true
       }
+
     },
     //添加部门确定
     handleSaveAdd () {
