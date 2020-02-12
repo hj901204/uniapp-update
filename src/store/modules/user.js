@@ -66,7 +66,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       loginByUsername(username, password)
         .then(response => {
-          const token = "Bearer " + response.data.token
+          const token = response.data.token
           const userName = response.data.userName
           commit("SET_TOKEN", token)
           commit("SET_NAME", userName)
