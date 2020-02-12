@@ -16,7 +16,7 @@ push_tag()
 {
   set -e
 	npm install --registry=https://registry.npm.taobao.org
-	npm run build:prod
+	npm run build
 
     # push mes-ui
   docker build -t $REGISTRY_URL/$NAME_SPACE/zkyd-supplier-x:$BUILD_TAG -t $REGISTRY_URL/$NAME_SPACE/zkyd-supplier-x:latest .
