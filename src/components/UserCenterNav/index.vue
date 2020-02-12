@@ -7,7 +7,7 @@
       <el-dropdown>
         <span class="el-dropdown-link">
           <i class="icon element-icons">&#xe604;</i>
-          <span> 用户名称</span><i class="el-icon-arrow-down el-icon--right"></i>
+          <span> {{userName}}</span><i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown"
                           class="user-dropdown">
@@ -31,13 +31,15 @@
 export default {
   name: "user-nav",
   data () {
-    return {}
+    return {
+      userName: this.$store.getters.name
+    }
   },
   methods: {
     logout () {
-      // this.$store.dispatch("user/LogOut").then(() => {
-      //   location.reload() // In order to re-instantiate the vue-router object to avoid bugs
-      // })
+      this.$store.dispatch("user/LogOut").then(() => {
+        location.reload() // In order to re-instantiate the vue-router object to avoid bugs
+      })
       this.$router.push({ path: '/login' })
     },
     handleToMessage () {

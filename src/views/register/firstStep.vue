@@ -203,6 +203,8 @@ export default {
         this.$api.post(this.$lesUiPath.enterpriseRegister, obj).then(result => {
           if (result.code == 0) {
             this.$router.push({ path: "/register/secondStep" })
+          } else {
+            return this.$message.error(result.msg)
           }
         })
       }

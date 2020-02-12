@@ -37,17 +37,17 @@ router.beforeEach((to, from, next) => {
       NProgress.done()
     } else {
       //拉取用户信息
-
-      // 判断用户是否已经拉取信息
-      if (store.getters.menus === undefined) {
-        store.dispatch("user/GetUserInfo").then(info => {
-          if (info.id) {
-            next()
-          }
-        })
-      } else {
-        next()
-      }
+      next()
+      // // 判断用户是否已经拉取信息
+      // if (store.getters.menus === undefined) {
+      //   store.dispatch("user/GetUserInfo").then(info => {
+      //     if (info.id) {
+      //       next()
+      //     }
+      //   })
+      // } else {
+      //   next()
+      // }
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {

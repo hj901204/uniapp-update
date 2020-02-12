@@ -1,11 +1,18 @@
 import { loginByUsername, logout, getUserInfo, getMenus } from "@/api/login"
-import { getToken, setToken, removeToken } from "@/utils/auth"
+import {
+  getToken,
+  setToken,
+  removeToken,
+  getUserName,
+  setUserName,
+  removeUserName
+} from "@/utils/auth"
 const state = {
   user: "",
   status: "",
   code: "",
   token: getToken(),
-  name: "",
+  name: getUserName(),
   avatar: "",
   introduction: "",
   roles: [],
@@ -59,9 +66,12 @@ const actions = {
     return new Promise((resolve, reject) => {
       loginByUsername(username, password)
         .then(response => {
-          const token = "Bearer " + response.access_token
+          const token = "Bearer " + response.data.token
+          const userName = response.data.userName
           commit("SET_TOKEN", token)
+          commit("SET_NAME", userName)
           setToken(token)
+          setUserName(userName)
           resolve()
         })
         .catch(error => {
@@ -69,61 +79,19 @@ const actions = {
         })
     })
   },
-  // 获取用户信息
-  GetUserInfo({ commit, state }) {
-    return new Promise((resolve, reject) => {
-      getUserInfo(state.token)
-        .then(response => {
-          const data = response
-          commit("SET_ROLES", "admin")
-          commit("SET_NAME", data.name)
-          commit(
-            "SET_AVATAR",
-            "http://img.zcool.cn/community/0173e757b32f630000018c1b8767fc.png@1280w_1l_2o_100sh.png"
-          )
-          commit("SET_INTRODUCTION", data.description)
-          const menus = {}
-          // todo 这里获取到的菜单有问题
-          for (let i = 0; i < data.menus.length; i++) {
-            menus[data.menus[i].code] = true
-          }
-          commit("SET_MENUS", menus)
-          const elements = {}
-          for (let i = 0; i < data.elements.length; i++) {
-            elements[data.elements[i].code] = true
-          }
-          commit("SET_ELEMENTS", elements)
-          resolve(response)
-        })
-        .catch(error => {
-          reject(error)
-        })
-      getMenus().then(response => {
-        commit(
-          "SET_PERMISSION_MENUS",
-          response.filter(v => v.title !== "移动端")
-        )
-      })
-    })
-  },
+
   // 登出
   LogOut({ commit, state }) {
     return new Promise((resolve, reject) => {
       const token = state.token
       commit("SET_TOKEN", "")
-      logout(token)
-        .then(() => {
-          commit("SET_TOKEN", "")
-          commit("SET_ROLES", [])
-          commit("SET_MENUS", undefined)
-          commit("SET_ELEMENTS", undefined)
-          commit("SET_PERMISSION_MENUS", undefined)
-          removeToken()
-          resolve()
-        })
-        .catch(error => {
-          reject(error)
-        })
+      commit("SET_NAME", "")
+      // commit("SET_MENUS", undefined)
+      // commit("SET_ELEMENTS", undefined)
+      // commit("SET_PERMISSION_MENUS", undefined)
+      removeToken()
+      removeUserName()
+      resolve()
     })
   }
 }
