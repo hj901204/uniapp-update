@@ -6,37 +6,48 @@
     <div class="form-part">
       <div class="detail-info-form">
         <h3>企业详细信息</h3>
-        <el-form
-          ref="form"
-          :model="form"
-          size="mini"
-          label-width="100px"
-          class="infor-form"
-        >
+        <el-form ref="formRef"
+                 :model="form"
+                 size="mini"
+                 label-width="100px"
+                 class="infor-form"
+                 hide-required-asterisk
+                 :rules="rules">
           <el-row>
             <el-col :span="11">
-              <el-form-item label="企业名称" style="width:90%">
-                <el-input v-model="form.name"></el-input>
+              <el-form-item label="企业名称"
+                            style="width:90%"
+                            prop="enterName">
+                <el-input v-model.trim="form.enterName"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="11">
-              <el-form-item label="联系电话" style="width:90%">
-                <el-input v-model="form.tel"></el-input>
+              <el-form-item label="联系电话"
+                            style="width:90%"
+                            prop="enterTelNum">
+                <el-input v-model.trim="form.enterTelNum"
+                          type="tel"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="11">
-              <el-form-item label="企业地址" style="width:90%">
-                <el-input v-model="form.address"></el-input>
+              <el-form-item label="企业地址"
+                            style="width:90%"
+                            prop="enterAddress">
+                <el-input v-model.trim="form.enterAddress"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="11">
-              <el-form-item label="联系邮件" style="width:90%">
-                <el-input v-model="form.email"></el-input>
+              <el-form-item label="联系邮件"
+                            style="width:90%"
+                            type='email'
+                            prop="enterMail">
+                <el-input v-model.trim="form.enterMail"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="11">
-              <el-form-item label="企业简称" style="width:90%">
-                <el-input v-model="form.shortname"></el-input>
+              <el-form-item label="企业简称"
+                            style="width:90%">
+                <el-input v-model.trim="form.shortname"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -44,36 +55,28 @@
       </div>
       <div class="detail-info-form">
         <h3>主要联系人信息</h3>
-        <el-form
-          ref="form"
-          :model="form"
-          size="mini"
-          label-width="100px"
-          class="infor-form"
-        >
+        <el-form ref="formRef2"
+                 :model="form2"
+                 size="mini"
+                 :rules="rules2"
+                 hide-required-asterisk
+                 label-width="100px"
+                 class="infor-form">
           <el-row>
             <el-col :span="11">
-              <el-form-item label="姓名" style="width:90%">
-                <el-input v-model="form.username"></el-input>
+              <el-form-item label="姓名"
+                            style="width:90%"
+                            prop="liaisonMan">
+                <el-input v-model.trim="form2.liaisonMan"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="11">
-              <el-form-item label="职位">
-                <el-select
-                  v-model="form.position"
-                  placeholder="请选择"
-                  style="width:88%"
-                >
-                  <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  >
-                  </el-option>
-                </el-select>
+              <el-form-item label="职位"
+                            style="width:90%"
+                            prop="position">
+                <el-input v-model.trim="form2.position"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -82,39 +85,42 @@
 
       <div class="detail-info-form">
         <h3>企业账户信息</h3>
-        <el-form
-          ref="form"
-          :model="form"
-          size="mini"
-          label-width="100px"
-          class="infor-form"
-        >
+        <el-form ref="formRef3"
+                 :model="enteradminForm"
+                 size="mini"
+                 :rules="rules3"
+                 label-width="100px"
+                 hide-required-asterisk
+                 class="infor-form">
           <el-row>
             <el-col :span="11">
-              <el-form-item
-                label="管理员账号"
-                style="width:90%;position:relative"
-              >
-                <el-input v-model="form.adminName"></el-input>
-                <i
-                  class="el-icon-info"
-                  style="position:absolute;right:-200px;top:6px;"
-                  ><span>管理员账号设置后不允许修改!</span>
+              <el-form-item label="管理员账号"
+                            style="width:90%;position:relative"
+                            prop="enterAccount">
+                <el-input v-model.trim="enteradminForm.enterAccount"></el-input>
+                <i class="el-icon-info"
+                   style="position:absolute;right:-200px;top:6px;"><span>管理员账号设置后不允许修改!</span>
                 </i>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="11">
-              <el-form-item label="登陆密码" style="width:90%">
-                <el-input v-model="form.loginPsd" type="password"></el-input>
+              <el-form-item label="登陆密码"
+                            style="width:90%"
+                            prop="password">
+                <el-input v-model.trim="enteradminForm.password"
+                          type="password"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="11">
-              <el-form-item label="确认密码" style="width:90%">
-                <el-input v-model="form.checkPsd" type="password"></el-input>
+              <el-form-item label="确认密码"
+                            style="width:90%"
+                            prop="checkPsd">
+                <el-input v-model.trim="enteradminForm.checkPsd"
+                          type="password"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -122,10 +128,11 @@
       </div>
     </div>
     <div class="edit-btn">
-      <el-button size="small" @click="handleBack">返回</el-button>
-      <el-button type="primary" size="small" @click="handleNextStep"
-        >下一步</el-button
-      >
+      <el-button size="small"
+                 @click="handleBack">返回</el-button>
+      <el-button type="primary"
+                 size="small"
+                 @click="handleNextStep">下一步</el-button>
       <!-- <div @click="handleNextStep" class="next-btn"><span>下一步</span></div> -->
     </div>
   </div>
@@ -139,40 +146,91 @@ export default {
       require(["@/components/ProcessTitle/index.vue"], reslove),
     PageTitle: reslove => require(["@/components/PageTitle.vue"], reslove)
   },
-  data() {
+  data () {
+    var validatePass = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error('请再次输入密码'));
+      } else if (value !== this.enteradminForm.password) {
+        callback(new Error('两次输入密码不一致!'));
+      } else {
+        callback();
+      }
+    };
     return {
+      rules: {
+        enterTelNum: [
+          { required: true, message: '请输入联系电话', trigger: 'blur' }],
+        enterMail: [
+          { required: true, message: '请输入联系电话', trigger: 'blur' },
+          { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }
+        ],
+        enterName: [
+          { required: true, message: '请输入企业名称', trigger: 'blur' }
+        ],
+        enterAddress: [
+          { required: true, message: '请输入企业地址', trigger: 'blur' }
+        ]
+      },
+      rules2: {
+        liaisonMan: [
+          { required: true, message: '请输入姓名', trigger: 'blur' }
+        ],
+        position: [
+          { required: true, message: '请输入职位', trigger: 'blur' }
+        ],
+      },
+      rules3: {
+        enterAccount: [{ required: true, message: '请输入管理员账号', trigger: 'blur' }],
+        password: [{ required: true, message: '请输入登录密码', trigger: 'blur' }],
+        checkPsd: [{ validator: validatePass, trigger: 'blur' }],
+
+      },
       form: { adminName: "" }, //表单
-      options: [
-        //职位选项
-        {
-          value: "选项1",
-          label: "黄金糕"
-        },
-        {
-          value: "选项2",
-          label: "双皮奶"
-        },
-        {
-          value: "选项3",
-          label: "蚵仔煎"
-        },
-        {
-          value: "选项4",
-          label: "龙须面"
-        },
-        {
-          value: "选项5",
-          label: "北京烤鸭"
-        }
-      ]
+      form2: {},
+      enteradminForm: {}
     }
   },
   methods: {
-    handleNextStep() {
-      this.$router.push({ path: "/register/secondStep" })
+    handleNextStep () {
+      let valid1 = this.validateFunc('formRef')
+      let valid2 = this.validateFunc('formRef2')
+      let valid3 = this.validateFunc('formRef3')
+      if (valid1 && valid2 && valid3) {
+        let obj = {}
+        obj.enterprise = Object.assign(this.form, this.form2)
+        obj.enteradmin = this.enteradminForm
+        console.log(obj)
+        this.$api.post(this.$lesUiPath.enterpriseRegister, obj).then(result => {
+          if (result.code == 0) {
+            this.$router.push({ path: "/register/secondStep" })
+          }
+        })
+      }
+      // this.validateFunc('formRef')
+      // this.$refs.formRef.validate((valid) => {
+      //   if (valid) {
+      //     this.$router.push({ path: "/register/secondStep" })
+      //   } else {
+      //     return false;
+      //   }
+      // })
+    },
+    // 验证表单
+    validateFunc (ref) {
+      let flag;
+      this.$refs[ref].validate((valid) => {
+        if (valid) {
+          flag = true
+          return flag
+        }
+        flag = false
+        return flag
+
+      })
+      return flag
     },
     //返回
-    handleBack() {
+    handleBack () {
       this.$router.go(-1)
     }
   }

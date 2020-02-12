@@ -1,81 +1,67 @@
 <template>
   <div class="login-container">
     <div class="logo-box">
-      <img src="@/assets/img/login/login.png" alt="" />
+      <img src="@/assets/img/login/login.png"
+           alt="" />
       <div class="logo-container">
         <div class="login-logo">
-          <img src="@/assets/img/login/login-logo.png" alt="" />
-          <img src="@/assets/img/logo-w.png" alt="" />
+          <img src="@/assets/img/login/login-logo.png"
+               alt="" />
+          <img src="@/assets/img/logo-w.png"
+               alt="" />
         </div>
       </div>
     </div>
     <div class="login-box">
       <div class="login-background">
         <div class="login-main">
-          <el-form
-            ref="loginForm"
-            :model="loginForm"
-            :rules="loginRules"
-            class="login-form"
-            auto-complete="on"
-            label-position="left"
-          >
+          <el-form ref="loginForm"
+                   :model="loginForm"
+                   :rules="loginRules"
+                   class="login-form"
+                   auto-complete="on"
+                   label-position="left">
             <el-form-item prop="username">
-              <p
-                style="height:20px;line-height:20px;margin-bottom:10px;color:#7e7e7e"
-              >
+              <p style="height:20px;line-height:20px;margin-bottom:10px;color:#7e7e7e">
                 登陆账号
               </p>
-              <el-input
-                v-model="loginForm.username"
-                name="username"
-                type="text"
-                auto-complete="on"
-                class="username"
-                placeholder="请输入用户名"
-              >
+              <el-input v-model="loginForm.username"
+                        name="username"
+                        type="text"
+                        auto-complete="on"
+                        class="username"
+                        placeholder="请输入用户名">
                 <!-- <i slot="suffix" class="el-input__icon el-icon-question"></i> -->
               </el-input>
               <!-- prefix-icon="el-icon-user-solid" -->
 
               <!-- 提示文字 -->
-              <el-tooltip
-                class="tooltip"
-                effect="dark"
-                content="请使用邮箱或者企业账号登录"
-                placement="top"
-              >
-                <i
-                  class="el-icon-question account-prompt"
-                  style="font-size:22px;vertical-align: middle"
-                ></i>
+              <el-tooltip class="tooltip"
+                          effect="dark"
+                          content="请使用邮箱或者企业账号登录"
+                          placement="top">
+                <i class="el-icon-question account-prompt"
+                   style="font-size:22px;vertical-align: middle"></i>
               </el-tooltip>
             </el-form-item>
             <el-form-item prop="password">
-              <p
-                style="height:20px;line-height:20px;margin-bottom:10px;color:#7e7e7e"
-              >
+              <p style="height:20px;line-height:20px;margin-bottom:10px;color:#7e7e7e">
                 密码
               </p>
-              <el-input
-                type="password"
-                v-model="loginForm.password"
-                name="password"
-                auto-complete="on"
-                placeholder="请输入密码"
-              />
+              <el-input type="password"
+                        v-model="loginForm.password"
+                        name="password"
+                        auto-complete="on"
+                        placeholder="请输入密码" />
               <!-- prefix-icon="el-icon-lock" -->
             </el-form-item>
           </el-form>
           <div class="forgetpsd">
             <router-link to="">忘记密码?</router-link>
           </div>
-          <el-button
-            type="primary"
-            class="login-button"
-            @click="handleLogin('loginForm')"
-            >登陆</el-button
-          >
+          <el-button type="primary"
+                     class="login-button"
+                     @click="handleLogin('loginForm')">登陆</el-button>
 
           <!-- 注册 -->
           <div class="register-forgetpsd">
@@ -89,7 +75,8 @@
         </div>
       </div>
       <div class="company-info-box">
-        <img src="@/assets/img/QR-code.png" alt="" />
+        <img src="@/assets/img/QR-code.png"
+             alt="" />
         <div class="company-info">
           <div>北京智科云达信息技术有限公司<span>@2020</span></div>
           <p>联系电话：010-12345678</p>
@@ -104,7 +91,7 @@
 import { loginAndLogoutLogApi } from "@/api/login.js"
 export default {
   name: "",
-  data() {
+  data () {
     return {
       loginForm: {},
       loginRules: {
@@ -132,30 +119,38 @@ export default {
     }
   },
   methods: {
-    handleLogin(form) {
+    handleLogin (form) {
       this.$refs[form].validate(valid => {
         if (valid) {
-          // this.$router.push({
-          //   path: "/"
-          // })
           this.loading = true
-          this.$store
-            .dispatch("user/LoginByUsername", this[form])
-            .then(() => {
-              loginAndLogoutLogApi({
-                opt: "登录",
-                menu: "登录"
-              }).then(() => {
-                this.$router.push({
-                  path: "/"
-                })
+          this.$api.post(this.$lesUiPath.login, this[form]).then(result => {
+            if (result.msg) {
+              return this.$message.error(result.msg)
+            }
+            if (result.code == 1) {
+              this.$router.push({
+                path: "/"
               })
+            }
 
-              // this.showDialog = true;
-            })
-            .catch(e => {
-              this.loading = false
-            })
+          })
+          // this.$store
+          //   .dispatch("user/LoginByUsername", this[form])
+          //   .then(() => {
+          //     // loginAndLogoutLogApi({
+          //     //   opt: "登录",
+          //     //   menu: "登录"
+          //     // }).then(() => {
+          //     this.$router.push({
+          //       path: "/"
+          //     })
+          //     // })
+
+          //     // this.showDialog = true;
+          //   })
+          //   .catch(e => {
+          //     this.loading = false
+          //   })
         } else {
           return false
         }

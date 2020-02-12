@@ -7,17 +7,19 @@
       <el-dropdown>
         <span class="el-dropdown-link">
           <i class="icon element-icons">&#xe604;</i>
-          <span> 用户名称</span
-          ><i class="el-icon-arrow-down el-icon--right"></i>
+          <span> 用户名称</span><i class="el-icon-arrow-down el-icon--right"></i>
         </span>
-        <el-dropdown-menu slot="dropdown" class="user-dropdown">
+        <el-dropdown-menu slot="dropdown"
+                          class="user-dropdown">
           <el-dropdown-item>修改密码</el-dropdown-item>
           <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
-    <div class="badge" @click="handleToMessage">
-      <el-badge class="item" is-dot>
+    <div class="badge"
+         @click="handleToMessage">
+      <el-badge class="item"
+                is-dot>
         <!-- <el-button icon="el-icon-bell" circle size="mini"></el-button> -->
         <i class="el-icon-bell"></i>
       </el-badge>
@@ -28,16 +30,17 @@
 <script>
 export default {
   name: "user-nav",
-  data() {
+  data () {
     return {}
   },
   methods: {
-    logout() {
-      this.$store.dispatch("user/LogOut").then(() => {
-        location.reload() // In order to re-instantiate the vue-router object to avoid bugs
-      })
+    logout () {
+      // this.$store.dispatch("user/LogOut").then(() => {
+      //   location.reload() // In order to re-instantiate the vue-router object to avoid bugs
+      // })
+      this.$router.push({ path: '/login' })
     },
-    handleToMessage() {
+    handleToMessage () {
       this.$router.push({ path: "/enterprise/messageCenter/systemInfo" })
     }
   }
