@@ -6,7 +6,7 @@
         <div class="apply-title">
           <img src="@/assets/img/application/biaoqian.png"
                alt="" />
-          <span><i>SupplyX </i>{{ params.title }}</span>
+          <span><i>SupplyX </i>{{ params.appName }}</span>
         </div>
         <img src="@/assets/img/application/goc-logo.png"
              alt="">
@@ -81,7 +81,7 @@ export default {
       ruleForm: {},
       rules: {},
       dialogVisible: false,
-      params: this.$route.query.params,
+      params: JSON.parse(this.$route.query.params),
       tableHead: [
         {
           fieldNo: "userName",

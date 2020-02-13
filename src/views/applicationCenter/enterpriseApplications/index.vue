@@ -72,7 +72,7 @@ export default {
       this.$router.push({
         path: "/application/enterpriseApplications/applicationSetting",
         query: {
-          params: item
+          params: JSON.stringify(item)
         }
       })
     },
