@@ -5,7 +5,7 @@
         <span><i>SupplyX</i>{{ appDetail.appName }}</span>
         <div class="apply-btns">
           <el-button 
-            v-if="true"
+            v-if="!applied"
             size="small" 
             type="primary"  
             @click="handleApply"
