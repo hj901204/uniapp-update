@@ -2,6 +2,7 @@ import Cookies from "js-cookie"
 
 const TokenKey = "Admin-Token"
 const userNameKey = "userName"
+
 export function getToken() {
   return Cookies.get(TokenKey)
 }
@@ -15,7 +16,6 @@ export function removeToken() {
 }
 
 // 用户名
-
 export function getUserName() {
   return Cookies.get(userNameKey)
 }

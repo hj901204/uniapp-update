@@ -52,13 +52,14 @@ export default {
 <style lang="scss">
 .user-nav {
   height: 72px;
+  width: 20%;
   // line-height: 72px;
   padding-top: 20px;
   box-sizing: border-box;
   display: flex;
 
   .user-center {
-    width: 200px;
+    width: 90%;
     box-sizing: border-box;
     text-align: left;
     .el-dropdown {
@@ -75,7 +76,7 @@ export default {
         border-radius: 8px;
         color: #7e7e7e;
 
-        .iconfont {
+        .element-icons {
           margin-right: 8px;
         }
         .el-icon--right {
@@ -83,7 +84,7 @@ export default {
         }
         & > span {
           display: inline-block;
-          width: 150px;
+          width: 74%;
         }
       }
     }

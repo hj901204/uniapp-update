@@ -11,7 +11,15 @@ const appDetail = baseUrl + "/app/detail"
 // 立即申请
 const appApply = baseUrl + "/app/apply"
 
-//企业中心
+//--------------首页
+//我的企业信息
+const enterpriseFind = baseUrl + "/enterprise/find"
+
+//--------------应用中心
+// 查询我的应用列表
+const enterAppFindList = baseUrl + "/enterApp/findList"
+
+//-------------企业中心
 
 //部门管理
 // 添加部门
@@ -29,7 +37,9 @@ export default {
       departTree,
       appStore,
       appDetail,
-      appApply
+      appApply,
+      enterAppFindList,
+      enterpriseFind
     }
   }
 }

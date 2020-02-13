@@ -1,4 +1,5 @@
-import { loginByUsername, logout, getUserInfo, getMenus } from "@/api/login"
+import { loginByUsername } from "@/api/login"
+import { Message } from "element-ui"
 import {
   getToken,
   setToken,
@@ -12,7 +13,7 @@ const state = {
   status: "",
   code: "",
   token: getToken(),
-  name: getUserName(),
+  name: getUserName(), // 登录名
   avatar: "",
   introduction: "",
   roles: [],
@@ -66,13 +67,20 @@ const actions = {
     return new Promise((resolve, reject) => {
       loginByUsername(username, password)
         .then(response => {
-          const token = response.data.token
-          const userName = response.data.userName
-          commit("SET_TOKEN", token)
-          commit("SET_NAME", userName)
-          setToken(token)
-          setUserName(userName)
-          resolve()
+          if (response.code == 0) {
+            const token = response.data.token
+            const userName = response.data.userName
+            commit("SET_TOKEN", token)
+            commit("SET_NAME", userName)
+            setToken(token)
+            setUserName(userName)
+            resolve()
+          } else {
+            Message({
+              message: response.msg,
+              type: "error"
+            })
+          }
         })
         .catch(error => {
           reject(error)

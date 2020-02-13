@@ -4,8 +4,9 @@
     <div class="my-corporate-title">
       <h3>我的企业信息</h3>
       <div class="edit-btn">
-        <el-button type="primary" size="small" @click="handleToJump"
-          >修 改
+        <el-button type="primary"
+                   size="small"
+                   @click="handleToJump">修 改
         </el-button>
       </div>
     </div>
@@ -21,12 +22,16 @@
 <script>
 export default {
   name: "my-corporate-info",
-  data() {
+  data () {
     return {}
   },
   methods: {
-    handleToJump() {
+    handleToJump () {
       this.$router.push({ path: "/enterprise/enterpriseInfo/basicInfo" })
+    },
+    //我的企业信息查询
+    getMyEnterpriseData () {
+      // this.$api.post(this.$lesUiPath.enterpriseFind)
     }
   }
 }
