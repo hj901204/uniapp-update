@@ -17,11 +17,13 @@ const enterpriseFindEnt = baseUrl + "/enterprise/findEnt"
 //企业用户信息 人数
 const enteruserFindCount = baseUrl + "/enteruser/findCount"
 
-//--------------应用中心
+//------------------------应用中心
 // 查询我的应用列表
 const enterAppFindList = baseUrl + "/enterApp/findList"
+//应用状态-用户活跃排行榜
+const activeUserLeaderboard = baseUrl + "/enterApp/activeUserLeaderboard"
 
-//-------------企业中心
+//-------------------------企业中心
 
 //部门管理
 // 添加部门
@@ -42,7 +44,8 @@ export default {
       appApply,
       enterAppFindList,
       enterpriseFindEnt,
-      enteruserFindCount
+      enteruserFindCount,
+      activeUserLeaderboard
     }
   }
 }

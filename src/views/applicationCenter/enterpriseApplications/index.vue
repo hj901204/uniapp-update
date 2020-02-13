@@ -4,12 +4,16 @@
     <div v-if="$route.path == '/application/enterpriseApplications'">
       <ul>
         <li v-for="item in myApplyList"
-            :key="item.id">
+            :key="item.id"
+            v-if="myApplyList">
           <div class="apply-title-box">
             <div class="apply-title">
               <img src="@/assets/img/application/biaoqian.png"
                    alt="" />
-              <span><i>SupplyX</i>{{ item.title }}</span>
+              <span class="apply-info">
+                <div><i>SupplyX</i>{{ item.appName }}</div>
+                <div :class="item.isEnable?'green':'red'">状态：<i v-if="item.isEnable==1">正常</i><i v-if="item.isEnable==0">停用</i></div>
+              </span>
             </div>
             <div class="start-use-btn">
               <el-button @click="handleStartUse"
@@ -19,9 +23,9 @@
             </div>
           </div>
           <div class="start-date">
-            开始日期:<span>2020/01/21 12:32:34</span>
+            开始日期:<span>{{item.initiateTime}}</span>
           </div>
-          <div class="expiration-date">有效期:<span>一年</span></div>
+          <div class="expiration-date">过期时间:<span>{{item.expireTime}}</span></div>
           <div class="my-apply-btns">
             <el-button @click="handleApplyStatus(item)"
                        size="small"
@@ -44,17 +48,11 @@ export default {
   name: "",
   data () {
     return {
-      myApplyList: [
-        {
-          id: 1,
-          title: "SRM"
-        },
-        {
-          id: 2,
-          title: "MES"
-        }
-      ]
+      myApplyList: []
     }
+  },
+  mounted () {
+    this.getMyAppData()
   },
   methods: {
     //应用状态
@@ -62,9 +60,10 @@ export default {
       this.$router.push({
         path: "/application/enterpriseApplications/applicationStatus",
         query: {
-          params: item
+          params: JSON.stringify(item)
         }
       })
+
     },
     //开始使用
     handleStartUse () { },
@@ -76,7 +75,24 @@ export default {
           params: item
         }
       })
-    }
+    },
+    getMyAppData () {
+      this.$api.post(this.$lesUiPath.enterAppFindList, { page: 1, length: 1000 }).then(result => {
+        if (result.code == 0) {
+          this.myApplyList = result.data
+          this.myApplyList.map(item => {
+            item.initiateTime = this.dateTime(item.initiateTime)
+          })
+        }
+      })
+    },
+    // 处理时间格式
+    dateTime (time) {
+      var d = new Date(time)
+      var date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + (d.getHours() < 10 ? '0' + d.getHours() : d.getHours()) + ':' + (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes()) + ':' + (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
+      return date
+    },
+
   }
 }
 </script>
@@ -105,6 +121,7 @@ export default {
           vertical-align: middle;
           overflow: hidden;
           padding: 10px 0;
+          width: 80%;
           & > img {
             width: 32px;
             margin-right: 8px;
@@ -116,14 +133,33 @@ export default {
             font-size: 18px;
             font-style: normal;
             i {
-              margin: 0 5px;
+              margin-right: 5px;
+              line-height: 22px;
+            }
+          }
+          .apply-info {
+            text-align: left;
+            display: inline-block;
+            vertical-align: middle;
+            & > div:last-child {
+              font-size: 12px;
+              font-weight: normal;
+              & > i {
+                font-weight: normal;
+                font-size: 12px;
+              }
+            }
+            .green {
+              color: rgb(121, 149, 79);
+            }
+            .red {
+              color: #d0021b;
             }
           }
         }
         .start-use-btn {
           text-align: right;
           display: inline-block;
-          margin-left: 42%;
         }
       }
       .start-date {

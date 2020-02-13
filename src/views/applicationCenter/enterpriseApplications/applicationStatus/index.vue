@@ -6,17 +6,18 @@
           <div class="apply-title">
             <img src="@/assets/img/application/biaoqian.png"
                  alt="" />
-            <span><i>SupplyX </i>{{ paramsObj.title }}</span>
+            <span><i>SupplyX </i>{{ paramsObj.appName }}</span>
           </div>
           <img src="@/assets/img/application/goc-logo.png"
                alt="">
         </div>
         <div class="apply-info">
           <div class="start-date">
-            <p>开始日期 :</p><span>2020/01/21 12:32:34</span>
+            <p>开始日期 :</p><span>{{paramsObj.initiateTime}}</span>
           </div>
           <div class="expiration-date">
-            <p>有效期 :</p><span>一年</span>
+            <p v-if="paramsObj.expireTime">过期时间 :</p><span v-if="">{{paramsObj.expireTime}}</span>
+            <p v-if="!paramsObj.expireTime">有效期 :</p><span v-if="">一年</span>
             <el-button type="danger"
                        size="mini"
                        @click="handleRenew">续 费</el-button>
@@ -38,7 +39,12 @@
         <!-- <fieldset> -->
         <!-- <legend>用户活跃排行榜</legend> -->
         <Table :tableHead="tableHead"
-               :tableData="tableData" />
+               :tableData="tableData"
+               @sizeChange='sizeChange'
+               @currentChange='currentChange'
+               :currentSize='currentSize'
+               :currentPage='currentPage'
+               :total='total' />
         <!-- </fieldset> -->
       </div>
     </div>
@@ -48,14 +54,18 @@
 
 <script>
 export default {
+  name: 'applicationStatus',
   components: {
     PieChart: resolve => require(["./components/PieChart"], resolve),
     LineChart: resolve => require(["./components/LineChart"], resolve),
     Table: resolve => require(["@/components/Table"], resolve)
   },
+  mounted () {
+    this.getUserData()
+  },
   data () {
     return {
-      paramsObj: this.$route.query.params,
+      paramsObj: JSON.parse(this.$route.query.params),
       tableHead: [
         {
           fieldNo: "userName",
@@ -81,20 +91,11 @@ export default {
           id: 4
         }
       ],
-      tableData: [
-        {
-          userName: "木村文乃",
-          email: "fumino.kimura@gocdata.com",
-          count: "123",
-          lastDate: "2020/01/19 21:00:09"
-        },
-        {
-          userName: "上野树里",
-          email: "",
-          count: "33",
-          lastDate: "2020/01/19 21:00:09"
-        }
-      ]
+      tableData: [],
+      currentSize: 10,
+      currentPage: 1,
+      total: 0
+
     }
   },
   methods: {
@@ -104,6 +105,24 @@ export default {
         path: "/application/enterpriseApplications/applicationStatus/Renew",
         query: {
           appInfo: _this.paramsObj
+        }
+      })
+    },
+    // 表格分页 
+    sizeChange (val) {
+      this.currentSize = val;
+      this.getUserData(this.currentPage, this.currentSize)
+    },
+    currentChange (val) {
+      this.currentPage = val;
+      this.getUserData(this.currentPage, this.currentSize)
+    },
+    //获取用户活跃排行榜
+    getUserData (page = 1, length = 10) {
+      const queryInfo = { page: page, length: length };
+      this.$api.post(this.$lesUiPath.activeUserLeaderboard, queryInfo).then(result => {
+        if (result.code == 0) {
+
         }
       })
     }

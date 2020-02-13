@@ -25,7 +25,8 @@
       <h3>用户列表</h3>
       <el-button size="small"
                  type="primary"
-                 class="add-user-btn">添加用户</el-button>
+                 class="add-user-btn"
+                 @click="handleAddUser">添加用户</el-button>
       <Table :tableHead="tableHead"
              :isShowOperation="true"
              :isShowStopBtns='true'
@@ -34,6 +35,38 @@
              @handleStop="handleStop"
              @handleStart="handleStart" />
     </div>
+    <!-- 添加用户弹框 -->
+    <el-dialog title="添加用户"
+               :visible.sync="dialogVisible"
+               close-on-click-modal
+               width="40%">
+      <el-form :model="ruleForm"
+               :rules="rules"
+               ref="ruleForm"
+               size="small"
+               label-width="100px">
+        <el-form-item label="用户名"
+                      prop="name">
+          <el-input v-model="ruleForm.name"></el-input>
+        </el-form-item>
+        <el-form-item label="邮箱"
+                      prop="email">
+          <el-input v-model="ruleForm.email"></el-input>
+        </el-form-item>
+        <el-form-item label="所属部门"
+                      prop="email">
+          <el-input v-model="ruleForm.email"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer"
+            class="dialog-footer">
+        <el-button @click="dialogVisible = false"
+                   size="small">取 消</el-button>
+        <el-button type="primary"
+                   @click="dialogVisible = false"
+                   size="small">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -45,6 +78,9 @@ export default {
   },
   data () {
     return {
+      ruleForm: {},
+      rules: {},
+      dialogVisible: false,
       params: this.$route.query.params,
       tableHead: [
         {
@@ -80,17 +116,7 @@ export default {
     }
   },
   methods: {
-    // 应用状态
-    handleApplyStatus () {
-      this.$router.push({
-        path: "/application/enterpriseApplications/applicationStatus",
-        query: {
-          params: this.params
-        }
-      })
-    },
-    //开始使用
-    handleStartUse () { },
+
     // 禁用
     handleStop (row) {
       row.isDisabled = true
@@ -98,6 +124,10 @@ export default {
     // 启用
     handleStart (row) {
       row.isDisabled = false
+    },
+    // 添加用户按钮
+    handleAddUser () {
+      this.dialogVisible = true
     }
   }
 }
