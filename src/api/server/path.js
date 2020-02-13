@@ -13,7 +13,7 @@ const appApply = baseUrl + "/app/apply"
 
 //--------------首页
 //我的企业信息
-const enterpriseFind = baseUrl + "/enterprise/find"
+const enterpriseFindEnt = baseUrl + "/enterprise/findEnt"
 
 //--------------应用中心
 // 查询我的应用列表
@@ -39,7 +39,7 @@ export default {
       appDetail,
       appApply,
       enterAppFindList,
-      enterpriseFind
+      enterpriseFindEnt
     }
   }
 }
