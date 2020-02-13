@@ -2,11 +2,10 @@
   <div class="apply-details">
     <div class="apply-introduction">
       <div class="apply-title">
-        <!-- <span>SUPPLY</span>-<span>{{ params.title }}</span> -->
-        <span><i>SupplyX</i>{{ params.title }}</span>
+        <span><i>SupplyX</i>{{ appDetail.appName }}</span>
         <div class="apply-btns">
           <el-button 
-            v-if="applyNow"
+            v-if="!applied"
             size="small" 
             type="primary"  
             @click="handleApply"
@@ -19,13 +18,13 @@
             type="primary"  
           >已申请
           </el-button>
-          <el-button 
-            v-if="used"
+          <!-- <el-button 
+            v-if="true"
             disabled
             size="small" 
             type="primary"  
           >已使用
-          </el-button>
+          </el-button> -->
           <el-button 
             size="small" 
             @click="handleJumpAppStore"
@@ -35,16 +34,16 @@
       </div>
       <div class="app-describe">
         <p>
-          基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍
+          {{ appDetail.appIntroduce }}
         </p>
       </div>
     </div>
     <!-- tab切换 -->
     <div class="tab">
       <el-tabs v-model="activeName">
-        <el-tab-pane label="产品详情" name="first">产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情产品详情</el-tab-pane>
-        <el-tab-pane label="使用说明" name="second">使用说明</el-tab-pane>
-        <el-tab-pane label="成功案例" name="third">成功案例</el-tab-pane>
+        <el-tab-pane label="产品详情" name="first">{{ appDetail.appDetails }}</el-tab-pane>
+        <el-tab-pane label="使用说明" name="second">{{ appDetail.appExplain }}</el-tab-pane>
+        <el-tab-pane label="成功案例" name="third">{{ appDetail.appCase }}</el-tab-pane>
       </el-tabs>
     </div>
   </div>
@@ -56,15 +55,41 @@ export default {
   data() {
     return {
       params: this.$route.query.params,
+      appDetail: {},
       activeName: "first",
-      applyNow: 'true',
-      applied: 'true',
-      used: 'true'
+      applied: '',
+      // used: 'true'
     }
   },
+  created () {
+    this.getAppDetail();
+  },
   methods: {
-    handleApply() {
-      this.$router.push({ path: "/application/appStore/apply" })
+    getAppDetail () {
+      let obj = {id:this.params}
+      this.$api.post(this.$lesUiPath.appDetail, obj).then(result => {
+        if (result.code == 0) {
+          this.appDetail = result.data
+          this.applied = result.data.applied
+        } else {
+          return this.$message.error(result.msg)
+        }
+      })
+    },
+    // 申请应用
+    handleApply () {
+      let obj = {id:this.params}
+      this.$api.post(this.$lesUiPath.appApply, obj).then(result => {
+        if (result.code == 0) {
+          result.data.appName = this.appDetail.appName
+          this.$router.push({ 
+            path: "/application/appStore/apply",
+            query: { params: result.data } 
+          })
+        } else {
+          return this.$message.error(result.msg)
+        }
+      })
     },
     handleJumpAppStore() {
       this.$router.push({ path: "/application/appStore" })

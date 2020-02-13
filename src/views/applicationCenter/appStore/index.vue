@@ -8,7 +8,7 @@
           <div class="app-title-box">
             <div class="app-title">
               <img src="../../../assets/img/appStore/log1.png" alt="" />
-              <span><i>SupplyX</i>{{ item.title }}</span>
+              <span><i>SupplyX</i>{{ item.appName }}</span>
             </div>
             <el-button 
               @click="handleJumpRpute(item)"
@@ -20,7 +20,7 @@
           </div>
           <div class="app-describe">
             <p>
-              基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍基本介绍
+              {{ item.appIntroduce }}
             </p>
           </div>
         </li>
@@ -34,28 +34,28 @@ export default {
   name: "app-store",
   data() {
     return {
-      appList: [
-        {
-          id: 1,
-          title: "SRM"
-        },
-        {
-          id: 2,
-          title: "MES"
-        },
-        {
-          id: 3,
-          title: "WMS"
-        }
-      ]
+      appList: []
     }
   },
+  created () {
+    this.getAppList();
+  },
   methods: {
+    getAppList () {
+      let obj = {}
+      this.$api.post(this.$lesUiPath.appStore, obj).then(result => {
+        if (result.code == 0) {
+          this.appList = result.data
+        } else {
+          return this.$message.error(result.msg)
+        }
+      })
+    },
     handleJumpRpute(item) {
       this.$router.push({
         path: "/application/appStore/applicationDetails",
         query: {
-          params: item
+          params: item.id
         }
       })
     }

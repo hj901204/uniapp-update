@@ -1,29 +1,29 @@
 <template>
   <div class="apply">
     <div class="apply-title">
-      <span>SUPPLY</span>-<span>{{ appName }}</span>
+      <span><i>SupplyX</i>{{ params.appName }}</span>
     </div>
     <div class="submit-success">
-      <span>尊敬的&nbsp<span>{{ userName }}</span>&nbsp，您的信息已经提交成功。</span>
+      <span>尊敬的&nbsp<span>{{ params.enter.liaisonMan }}</span>&nbsp，您的信息已经{{ params.result }}。</span>
     </div>
     <ul class="apply-info">
       <li>
         <h4>我的企业</h4>
-        <span>上海谷器数据科技有限公司</span>
+        <span>{{ params.enter.enterName }}</span>
       </li>
       <li>
         <h4>应用名称</h4>
         <span>
-          <span>SUPPLY</span>-<span>{{ appName }}</span>
+          <span>SUPPLYX</span>-<span>{{ params.appName }}</span>
         </span>
       </li>
       <li>
         <h4>申请结果</h4>
-        <span>申请通过</span>
+        <span>{{ params.result }}</span>
       </li>
       <li>
         <h4>申请日期</h4>
-        <span>2020/01/21 12:32:34</span>
+        <span>{{ params.date }}</span>
       </li>
     </ul>
     <div class="apply-btns">
@@ -33,7 +33,6 @@
       >返回上一页
       </el-button>
       <el-button 
-        v-if="isApply"
         size="small" 
         type="primary"  
         @click="handleJumpAppStore"
@@ -48,9 +47,7 @@ export default {
   name: "apply",
   data() {
     return {
-      isApply: 'true',
-      appName: 'WMS',
-      userName: '木村文乃'
+      params: this.$route.query.params
     }
   },
   methods: {
@@ -77,12 +74,14 @@ export default {
     height: 50px;
     border-bottom: 1px solid rgb(226, 226, 226);
     text-align: left;
-    span {
-      font-family:PingFangSC-Regular;
-      font-size:16px;
-      line-height: 50px;
-      color:#1a1a1a;
-      letter-spacing:0;
+    & > span,i {
+      font-weight: bold;
+      font-size: 18px;
+      font-style: normal;
+      line-height: 32px;
+      i {
+        margin: 0 5px;
+      }
     }
   }
   .submit-success {
