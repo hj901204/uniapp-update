@@ -4,15 +4,16 @@
     <div class="my-corporate-title">
       <h3>我的企业应用</h3>
       <div class="edit-btn">
-        <el-button type="primary" size="small" @click="handleToJump"
-          >修 改
+        <el-button type="primary"
+                   size="small"
+                   @click="handleToJump">修 改
         </el-button>
       </div>
     </div>
     <div class="apply-box">
       <ul>
-        <li><span>SUPPLY</span>-<span>SRM</span></li>
-        <li><span>SUPPLY</span>-<span>MES</span></li>
+        <li v-for="item in list"
+            :key="item.id"> <span>SUPPLY</span>-<span>{{item.appName}}</span></li>
       </ul>
     </div>
   </div>
@@ -21,12 +22,25 @@
 <script>
 export default {
   name: "my-corporate-application",
-  data() {
-    return {}
+  data () {
+    return {
+
+      list: []
+    }
+  },
+  mounted () {
+    this.getMyApplication()
   },
   methods: {
-    handleToJump() {
+    handleToJump () {
       this.$router.push({ path: "/application/enterpriseApplications" })
+    },
+    getMyApplication () {
+      this.$api.post(this.$lesUiPath.enterAppFindList, { page: 1, length: 1000 }).then(result => {
+        if (result.code == 0) {
+          this.list = result.data
+        }
+      })
     }
   }
 }
@@ -52,6 +66,7 @@ export default {
   .apply-box {
     & > ul {
       overflow: hidden;
+      padding-top: 16px;
       & > li {
         float: left;
         background-color: #31425b;

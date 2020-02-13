@@ -4,8 +4,9 @@
     <div class="my-corporate-title">
       <h3>企业用户信息</h3>
       <div class="edit-btn">
-        <el-button type="primary" size="small" @click="handleToJump"
-          >修 改
+        <el-button type="primary"
+                   size="small"
+                   @click="handleToJump">修 改
         </el-button>
       </div>
     </div>
@@ -14,7 +15,7 @@
         <i class="el-icon-user-solid"></i>
       </div>
       <div class="num-box">
-        <h2 class="num">10</h2>
+        <h2 class="num">{{this.count}}</h2>
         <p class="num-description">企业用户人数</p>
       </div>
     </div>
@@ -29,13 +30,24 @@
 import Chart from "./Chart"
 export default {
   name: "enterprise-user-info",
-  data() {
-    return {}
+  data () {
+    return {
+      count: 0
+    }
   },
-  mounted() {},
+  mounted () {
+    this.getCount()
+  },
   methods: {
-    handleToJump() {
+    handleToJump () {
       this.$router.push({ path: "/enterprise/userCenter/userManagement" })
+    },
+    getCount () {
+      this.$api.post(this.$lesUiPath.enteruserFindCount, {}).then(result => {
+        if (result.code == 0) {
+          this.count = result.data
+        }
+      })
     }
   },
   components: { Chart }

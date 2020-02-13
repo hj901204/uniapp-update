@@ -11,10 +11,10 @@
       </div>
     </div>
     <div class="detail-info">
-      <h4>SupplyX ID:<span class="corporate-id">KALZ2081920</span></h4>
+      <h4>SupplyX ID:<span class="corporate-id">{{myEnterpriseData.enterCode}}</span></h4>
       <!-- <p class="corporate-id">KALZ2081920</p> -->
-      <p>上海谷器数据科技有限公司</p>
-      <p>上海市宝山区长江西路1888号万达广场2栋9008 （200443）</p>
+      <p>{{myEnterpriseData.enterName}}</p>
+      <p>{{myEnterpriseData.enterAddress}}</p>
     </div>
   </div>
 </template>
@@ -23,7 +23,9 @@
 export default {
   name: "my-corporate-info",
   data () {
-    return {}
+    return {
+      myEnterpriseData: {}
+    }
   },
   mounted () {
     this.getMyEnterpriseData()
@@ -35,7 +37,9 @@ export default {
     //我的企业信息查询
     getMyEnterpriseData () {
       this.$api.post(this.$lesUiPath.enterpriseFindEnt, {}).then(result => {
-        // if(result)
+        if (result.code == 0) {
+          this.myEnterpriseData = result.data
+        }
       })
 
     },

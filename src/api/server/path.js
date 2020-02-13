@@ -14,6 +14,8 @@ const appApply = baseUrl + "/app/apply"
 //--------------首页
 //我的企业信息
 const enterpriseFindEnt = baseUrl + "/enterprise/findEnt"
+//企业用户信息 人数
+const enteruserFindCount = baseUrl + "/enteruser/findCount"
 
 //--------------应用中心
 // 查询我的应用列表
@@ -39,7 +41,8 @@ export default {
       appDetail,
       appApply,
       enterAppFindList,
-      enterpriseFindEnt
+      enterpriseFindEnt,
+      enteruserFindCount
     }
   }
 }

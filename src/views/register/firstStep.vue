@@ -22,6 +22,20 @@
               </el-form-item>
             </el-col>
             <el-col :span="11">
+              <el-form-item label="企业编码"
+                            style="width:90%"
+                            prop="enterCode">
+                <el-input v-model.trim="form.enterCode"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="11">
+              <el-form-item label="企业简称"
+                            style="width:90%">
+                <el-input v-model.trim="form.shortname"></el-input>
+              </el-form-item>
+            </el-col>
+
+            <el-col :span="11">
               <el-form-item label="联系电话"
                             style="width:90%"
                             prop="enterTelNum">
@@ -44,12 +58,7 @@
                 <el-input v-model.trim="form.enterMail"></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="11">
-              <el-form-item label="企业简称"
-                            style="width:90%">
-                <el-input v-model.trim="form.shortname"></el-input>
-              </el-form-item>
-            </el-col>
+
           </el-row>
         </el-form>
       </div>
@@ -166,6 +175,9 @@ export default {
         ],
         enterName: [
           { required: true, message: '请输入企业名称', trigger: 'blur' }
+        ],
+        enterCode: [
+          { required: true, message: '请输入企业编码', trigger: 'blur' }
         ],
         enterAddress: [
           { required: true, message: '请输入企业地址', trigger: 'blur' }
