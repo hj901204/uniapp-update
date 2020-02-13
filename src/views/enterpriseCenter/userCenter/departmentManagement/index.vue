@@ -19,13 +19,14 @@
              :tableData="tableData"
              :maxHeight="maxHeight" />
     </div>
-    <el-dialog title="添加部门"
+    <el-dialog :title="title"
                :visible.sync="dialogVisible"
+               v-if="dialogVisible"
                :close-on-click-modal='false'
                width="40%">
       <el-form :model="ruleForm"
                :rules="rules"
-               ref="ruleForm"
+               ref="ruleFormRef"
                label-width="100px">
         <el-form-item label="部门名称"
                       prop="name"
@@ -57,9 +58,17 @@ export default {
     Tree: resolve => require(["@/components/Tree"], resolve),
     Table: resolve => require(["@/components/Table"], resolve)
   },
+  computed: {
+    //清空表单验证
+    resetForm (formName) {
+      console.log(this.$refs)
+      this.$refs[formName].clearValidate();
+    }
+  },
   data () {
     return {
       ruleForm: {},  //添加部门表单
+      title: '',
       rules: {
         name: [
           { required: true, message: '请输入部门名称', trigger: 'blur' },
@@ -172,6 +181,8 @@ export default {
     },
     handleAdd () {
       this.ruleForm = {}
+      this.title = '添加部门'
+      // this.resetForm('ruleFormRef') ///清空表单
       if (this.treeData && this.treeData.length != 0) {
         if (this.treeData.length == 1 && this.treeData[0].children.length == 0) {
           this.ruleForm.parentId = this.treeData[0].id
@@ -194,13 +205,20 @@ export default {
     },
     //添加部门确定
     handleSaveAdd () {
-      console.log(this.ruleForm)
-      const status = this.ruleForm.id ? 'edit' : 'add'
-      if (status == 'add') {
-        this.addDepartFunc(this.ruleForm)
-      } else {
-        this.updateDepartFunc(this.ruleForm)
-      }
+      this.$refs.ruleFormRef.validate(valid => {
+        if (valid) {
+          console.log(this.ruleForm)
+          const status = this.ruleForm.id ? 'edit' : 'add'
+          if (status == 'add') {
+            this.addDepartFunc(this.ruleForm)
+          } else {
+            this.updateDepartFunc(this.ruleForm)
+          }
+        } else {
+          return false
+        }
+      })
+
 
     },
     // 添加部门方法
@@ -226,9 +244,11 @@ export default {
     // 修改部门
     handleEdit () {
       if (!this.nodeId) return this.$message.warning('请选择部门')
+      this.title = '修改部门'
       this.ruleForm = this.nodeObj
       if (this.ruleForm.id) {
         this.dialogVisible = true
+
       }
     },
     //删除部门
@@ -255,7 +275,8 @@ export default {
           this.treeData = result.data
         }
       })
-    }
+    },
+
 
   }
 }
