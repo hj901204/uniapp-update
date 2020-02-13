@@ -7,7 +7,7 @@ const enterpriseRegister = baseUrl + "/enterprise/register"
 
 //--------------首页
 //我的企业信息
-const enterpriseFind = baseUrl + "/enterprise/find"
+const enterpriseFindEnt = baseUrl + "/enterprise/findEnt"
 
 //--------------应用中心
 // 查询我的应用列表
@@ -30,7 +30,7 @@ export default {
       depart,
       departTree,
       enterAppFindList,
-      enterpriseFind
+      enterpriseFindEnt
     }
   }
 }

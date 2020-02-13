@@ -25,14 +25,21 @@ export default {
   data () {
     return {}
   },
+  mounted () {
+    this.getMyEnterpriseData()
+  },
   methods: {
     handleToJump () {
       this.$router.push({ path: "/enterprise/enterpriseInfo/basicInfo" })
     },
     //我的企业信息查询
     getMyEnterpriseData () {
-      // this.$api.post(this.$lesUiPath.enterpriseFind)
-    }
+      this.$api.post(this.$lesUiPath.enterpriseFindEnt, {}).then(result => {
+        // if(result)
+      })
+
+    },
+
   }
 }
 </script>
