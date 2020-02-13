@@ -65,8 +65,9 @@ export default {
     this.getAppDetail();
   },
   methods: {
-    getAppDetail () {
-      let obj = {id:this.params}
+    // 应用详情
+    getAppDetail() {
+      let obj = { id:this.params }
       this.$api.post(this.$lesUiPath.appDetail, obj).then(result => {
         if (result.code == 0) {
           this.appDetail = result.data
@@ -77,8 +78,8 @@ export default {
       })
     },
     // 申请应用
-    handleApply () {
-      let obj = {id:this.params}
+    handleApply() {
+      let obj = { id:this.params }
       this.$api.post(this.$lesUiPath.appApply, obj).then(result => {
         if (result.code == 0) {
           result.data.appName = this.appDetail.appName
@@ -91,6 +92,7 @@ export default {
         }
       })
     },
+    // 返回商城
     handleJumpAppStore() {
       this.$router.push({ path: "/application/appStore" })
     }

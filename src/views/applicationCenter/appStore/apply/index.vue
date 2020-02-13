@@ -51,9 +51,11 @@ export default {
     }
   },
   methods: {
-    handleBack () {
+    // 返回上一页
+    handleBack() {
       this.$router.go(-1)
     },
+    // 申请应用
     handleJumpAppStore() {
       this.$router.push({ path: "/application/appStore" })
     }

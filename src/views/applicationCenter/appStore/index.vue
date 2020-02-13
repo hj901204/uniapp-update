@@ -41,7 +41,8 @@ export default {
     this.getAppList();
   },
   methods: {
-    getAppList () {
+    // 应用列表
+    getAppList() {
       let obj = {}
       this.$api.post(this.$lesUiPath.appStore, obj).then(result => {
         if (result.code == 0) {
@@ -51,6 +52,7 @@ export default {
         }
       })
     },
+    // 查看详情
     handleJumpRpute(item) {
       this.$router.push({
         path: "/application/appStore/applicationDetails",
