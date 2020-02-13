@@ -72,13 +72,6 @@ service.interceptors.response.use(
       }
       return Promise.reject("error")
     }
-    if (res.status === 40001) {
-      Message({
-        message: "账户或密码错误！",
-        type: "warning"
-      })
-      return Promise.reject("error")
-    }
     if (response.status !== 200 && res.status !== 200) {
       Message({
         message: res.message,

@@ -1,4 +1,5 @@
 import { loginByUsername } from "@/api/login"
+import { Message } from "element-ui"
 import {
   getToken,
   setToken,
@@ -66,13 +67,20 @@ const actions = {
     return new Promise((resolve, reject) => {
       loginByUsername(username, password)
         .then(response => {
-          const token = response.data.token
-          const userName = response.data.userName
-          commit("SET_TOKEN", token)
-          commit("SET_NAME", userName)
-          setToken(token)
-          setUserName(userName)
-          resolve()
+          if (response.code == 0) {
+            const token = response.data.token
+            const userName = response.data.userName
+            commit("SET_TOKEN", token)
+            commit("SET_NAME", userName)
+            setToken(token)
+            setUserName(userName)
+            resolve()
+          } else {
+            Message({
+              message: response.msg,
+              type: "error"
+            })
+          }
         })
         .catch(error => {
           reject(error)
