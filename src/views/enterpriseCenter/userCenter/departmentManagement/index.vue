@@ -18,7 +18,12 @@
       </div>
       <Table :tableHead="tableHead"
              :tableData="tableData"
-             :maxHeight="maxHeight" />
+             :maxHeight="maxHeight"
+             :currentPage='currentPage'
+             :total='total'
+             :currentSize='currentSize'
+             @sizeChange='sizeChange'
+             @currentChange='currentChange' />
     </div>
     <el-dialog :title="title"
                :visible.sync="dialogVisible"
@@ -84,7 +89,7 @@ export default {
       treeData: [],
       tableHead: [
         {
-          fieldNo: "name",
+          fieldNo: "username",
           fieldName: "姓名",
           id: 1
         },
@@ -104,11 +109,16 @@ export default {
           name: "溜溜",
           email: "liuliu.kimura@gocdata.com"
         }
-      ]
+      ],
+      // 分页
+      currentPage: 1,
+      currentSize: 10,
+      total: 0,
     }
   },
   mounted () {
     this.getdepartTreeData()
+    this.getUserData()
   },
   methods: {
     //  点击节点获取节点id
@@ -120,6 +130,7 @@ export default {
         name: obj.name,
         code: obj.code
       }
+      this.getUserData(undefined, undefined, this.nodeId)
     },
     handleAdd () {
       this.ruleForm = {}
@@ -217,6 +228,26 @@ export default {
           this.treeData = result.data
         }
       })
+    },
+    //获取右侧用户列表
+    getUserData (page = 1, length = 10, departId = '') {
+      const queryInfo = { page: page, length: length, departId: departId };
+      this.$api.post(this.$lesUiPath.enteruserFindUserList, queryInfo).then(result => {
+        if (result.code == 0) {
+          this.tableData = result.data
+          this.total = this.tableData.length
+        }
+      })
+    },
+    // 分页
+    sizeChange (val) {
+      this.currentSize = val
+      this.getUserData(this.currentPage, this.currentSize, this.nodeId)
+    },
+    currentChange (val) {
+      this.currentPage = val
+      this.getUserData(this.currentPage, this.currentSize, this.nodeId)
+
     },
 
 

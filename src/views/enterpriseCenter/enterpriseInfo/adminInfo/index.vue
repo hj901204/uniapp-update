@@ -4,48 +4,47 @@
     <div class="warn-info">
       <i class="el-icon-warning"></i>
       <span>
-        企业的管理员账号相关信息可以在这里进行修改，可以通过修改管理员联系邮件重新分配管理员企业账号到别的员工；</span
-      >
+        企业的管理员账号相关信息可以在这里进行修改，可以通过修改管理员联系邮件重新分配管理员企业账号到别的员工；</span>
     </div>
     <template v-if="isShowMainPage">
-      <div class="admin-num">管理员账号:<span>Admin</span></div>
+      <div class="admin-num">管理员账号:<span>{{ adminForm.adminUser }}</span></div>
       <div class="btns">
-        <el-button type="primary" size="small" @click="handleEdit"
-          >编辑管理员账号</el-button
-        >
+        <el-button type="primary"
+                   size="small"
+                   @click="handleEdit">编辑管理员账号</el-button>
       </div>
     </template>
     <template v-else>
-      <el-form
-        :model="adminForm"
-        status-icon
-        ref="ruleForm"
-        label-width="100px"
-        class="admin-form"
-        size="small"
-      >
+      <el-form :model="adminForm"
+               status-icon
+               ref="ruleForm"
+               label-width="100px"
+               class="admin-form"
+               size="small"
+               :rules="rules"
+               inline-message>
         <el-form-item label="管理员账号 ">
-          <el-input v-model="adminForm.adminUser" style="width:50%"></el-input>
+          <el-input v-model="adminForm.adminUser"
+                    style="width:50%"></el-input>
         </el-form-item>
         <el-form-item label="登陆密码">
-          <el-input
-            type="password"
-            v-model="adminForm.adminPsd"
-            style="width:50%"
-          ></el-input>
+          <el-input type="password"
+                    v-model="adminForm.adminPsd"
+                    style="width:50%"></el-input>
         </el-form-item>
         <el-form-item label="确认密码">
-          <el-input
-            type="password"
-            v-model="adminForm.checkPass"
-            style="width:50%"
-          ></el-input>
+          <el-input type="password"
+                    v-model="adminForm.checkPass"
+                    style="width:50%"></el-input>
         </el-form-item>
       </el-form>
-      <div class="edit-btn" style="padding-left:40px;margin-top:30px;">
-        <el-button size="small" @click="handleBack">返回 </el-button>
-        <el-button size="small" type="primary" @click="handleSave"
-          >保存
+      <div class="edit-btn"
+           style="padding-left:40px;margin-top:30px;">
+        <el-button size="small"
+                   @click="handleBack">返回 </el-button>
+        <el-button size="small"
+                   type="primary"
+                   @click="handleSave">保存
         </el-button>
       </div>
     </template>
@@ -58,8 +57,22 @@ export default {
   components: {
     EditBtns: resolve => require(["../components/EditBtns"], resolve)
   },
-  data() {
+  data () {
+    var validatePass = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error('请再次输入密码'));
+      } else if (value !== this.enteradminForm.password) {
+        callback(new Error('两次输入密码不一致!'));
+      } else {
+        callback();
+      }
+    };
     return {
+      rules: {
+        enterAccount: [{ required: true, message: '请输入管理员账号', trigger: 'blur' }],
+        password: [{ required: true, message: '请输入登录密码', trigger: 'blur' }],
+        checkPsd: [{ validator: validatePass, trigger: 'blur' }]
+      },
       isShowMainPage: true,
       adminForm: {
         adminUser: "",
@@ -67,19 +80,61 @@ export default {
       }
     }
   },
+  created () {
+    this.getAdminInfo()
+  },
   methods: {
+    // 获取管理员信息
+    getAdminInfo (obj = {}) {
+      this.$api.post(this.$lesUiPath.adminInfo, obj).then(result => {
+        if (result.code == 0) {
+          console.log(result.data)
+          this.adminForm = result.data
+        } else {
+          if (result.msg) {
+            return this.$message.error(result.msg)
+          }
+        }
+      })
+    },
     // 点击修改按钮
-    handleEdit() {
+    handleEdit () {
       this.isShowMainPage = false
     },
     //返回
-    handleBack() {
+    handleBack () {
+      this.getAdminInfo()
       this.isShowMainPage = true
     },
     //点击保存按钮
-    handleSave() {
-      console.log(this.adminForm)
-    }
+    handleSave () {
+      let valid = this.validateFunc('ruleForm')
+      if (valid) {
+        let obj = {}
+        obj = Object.assign(this.adminForm)
+        console.log(obj)
+        this.$api.post(this.$lesUiPath.editAdminInfo, obj).then(result => {
+          if (result.code == 0) {
+            this.isShowMainPage = true
+          } else {
+            return this.$message.error(result.msg)
+          }
+        })
+      }
+    },
+    // 验证表单
+    validateFunc (ref) {
+      let flag;
+      this.$refs[ref].validate((valid) => {
+        if (valid) {
+          flag = true
+          return flag
+        }
+        flag = false
+        return flag
+      })
+      return flag
+    },
   }
 }
 </script>
