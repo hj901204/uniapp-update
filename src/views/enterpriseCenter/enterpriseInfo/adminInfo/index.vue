@@ -7,7 +7,7 @@
         企业的管理员账号相关信息可以在这里进行修改，可以通过修改管理员联系邮件重新分配管理员企业账号到别的员工；</span>
     </div>
     <template v-if="isShowMainPage">
-      <div class="admin-num">管理员账号:<span>{{ adminForm.adminUser }}</span></div>
+      <div class="admin-num">管理员账号:<span>{{ adminForm.enterAccount }}</span></div>
       <div class="btns">
         <el-button type="primary"
                    size="small"
@@ -16,23 +16,26 @@
     </template>
     <template v-else>
       <el-form :model="adminForm"
-               status-icon
                ref="ruleForm"
+               hide-required-asterisk
                label-width="100px"
                class="admin-form"
                size="small"
                :rules="rules"
                inline-message>
-        <el-form-item label="管理员账号 ">
-          <el-input v-model="adminForm.adminUser"
+        <el-form-item label="管理员账号"
+                      prop="enterAccount">
+          <el-input v-model="adminForm.enterAccount"
                     style="width:50%"></el-input>
         </el-form-item>
-        <el-form-item label="登陆密码">
+        <el-form-item label="登陆密码"
+                      prop="password">
           <el-input type="password"
-                    v-model="adminForm.adminPsd"
+                    v-model="adminForm.password"
                     style="width:50%"></el-input>
         </el-form-item>
-        <el-form-item label="确认密码">
+        <el-form-item label="确认密码"
+                      prop="checkPass">
           <el-input type="password"
                     v-model="adminForm.checkPass"
                     style="width:50%"></el-input>
@@ -61,7 +64,7 @@ export default {
     var validatePass = (rule, value, callback) => {
       if (!value) {
         callback(new Error('请再次输入密码'));
-      } else if (value !== this.enteradminForm.password) {
+      } else if (value !== this.adminForm.password) {
         callback(new Error('两次输入密码不一致!'));
       } else {
         callback();
@@ -71,13 +74,10 @@ export default {
       rules: {
         enterAccount: [{ required: true, message: '请输入管理员账号', trigger: 'blur' }],
         password: [{ required: true, message: '请输入登录密码', trigger: 'blur' }],
-        checkPsd: [{ validator: validatePass, trigger: 'blur' }]
+        checkPass: [{ validator: validatePass, trigger: 'blur' }]
       },
       isShowMainPage: true,
-      adminForm: {
-        adminUser: "",
-        adminPsd: ""
-      }
+      adminForm: { checkPass: '' },
     }
   },
   created () {
@@ -88,8 +88,9 @@ export default {
     getAdminInfo (obj = {}) {
       this.$api.post(this.$lesUiPath.adminInfo, obj).then(result => {
         if (result.code == 0) {
-          console.log(result.data)
-          this.adminForm = result.data
+          this.adminForm = Object.assign({ checkPass: '' }, result.data[0])
+          this.adminForm['checkPass'] = result.data[0].password
+
         } else {
           if (result.msg) {
             return this.$message.error(result.msg)
@@ -99,6 +100,7 @@ export default {
     },
     // 点击修改按钮
     handleEdit () {
+      this.adminForm
       this.isShowMainPage = false
     },
     //返回
@@ -112,7 +114,7 @@ export default {
       if (valid) {
         let obj = {}
         obj = Object.assign(this.adminForm)
-        console.log(obj)
+        this.adminForm.checkPass = this.checkPass
         this.$api.post(this.$lesUiPath.editAdminInfo, obj).then(result => {
           if (result.code == 0) {
             this.isShowMainPage = true

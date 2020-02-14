@@ -1,10 +1,5 @@
 <template>
   <div class="basic-info">
-    <!-- <EditBtns @handleEdit="handleEdit" @handleSave="handleSave" /> -->
-    <!-- <div class="warn-info">
-      <i class="el-icon-warning"></i>
-      <span>企业的基本信息可以在这里查询，管理员可以对基本信息进行修改；</span>
-    </div> -->
     <!-- 显示企业基本信息 -->
     <template v-if="isShowMainPage">
       <div class="main-page">
@@ -39,42 +34,42 @@
           </li>
         </ul>
       </div>
-      <div class="edit-btn" style="margin-left:40px;margin-top:30px;">
-        <el-button type="primary" size="small" @click="handleEdit"
-          >修改
+      <div class="edit-btn"
+           style="margin-left:40px;margin-top:30px;">
+        <el-button type="primary"
+                   size="small"
+                   @click="handleEdit">修改
         </el-button>
       </div>
     </template>
     <template v-else>
       <div class="basic-form">
-        <el-form
-          :model="form"
-          status-icon
-          ref="ruleForm"
-          label-width="110px"
-          size="small"
-          :rules="rules"
-          inline-message
-        >
-          <el-form-item
-            :label="item.label"
-            v-for="item in fields"
-            :key="item.index"
-            :prop="item.model"
-          >
-            <el-input
-              class="basic-input" 
-              v-model="form[item.model]" 
-              style="width:60%"
-              :disabled="item.isDisabled"
-            >
+        <el-form :model="form"
+                 status-icon
+                 ref="ruleForm"
+                 label-width="110px"
+                 size="small"
+                 :rules="rules"
+                 inline-message>
+          <el-form-item :label="item.label"
+                        v-for="item in fields"
+                        :key="item.index"
+                        :prop="item.model">
+            <el-input class="basic-input"
+                      v-model="form[item.model]"
+                      style="width:60%"
+                      :disabled="item.isDisabled">
             </el-input>
           </el-form-item>
         </el-form>
       </div>
-      <div class="edit-btn" style="padding-left:40px;margin-top:30px;">
-        <el-button size="small" @click="handleBack">返回 </el-button>
-        <el-button size="small" type="primary" @click="handleSave">保存
+      <div class="edit-btn"
+           style="padding-left:40px;margin-top:30px;">
+        <el-button size="small"
+                   @click="handleBack">返回 </el-button>
+        <el-button size="small"
+                   type="primary"
+                   @click="handleSave">保存
         </el-button>
       </div>
     </template>
@@ -87,7 +82,7 @@ export default {
   components: {
     EditBtns: resolve => require(["../components/EditBtns"], resolve)
   },
-  data() {
+  data () {
     // 验证电话号码
     // var isMobileNumber= (rule, value, callback) => {
     //   if (!value) {
@@ -187,7 +182,7 @@ export default {
       isFormDisabled: true //表单是否禁用
     }
   },
-  created() {
+  created () {
     this.getEnterpriseBasicInfo();
   },
   methods: {
@@ -196,27 +191,24 @@ export default {
       // let obj = obj
       this.$api.post(this.$lesUiPath.enterpriseBasicInfo, obj).then(result => {
         if (result.code == 0) {
-          console.log(result.data)
           this.form = result.data
-          // this.applied = result.data.applied
         } else {
-          return this.$message.error(result.msg)
+          if (result.msg) {
+            return this.$message.error(result.msg)
+          }
         }
       })
     },
     // 点击修改按钮
-    handleEdit() {
+    handleEdit () {
       // this.isFormDisabled = false
       this.isShowMainPage = false
       // this.getEnterpriseBasicInfo()
     },
 
     //点击保存按钮
-    handleSave() {
-      // this.isFormDisabled = true
-      console.log(this.form)
+    handleSave () {
       let valid = this.validateFunc('ruleForm')
-      console.log(valid)
       if (valid) {
         let obj = {}
         obj = Object.assign(this.form)
@@ -226,13 +218,15 @@ export default {
             this.getEnterpriseBasicInfo()
             this.isShowMainPage = true
           } else {
-            return this.$message.error(result.msg)
+            if (result.msg) {
+              return this.$message.error(result.msg)
+            }
           }
         })
       }
     },
     //返回
-    handleBack() {
+    handleBack () {
       this.getEnterpriseBasicInfo()
       this.isShowMainPage = true
     }
@@ -245,23 +239,6 @@ export default {
   overflow: hidden;
   padding: 10px;
   text-align: left;
-  // .warn-info {
-  //   margin-top: 10px;
-  //   font-size: 12px;
-  //   .el-icon-warning {
-  //     font-size: 24px;
-  //     margin-right: 20px;
-  //     margin-left: 40px;
-  //     color: #409eff;
-  //     vertical-align: middle;
-  //   }
-  //   & > span {
-  //     vertical-align: middle;
-  //   }
-  // }
-  // .basic-form {
-  //   margin-top: 20px;
-  // }
   .main-page {
     & > ul {
       & > li {
