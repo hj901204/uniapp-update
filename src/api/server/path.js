@@ -79,6 +79,10 @@ const departFindDepartList = baseUrl + "/depart/findDepartList"
 const enteruserUpdate = baseUrl + "/enteruser/update"
 //删除用户
 const enteruserRemove = baseUrl + "/enteruser/remove"
+//消息列表 查询
+const smsFindList = baseUrl + "/sms/findList"
+//消息列表 删除
+const smsDelete = baseUrl + "/sms/delete"
 
 //部门管理
 // 添加部门
@@ -114,7 +118,9 @@ export default {
       enteruserUpdate,
       departFindDepartList,
       enteruserRemove,
-      enterpriseFindEnt
+      enterpriseFindEnt,
+      smsFindList,
+      smsDelete
     }
   }
 }
