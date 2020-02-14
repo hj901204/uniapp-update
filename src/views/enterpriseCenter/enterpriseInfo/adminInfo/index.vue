@@ -8,7 +8,7 @@
       >
     </div>
     <template v-if="isShowMainPage">
-      <div class="admin-num">管理员账号:<span>Admin</span></div>
+      <div class="admin-num">管理员账号:<span>{{ adminForm.adminUser }}</span></div>
       <div class="btns">
         <el-button type="primary" size="small" @click="handleEdit"
           >编辑管理员账号</el-button
@@ -23,6 +23,8 @@
         label-width="100px"
         class="admin-form"
         size="small"
+        :rules="rules"
+        inline-message
       >
         <el-form-item label="管理员账号 ">
           <el-input v-model="adminForm.adminUser" style="width:50%"></el-input>
@@ -59,7 +61,21 @@ export default {
     EditBtns: resolve => require(["../components/EditBtns"], resolve)
   },
   data() {
+    var validatePass = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error('请再次输入密码'));
+      } else if (value !== this.enteradminForm.password) {
+        callback(new Error('两次输入密码不一致!'));
+      } else {
+        callback();
+      }
+    };
     return {
+      rules: {
+        enterAccount: [{ required: true, message: '请输入管理员账号', trigger: 'blur' }],
+        password: [{ required: true, message: '请输入登录密码', trigger: 'blur' }],
+        checkPsd: [{ validator: validatePass, trigger: 'blur' }]
+      },
       isShowMainPage: true,
       adminForm: {
         adminUser: "",
@@ -67,19 +83,59 @@ export default {
       }
     }
   },
+  created() {
+    this.getAdminInfo()
+  },
   methods: {
+    // 获取管理员信息
+    getAdminInfo(obj = {}) {
+      this.$api.post(this.$lesUiPath.adminInfo, obj).then(result => {
+        if (result.code == 0) {
+          console.log(result.data)
+          this.adminForm = result.data
+        } else {
+          return this.$message.error(result.msg)
+        }
+      })
+    },
     // 点击修改按钮
     handleEdit() {
       this.isShowMainPage = false
     },
     //返回
     handleBack() {
+      this.getAdminInfo()
       this.isShowMainPage = true
     },
     //点击保存按钮
     handleSave() {
-      console.log(this.adminForm)
-    }
+      let valid = this.validateFunc('ruleForm')
+      if (valid) {
+        let obj = {}
+        obj = Object.assign(this.adminForm)
+        console.log(obj)
+        this.$api.post(this.$lesUiPath.editAdminInfo, obj).then(result => {
+          if (result.code == 0) {
+            this.isShowMainPage = true
+          } else {
+            return this.$message.error(result.msg)
+          }
+        })
+      }
+    },
+    // 验证表单
+    validateFunc (ref) {
+      let flag;
+      this.$refs[ref].validate((valid) => {
+        if (valid) {
+          flag = true
+          return flag
+        }
+        flag = false
+        return flag
+      })
+      return flag
+    },
   }
 }
 </script>
