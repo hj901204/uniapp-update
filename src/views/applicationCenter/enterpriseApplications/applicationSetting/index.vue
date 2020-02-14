@@ -33,31 +33,24 @@
              :isShowDeleteBtn='true'
              :tableData="tableData"
              @handleStop="handleStop"
-             @handleStart="handleStart" />
+             @handleStart="handleStart"
+             @sizeChange='sizeChange'
+             @currentChange='currentChange'
+             :currentSize='currentSize'
+             :currentPage='currentPage' />
     </div>
     <!-- 添加用户弹框 -->
     <el-dialog title="添加用户"
                :visible.sync="dialogVisible"
                close-on-click-modal
                width="40%">
-      <el-form :model="ruleForm"
-               :rules="rules"
-               ref="ruleForm"
-               size="small"
-               label-width="100px">
-        <el-form-item label="用户名"
-                      prop="name">
-          <el-input v-model="ruleForm.name"></el-input>
-        </el-form-item>
-        <el-form-item label="邮箱"
-                      prop="email">
-          <el-input v-model="ruleForm.email"></el-input>
-        </el-form-item>
-        <el-form-item label="所属部门"
-                      prop="email">
-          <el-input v-model="ruleForm.email"></el-input>
-        </el-form-item>
-      </el-form>
+      <Table :tableHead="tableHead"
+             :isShowOperation="false"
+             :tableData="userTableData"
+             @sizeChange='userSizeChange'
+             @currentChange='userCurrentChange'
+             :currentSize='userCurrentSize'
+             :currentPage='userCurrentPage' />
       <span slot="footer"
             class="dialog-footer">
         <el-button @click="dialogVisible = false"
@@ -76,6 +69,9 @@ export default {
   components: {
     Table: resolve => require(["@/components/Table"], resolve)
   },
+  mounted () {
+    this.getBoardData()
+  },
   data () {
     return {
       ruleForm: {},
@@ -89,34 +85,65 @@ export default {
           id: 1,
         },
         {
-          fieldNo: "email",
+          fieldNo: "userEmail",
           fieldName: "Email",
           id: 2,
         },
         {
-          fieldNo: "depart",
+          fieldNo: "departName",
           fieldName: "所属部门",
           id: 3
-        }
-      ],
-      tableData: [
-        {
-          userName: "木村文乃",
-          email: "fumino.kimura@gocdata.com",
-          depart: "研发部",
-          isDisabled: false
         },
         {
-          userName: "上野树里",
-          email: "",
-          depart: "行政部",
-          isDisabled: true
-        }
-      ]
+          fieldNo: "departCode",
+          fieldName: "部门编码",
+          id: 4
+        },
+      ],
+      tableData: [],
+      userTableData: [],
+      currentSize: 10,
+      currentPage: 1,
+      userCurrentPage: 1,
+      userCurrentSize: 10,
+
     }
   },
   methods: {
-
+    // 表格分页 
+    sizeChange (val) {
+      this.currentSize = val;
+      this.getBoardData(this.currentPage, this.currentSize)
+    },
+    currentChange (val) {
+      this.currentPage = val;
+      this.getBoardData(this.currentPage, this.currentSize)
+    },
+    // 用户表格分页
+    userSizeChange (val) {
+      this.userCurrentSize = val
+    },
+    userCurrentChange (val) {
+      this.userCurrentPage = val
+    },
+    //获取用户活跃排行榜
+    getBoardData (page = 1, length = 10, id = this.params.id) {
+      const queryInfo = { page: page, length: length, id: id };
+      this.$api.post(this.$lesUiPath.enterAppUserFindList, queryInfo).then(result => {
+        if (result.code == 0) {
+          this.tableData = result.data
+        }
+      })
+    },
+    //添加用户查询列表
+    getUserData (page = 1, length = 10, tsEnterId = this.params.tsEnterId, id = this.params.id) {
+      const queryInfo = { page: page, length: length, id: id, tsEnterId: tsEnterId };
+      this.$api.post(this.$lesUiPath.enterAppUserAppUser, queryInfo).then(result => {
+        if (result.code == 0) {
+          this.userTableData = result.data
+        }
+      })
+    },
     // 禁用
     handleStop (row) {
       row.isDisabled = true
@@ -128,6 +155,7 @@ export default {
     // 添加用户按钮
     handleAddUser () {
       this.dialogVisible = true
+      this.getUserData()
     }
   }
 }

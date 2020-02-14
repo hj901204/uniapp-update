@@ -2,7 +2,8 @@
   <div class="department-management">
     <Tree :treeData="treeData"
           class="tree"
-          @handleGetNode="handleGetNode" />
+          @handleGetNode="handleGetNode"
+          v-if="treeData.length>0" />
     <div class="table-box">
       <div class="depart-btns">
         <el-button type="danger"
@@ -80,66 +81,7 @@ export default {
       },
       maxHeight: document.body.clientHeight - 390,
       dialogVisible: false,
-      treeData: [
-        {
-          label: "一级 1",
-          id: 1,
-          children: [
-            {
-              label: "二级 1-1",
-              id: 11,
-              children: [
-                {
-                  label: "三级 1-1-1"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          label: "一级 2",
-          id: 2,
-          children: [
-            {
-              label: "二级 2-1",
-              children: [
-                {
-                  label: "三级 2-1-1"
-                }
-              ]
-            },
-            {
-              label: "二级 2-2",
-              children: [
-                {
-                  label: "三级 2-2-1"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          label: "一级 3",
-          children: [
-            {
-              label: "二级 3-1",
-              children: [
-                {
-                  label: "三级 3-1-1"
-                }
-              ]
-            },
-            {
-              label: "二级 3-2",
-              children: [
-                {
-                  label: "三级 3-2-1"
-                }
-              ]
-            }
-          ]
-        }
-      ],
+      treeData: [],
       tableHead: [
         {
           fieldNo: "name",

@@ -26,6 +26,7 @@
 
       <el-table-column fixed="right"
                        label="操作"
+                       width="160"
                        align="center"
                        v-if="isShowOperation">
         <template slot-scope="scope">
@@ -53,19 +54,21 @@
           <el-button type="danger"
                      size="mini"
                      plain
-                     v-if="isShowDeleteBtn">删除</el-button>
+                     v-if="isShowDeleteBtn"
+                     @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
-    <div class="tablePagination">
+    <div class="
+                     tablePagination">
       <el-pagination small
                      v-show="isShowPage"
                      :page-sizes="[10, 20, 30, 40]"
                      :current-page="currentPage"
                      :page-size="currentSize"
-                     :total="total"
                      class="pagination"
                      align="right"
+                     :total="total"
                      background
                      layout="total, sizes, prev, pager, next, jumper"
                      @size-change="sizeChange"
@@ -105,6 +108,10 @@ export default {
     //编辑
     handleEdit (row) {
       this.$emit("handleEdit", row)
+    },
+    //删除
+    handleDelete (row) {
+      this.$emit("handleDelete", row)
     },
     // 分页
     sizeChange (val) {

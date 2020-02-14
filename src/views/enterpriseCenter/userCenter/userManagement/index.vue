@@ -2,24 +2,28 @@
   <div class="user-management">
     <template v-if="isShowMainPage">
       <div class="add-btn">
-        <el-button type="primary" size="small" @click="handleAdd"
-          >添加用户</el-button
-        >
+        <el-button type="primary"
+                   size="small"
+                   @click="handleAdd">添加用户</el-button>
       </div>
-      <Table
-        :tableHead="tableHead"
-        :tableData="tableData"
-        :isShowOperation="true"
-        :isShowEditBtn="true"
-        @handleEdit="handleEdit"
-      />
+      <Table :tableHead="tableHead"
+             :tableData="tableData"
+             :isShowOperation="true"
+             :isShowEditBtn="true"
+             :isShowDeleteBtn='true'
+             :currentPage='currentPage'
+             :total='total'
+             :currentSize='currentSize'
+             @sizeChange='sizeChange'
+             @handleEdit="handleEdit"
+             @handleDelete='handleDelete'
+             @currentChange='currentChange' />
     </template>
     <template v-else>
-      <UserForm
-        @handleBack="handleBack"
-        :userForm="userForm"
-        :isShowResetBtn="isShowResetBtn"
-      />
+      <UserForm @handleBack="handleBack"
+                :userForm="userForm"
+                @handleSave='handleSave'
+                :isShowResetBtn="isShowResetBtn" />
     </template>
   </div>
 </template>
@@ -31,14 +35,14 @@ export default {
     Table: resolve => require(["@/components/Table"], resolve),
     UserForm: resolve => require(["../components/UserForm"], resolve)
   },
-  data() {
+  data () {
     return {
       isShowMainPage: true,
       isShowResetBtn: false,
       userForm: {},
       tableHead: [
         {
-          fieldNo: "userName",
+          fieldNo: "username",
           fieldName: "姓名",
           id: 1
         },
@@ -53,77 +57,117 @@ export default {
           id: 3
         },
         {
-          fieldNo: "depart",
+          fieldNo: "departName",
           fieldName: "所属部门",
           id: 4
         },
         {
-          fieldNo: "isAllowed",
-          fieldName: "是否访问系统",
+          fieldNo: "departCode",
+          fieldName: "部门编码",
           id: 5
+        },
+        {
+          fieldNo: "isOperation",
+          fieldName: "禁止访问系统",
+          id: 6
         }
       ],
-      tableData: [
-        {
-          userName: "userName",
-          email: "11111@qq.com",
-          telPhone: "1234567890",
-          depart: "研发部",
-          isAllowed: "是"
-        },
-        {
-          userName: "userName",
-          email: "11111@qq.com",
-          telPhone: "1234567890",
-          depart: "研发部",
-          isAllowed: "是"
-        },
-        {
-          userName: "userName",
-          email: "11111@qq.com",
-          telPhone: "1234567890",
-          depart: "研发部",
-          isAllowed: "是"
-        },
-        {
-          userName: "userName",
-          email: "11111@qq.com",
-          telPhone: "1234567890",
-          depart: "研发部",
-          isAllowed: "是"
-        }
-      ]
+      tableData: [],
+      // 分页
+      currentPage: 1,
+      currentSize: 10,
+      total: 0,
+
     }
   },
+  mounted () {
+    this.getUserData()
+
+  },
   methods: {
+    // 分页
+    sizeChange (val) {
+      this.currentSize = val
+      this.getUserData(this.currentPage, this.currentSize)
+    },
+    currentChange (val) {
+      this.currentPage = val
+      this.getUserData(this.currentPage, this.currentSize)
+
+    },
     //添加用户
-    handleAdd() {
+    handleAdd () {
       this.isShowMainPage = false
       this.isShowResetBtn = false // 是否显示重置按钮
       this.userForm = {}
     },
     //返回
-    handleBack() {
+    handleBack () {
       this.isShowMainPage = true
     },
     // 点击修改按钮
-    handleEdit(row) {
-      this.isShowMainPage = false
+    handleEdit (row) {
+      this.userForm = {}
       this.isShowResetBtn = true //是否显示重置按钮
-      this.userForm = row
-      // this.userForm.isAllowed = true
+      this.userForm = Object.assign({}, row)
+      this.userForm.isOperation = row.isOperation == '否' ? false : true
+      this.isShowMainPage = false
     },
     //点击保存按钮
-    handleSave() {
-      this.$refs["ruleForm"].validate(valid => {
-        if (valid) {
-          this.isFormDisabled = true
-          // console.log(this.userForm)
-        } else {
-          return false
+    handleSave () {
+      this.userForm.isOperation = this.userForm.isOperation == true ? 1 : 0
+      console.log(this.userForm)
+      const status = this.userForm.id ? 'edit' : 'add'
+      if (status == 'add') {
+        this.addUserFunc(this.userForm)
+      } else {
+        this.updateUserFunc(this.userForm)
+      }
+    },
+    //新建用户方法
+    addUserFunc (obj) {
+      this.$api.post(this.$lesUiPath.enteruserAdd, obj).then(result => {
+        if (result.code == 0) {
+          this.isShowMainPage = true
+          this.getUserData()
         }
       })
+    },
+    //修改用户方法
+    updateUserFunc (obj) {
+      this.$api.post(this.$lesUiPath.enteruserUpdate, obj).then(result => {
+        if (result.code == 0) {
+          this.isShowMainPage = true
+          this.getUserData()
+        }
+      })
+    },
+    //获取用户列表
+    getUserData (page = 1, length = 10) {
+      const queryInfo = { page: page, length: length };
+      this.$api.post(this.$lesUiPath.enteruserFindUserList, queryInfo).then(result => {
+        if (result.code == 0) {
+          this.tableData = result.data
+          this.tableData.map(item => {
+            item.isOperation = item.isOperation == 1 ? '是' : '否'
+          })
+          this.total = this.tableData.length
+        }
+      })
+    },
+    //删除
+    handleDelete (row) {
+      this.$confirm('此操作将永久删除, 是否继续?', '提示', this.$global.confirmConfig).then(() => {
+        this.$api.post(this.$lesUiPath.enteruserRemove, { id: row.id }).then(result => {
+          if (result.code == 0) {
+            this.getUserData()
+            return this.$message.success('删除成功')
+          }
+        })
+      })
     }
+
+
   }
 }
 </script>
