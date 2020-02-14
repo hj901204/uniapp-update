@@ -76,6 +76,7 @@ export default {
         border-radius: 8px;
         color: #fff;
         margin-right: 16px;
+        margin-bottom: 16px;
         font-weight: bold;
         cursor: pointer;
       }
