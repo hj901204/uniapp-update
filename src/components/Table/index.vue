@@ -10,7 +10,12 @@
               fit
               :height="maxHeight"
               :max-height="maxHeight"
+              @selection-change="getSelection"
               :header-row-style="{ color: '#4a90e2' }">
+      <el-table-column v-if="isShowSelection"
+                       type="selection"
+                       align="center"
+                       width="45" />
       <el-table-column type="index"
                        width="50"
                        label="#"
@@ -36,13 +41,13 @@
                        type="primary"
                        plain
                        size="mini"
-                       v-if="scope.row.isDisabled ? false : true">禁用
+                       v-if="scope.row.isEnable ? false : true">禁用
             </el-button>
             <el-button @click="handleStart(scope.row)"
                        type="primary"
                        plain
                        size="mini"
-                       v-if="scope.row.isDisabled ? true : false">启用
+                       v-if="scope.row.isEnable ? true : false">启用
             </el-button>
           </div>
           <el-button @click="handleEdit(scope.row)"
@@ -87,6 +92,7 @@ export default {
     isShowEditBtn: { type: Boolean, default: false },
     isShowStopBtns: { type: Boolean, default: false },
     isShowDeleteBtn: { type: Boolean, default: false },
+    isShowSelection: { type: Boolean, default: false },
     isShowPage: { type: Boolean, default: true },
     currentPage: { type: Number, default: 1 },
     currentSize: { type: Number, default: 10 },
@@ -119,7 +125,11 @@ export default {
     },
     currentChange (val) {
       this.$emit("currentChange", val)
-    }
+    },
+    // 勾选表格
+    getSelection (val) {
+      this.$emit("getSelection", val);
+    },
   }
 }
 </script>

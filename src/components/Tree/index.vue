@@ -5,6 +5,8 @@
              ref="tree"
              :props="defaultProps"
              default-expand-all
+             highlight-current
+             :expand-on-click-node='false'
              @node-click="handleGetNode">
       <!-- <span class="custom-tree-node" slot-scope="{ node, data }">
         <span>{{ node.label }}</span>

@@ -65,6 +65,12 @@ const activeUserLeaderboard = baseUrl + "/enterApp/activeUserLeaderboard"
 const enterAppUserFindList = baseUrl + "/enterAppUser/findList"
 //应用设定-用户查询列表
 const enterAppUserAppUser = baseUrl + "/enterAppUser/appUser"
+//应用设定-用户添加
+const enterAppUserAdd = baseUrl + "/enterAppUser/add"
+//应用设定-用户删除
+const enterAppUserRemove = baseUrl + "/enterAppUser/remove"
+//应用设定-用户禁用修改
+const enterAppUserEdit = baseUrl + "/enterAppUser/edit"
 //
 
 //-------------企业中心
@@ -120,7 +126,10 @@ export default {
       enteruserRemove,
       enterpriseFindEnt,
       smsFindList,
-      smsDelete
+      smsDelete,
+      enterAppUserAdd,
+      enterAppUserRemove,
+      enterAppUserEdit
     }
   }
 }

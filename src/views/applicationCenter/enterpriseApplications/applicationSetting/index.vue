@@ -34,8 +34,10 @@
              :tableData="tableData"
              @handleStop="handleStop"
              @handleStart="handleStart"
+             @handleDelete='handleDelete'
              @sizeChange='sizeChange'
              @currentChange='currentChange'
+             :total='total'
              :currentSize='currentSize'
              :currentPage='currentPage' />
     </div>
@@ -43,20 +45,22 @@
     <el-dialog title="添加用户"
                :visible.sync="dialogVisible"
                close-on-click-modal
-               width="40%">
+               width="50%">
       <Table :tableHead="tableHead"
              :isShowOperation="false"
              :tableData="userTableData"
              @sizeChange='userSizeChange'
              @currentChange='userCurrentChange'
              :currentSize='userCurrentSize'
-             :currentPage='userCurrentPage' />
+             :currentPage='userCurrentPage'
+             :isShowSelection='true'
+             @getSelection='getSelection' />
       <span slot="footer"
             class="dialog-footer">
         <el-button @click="dialogVisible = false"
                    size="small">取 消</el-button>
         <el-button type="primary"
-                   @click="dialogVisible = false"
+                   @click="handleSaveAdd"
                    size="small">确 定</el-button>
       </span>
     </el-dialog>
@@ -80,7 +84,7 @@ export default {
       params: JSON.parse(this.$route.query.params),
       tableHead: [
         {
-          fieldNo: "userName",
+          fieldNo: "userCode",
           fieldName: "用户名",
           id: 1,
         },
@@ -106,6 +110,7 @@ export default {
       currentPage: 1,
       userCurrentPage: 1,
       userCurrentSize: 10,
+      total: 0,
 
     }
   },
@@ -132,12 +137,13 @@ export default {
       this.$api.post(this.$lesUiPath.enterAppUserFindList, queryInfo).then(result => {
         if (result.code == 0) {
           this.tableData = result.data
+          this.total = this.tableData.length
         }
       })
     },
     //添加用户查询列表
-    getUserData (page = 1, length = 10, tsEnterId = this.params.tsEnterId, id = this.params.id) {
-      const queryInfo = { page: page, length: length, id: id, tsEnterId: tsEnterId };
+    getUserData (page = 1, length = 10, id = this.params.id) {
+      const queryInfo = { page: page, length: length, id: id };
       this.$api.post(this.$lesUiPath.enterAppUserAppUser, queryInfo).then(result => {
         if (result.code == 0) {
           this.userTableData = result.data
@@ -156,6 +162,55 @@ export default {
     handleAddUser () {
       this.dialogVisible = true
       this.getUserData()
+    },
+    //获取表格选项
+    getSelection (val) {
+      this.selectList = val
+    },
+    //添加用户保存
+    handleSaveAdd () {
+      if (!this.selectList || (this.selectList && this.selectList.length != 1)) return this.$message.warning('请选择一条用户数据')
+      this.selectinfo = {
+        tsUserId: this.selectList[0].id,
+        isEnable: this.selectList[0].isEnable,
+        tsEnterAppId: this.params.id
+      }
+      this.$api.post(this.$lesUiPath.enterAppUserAdd, this.selectinfo).then(result => {
+        if (result.code == 0) {
+          this.getBoardData()
+          this.dialogVisible = false
+        }
+      })
+    },
+    // 用户删除
+    handleDelete (row) {
+      this.$confirm('此操作将永久删除, 是否继续?', '提示', this.$global.confirmConfig).then(() => {
+        this.$api.post(this.$lesUiPath.enterAppUserRemove, { id: row.id }).then(result => {
+          if (result.code == 0) {
+            this.getBoardData()
+            return this.$message.success('删除成功')
+          }
+        })
+      })
+    },
+    //禁用按钮
+    handleStop (row) {
+      row.isEnable = 1
+      this.setEnableFunc({ isEnable: row.isEnable, id: row.id })
+
+    },
+    //启用按钮
+    handleStart (row) {
+      row.isEnable = 0
+      this.setEnableFunc({ isEnable: row.isEnable, id: row.id })
+    },
+    // 修改禁用方法
+    setEnableFunc (obj) {
+      this.$api.post(this.$lesUiPath.enterAppUserEdit, obj).then(result => {
+        if (result.code == 0) {
+          // this.getBoardData()
+        }
+      })
     }
   }
 }

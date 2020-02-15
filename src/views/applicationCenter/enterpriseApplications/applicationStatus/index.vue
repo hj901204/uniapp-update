@@ -74,19 +74,19 @@ export default {
           width: "100"
         },
         {
-          fieldNo: "email",
+          fieldNo: "userEmail",
           fieldName: "Email",
           id: 2,
           width: 400
         },
         {
-          fieldNo: "count",
+          fieldNo: "loginCout",
           fieldName: "总登陆次数",
           id: 3,
           width: 100
         },
         {
-          fieldNo: "lastDate",
+          fieldNo: "lastLoginTime",
           fieldName: "最近登陆时间",
           id: 4
         }
@@ -122,7 +122,11 @@ export default {
       const queryInfo = { page: page, length: length };
       this.$api.post(this.$lesUiPath.activeUserLeaderboard, queryInfo).then(result => {
         if (result.code == 0) {
-
+          this.tableData = result.data
+          this.total = result.data.length
+          this.tableData.map(item => {
+            item.lastLoginTime = this.$global.dateTime(item.lastLoginTime)
+          })
         }
       })
     }
