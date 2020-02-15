@@ -26,7 +26,8 @@
         <el-form-item label="管理员账号"
                       prop="enterAccount">
           <el-input v-model="adminForm.enterAccount"
-                    style="width:50%"></el-input>
+                    style="width:50%"
+                    disabled></el-input>
         </el-form-item>
         <el-form-item label="登陆密码"
                       prop="password">
