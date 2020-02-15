@@ -78,11 +78,13 @@ const enterAppUserEdit = baseUrl + "/enterAppUser/edit"
 //用户管理 -列表查询
 const enteruserFindUserList = baseUrl + "/enteruser/findUserList"
 //添加用户
-const enteruserAdd = baseUrl + "/enteruser/add"
+// const enteruserAdd = baseUrl + "/enteruser/add"
+const enteruserAdd = baseUrl + "/user/add"
 //部门查询
 const departFindDepartList = baseUrl + "/depart/findDepartList"
 //修改用户
-const enteruserUpdate = baseUrl + "/enteruser/update"
+const enteruserUpdate = baseUrl + "/user/upd"
+// const enteruserUpdate = baseUrl + "/enteruser/update"
 //删除用户
 const enteruserRemove = baseUrl + "/enteruser/remove"
 //消息列表 查询

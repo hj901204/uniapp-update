@@ -25,7 +25,7 @@
               <p style="height:20px;line-height:20px;margin-bottom:10px;color:#7e7e7e">
                 登陆账号
               </p>
-              <el-input v-model="loginForm.username"
+              <el-input v-model.trim="loginForm.username"
                         name="username"
                         type="text"
                         auto-complete="on"
@@ -49,7 +49,7 @@
                 密码
               </p>
               <el-input type="password"
-                        v-model="loginForm.password"
+                        v-model.trim="loginForm.password"
                         name="password"
                         auto-complete="on"
                         placeholder="请输入密码" />

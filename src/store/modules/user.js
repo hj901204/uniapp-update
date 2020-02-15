@@ -10,12 +10,11 @@ import {
 } from "@/utils/auth"
 const state = {
   user: "",
-  status: "",
   code: "",
-  token: getToken(),
+  token: getToken(), //token
   name: getUserName(), // 登录名
-  avatar: "",
   introduction: "",
+
   roles: [],
   menus: undefined,
   elements: undefined,
@@ -37,14 +36,8 @@ const mutations = {
   SET_SETTING: (state, setting) => {
     state.setting = setting
   },
-  SET_STATUS: (state, status) => {
-    state.status = status
-  },
   SET_NAME: (state, name) => {
     state.name = name
-  },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
