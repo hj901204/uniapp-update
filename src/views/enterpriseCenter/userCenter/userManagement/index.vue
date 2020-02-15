@@ -67,8 +67,8 @@ export default {
           id: 5
         },
         {
-          fieldNo: "isOperation",
-          fieldName: "禁止访问系统",
+          fieldNo: "isEnable",
+          fieldName: "允许访问系统",
           id: 6
         }
       ],
@@ -110,12 +110,12 @@ export default {
       this.userForm = {}
       this.isShowResetBtn = true //是否显示重置按钮
       this.userForm = Object.assign({}, row)
-      this.userForm.isOperation = row.isOperation == '否' ? false : true
+      this.userForm.isEnable = row.isEnable == '否' ? false : true
       this.isShowMainPage = false
     },
     //点击保存按钮
     handleSave () {
-      this.userForm.isOperation = this.userForm.isOperation == true ? 1 : 0
+      this.userForm.isEnable = this.userForm.isEnable == true ? 1 : 0
       console.log(this.userForm)
       const status = this.userForm.id ? 'edit' : 'add'
       if (status == 'add') {
@@ -149,7 +149,7 @@ export default {
         if (result.code == 0) {
           this.tableData = result.data
           this.tableData.map(item => {
-            item.isOperation = item.isOperation == 1 ? '是' : '否'
+            item.isEnable = item.isEnable == 1 ? '是' : '否'
           })
           this.total = this.tableData.length
         }

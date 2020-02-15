@@ -54,8 +54,8 @@
                      @change='getNode'></el-cascader> -->
       </el-form-item>
       <el-form-item>
-        <el-checkbox v-model="userForm.isOperation"
-                     @change="handleCheckBox">禁止访问系统</el-checkbox>
+        <el-checkbox v-model="userForm.isEnable"
+                     @change="handleCheckBox">允许访问系统</el-checkbox>
       </el-form-item>
     </el-form>
     <div class="edit-btn">
@@ -136,7 +136,7 @@ export default {
     },
     // //是否选中系统
     handleCheckBox (val) {
-      this.userForm.isOperation = (val == 1) ? true : false
+      this.userForm.isEnable = (val == 1) ? true : false
     },
     //获取部门数据
     getDepartTree () {
