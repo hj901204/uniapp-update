@@ -201,7 +201,7 @@ export default {
     setEnableFunc (obj) {
       this.$api.post(this.$lesUiPath.enterAppUserEdit, obj).then(result => {
         if (result.code == 0) {
-          // this.getBoardData()
+          this.getBoardData()
         }
       })
     }
