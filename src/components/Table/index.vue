@@ -41,13 +41,13 @@
                        type="primary"
                        plain
                        size="mini"
-                       v-if="scope.row.isEnable ? false : true">禁用
+                       v-if="scope.row.isEnable==1">禁用
             </el-button>
             <el-button @click="handleStart(scope.row)"
                        type="primary"
                        plain
                        size="mini"
-                       v-if="scope.row.isEnable ? true : false">启用
+                       v-else>启用
             </el-button>
           </div>
           <el-button @click="handleEdit(scope.row)"

@@ -150,14 +150,7 @@ export default {
         }
       })
     },
-    // 禁用
-    handleStop (row) {
-      row.isDisabled = true
-    },
-    // 启用
-    handleStart (row) {
-      row.isDisabled = false
-    },
+
     // 添加用户按钮
     handleAddUser () {
       this.dialogVisible = true
@@ -195,13 +188,13 @@ export default {
     },
     //禁用按钮
     handleStop (row) {
-      row.isEnable = 1
+      row.isEnable = 0
       this.setEnableFunc({ isEnable: row.isEnable, id: row.id })
 
     },
     //启用按钮
     handleStart (row) {
-      row.isEnable = 0
+      row.isEnable = 1
       this.setEnableFunc({ isEnable: row.isEnable, id: row.id })
     },
     // 修改禁用方法
