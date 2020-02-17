@@ -142,8 +142,8 @@ export default {
       })
     },
     //添加用户查询列表
-    getUserData (page = 1, length = 10, id = this.params.id) {
-      const queryInfo = { page: page, length: length, id: id };
+    getUserData (page = 1, length = 10, id = this.params.id, tsEnterId = this.params.tsEnterId) {
+      const queryInfo = { page: page, length: length, id: id, tsEnterId: tsEnterId };
       this.$api.post(this.$lesUiPath.enterAppUserAppUser, queryInfo).then(result => {
         if (result.code == 0) {
           this.userTableData = result.data
