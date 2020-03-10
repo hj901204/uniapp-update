@@ -37,7 +37,7 @@ export default {
         range: [0, 1]
       })
       chart.scale("week", {
-        alias: "近7日登陆系统人数变化"
+        alias: "近7日系统登陆人次（TODO：通知后端这里添加一个接口）"
       })
       chart.axis("week", {
         title: {

@@ -1,6 +1,33 @@
 <template>
   <div class="basic-info">
     <!-- 显示企业基本信息 -->
+
+<!-- "id": "b2a336534ed2470aac68fd2afe1b0d85",
+      "length": 20,
+      "updUsrId": "755d2ae483e448cab7b5c0810a02ba31",
+      "updUsrName": "zkyda",
+      "updTime": "2020-03-06T13:12:31.000+0000",
+      "verson": 0,
+      "enterCode": "0123456789",
+      "enterName": "智科云达",
+      "enterNameEn": "GOOCIDATA",
+      "enterShortName": "羞答答的🌹",
+      "enterAddress": "北京",
+      "enterTelNum": "010-87654321",
+      "enterMail": "zkyd@zkyda.com",
+      "liaisonMan": "测试员",
+      "position": "网络管理员",
+      "telNum": "010-12345678",
+      "fpTitle": "止咳韵达嘻嘻",
+      "fpTax": "010-20394567",
+      "fpRegAdd": "北极光啥faaa",
+      "fpTel": "010-32342",
+      "fpBankName": "北京银行",
+      "fpBankNo": "2132423",
+      "fpRecever": "我我哦饿哦",
+      "fpRecTel": "1376464756",
+      "fpRecAdd": "上海" -->
+
     <template v-if="isShowMainPage">
       <div class="main-page">
         <ul>
@@ -13,20 +40,30 @@
             <div class="form-val">{{ form.enterName }}</div>
           </li>
           <li>
-            <div class="form-field">企业地址:</div>
-            <div class="form-val">{{ form.enterAddress }}</div>
-          </li>
-          <li>
-            <div class="form-field">企业编码:</div>
-            <div class="form-val">{{ form.enterCode }}</div>
+            <div class="form-field">企业英文名称:</div>
+            <div class="form-val">{{ form.enterNameEn }}</div>
           </li>
           <li>
             <div class="form-field">企业简称:</div>
             <div class="form-val">{{ form.enterShortName }}</div>
           </li>
           <li>
+            <div class="form-field">企业地址:</div>
+            <div class="form-val">{{ form.enterAddress }}</div>
+          </li>
+          <!--
+          <li>
+            <div class="form-field">企业编码:</div>
+            <div class="form-val">{{ form.enterCode }}</div>
+          </li>
+          -->
+          <li>
             <div class="form-field">联系电话:</div>
             <div class="form-val">{{ form.enterTelNum }}</div>
+          </li>
+          <li>
+            <div class="form-field">联系人:</div>
+            <div class="form-val">{{ form.liaisonMan }}</div>
           </li>
           <li>
             <div class="form-field">联系邮件:</div>
@@ -34,6 +71,7 @@
           </li>
         </ul>
       </div>
+      
       <div class="edit-btn"
            style="margin-left:40px;margin-top:30px;">
         <el-button type="primary"
@@ -121,30 +159,45 @@ export default {
           index: 1
         },
         {
-          label: "企业地址:",
-          model: "enterAddress",
+          label: "企业英文名称:",
+          model: "enterNameEn",
           index: 2
-        },
-        {
-          label: "企业编码:",
-          model: "enterCode",
-          index: 3,
-          isDisabled: true
         },
         {
           label: "企业简称:",
           model: "enterShortName",
+          index: 3
+        },
+        {
+          label: "企业地址:",
+          model: "enterAddress",
           index: 4
+        },
+        // {
+        //   label: "企业编码:",
+        //   model: "enterCode",
+        //   index: 3,
+        //   isDisabled: true
+        // },
+        {
+          label: "企业简称:",
+          model: "enterShortName",
+          index: 5
         },
         {
           label: "联系电话:",
           model: "enterTelNum",
-          index: 5
+          index: 6
+        },
+        {
+          label: "联系人:",
+          model: "liaisonMan",
+          index: 7
         },
         {
           label: "联系邮件:",
           model: "enterMail",
-          index: 6
+          index: 8
         }
       ],
       rules: {

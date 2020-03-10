@@ -22,16 +22,16 @@
               </el-form-item>
             </el-col>
             <el-col :span="11">
-              <el-form-item label="企业编码"
+              <el-form-item label="企业英文名称"
                             style="width:90%"
                             prop="enterCode">
-                <el-input v-model.trim="form.enterCode"></el-input>
+                <el-input v-model.trim="form.enterNameEn"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="11">
               <el-form-item label="企业简称"
                             style="width:90%">
-                <el-input v-model.trim="form.shortname"></el-input>
+                <el-input v-model.trim="form.enterShortName"></el-input>
               </el-form-item>
             </el-col>
 
@@ -136,6 +136,27 @@
         </el-form>
       </div>
     </div>
+
+    TODO0001: 这里注册之后会传回来当前企业的信息，点击下一步后跳转到下一个页面之后展示出来；，返回数据式样：
+    {
+      "code": "0",
+      "recordCount": 1,
+      "data": {
+        "id": "7ED9F81AE88D4A4A8D92DBD16A89B236",
+        "length": 20,
+        "verson": 0,
+        "enterCode": "KVDSUIXXZPAT",
+        "enterName": "5555",
+        "enterNameEn": "5555",
+        "enterShortName": "5555",
+        "enterAddress": "5555",
+        "enterTelNum": "5555",
+        "enterMail": "5555@dddd.com",
+        "liaisonMan": "5555",
+        "position": "5555"
+      }
+    }
+
     <div class="edit-btn">
       <el-button size="small"
                  @click="handleBack">返回</el-button>
@@ -176,8 +197,8 @@ export default {
         enterName: [
           { required: true, message: '请输入企业名称', trigger: 'blur' }
         ],
-        enterCode: [
-          { required: true, message: '请输入企业编码', trigger: 'blur' }
+        enterNameEn: [
+          { required: true, message: '请输入企业英文名称', trigger: 'blur' }
         ],
         enterAddress: [
           { required: true, message: '请输入企业地址', trigger: 'blur' }

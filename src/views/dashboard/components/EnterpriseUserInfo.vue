@@ -16,7 +16,7 @@
       </div>
       <div class="num-box">
         <h2 class="num">{{this.count}}</h2>
-        <p class="num-description">企业用户人数</p>
+        <p class="num-description">企业用户数</p>
       </div>
     </div>
     <!-- 图表 -->

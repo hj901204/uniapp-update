@@ -12,8 +12,7 @@
     </div>
     <div class="detail-info">
       <h4>SupplyX ID:<span class="corporate-id">{{myEnterpriseData.enterCode}}</span></h4>
-      <!-- <p class="corporate-id">KALZ2081920</p> -->
-      <p>{{myEnterpriseData.enterName}}</p>
+      <p>{{myEnterpriseData.enterName}}({{myEnterpriseData.enterNameEn}})</p>
       <p>{{myEnterpriseData.enterAddress}}</p>
     </div>
   </div>
@@ -38,6 +37,7 @@ export default {
     getMyEnterpriseData () {
       this.$api.post(this.$lesUiPath.enterpriseFindEnt, {}).then(result => {
         if (result.code == 0) {
+          console.log(result.data)
           this.myEnterpriseData = result.data
         }
       })
