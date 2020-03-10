@@ -24,7 +24,7 @@
             <el-col :span="11">
               <el-form-item label="企业英文名称"
                             style="width:90%"
-                            prop="enterCode">
+                            prop="enterNameEn">
                 <el-input v-model.trim="form.enterNameEn"></el-input>
               </el-form-item>
             </el-col>
@@ -145,7 +145,7 @@
         "id": "7ED9F81AE88D4A4A8D92DBD16A89B236",
         "length": 20,
         "verson": 0,
-        "enterCode": "KVDSUIXXZPAT",
+        "xid": "KVDSUIXXZPAT",
         "enterName": "5555",
         "enterNameEn": "5555",
         "enterShortName": "5555",

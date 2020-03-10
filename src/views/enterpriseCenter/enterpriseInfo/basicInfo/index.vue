@@ -8,7 +8,7 @@
       "updUsrName": "zkyda",
       "updTime": "2020-03-06T13:12:31.000+0000",
       "verson": 0,
-      "enterCode": "0123456789",
+      "xid": "0123456789",
       "enterName": "智科云达",
       "enterNameEn": "GOOCIDATA",
       "enterShortName": "羞答答的🌹",
@@ -33,7 +33,7 @@
         <ul>
           <li>
             <div class="form-field">SupplyX ID:</div>
-            <div class="form-val">{{ form.enterCode }}</div>
+            <div class="form-val">{{ form.xid }}</div>
           </li>
           <li>
             <div class="form-field">企业名称:</div>
@@ -54,7 +54,7 @@
           <!--
           <li>
             <div class="form-field">企业编码:</div>
-            <div class="form-val">{{ form.enterCode }}</div>
+            <div class="form-val">{{ form.xid }}</div>
           </li>
           -->
           <li>
@@ -147,7 +147,7 @@ export default {
       fields: [
         {
           label: "SupplyX ID:",
-          model: "enterCode",
+          model: "xid",
           isDisabled: true,
           // 添加index解决key重复报错
           index: 0
@@ -175,7 +175,7 @@ export default {
         },
         // {
         //   label: "企业编码:",
-        //   model: "enterCode",
+        //   model: "xid",
         //   index: 3,
         //   isDisabled: true
         // },

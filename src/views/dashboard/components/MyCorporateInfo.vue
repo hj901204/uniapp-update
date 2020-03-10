@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="detail-info">
-      <h4>SupplyX ID:<span class="corporate-id">{{myEnterpriseData.enterCode}}</span></h4>
+      <h4>SupplyX ID:<span class="corporate-id">{{myEnterpriseData.xid}}</span></h4>
       <p>{{myEnterpriseData.enterName}}({{myEnterpriseData.enterNameEn}})</p>
       <p>{{myEnterpriseData.enterAddress}}</p>
     </div>
