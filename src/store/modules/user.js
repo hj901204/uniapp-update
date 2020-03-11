@@ -6,13 +6,17 @@ import {
   removeToken,
   getUserName,
   setUserName,
-  removeUserName
+  removeUserName,
+  getAuthType,
+  setAuthType,
+  removeAuthType
 } from "@/utils/auth"
 const state = {
   user: "",
   code: "",
   token: getToken(), //token
   name: getUserName(), // 登录名
+  type: getAuthType(),
   introduction: "",
 
   roles: [],
@@ -29,6 +33,9 @@ const mutations = {
   },
   SET_TOKEN: (state, token) => {
     state.token = token
+  },
+  SET_AUTHTYPE: (state, type) => {
+    state.type = type
   },
   SET_INTRODUCTION: (state, introduction) => {
     state.introduction = introduction
@@ -63,11 +70,13 @@ const actions = {
           if (response.code == 0) {
             const token = response.data.token
             const userName = response.data.userName
-            // TODO：取得用户类型
+            const type = response.data.authType
             commit("SET_TOKEN", token)
             commit("SET_NAME", userName)
+            commit("SET_AUTHTYPE", type)
             setToken(token)
             setUserName(userName)
+            setAuthType(type)
             resolve()
           } else {
             Message({
@@ -88,11 +97,13 @@ const actions = {
       const token = state.token
       commit("SET_TOKEN", "")
       commit("SET_NAME", "")
+      commit("SET_AUTHTYPE", "")
       // commit("SET_MENUS", undefined)
       // commit("SET_ELEMENTS", undefined)
       // commit("SET_PERMISSION_MENUS", undefined)
       removeToken()
       removeUserName()
+      removeAuthType()
       resolve()
     })
   }
