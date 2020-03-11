@@ -56,6 +56,7 @@ const delSystemInfo = baseUrl + "/sms/delete"
 const enterpriseFindEnt = baseUrl + "/enterprise/findEnt"
 //企业用户信息 人数
 const enteruserFindCount = baseUrl + "/enteruser/findCount"
+const enteruserLogin = baseUrl + "/log/daysaction"
 //--------------应用中心
 // 查询我的应用列表
 const enterAppFindList = baseUrl + "/enterApp/findList"
@@ -126,12 +127,12 @@ export default {
       enteruserUpdate,
       departFindDepartList,
       enteruserRemove,
-      enterpriseFindEnt,
       smsFindList,
       smsDelete,
       enterAppUserAdd,
       enterAppUserRemove,
-      enterAppUserEdit
+      enterAppUserEdit,
+      enteruserLogin
     }
   }
 }
