@@ -63,6 +63,7 @@ const actions = {
           if (response.code == 0) {
             const token = response.data.token
             const userName = response.data.userName
+            // TODO：取得用户类型
             commit("SET_TOKEN", token)
             commit("SET_NAME", userName)
             setToken(token)

@@ -66,7 +66,10 @@ export default {
 
     },
     //开始使用
-    handleStartUse () { },
+    handleStartUse () { 
+      // here to check if current user has de authentication to login.
+
+    },
     //用户设定
     handleUserSetting (item) {
       this.$router.push({
