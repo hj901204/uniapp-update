@@ -6,36 +6,37 @@
       <!-- 注册成功提示 -->
       <div class="submit-success">
         <i class="el-icon-my-tijiao"></i>
-        <span>尊敬的 <span>木村文乃</span>，您的信息已经提交成功。</span>
+        <span>尊敬的 <span>{{regEntInfo.enterName}}</span>，您的信息已经提交成功。</span>
       </div>
       <!-- 注册信息 -->
       <ul class="register-info">
         <li>
           <h4>我的企业</h4>
-          <span>上海谷器数据科技有限公司</span>
+          <span>{{regEntInfo.enterName}}</span>
         </li>
         <li>
-          <h4>我的企业税号</h4>
-          <span>KLIO0989766GH</span>
+          <h4>我的SupplyXid
+          </h4>
+          <span>{{regEntInfo.xid}}</span>
         </li>
         <li>
-          <h4>我的手机</h4>
-          <span>13916708888</span>
+          <h4>联系人</h4>
+          <span>{{regEntInfo.liaisonMan}}</span>
         </li>
         <li>
-          <h4>我的联系邮件</h4>
-          <span>kimula·fumino@zkyda.com</span>
+          <h4>联系邮件</h4>
+          <span>{{regEntInfo.enterMail}}</span>
         </li>
         <li>
           <h4>我的公司地址</h4>
-          <span>东京都品川区曺鸭3-2-1</span>
+          <span>{{regEntInfo.enterAddress}}</span>
         </li>
       </ul>
       <!-- 提示信息 -->
       <div class="prompt-info">
         <p>我们已经收到您的信息，我们会马上进行审核。</p>
-        <p>一旦通过，平台将通过您提交的信箱发送您企业登陆账号和唯一ID。</p>
-        <p>您也可以通过拨打电话400-880-XXXX联系我们，我们将很荣幸为您服务。</p>
+        <p>一旦通过，平台将通过您提交的信箱发送给您结果信息。</p>
+        <p>您也可以通过拨打电话400-0530-512联系我们，我们将很荣幸为您服务。</p>
       </div>
 
       <!-- 返回按钮 -->
@@ -64,12 +65,26 @@ export default {
     PageTitle: reslove => require(["@/components/PageTitle.vue"], reslove)
   },
   data() {
-    return {}
+    return {
+      regEntInfo: {}
+    }
+  },
+  mounted () {
+    this.getRegentInfo()
   },
   methods: {
     handleBackLogin() {
       this.$router.push({ path: "/login" })
-    }
+    },
+    //我的企业信息查询
+    getRegentInfo () {
+      this.$api.post(this.$lesUiPath.enterpriseFindEnt, {}).then(result => {
+        if (result.code == 0) {
+          console.log(result.data)
+          this.regEntInfo = result.data
+        }
+      })
+    },
   }
 }
 </script>

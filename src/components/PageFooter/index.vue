@@ -1,11 +1,11 @@
 <template>
   <div class="page-footer">
     <div class="page-footer-box">
-      <img src="@/assets/img/QR-code.png" alt="" />
+      <img src="@/assets/img/QR-code.jpg" alt="" />
       <div class="footer-content">
         <div>北京智科云达信息技术有限公司<span>@2020</span></div>
-        <p>联系电话：010-12345678</p>
-        <p>Email：market@zkyd.com</p>
+        <p>联系电话：400-0530-512</p>
+        <p>Email：marketing@zkyda.com</p>
       </div>
     </div>
   </div>

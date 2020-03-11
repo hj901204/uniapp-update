@@ -115,6 +115,16 @@
           </el-row>
           <el-row>
             <el-col :span="11">
+              <el-form-item label="管理员邮箱"
+                            style="width:90%;position:relative"
+                            type='email'
+                            prop="email">
+                <el-input v-model.trim="enteradminForm.email"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="11">
               <el-form-item label="登陆密码"
                             style="width:90%"
                             prop="password">
@@ -215,6 +225,8 @@ export default {
       rules3: {
         enterAccount: [{ required: true, message: '请输入管理员账号', trigger: 'blur' }],
         password: [{ required: true, message: '请输入登录密码', trigger: 'blur' }],
+        email: [{ required: true, message: '请输入管理员邮箱', trigger: 'blur' },
+        { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }],
         checkPsd: [{ validator: validatePass, trigger: 'blur' }],
 
       },
@@ -234,6 +246,7 @@ export default {
         obj.enteradmin = this.enteradminForm
         console.log(obj)
         this.$api.post(this.$lesUiPath.enterpriseRegister, obj).then(result => {
+          console.log("enterpriseRegister:" + result)
           if (result.code == 0) {
             this.$router.push({ path: "/register/secondStep" })
           } else {

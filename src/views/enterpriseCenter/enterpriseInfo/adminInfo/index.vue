@@ -29,6 +29,12 @@
                     style="width:50%"
                     disabled></el-input>
         </el-form-item>
+        <el-form-item label="管理员邮箱"
+                      prop="email">
+          <el-input v-model="adminForm.email"
+                    style="width:50%">
+                    </el-input>
+        </el-form-item>
         <el-form-item label="登陆密码"
                       prop="password">
           <el-input type="password"
@@ -74,6 +80,8 @@ export default {
     return {
       rules: {
         enterAccount: [{ required: true, message: '请输入管理员账号', trigger: 'blur' }],
+        email: [{ required: true, message: '请输入管理员邮箱', trigger: 'blur' },
+        { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }],
         password: [{ required: true, message: '请输入登录密码', trigger: 'blur' }],
         checkPass: [{ validator: validatePass, trigger: 'blur' }]
       },
