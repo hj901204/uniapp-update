@@ -67,13 +67,9 @@ export default {
     },
     //开始使用
     handleStartUse (appid) { 
-      // here to check if current user has de authentication to login.
-      console.log(appid)
-      this.$api.get(this.$lesUiPath.enterAppRun+"?appId="+appid, null).then(result => {
-        if (result.code == 0) {
-          console.log(result)
-        }
-      })
+      // TODO： cant hardcode here
+      console.log(this.$lesUiPath.enterAppRun+"?appId="+appid)
+      location.href = "http://localhost:8862" + this.$lesUiPath.enterAppRun+"?appId="+appid
     },
     //用户设定
     handleUserSetting (item) {
