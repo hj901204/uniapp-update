@@ -60,6 +60,8 @@ const enteruserLogin = baseUrl + "/log/daysaction"
 //--------------应用中心
 // 查询我的应用列表
 const enterAppFindList = baseUrl + "/enterApp/findList"
+// 用户启动APP
+const enterAppRun = baseUrl + "/application/run"
 //应用状态-用户活跃排行榜
 const activeUserLeaderboard = baseUrl + "/enterApp/activeUserLeaderboard"
 //应用设定-查询列表
@@ -132,7 +134,8 @@ export default {
       enterAppUserAdd,
       enterAppUserRemove,
       enterAppUserEdit,
-      enteruserLogin
+      enteruserLogin,
+      enterAppRun
     }
   }
 }

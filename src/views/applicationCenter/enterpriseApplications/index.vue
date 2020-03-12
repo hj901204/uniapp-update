@@ -16,7 +16,7 @@
               </span>
             </div>
             <div class="start-use-btn">
-              <el-button @click="handleStartUse"
+              <el-button @click="handleStartUse(item.appid)" 
                          size="small"
                          type="primary">开始使用
               </el-button>
@@ -66,9 +66,14 @@ export default {
 
     },
     //开始使用
-    handleStartUse () { 
+    handleStartUse (appid) { 
       // here to check if current user has de authentication to login.
-
+      console.log(appid)
+      this.$api.get(this.$lesUiPath.enterAppRun+"?appId="+appid, null).then(result => {
+        if (result.code == 0) {
+          console.log(result)
+        }
+      })
     },
     //用户设定
     handleUserSetting (item) {
@@ -82,6 +87,7 @@ export default {
     getMyAppData () {
       this.$api.post(this.$lesUiPath.enterAppFindList, { page: 1, length: 1000 }).then(result => {
         if (result.code == 0) {
+          console.log(result)
           this.myApplyList = result.data
           this.myApplyList.map(item => {
             item.initiateTime = this.$global.dateTime(item.initiateTime)
