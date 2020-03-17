@@ -16,7 +16,7 @@
               </span>
             </div>
             <div class="start-use-btn">
-              <el-button @click="handleStartUse(item.appid)" 
+              <el-button @click="handleStartUse(item.appid)"
                          size="small"
                          type="primary">开始使用
               </el-button>
@@ -66,10 +66,15 @@ export default {
 
     },
     //开始使用
-    handleStartUse (appid) { 
+    handleStartUse (appid) {
+      this.$api.get(this.$lesUiPath.enterAppRun, { appId: appid }).then(result => {
+        if (result.code == 0) {
+          console.log('开始使用')
+        }
+      })
       // TODO： cant hardcode here
-      console.log(this.$lesUiPath.enterAppRun+"?appId="+appid)
-      location.href = "http://localhost:8862" + this.$lesUiPath.enterAppRun+"?appId="+appid
+      // console.log(this.$lesUiPath.enterAppRun+"?appId="+appid)
+      // location.href = "http://localhost:8862" + this.$lesUiPath.enterAppRun+"?appId="+appid
     },
     //用户设定
     handleUserSetting (item) {
