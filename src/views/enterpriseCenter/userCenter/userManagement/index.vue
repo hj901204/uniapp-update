@@ -57,13 +57,13 @@ export default {
           id: 3
         },
         {
-          fieldNo: "departName",
-          fieldName: "所属部门",
+          fieldNo: "departCode",
+          fieldName: "部门编码",
           id: 4
         },
         {
-          fieldNo: "departCode",
-          fieldName: "部门编码",
+          fieldNo: "departName",
+          fieldName: "所属部门",
           id: 5
         },
         {
@@ -135,6 +135,7 @@ export default {
     },
     //修改用户方法
     updateUserFunc (obj) {
+      console.log(obj)
       this.$api.post(this.$lesUiPath.enteruserUpdate, obj).then(result => {
         if (result.code == 0) {
           this.isShowMainPage = true

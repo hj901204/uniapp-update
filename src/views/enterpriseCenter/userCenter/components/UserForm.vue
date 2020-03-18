@@ -1,6 +1,5 @@
 <template>
   <div class="user-form">
-    、
     <!-- 用户管理编辑表单 -->
     <el-form :model="userForm"
              hide-required-asterisk

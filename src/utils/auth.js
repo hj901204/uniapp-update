@@ -2,6 +2,7 @@ import Cookies from "js-cookie"
 
 const TokenKey = "Token"
 const userNameKey = "userName"
+const authTypeKey = "authType"
 
 export function getToken() {
   return Cookies.get(TokenKey)
@@ -26,4 +27,17 @@ export function setUserName(userName) {
 
 export function removeUserName() {
   return Cookies.remove(userNameKey)
+}
+
+// 用户类型
+export function getAuthType() {
+  return Cookies.get(authTypeKey)
+}
+
+export function setAuthType(authType) {
+  return Cookies.set(authTypeKey, authType)
+}
+
+export function removeAuthType() {
+  return Cookies.remove(authTypeKey)
 }
