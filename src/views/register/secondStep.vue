@@ -6,30 +6,32 @@
       <!-- 注册成功提示 -->
       <div class="submit-success">
         <i class="el-icon-my-tijiao"></i>
-        <span>尊敬的 <span>{{regEntInfo.enterName}}</span>，您的信息已经提交成功。</span>
+        <span
+          >尊敬的 <span>{{ data.enterName }}</span
+          >，您的信息已经提交成功。</span
+        >
       </div>
       <!-- 注册信息 -->
       <ul class="register-info">
         <li>
           <h4>我的企业</h4>
-          <span>{{regEntInfo.enterName}}</span>
+          <span>{{ data.enterName }}</span>
         </li>
         <li>
-          <h4>我的SupplyXid
-          </h4>
-          <span>{{regEntInfo.xid}}</span>
+          <h4>我的SupplyXid</h4>
+          <span>{{ data.xid }}</span>
         </li>
         <li>
           <h4>联系人</h4>
-          <span>{{regEntInfo.liaisonMan}}</span>
+          <span>{{ data.liaisonMan }}</span>
         </li>
         <li>
           <h4>联系邮件</h4>
-          <span>{{regEntInfo.enterMail}}</span>
+          <span>{{ data.enterMail }}</span>
         </li>
         <li>
           <h4>我的公司地址</h4>
-          <span>{{regEntInfo.enterAddress}}</span>
+          <span>{{ data.enterAddress }}</span>
         </li>
       </ul>
       <!-- 提示信息 -->
@@ -66,10 +68,11 @@ export default {
   },
   data() {
     return {
-      regEntInfo: {}
+      regEntInfo: {},
+      data: this.$route.query.data
     }
   },
-  mounted () {
+  mounted() {
     this.getRegentInfo()
   },
   methods: {
@@ -77,14 +80,14 @@ export default {
       this.$router.push({ path: "/login" })
     },
     //我的企业信息查询
-    getRegentInfo () {
+    getRegentInfo() {
       this.$api.post(this.$lesUiPath.enterpriseFindEnt, {}).then(result => {
         if (result.code == 0) {
           console.log(result.data)
           this.regEntInfo = result.data
         }
       })
-    },
+    }
   }
 }
 </script>
