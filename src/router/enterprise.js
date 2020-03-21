@@ -148,51 +148,51 @@ const enterprise = {
           }
         }
       ]
-    },
-    {
-      path: "costCenter",
-      component: () => import("../views/enterpriseCenter/costCenter/index.vue"),
-      name: "costCenter",
-      meta: {
-        title: "费用中心",
-        breadcrumbTitle: "费用中心",
-        breadcrumb: true,
-        path: "/enterprise/costCenter",
-        icon: "el-icon-my-feiyong"
-      },
-      children: [
-        {
-          path: "billInquiry",
-          component: () =>
-            import(
-              "../views/enterpriseCenter/costCenter/billInquiry/index.vue"
-            ),
-          name: "billInquiry",
-          meta: {
-            title: "账单查询",
-            breadcrumbTitle: "账单查询",
-            breadcrumb: true,
-            path: "/enterprise/costCenter/billInquiry",
-            icon: "el-icon-my-dian"
-          }
-        },
-        {
-          path: "historicalBill",
-          component: () =>
-            import(
-              "../views/enterpriseCenter/costCenter/historicalBill/index.vue"
-            ),
-          name: "historicalBill",
-          meta: {
-            title: "历史账单",
-            breadcrumbTitle: "历史账单",
-            breadcrumb: true,
-            path: "/enterprise/costCenter/historicalBill",
-            icon: "el-icon-my-dian"
-          }
-        }
-      ]
     }
+    // {
+    //   path: "costCenter",
+    //   component: () => import("../views/enterpriseCenter/costCenter/index.vue"),
+    //   name: "costCenter",
+    //   meta: {
+    //     title: "费用中心",
+    //     breadcrumbTitle: "费用中心",
+    //     breadcrumb: true,
+    //     path: "/enterprise/costCenter",
+    //     icon: "el-icon-my-feiyong"
+    //   },
+    //   children: [
+    //     {
+    //       path: "billInquiry",
+    //       component: () =>
+    //         import(
+    //           "../views/enterpriseCenter/costCenter/billInquiry/index.vue"
+    //         ),
+    //       name: "billInquiry",
+    //       meta: {
+    //         title: "账单查询",
+    //         breadcrumbTitle: "账单查询",
+    //         breadcrumb: true,
+    //         path: "/enterprise/costCenter/billInquiry",
+    //         icon: "el-icon-my-dian"
+    //       }
+    //     },
+    //     {
+    //       path: "historicalBill",
+    //       component: () =>
+    //         import(
+    //           "../views/enterpriseCenter/costCenter/historicalBill/index.vue"
+    //         ),
+    //       name: "historicalBill",
+    //       meta: {
+    //         title: "历史账单",
+    //         breadcrumbTitle: "历史账单",
+    //         breadcrumb: true,
+    //         path: "/enterprise/costCenter/historicalBill",
+    //         icon: "el-icon-my-dian"
+    //       }
+    //     }
+    //   ]
+    // }
   ]
 }
 export default enterprise
