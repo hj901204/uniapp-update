@@ -9,7 +9,7 @@ import applicationRouter from "./application"
 import enterprise from "./enterprise"
 Vue.use(VueRouter)
 
-const routes = [
+export const constantRouterMap = [
   // {
   //   path: "/",
   //   name: "login",
@@ -37,8 +37,7 @@ const routes = [
   },
   //应用中心
   applicationRouter,
-  // 企业中心
-  enterprise,
+
   //帮助
   {
     path: "/help",
@@ -125,9 +124,10 @@ const routes = [
   //     import(/* webpackChunkName: "about" */ "../views/About.vue")
   // }
 ]
-
-const router = new VueRouter({
-  routes
+//实例化vue的时候只挂载constantRouter
+export default new VueRouter({
+  routes: constantRouterMap
 })
-
-export default router
+//异步挂载的路由
+//动态需要根据权限加载的路由表
+export const asyncRouterMap = enterprise

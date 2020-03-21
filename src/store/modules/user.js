@@ -1,4 +1,6 @@
 import { loginByUsername } from "@/api/login"
+import { asyncRouterMap, constantRouterMap } from "../../router"
+import { setRoutes } from "@/utils/auth"
 import { Message } from "element-ui"
 import {
   getToken,
@@ -70,7 +72,7 @@ const actions = {
           if (response.code == 0) {
             const token = response.data.token
             const userName = response.data.userName
-            const type = response.data.authType
+            const type = response.data.authType.toString()
             commit("SET_TOKEN", token)
             commit("SET_NAME", userName)
             commit("SET_AUTHTYPE", type)
@@ -108,6 +110,7 @@ const actions = {
     })
   }
 }
+
 export default {
   namespaced: true,
   state,

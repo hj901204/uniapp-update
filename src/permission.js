@@ -1,9 +1,8 @@
 import router from "./router"
 import store from "./store"
-import { Message, Form } from "element-ui"
 import NProgress from "nprogress" // progress bar
 import "nprogress/nprogress.css" // progress bar style
-import { getToken } from "@/utils/auth" // get token from cookie
+import { getToken, getRoute, getAuthType } from "@/utils/auth" // get token from cookie
 // import getPageTitle from "@/utils/get-page-title"
 
 NProgress.configure({
@@ -21,7 +20,7 @@ const whiteList = [
 
 // permission judge function
 function hasPermission(roles, permissionRoles) {
-  if (roles.indexOf("admin") >= 0) return true // admin permission passed directly
+  if (roles.indexOf("1") >= 0) return true // admin permission passed directly
   if (!permissionRoles) return true
   return roles.some(role => permissionRoles.indexOf(role) >= 0)
 }
@@ -37,17 +36,18 @@ router.beforeEach((to, from, next) => {
       NProgress.done()
     } else {
       //拉取用户信息
-      next()
-      // // 判断用户是否已经拉取信息
-      // if (store.getters.menus === undefined) {
-      //   store.dispatch("user/GetUserInfo").then(info => {
-      //     if (info.id) {
-      //       next()
-      //     }
-      //   })
-      // } else {
-      //   next()
-      // }
+      if (getAuthType()) {
+        //获得用户登陆类型
+        let type = getAuthType()
+
+        store.dispatch("permission/generateRoutes", [type]).then(result => {
+          // 生成可访问的路由表
+          console.log(result)
+          router.addRoutes(result) // 动态添加可访问路由表
+
+          next() // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+        })
+      }
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {

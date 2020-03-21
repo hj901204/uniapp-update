@@ -1,44 +1,40 @@
 <template>
   <div class="left-nav">
     <!-- <i class="icon iconfont">&#xe608;</i> -->
-    <el-menu
-      router
-      :default-active="
+    <el-menu router
+             :default-active="
         $route.path.indexOf('/application/appStore') != -1
           ? '/application/appStore'
           : $route.path.indexOf('/application/enterpriseApplications') != -1
           ? '/application/enterpriseApplications'
           : $route.path
       "
-      unique-opened
-      class="el-menu-vertical-demo left-nav-part"
-    >
-      <div v-for="item in navList.children" :key="item.path">
-        <el-menu-item
-          :index="item.meta.path"
-          v-if="
+             unique-opened
+             class="el-menu-vertical-demo left-nav-part">
+      <div v-for="item in navList.children"
+           :key="item.path">
+        <el-menu-item :index="item.meta.path"
+                      v-if="
             item.meta.isOnlyRoute
               ? true
               : !item.children && item.meta.isOnlyRoute
-          "
-        >
-          <i v-if="item.meta.icon" :class="item.meta.icon"></i>
+          ">
+          <i v-if="item.meta.icon"
+             :class="item.meta.icon"></i>
           <span>{{ item.meta.title }}</span>
         </el-menu-item>
-        <el-submenu
-          :index="item.meta.path"
-          v-if="item.meta.isOnlyRoute ? false : item.children"
-        >
+        <el-submenu :index="item.meta.path"
+                    v-if="item.meta.isOnlyRoute ? false : item.children">
           <template slot="title">
-            <i v-if="item.meta.icon" :class="item.meta.icon"></i>
+            <i v-if="item.meta.icon"
+               :class="item.meta.icon"></i>
             <span>{{ item.meta.title }}</span>
           </template>
-          <el-menu-item
-            :index="i.meta.path"
-            v-for="i in item.children"
-            :key="i.path"
-          >
-            <i v-if="i.meta.icon" :class="i.meta.icon"></i>
+          <el-menu-item :index="i.meta.path"
+                        v-for="i in item.children"
+                        :key="i.path">
+            <i v-if="i.meta.icon"
+               :class="i.meta.icon"></i>
             <span>{{ i.meta.title }}</span>
           </el-menu-item>
         </el-submenu>
@@ -50,17 +46,17 @@
 <script>
 export default {
   name: "left-nav",
-  data() {
+  data () {
     return {
       navList: []
     }
   },
-  mounted() {
+  mounted () {
     this.getLeftNav()
   },
   methods: {
-    getLeftNav() {
-      let allRoutes = this.$router.options.routes
+    getLeftNav () {
+      let allRoutes = this.$store.getters.permission_routes
       let route = this.$route.matched
       allRoutes.forEach(v => {
         route.forEach(i => {
