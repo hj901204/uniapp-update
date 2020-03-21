@@ -6,7 +6,8 @@
            style="margin-left:40px;margin-top:30px;">
         <el-button type="primary"
                    size="small"
-                   @click="handleEdit">修改
+                   @click="handleEdit"
+                   v-if="type==1">修改
         </el-button>
       </div>
       <div class="main-page">
@@ -115,6 +116,7 @@ export default {
     //   }
     // };
     return {
+      type: this.$store.getters.type,
       isShowMainPage: true, //是否显示主页
       form: {},
       fields: [

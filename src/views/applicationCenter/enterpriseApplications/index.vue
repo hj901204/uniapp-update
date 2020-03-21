@@ -33,7 +33,8 @@
             </el-button>
             <el-button @click="handleUserSetting(item)"
                        size="small"
-                       type="text">用户设定
+                       type="text"
+                       v-if="type==1">用户设定
             </el-button>
           </div>
         </li>
@@ -48,7 +49,8 @@ export default {
   name: "",
   data () {
     return {
-      myApplyList: []
+      myApplyList: [],
+      type: this.$store.getters.type
     }
   },
   mounted () {

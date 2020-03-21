@@ -4,13 +4,14 @@
       <div class="add-btn">
         <el-button type="primary"
                    size="small"
-                   @click="handleAdd">添加用户</el-button>
+                   @click="handleAdd"
+                   v-if="type==1">添加用户</el-button>
       </div>
       <Table :tableHead="tableHead"
              :tableData="tableData"
-             :isShowOperation="true"
-             :isShowEditBtn="true"
-             :isShowDeleteBtn='true'
+             :isShowOperation="type==1"
+             :isShowEditBtn="type==1"
+             :isShowDeleteBtn='type==1'
              :currentPage='currentPage'
              :total='total'
              :currentSize='currentSize'
@@ -77,6 +78,7 @@ export default {
       currentPage: 1,
       currentSize: 10,
       total: 0,
+      type: this.$store.getters.type
 
     }
   },

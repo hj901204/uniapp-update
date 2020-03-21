@@ -4,19 +4,15 @@
       <div class="apply-title">
         <span><i>SupplyX</i>{{ appDetail.appName }}</span>
         <div class="apply-btns">
-          <el-button 
-            v-if="!applied"
-            size="small" 
-            type="primary"  
-            @click="handleApply"
-          >立即申请
+          <el-button v-if="!applied&&type==1"
+                     size="small"
+                     type="primary"
+                     @click="handleApply">立即申请
           </el-button>
-          <el-button 
-            v-if="applied"
-            disabled
-            size="small" 
-            type="primary"  
-          >已申请
+          <el-button v-if="applied&&type==1"
+                     disabled
+                     size="small"
+                     type="primary">已申请
           </el-button>
           <!-- <el-button 
             v-if="true"
@@ -25,10 +21,8 @@
             type="primary"  
           >已使用
           </el-button> -->
-          <el-button 
-            size="small" 
-            @click="handleJumpAppStore"
-          >返回商城
+          <el-button size="small"
+                     @click="handleJumpAppStore">返回商城
           </el-button>
         </div>
       </div>
@@ -41,9 +35,12 @@
     <!-- tab切换 -->
     <div class="tab">
       <el-tabs v-model="activeName">
-        <el-tab-pane label="产品详情" name="first">{{ appDetail.appDetails }}</el-tab-pane>
-        <el-tab-pane label="使用说明" name="second">{{ appDetail.appExplain }}</el-tab-pane>
-        <el-tab-pane label="成功案例" name="third">{{ appDetail.appCase }}</el-tab-pane>
+        <el-tab-pane label="产品详情"
+                     name="first">{{ appDetail.appDetails }}</el-tab-pane>
+        <el-tab-pane label="使用说明"
+                     name="second">{{ appDetail.appExplain }}</el-tab-pane>
+        <el-tab-pane label="成功案例"
+                     name="third">{{ appDetail.appCase }}</el-tab-pane>
       </el-tabs>
     </div>
   </div>
@@ -52,12 +49,13 @@
 <script>
 export default {
   name: "apply-details",
-  data() {
+  data () {
     return {
       params: this.$route.query.params,
       appDetail: {},
       activeName: "first",
       applied: '',
+      type: this.$store.getters.type
       // used: 'true'
     }
   },
@@ -66,8 +64,8 @@ export default {
   },
   methods: {
     // 应用详情
-    getAppDetail() {
-      let obj = { id:this.params }
+    getAppDetail () {
+      let obj = { id: this.params }
       this.$api.post(this.$lesUiPath.appDetail, obj).then(result => {
         if (result.code == 0) {
           this.appDetail = result.data
@@ -78,14 +76,14 @@ export default {
       })
     },
     // 申请应用
-    handleApply() {
-      let obj = { id:this.params }
+    handleApply () {
+      let obj = { id: this.params }
       this.$api.post(this.$lesUiPath.appApply, obj).then(result => {
         if (result.code == 0) {
           result.data.appName = this.appDetail.appName
-          this.$router.push({ 
+          this.$router.push({
             path: "/application/appStore/apply",
-            query: { params: result.data } 
+            query: { params: result.data }
           })
         } else {
           return this.$message.error(result.msg)
@@ -93,7 +91,7 @@ export default {
       })
     },
     // 返回商城
-    handleJumpAppStore() {
+    handleJumpAppStore () {
       this.$router.push({ path: "/application/appStore" })
     }
   }
@@ -114,7 +112,8 @@ export default {
       overflow: hidden;
       height: 50px;
       border-bottom: 1px solid rgb(226, 226, 226);
-      & > span,i {
+      & > span,
+      i {
         font-weight: bold;
         font-size: 18px;
         font-style: normal;
@@ -132,11 +131,11 @@ export default {
       padding: 24px 0;
       margin-bottom: 20px;
       & > p {
-        font-family:PingFangSC-Medium;
+        font-family: PingFangSC-Medium;
         line-height: 1.5;
-        font-size:14px;
-        color:#4a4a4a;
-        text-align:left;
+        font-size: 14px;
+        color: #4a4a4a;
+        text-align: left;
       }
     }
   }
@@ -146,11 +145,11 @@ export default {
     border: 1px solid rgb(226, 226, 226);
     border-radius: 8px;
     padding: 20px;
-    font-family:PingFangSC-Medium;
-    font-size:14px;
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
     line-height: 1.5;
-    color:#4a4a4a;
-    text-align:left;
+    color: #4a4a4a;
+    text-align: left;
   }
 }
 </style>

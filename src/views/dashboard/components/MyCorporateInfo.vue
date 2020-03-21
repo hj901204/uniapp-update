@@ -6,7 +6,8 @@
       <div class="edit-btn">
         <el-button type="primary"
                    size="small"
-                   @click="handleToJump">修 改
+                   @click="handleToJump"
+                   v-if="type==1">修 改
         </el-button>
       </div>
     </div>
@@ -23,7 +24,8 @@ export default {
   name: "my-corporate-info",
   data () {
     return {
-      myEnterpriseData: {}
+      myEnterpriseData: {},
+      type: this.$store.getters.type
     }
   },
   mounted () {

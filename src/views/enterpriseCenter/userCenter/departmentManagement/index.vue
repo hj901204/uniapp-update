@@ -8,13 +8,16 @@
       <div class="depart-btns">
         <el-button type="danger"
                    size="small"
-                   @click="handleDelete">删除</el-button>
+                   @click="handleDelete"
+                   v-if="type==1">删除</el-button>
         <el-button type="primary"
                    size="small"
-                   @click="handleEdit">修改</el-button>
+                   @click="handleEdit"
+                   v-if="type==1">修改</el-button>
         <el-button type="primary"
                    size="small"
-                   @click="handleAdd">添加</el-button>
+                   @click="handleAdd"
+                   v-if="type==1">添加</el-button>
       </div>
       <Table :tableHead="tableHead"
              :tableData="tableData"
@@ -73,6 +76,7 @@ export default {
   },
   data () {
     return {
+      type: this.$store.getters.type,
       ruleForm: {},  //添加部门表单
       title: '',
       rules: {
