@@ -37,14 +37,13 @@ router.beforeEach((to, from, next) => {
     } else {
       //拉取用户信息
       if (getAuthType()) {
+        // TODO 现在路由权限显示没问题 但是在有权限页面刷新时会出现卡死问题
         //获得用户登陆类型
         let type = getAuthType()
-
         store.dispatch("permission/generateRoutes", [type]).then(result => {
           // 生成可访问的路由表
           console.log(result)
           router.addRoutes(result) // 动态添加可访问路由表
-
           next() // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
         })
       }
