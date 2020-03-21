@@ -13,7 +13,8 @@
     <div class="apply-box">
       <ul>
         <li v-for="item in list"
-            :key="item.id"> <span>SUPPLY</span>-<span>{{item.appName}}</span></li>
+            :key="item.id"
+            @click="handleToApply(item)"> <span>SUPPLY</span>-<span>{{item.appName}}</span></li>
       </ul>
     </div>
   </div>
@@ -41,6 +42,11 @@ export default {
           this.list = result.data
         }
       })
+    },
+    handleToApply (item) {
+      if (item.appName == "SRM") {
+        this.$router.push('/application/enterpriseApplications')
+      }
     }
   }
 }

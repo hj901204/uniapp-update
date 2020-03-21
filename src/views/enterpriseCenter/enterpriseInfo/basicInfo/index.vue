@@ -2,6 +2,13 @@
   <div class="basic-info">
     <!-- 显示企业基本信息 -->
     <template v-if="isShowMainPage">
+      <div class="edit-btn"
+           style="margin-left:40px;margin-top:30px;">
+        <el-button type="primary"
+                   size="small"
+                   @click="handleEdit">修改
+        </el-button>
+      </div>
       <div class="main-page">
         <ul>
           <li>
@@ -44,14 +51,7 @@
           </li>
         </ul>
       </div>
-      
-      <div class="edit-btn"
-           style="margin-left:40px;margin-top:30px;">
-        <el-button type="primary"
-                   size="small"
-                   @click="handleEdit">修改
-        </el-button>
-      </div>
+
     </template>
     <template v-else>
       <div class="basic-form">

@@ -19,6 +19,7 @@
     <div class="badge"
          @click="handleToMessage">
       <el-badge class="item"
+                hidden
                 is-dot>
         <!-- <el-button icon="el-icon-bell" circle size="mini"></el-button> -->
         <i class="el-icon-bell"></i>

@@ -30,7 +30,7 @@ module.exports = {
     },
     proxy: {
       "/supplyx": {
-        target: "http://47.104.160.121:8862",
+        target: "http://39.104.102.91:8862",
         changeOrigin: true,
         pathRewrite: {
           "^/supplyx": "/supplyx"
