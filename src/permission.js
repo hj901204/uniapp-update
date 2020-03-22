@@ -1,9 +1,8 @@
-import router from "./router"
+import router, { resetRouter, constantRoutes } from "./router"
 import store from "./store"
 import NProgress from "nprogress" // progress bar
 import "nprogress/nprogress.css" // progress bar style
-import { getToken, getRoute, getAuthType } from "@/utils/auth" // get token from cookie
-// import getPageTitle from "@/utils/get-page-title"
+import { getToken, getAuthType } from "@/utils/auth" // get token from cookie
 
 NProgress.configure({
   showSpinner: false
@@ -18,13 +17,6 @@ const whiteList = [
   "/register/fourthStep"
 ] // no redirect whitelist
 
-// permission judge function
-function hasPermission(roles, permissionRoles) {
-  if (roles.indexOf("1") >= 0) return true // admin permission passed directly
-  if (!permissionRoles) return true
-  return roles.some(role => permissionRoles.indexOf(role) >= 0)
-}
-
 router.beforeEach((to, from, next) => {
   NProgress.start()
   // 判断是否获取到本地存储的token,
@@ -35,16 +27,12 @@ router.beforeEach((to, from, next) => {
       next({ path: "/" })
       NProgress.done()
     } else {
-      //拉取用户信息
-      if (getAuthType()) {
-        // TODO 现在路由权限显示没问题 但是在有权限页面刷新时会出现卡死问题
-        //获得用户登陆类型
-        let type = getAuthType()
+      let type = getAuthType() //返回的登陆类型  2普通用户  1管理员
+      if (type) {
         store.dispatch("permission/generateRoutes", [type]).then(result => {
-          // 生成可访问的路由表
-          console.log(result)
-          router.addRoutes(result) // 动态添加可访问路由表
-          next() // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+          resetRouter()
+          router.addRoutes(result)
+          next()
         })
       }
     }
@@ -58,7 +46,6 @@ router.beforeEach((to, from, next) => {
     }
   }
 })
-
 router.afterEach(() => {
   NProgress.done() // finish progress bar
 })

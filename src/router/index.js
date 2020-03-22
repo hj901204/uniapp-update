@@ -9,7 +9,7 @@ import applicationRouter from "./application"
 import enterprise from "./enterprise"
 Vue.use(VueRouter)
 
-export const constantRouterMap = [
+export const constantRoutes = [
   // {
   //   path: "/",
   //   name: "login",
@@ -37,6 +37,7 @@ export const constantRouterMap = [
   },
   //应用中心
   applicationRouter,
+  enterprise,
 
   //帮助
   {
@@ -113,21 +114,20 @@ export const constantRouterMap = [
       }
     ]
   }
-
-  // {
-  //   path: "/about",
-  //   name: "about",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue")
-  // }
 ]
-//实例化vue的时候只挂载constantRouter
-export default new VueRouter({
-  routes: constantRouterMap
-})
-//异步挂载的路由
-//动态需要根据权限加载的路由表
-export const asyncRouterMap = enterprise
+
+const createRouter = () =>
+  new VueRouter({
+    // mode: 'history', // require service support
+    // scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes
+  })
+
+const router = createRouter()
+
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
+}
+
+export default router

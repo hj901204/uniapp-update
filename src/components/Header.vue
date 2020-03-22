@@ -20,6 +20,7 @@
         </router-link>
         <router-link to="/enterprise"
                      tag="li"
+                     exact
                      :class="$route.path.indexOf('/enterprise') == 0 ? 'nav-active' : ''">
           <span>企业中心</span>
         </router-link>

@@ -39,7 +39,7 @@ export default {
     getMyEnterpriseData () {
       this.$api.post(this.$lesUiPath.enterpriseFindEnt, {}).then(result => {
         if (result.code == 0) {
-          console.log(result.data)
+          // console.log(result.data)
           this.myEnterpriseData = result.data
         }
       })

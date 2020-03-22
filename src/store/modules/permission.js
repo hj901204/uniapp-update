@@ -1,7 +1,7 @@
-import { asyncRouterMap, constantRouterMap } from "../../router"
+import router, { constantRoutes } from "../../router"
 function hasPermission(roles, route) {
   if (route.meta && route.meta.role) {
-    console.log(roles, route.meta.role)
+    // console.log(roles, route.meta.role)
 
     return roles.some(role => route.meta.role.indexOf(role) >= 0)
   } else {
@@ -35,20 +35,15 @@ const state = {
 
 const mutations = {
   SET_ROUTES: (state, routes) => {
-    state.addRoutes = routes
-    state.routes = constantRouterMap.concat(routes)
+    // state.addRoutes = routes
+    state.routes = routes
   }
 }
 
 const actions = {
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
-      let accessedRoutes
-      if (roles.includes("1")) {
-        accessedRoutes = asyncRouterMap || []
-      } else {
-        accessedRoutes = filterAsyncRoutes(asyncRouterMap, roles)
-      }
+      let accessedRoutes = filterAsyncRoutes(constantRoutes, roles)
       commit("SET_ROUTES", accessedRoutes)
       resolve(accessedRoutes)
     })

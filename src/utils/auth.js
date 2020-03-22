@@ -42,25 +42,3 @@ export function setAuthType(authType) {
 export function removeAuthType() {
   return Cookies.remove(authTypeKey)
 }
-
-//将权限路由存储到cookie
-
-export function getRoute() {
-  // console.log(JSON.parse(Cookies.get(routesKey)))
-  let routes
-  if (Cookies.get(routesKey)) {
-    routes = JSON.parse(Cookies.get(routesKey)).routes
-  } else {
-    routes = []
-  }
-
-  return routes
-}
-
-export function setRoutes(routes) {
-  return JSON.stringify(Cookies.set(routesKey, routes))
-}
-
-export function removeRoutes() {
-  return Cookies.remove(routesKey)
-}

@@ -1,6 +1,4 @@
 import { loginByUsername } from "@/api/login"
-import { asyncRouterMap, constantRouterMap } from "../../router"
-import { setRoutes } from "@/utils/auth"
 import { Message } from "element-ui"
 import {
   getToken,
@@ -79,6 +77,8 @@ const actions = {
             setToken(token)
             setUserName(userName)
             setAuthType(type)
+
+            // resetRouter()
             resolve()
           } else {
             Message({
@@ -100,9 +100,6 @@ const actions = {
       commit("SET_TOKEN", "")
       commit("SET_NAME", "")
       commit("SET_AUTHTYPE", "")
-      // commit("SET_MENUS", undefined)
-      // commit("SET_ELEMENTS", undefined)
-      // commit("SET_PERMISSION_MENUS", undefined)
       removeToken()
       removeUserName()
       removeAuthType()
