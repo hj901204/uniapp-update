@@ -19,11 +19,11 @@ push_tag()
 	npm run build
 
     # push mes-ui
-  docker build -t $REGISTRY_URL/$NAME_SPACE/zkyd-supplx-ui:$BUILD_TAG -t $REGISTRY_URL/$NAME_SPACE/zkyd-supplx-ui:latest .
-  docker push $REGISTRY_URL/$NAME_SPACE/zkyd-supplx-ui:$BUILD_TAG
-  docker push $REGISTRY_URL/$NAME_SPACE/zkyd-supplx-ui:latest
-  docker rmi $REGISTRY_URL/$NAME_SPACE/zkyd-supplx-ui:$BUILD_TAG
-  docker rmi $REGISTRY_URL/$NAME_SPACE/zkyd-supplx-ui:latest
+  docker build -t $REGISTRY_URL/$NAME_SPACE/zkyd-supplyx-ui:$BUILD_TAG -t $REGISTRY_URL/$NAME_SPACE/zkyd-supplyx-ui:latest .
+  docker push $REGISTRY_URL/$NAME_SPACE/zkyd-supplyx-ui:$BUILD_TAG
+  docker push $REGISTRY_URL/$NAME_SPACE/zkyd-supplyx-ui:latest
+  docker rmi $REGISTRY_URL/$NAME_SPACE/zkyd-supplyx-ui:$BUILD_TAG
+  docker rmi $REGISTRY_URL/$NAME_SPACE/zkyd-supplyx-ui:latest
 }
 
 if [ "$1" = "test" ];
