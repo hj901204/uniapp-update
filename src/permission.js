@@ -32,8 +32,10 @@ router.beforeEach((to, from, next) => {
         store.dispatch("permission/generateRoutes", [type]).then(result => {
           resetRouter()
           router.addRoutes(result)
-          next()
         })
+        next()
+      } else {
+        next()
       }
     }
   } else {
