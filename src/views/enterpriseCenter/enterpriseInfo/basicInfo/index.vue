@@ -3,7 +3,7 @@
     <!-- 显示企业基本信息 -->
     <template v-if="isShowMainPage">
       <div class="edit-btn"
-           style="margin-left:40px;margin-top:30px;">
+           style="margin:30px 20px 0 40px;text-align:right">
         <el-button type="primary"
                    size="small"
                    @click="handleEdit"
@@ -51,6 +51,54 @@
             <div class="form-val">{{ form.enterMail }}</div>
           </li>
         </ul>
+        <!-- 发票信息 -->
+        <div class="invoice-info">
+          <h3 class="form-title">我的发票信息</h3>
+          <ul class="invoice-info-box">
+            <li>
+              <div>发票抬头</div>
+              <p>{{form.fpTitle}}</p>
+            </li>
+            <li>
+              <div>公司税号</div>
+              <p>{{form.fpTax}}</p>
+            </li>
+            <li>
+              <div>注册地址</div>
+              <p>{{form.fpRegAdd}}</p>
+            </li>
+            <li>
+              <div>注册电话</div>
+              <p>{{form.fpTel}}</p>
+            </li>
+            <li>
+              <div>银行名称</div>
+              <p>{{form.fpBankName}}</p>
+            </li>
+            <li>
+              <div>银行账号</div>
+              <p>{{form.fpBankNo}}</p>
+            </li>
+          </ul>
+        </div>
+        <!-- 收票信息 -->
+        <div class="invoice-info">
+          <h3 class="form-title">收票信息</h3>
+          <ul class="invoice-info-box">
+            <li>
+              <div>收票人</div>
+              <p>{{form.fpRecever}}</p>
+            </li>
+            <li>
+              <div>联系电话</div>
+              <p>{{form.fpRecTel}}</p>
+            </li>
+            <li>
+              <div>详细地址</div>
+              <p>{{form.fpRecAdd}}</p>
+            </li>
+          </ul>
+        </div>
       </div>
 
     </template>
@@ -173,7 +221,52 @@ export default {
           label: "联系邮件:",
           model: "enterMail",
           index: 8
-        }
+        },
+        {
+          label: "发票抬头:",
+          model: "fpTitle",
+          index: 9
+        },
+        {
+          label: "公司税号:",
+          model: "fpTax",
+          index: 10
+        },
+        {
+          label: "注册地址:",
+          model: "fpRegAdd",
+          index: 11
+        },
+        {
+          label: "注册电话:",
+          model: "fpTel",
+          index: 12
+        },
+        {
+          label: "银行名称:",
+          model: "fpBankName",
+          index: 13
+        },
+        {
+          label: "银行账号:",
+          model: "fpBankNo",
+          index: 14
+        },
+        {
+          label: "收票人:",
+          model: "fpRecever",
+          index: 15
+        },
+        {
+          label: "收票人电话:",
+          model: "fpRecTel",
+          index: 16
+        },
+        {
+          label: "收票人地址:",
+          model: "fpRecAdd",
+          index: 17
+        },
       ],
       rules: {
         enterName: [
@@ -289,6 +382,45 @@ export default {
     // .basic-input {
     //   margin: 10px;
     // }
+  }
+  //发票信息
+  .invoice-info {
+    background-color: #fff;
+    padding: 20px;
+    margin-left: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    .form-title {
+      line-height: 30px;
+      border-bottom: 2px solid #f1f2f5;
+      margin-bottom: 20px;
+      font-weight: 500;
+      font-size: 16px;
+    }
+    .invoice-info-box {
+      width: 90%;
+      margin: 0 auto;
+      margin-top: 40px;
+      font-size: 14px;
+      & > li {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        line-height: 40px;
+        margin-bottom: -1px;
+        & > div {
+          width: 200px;
+          background-color: #edf4fc;
+          color: #336eb1;
+          text-align: center;
+          border-right: 1px solid rgba(0, 0, 0, 0.1);
+          display: inline-block;
+          font-weight: 500;
+        }
+        & > p {
+          display: inline-block;
+          padding-left: 20px;
+        }
+      }
+    }
   }
 }
 </style>

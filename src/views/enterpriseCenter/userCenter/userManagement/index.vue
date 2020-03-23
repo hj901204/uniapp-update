@@ -177,6 +177,7 @@ export default {
 
 <style lang="scss" scoped>
 .user-management {
+  height: calc(100vh - 293px);
   text-align: left;
   overflow: hidden;
   .add-btn {

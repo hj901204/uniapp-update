@@ -33,7 +33,7 @@
                       prop="email">
           <el-input v-model="adminForm.email"
                     style="width:50%">
-                    </el-input>
+          </el-input>
         </el-form-item>
         <el-form-item label="登陆密码"
                       prop="password">
@@ -155,6 +155,7 @@ export default {
   overflow: hidden;
   padding: 10px;
   text-align: left;
+  height: calc(100vh - 312px);
   .warn-info {
     margin-top: 10px;
     font-size: 12px;

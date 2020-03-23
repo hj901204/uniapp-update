@@ -1,8 +1,10 @@
 <template>
   <div class="enterprise">
     <LeftNav />
-    <PageTitle :isShowBreadcrub="false" style="margin-left:210px;" />
-    <div style="" class="enterprise-views">
+    <PageTitle :isShowBreadcrub="false"
+               style="margin-left:210px;" />
+    <div style=""
+         class="enterprise-views">
       <router-view />
     </div>
   </div>
@@ -15,7 +17,7 @@ export default {
     LeftNav: reslove => require(["@/components/LeftNav/index.vue"], reslove),
     PageTitle: reslove => require(["@/components/PageTitle.vue"], reslove)
   },
-  data() {
+  data () {
     return {}
   }
 }
@@ -23,11 +25,12 @@ export default {
 
 <style lang="scss" scoped>
 .enterprise {
-  height: calc(100vh - 240px);
+  // height: calc(100vh - 240px);
   .enterprise-views {
     margin-left: 210px;
     background-color: #fff;
-    height: calc(100% - 52px);
+    // height: calc(100vh - 292px);
+    // height: calc(100% - 52px);
     // height: 100%;
   }
 }

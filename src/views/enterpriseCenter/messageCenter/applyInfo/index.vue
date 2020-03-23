@@ -7,7 +7,7 @@
 <script>
 export default {
   name: "apply-info",
-  data() {
+  data () {
     return {}
   }
 }
@@ -15,5 +15,6 @@ export default {
 
 <style lang="scss" scoped>
 .apply-info {
+  height: calc(100vh - 312px);
 }
 </style>

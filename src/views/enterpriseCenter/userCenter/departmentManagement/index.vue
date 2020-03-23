@@ -262,6 +262,7 @@ export default {
 <style lang="scss" scoped>
 .department-management {
   overflow: hidden;
+  height: calc(100vh - 293px);
   text-align: left;
   .tree {
     width: 35%;

@@ -66,6 +66,7 @@ export default {
 .system-info {
   text-align: left;
   height: 100%;
+  height: calc(100vh - 312px);
   // padding: 10px;
   box-sizing: border-box;
   & > ul {
