@@ -118,7 +118,8 @@
             <el-input class="basic-input"
                       v-model="form[item.model]"
                       style="width:60%"
-                      :disabled="item.isDisabled">
+                      :disabled="item.isDisabled"
+                      :maxlength="item.maxlength?item.maxlength:''">
             </el-input>
           </el-form-item>
         </el-form>
@@ -137,6 +138,7 @@
 </template>
 
 <script>
+import { validateNumAndCh } from '@/utils/validate'
 export default {
   name: "basic-info",
   components: {
@@ -173,28 +175,33 @@ export default {
           model: "xid",
           isDisabled: true,
           // 添加index解决key重复报错
-          index: 0
+          index: 0,
+          maxlength: 100
         },
         {
           label: "企业名称:",
           model: "enterName",
           // isDisabled: false,
-          index: 1
+          index: 1,
+          maxlength: 100
         },
         {
           label: "企业英文名称:",
           model: "enterNameEn",
-          index: 2
+          index: 2,
+          maxlength: 100
         },
         {
           label: "企业简称:",
           model: "enterShortName",
-          index: 3
+          index: 3,
+          maxlength: 100
         },
         {
           label: "企业地址:",
           model: "enterAddress",
-          index: 4
+          index: 4,
+          maxlength: 100
         },
         // {
         //   label: "企业编码:",
@@ -202,81 +209,91 @@ export default {
         //   index: 3,
         //   isDisabled: true
         // },
-        {
-          label: "企业简称:",
-          model: "enterShortName",
-          index: 5
-        },
+
         {
           label: "联系电话:",
           model: "enterTelNum",
-          index: 6
+          index: 6,
+          maxlength: 100
         },
         {
           label: "联系人:",
           model: "liaisonMan",
-          index: 7
+          index: 7,
+          maxlength: 100
         },
         {
           label: "联系邮件:",
           model: "enterMail",
-          index: 8
+          index: 8,
+          maxlength: 100
         },
         {
           label: "发票抬头:",
           model: "fpTitle",
-          index: 9
+          index: 9,
+          maxlength: 100
         },
         {
           label: "公司税号:",
           model: "fpTax",
-          index: 10
+          index: 10,
+          maxlength: 100
         },
         {
           label: "注册地址:",
           model: "fpRegAdd",
-          index: 11
+          index: 11,
+          maxlength: 100
         },
         {
           label: "注册电话:",
           model: "fpTel",
-          index: 12
+          index: 12,
+          maxlength: 100
         },
         {
           label: "银行名称:",
           model: "fpBankName",
-          index: 13
+          index: 13,
+          maxlength: 100
         },
         {
           label: "银行账号:",
           model: "fpBankNo",
-          index: 14
+          index: 14,
+          maxlength: 100
         },
         {
           label: "收票人:",
           model: "fpRecever",
-          index: 15
+          index: 15,
+          maxlength: 100
         },
         {
           label: "收票人电话:",
           model: "fpRecTel",
-          index: 16
+          index: 16,
+          maxlength: 100
         },
         {
           label: "收票人地址:",
           model: "fpRecAdd",
-          index: 17
+          index: 17,
+          maxlength: 100
         },
       ],
       rules: {
         enterName: [
-          { required: true, message: '请输入企业名称', trigger: 'blur' }
+          { required: true, message: '请输入企业名称', trigger: 'blur' },
+          { validator: validateNumAndCh.bind(this), trigger: "blur" }
         ],
         enterAddress: [
           { required: true, message: '请输入企业地址', trigger: 'blur' }
         ],
         enterShortName: [
-          { required: true, message: '请输入企业简称', trigger: 'blur' }
+          { required: true, message: '请输入企业简称', trigger: 'blur' },
+          { validator: validateNumAndCh.bind(this), trigger: "blur" }
         ],
         enterTelNum: [
           { required: true, message: '请输入联系电话', trigger: 'blur' },
