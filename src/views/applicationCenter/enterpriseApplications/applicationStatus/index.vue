@@ -8,7 +8,7 @@
                  alt="" />
             <span><i>SupplyX </i>{{ paramsObj.appName }}</span>
           </div>
-          <img src="@/assets/img/application/goc-logo.png"
+          <img src="@/assets/img/application/242-01.png"
                alt="">
         </div>
         <div class="apply-info">

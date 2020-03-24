@@ -6,7 +6,7 @@
              alt="" />
         <span><i>SupplyX </i>{{ appInfo.title }}</span>
       </div>
-      <img src="@/assets/img/application/goc-logo.png"
+      <img src="@/assets/img/application/242-01.png"
            alt="">
     </div>
 
