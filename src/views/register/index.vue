@@ -38,12 +38,9 @@
             <!-- <div class="confirm-register" @click="handleStartResgister">
               确定开始注册
             </div> -->
-            <el-button
-              type="primary"
-              class="confirm-register"
-              @click="handleStartResgister"
-              >确定开始注册</el-button
-            >
+            <el-button type="primary"
+                       class="confirm-register"
+                       @click="handleStartResgister">确定开始注册</el-button>
           </div>
         </div>
       </div>
@@ -57,18 +54,18 @@ import PageTitle from "@/components/PageTitle"
 export default {
   name: "register-page",
   components: { PageTitle },
-  data() {
+  data () {
     return {
       checked: false //勾选用户查协议
     }
   },
   methods: {
-    handleStartResgister() {
+    handleStartResgister () {
       if (this.checked) {
         this.$router.push({ path: "/register/firstStep" })
       } else {
         this.$message({
-          message: "请勾选用户协议",
+          message: "请阅读并同意用户协议",
           type: "warning"
         })
       }
