@@ -18,9 +18,9 @@
           <div class="expiration-date">
             <p v-if="paramsObj.expireTime">过期时间 :</p><span v-if="">{{paramsObj.expireTime}}</span>
             <p v-if="!paramsObj.expireTime">有效期 :</p><span v-if="">一年</span>
-            <el-button type="danger"
+            <!-- <el-button type="danger"
                        size="mini"
-                       @click="handleRenew">续 费</el-button>
+                       @click="handleRenew">续 费</el-button> -->
           </div>
         </div>
       </div>
