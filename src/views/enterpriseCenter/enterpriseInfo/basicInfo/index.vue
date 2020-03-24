@@ -104,6 +104,7 @@
     </template>
     <template v-else>
       <div class="basic-form">
+        <div class="supplyxId"> <span>SupplyX ID:</span>{{supplyxId}}</div>
         <el-form :model="form"
                  status-icon
                  ref="ruleForm"
@@ -169,15 +170,16 @@ export default {
       type: this.$store.getters.type,
       isShowMainPage: true, //是否显示主页
       form: {},
+      supplyxId: '',
       fields: [
-        {
-          label: "SupplyX ID:",
-          model: "xid",
-          isDisabled: true,
-          // 添加index解决key重复报错
-          index: 0,
-          maxlength: 100
-        },
+        // {
+        //   label: "SupplyX ID:",
+        //   model: "xid",
+        //   isDisabled: true,
+        //   // 添加index解决key重复报错
+        //   index: 0,
+        //   maxlength: 100
+        // },
         {
           label: "企业名称:",
           model: "enterName",
@@ -317,7 +319,8 @@ export default {
         })
         return flag
       },
-      isFormDisabled: true //表单是否禁用
+      isFormDisabled: true, //表单是否禁用
+      diffData: {}  //修改后要提交的json
     }
   },
   created () {
@@ -329,7 +332,12 @@ export default {
       // let obj = obj
       this.$api.post(this.$lesUiPath.enterpriseBasicInfo, obj).then(result => {
         if (result.code == 0) {
-          this.form = result.data
+          // this.form = result.data
+          this.form = Object.assign({}, result.data)
+          this.copyForm = Object.assign({}, result.data)
+
+          this.supplyxId = result.data.xid
+          this.diffData = { id: result.data.id }
         } else {
           if (result.msg) {
             return this.$message.error(result.msg)
@@ -348,13 +356,22 @@ export default {
     handleSave () {
       let valid = this.validateFunc('ruleForm')
       if (valid) {
-        let obj = {}
-        obj = Object.assign(this.form)
-        console.log(obj)
-        this.$api.post(this.$lesUiPath.editEnterpriseBasicInfo, obj).then(result => {
+        // let obj = {}
+        // obj = Object.assign(this.form)
+        // console.log(obj)
+        delete this.form.xid
+        delete this.copyForm.xid
+        let result = this.diffDevinfo(this.copyForm, this.form, this.diffData)
+        let keyCount = this.hasEditData(result)
+        if (keyCount == 1) {
+          return this.$message.warning('未修改数据')
+        }
+
+        this.$api.post(this.$lesUiPath.editEnterpriseBasicInfo, result).then(result => {
           if (result.code == 0) {
             this.getEnterpriseBasicInfo()
             this.isShowMainPage = true
+            return this.$message.success('修改成功')
           } else {
             if (result.msg) {
               return this.$message.error(result.msg)
@@ -367,7 +384,31 @@ export default {
     handleBack () {
       this.getEnterpriseBasicInfo()
       this.isShowMainPage = true
-    }
+    },
+    //只提交修改的数据
+    diffDevinfo (originalForm, editForm, diffData) {
+      //originalForm原始数据不进行修改的表单
+      //editForm v-modal绑定的表单可以进行修改的表单
+      //diffData  对比后要提交的表单
+      for (let k in editForm) {
+        if (originalForm[k] != editForm[k]) {
+          diffData[k] = editForm[k]
+        } else {
+          if (k != "id") {
+            delete diffData[k]
+          }
+        }
+      }
+      return diffData
+    },
+    //判断修改数据有否有要修改的数据  如果有则提交数据 如果没有则不提交数据
+    hasEditData (obj) {
+      let count = 0
+      for (let i in obj) {
+        count++
+      }
+      return count
+    },
   }
 }
 </script>
@@ -396,9 +437,17 @@ export default {
   }
   .basic-form {
     margin-left: 10px;
-    // .basic-input {
-    //   margin: 10px;
-    // }
+    .supplyxId {
+      line-height: 30px;
+      & > span {
+        display: inline-block;
+        width: 100px;
+        text-align: right;
+        font-weight: bold;
+        color: #606266;
+        margin-right: 12px;
+      }
+    }
   }
   //发票信息
   .invoice-info {
