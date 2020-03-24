@@ -69,14 +69,9 @@ export default {
     },
     //开始使用
     handleStartUse (appid) {
-      this.$api.get(this.$lesUiPath.enterAppRun, { appId: appid }).then(result => {
-        if (result.code == 0) {
-          console.log('开始使用')
-        }
-      })
-      // TODO： cant hardcode here
-      // console.log(this.$lesUiPath.enterAppRun+"?appId="+appid)
-      // location.href = "http://localhost:8862" + this.$lesUiPath.enterAppRun+"?appId="+appid
+      let token = this.$store.getters.token
+      location.href = this.$lesUiPath.enterAppRun + "?appId=" + appid + '&token=' + token
+
     },
     //用户设定
     handleUserSetting (item) {
