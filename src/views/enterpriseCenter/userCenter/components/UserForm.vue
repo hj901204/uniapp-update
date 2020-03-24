@@ -8,8 +8,8 @@
              size="small"
              :rules="rules">
       <el-form-item label="姓名"
-                    prop="username">
-        <el-input v-model="userForm.username"
+                    prop="name">
+        <el-input v-model="userForm.name"
                   style="width:50%"></el-input>
       </el-form-item>
       <el-form-item label="电子邮件"
