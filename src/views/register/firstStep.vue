@@ -6,62 +6,63 @@
     <div class="form-part">
       <div class="detail-info-form">
         <h3>企业详细信息</h3>
-        <el-form
-          ref="formRef"
-          :model="form"
-          size="mini"
-          label-width="100px"
-          class="infor-form"
-          hide-required-asterisk
-          :rules="rules"
-        >
+        <el-form ref="formRef"
+                 :model="form"
+                 size="mini"
+                 label-width="100px"
+                 class="infor-form"
+                 hide-required-asterisk
+                 :rules="rules">
           <el-row>
             <el-col :span="11">
-              <el-form-item label="企业名称" style="width:90%" prop="enterName">
-                <el-input v-model.trim="form.enterName"></el-input>
+              <el-form-item label="企业名称"
+                            style="width:90%"
+                            prop="enterName">
+                <el-input v-model.trim="form.enterName"
+                          maxlength='100'></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="11">
-              <el-form-item
-                label="企业英文名称"
-                style="width:90%"
-                prop="enterNameEn"
-              >
+              <el-form-item label="企业英文名称"
+                            style="width:90%"
+                            prop="enterNameEn"
+                            maxlength='100'>
                 <el-input v-model.trim="form.enterNameEn"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="11">
-              <el-form-item label="企业简称" style="width:90%">
-                <el-input v-model.trim="form.enterShortName"></el-input>
+              <el-form-item label="企业简称"
+                            style="width:90%"
+                            prop="enterShortName">
+                <el-input v-model.trim="form.enterShortName"
+                          maxlength='100'></el-input>
               </el-form-item>
             </el-col>
 
             <el-col :span="11">
-              <el-form-item
-                label="联系电话"
-                style="width:90%"
-                prop="enterTelNum"
-              >
-                <el-input v-model.trim="form.enterTelNum" type="tel"></el-input>
+              <el-form-item label="联系电话"
+                            style="width:90%"
+                            prop="enterTelNum">
+                <el-input v-model.trim="form.enterTelNum"
+                          type="tel"
+                          maxlength='100'></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="11">
-              <el-form-item
-                label="企业地址"
-                style="width:90%"
-                prop="enterAddress"
-              >
-                <el-input v-model.trim="form.enterAddress"></el-input>
+              <el-form-item label="企业地址"
+                            style="width:90%"
+                            prop="enterAddress">
+                <el-input v-model.trim="form.enterAddress"
+                          maxlength='100'></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="11">
-              <el-form-item
-                label="联系邮件"
-                style="width:90%"
-                type="email"
-                prop="enterMail"
-              >
-                <el-input v-model.trim="form.enterMail"></el-input>
+              <el-form-item label="联系邮件"
+                            style="width:90%"
+                            type="email"
+                            prop="enterMail">
+                <el-input v-model.trim="form.enterMail"
+                          maxlength='100'></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -69,26 +70,30 @@
       </div>
       <div class="detail-info-form">
         <h3>主要联系人信息</h3>
-        <el-form
-          ref="formRef2"
-          :model="form2"
-          size="mini"
-          :rules="rules2"
-          hide-required-asterisk
-          label-width="100px"
-          class="infor-form"
-        >
+        <el-form ref="formRef2"
+                 :model="form2"
+                 size="mini"
+                 :rules="rules2"
+                 hide-required-asterisk
+                 label-width="100px"
+                 class="infor-form">
           <el-row>
             <el-col :span="11">
-              <el-form-item label="姓名" style="width:90%" prop="liaisonMan">
-                <el-input v-model.trim="form2.liaisonMan"></el-input>
+              <el-form-item label="姓名"
+                            style="width:90%"
+                            prop="liaisonMan">
+                <el-input v-model.trim="form2.liaisonMan"
+                          maxlength='100'></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="11">
-              <el-form-item label="职位" style="width:90%" prop="position">
-                <el-input v-model.trim="form2.position"></el-input>
+              <el-form-item label="职位"
+                            style="width:90%"
+                            prop="position">
+                <el-input v-model.trim="form2.position"
+                          maxlength='100'></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -97,60 +102,56 @@
 
       <div class="detail-info-form">
         <h3>企业账户信息</h3>
-        <el-form
-          ref="formRef3"
-          :model="enteradminForm"
-          size="mini"
-          :rules="rules3"
-          label-width="100px"
-          hide-required-asterisk
-          class="infor-form"
-        >
+        <el-form ref="formRef3"
+                 :model="enteradminForm"
+                 size="mini"
+                 :rules="rules3"
+                 label-width="100px"
+                 hide-required-asterisk
+                 class="infor-form">
           <el-row>
             <el-col :span="11">
-              <el-form-item
-                label="管理员账号"
-                style="width:90%;position:relative"
-                prop="enterAccount"
-              >
-                <el-input v-model.trim="enteradminForm.enterAccount"></el-input>
-                <i
-                  class="el-icon-info"
-                  style="position:absolute;right:-200px;top:6px;"
-                  ><span>管理员账号设置后不允许修改!</span>
+              <el-form-item label="管理员账号"
+                            style="width:90%;position:relative"
+                            prop="enterAccount">
+                <el-input v-model.trim="enteradminForm.enterAccount"
+                          maxlength='100'></el-input>
+                <i class="el-icon-info"
+                   style="position:absolute;right:-200px;top:6px;"><span>管理员账号设置后不允许修改!</span>
                 </i>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="11">
-              <el-form-item
-                label="管理员邮箱"
-                style="width:90%;position:relative"
-                type="email"
-                prop="email"
-              >
-                <el-input v-model.trim="enteradminForm.email"></el-input>
+              <el-form-item label="管理员邮箱"
+                            style="width:90%;position:relative"
+                            type="email"
+                            prop="email">
+                <el-input v-model.trim="enteradminForm.email"
+                          maxlength='100'></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="11">
-              <el-form-item label="登陆密码" style="width:90%" prop="password">
-                <el-input
-                  v-model.trim="enteradminForm.password"
-                  type="password"
-                ></el-input>
+              <el-form-item label="登陆密码"
+                            style="width:90%"
+                            prop="password">
+                <el-input v-model.trim="enteradminForm.password"
+                          type="password"
+                          maxlength='100'></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="11">
-              <el-form-item label="确认密码" style="width:90%" prop="checkPsd">
-                <el-input
-                  v-model.trim="enteradminForm.checkPsd"
-                  type="password"
-                ></el-input>
+              <el-form-item label="确认密码"
+                            style="width:90%"
+                            prop="checkPsd">
+                <el-input v-model.trim="enteradminForm.checkPsd"
+                          type="password"
+                          maxlength='100'></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -167,16 +168,18 @@
     "enterMail": "5555@dddd.com", "liaisonMan": "5555", "position": "5555" } } -->
 
     <div class="edit-btn">
-      <el-button size="small" @click="handleBack">返回</el-button>
-      <el-button type="primary" size="small" @click="handleNextStep"
-        >下一步</el-button
-      >
+      <el-button size="small"
+                 @click="handleBack">返回</el-button>
+      <el-button type="primary"
+                 size="small"
+                 @click="handleNextStep">下一步</el-button>
       <!-- <div @click="handleNextStep" class="next-btn"><span>下一步</span></div> -->
     </div>
   </div>
 </template>
 
 <script>
+import { validateNumAndCh } from '@/utils/validate'
 export default {
   name: "first-step",
   components: {
@@ -184,7 +187,7 @@ export default {
       require(["@/components/ProcessTitle/index.vue"], reslove),
     PageTitle: reslove => require(["@/components/PageTitle.vue"], reslove)
   },
-  data() {
+  data () {
     var validatePass = (rule, value, callback) => {
       if (!value) {
         callback(new Error("请再次输入密码"))
@@ -197,14 +200,19 @@ export default {
     return {
       rules: {
         enterTelNum: [
-          { required: true, message: "请输入联系电话", trigger: "blur" }
+          { required: true, message: "请输入联系电话", trigger: "blur" },
+
         ],
         enterMail: [
-          { required: true, message: "请输入联系电话", trigger: "blur" },
+          { required: true, message: "请输入联系邮件", trigger: "blur" },
           { type: "email", message: "请输入正确的邮箱地址", trigger: "blur" }
         ],
         enterName: [
-          { required: true, message: "请输入企业名称", trigger: "blur" }
+          { required: true, message: "请输入企业名称", trigger: "blur" },
+          { validator: validateNumAndCh.bind(this), trigger: "blur" }
+        ],
+        enterShortName: [
+          { validator: validateNumAndCh.bind(this), trigger: "blur" }
         ],
         enterNameEn: [
           { required: true, message: "请输入企业英文名称", trigger: "blur" }
@@ -238,7 +246,7 @@ export default {
     }
   },
   methods: {
-    handleNextStep() {
+    handleNextStep () {
       let valid1 = this.validateFunc("formRef")
       let valid2 = this.validateFunc("formRef2")
       let valid3 = this.validateFunc("formRef3")
@@ -269,7 +277,7 @@ export default {
       // })
     },
     // 验证表单
-    validateFunc(ref) {
+    validateFunc (ref) {
       let flag
       this.$refs[ref].validate(valid => {
         if (valid) {
@@ -282,7 +290,7 @@ export default {
       return flag
     },
     //返回
-    handleBack() {
+    handleBack () {
       this.$router.go(-1)
     }
   }
