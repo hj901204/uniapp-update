@@ -68,9 +68,9 @@ export default {
 
     },
     //开始使用
-    handleStartUse (appid) {
+    handleStartUse (appId) {
       let token = this.$store.getters.token
-      location.href = this.$lesUiPath.enterAppRun + "?appId=" + appid + '&token=' + token
+      location.href = this.$lesUiPath.enterAppRun + "?appId=" + appId + '&token=' + token
 
     },
     //用户设定
