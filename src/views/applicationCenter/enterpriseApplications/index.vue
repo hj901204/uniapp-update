@@ -16,7 +16,7 @@
               </span>
             </div>
             <div class="start-use-btn">
-              <el-button @click="handleStartUse(item.appid)"
+              <el-button @click="handleStartUse(item.appId)"
                          size="small"
                          type="primary">开始使用
               </el-button>
