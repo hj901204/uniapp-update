@@ -1,6 +1,6 @@
 FROM nginx
-RUN rm -rf /usr/share/nginx/html/zkyd-supplyx/*
-COPY dist /usr/share/nginx/html/zkyd-supplyx
+RUN rm -rf /usr/share/nginx/html/supplyx/*
+COPY dist /usr/share/nginx/html/supplyx
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN mkdir -p /usr/share/nginx/html/data/incoming
