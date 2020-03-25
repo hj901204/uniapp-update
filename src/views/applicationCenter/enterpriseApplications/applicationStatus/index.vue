@@ -119,7 +119,12 @@ export default {
     },
     //获取用户活跃排行榜
     getUserData (page = 1, length = 10) {
-      const queryInfo = { page: page, length: length };
+      const queryInfo = { 
+        page: page, 
+        length: length,
+        acpath: "/application/run",
+        days: "10"
+        };
       this.$api.post(this.$lesUiPath.activeUserLeaderboard, queryInfo).then(result => {
         if (result.code == 0) {
           this.tableData = result.data
