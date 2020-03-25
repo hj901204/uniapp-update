@@ -27,7 +27,7 @@
       <!-- 协议内容 -->
       <div class="protocol-content-box">
         <div class="protocol-content">
-          协议条款内容
+          <Agreement />
         </div>
         <!-- 勾选用户协议 -->
         <div class="start-register">
@@ -51,9 +51,10 @@
 
 <script>
 import PageTitle from "@/components/PageTitle"
+import Agreement from './Agreement'
 export default {
   name: "register-page",
-  components: { PageTitle },
+  components: { PageTitle, Agreement },
   data () {
     return {
       checked: false //勾选用户查协议
