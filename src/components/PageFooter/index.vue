@@ -3,7 +3,7 @@
     <div class="page-footer-box">
       <img src="@/assets/img/QR-code.jpg" alt="" />
       <div class="footer-content">
-        <div>北京智科云达信息技术有限公司<span>@2020</span></div>
+        <div>谷器数据<span>@2020</span></div>
         <p>联系电话：400-0530-512</p>
         <p>Email：marketing@zkyda.com</p>
       </div>

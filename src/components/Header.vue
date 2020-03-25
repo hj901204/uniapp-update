@@ -73,7 +73,7 @@ export default {
 
 <style lang="scss">
 .header-nav {
-  background-color: #31425b;
+  background-color: #778899;
   .nav-content {
     overflow: hidden;
     width: 79.2%;
@@ -82,7 +82,7 @@ export default {
     .logo-img {
       // float: left;
       margin-right: 6%;
-      margin-top: 25px;
+      margin-top: 10px;
       cursor: pointer;
       & > img {
         width: 190px;

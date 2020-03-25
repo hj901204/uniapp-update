@@ -185,6 +185,8 @@ export default {
           this.dialogVisible = false
           this.nodeId = ''
           this.getdepartTreeData()
+        } else {
+          this.$message.warning(result.msg)
         }
       })
     },
@@ -195,6 +197,8 @@ export default {
           this.dialogVisible = false
           this.nodeId = ''
           this.getdepartTreeData()
+        } else {
+          this.$message.warning(result.msg)
         }
       })
     },
