@@ -75,7 +75,7 @@
         </div>
       </div>
       <div class="company-info-box">
-        <img src="@/assets/img/QR-code.jpg"
+        <img src="@/assets/img/application/242-01.png" height="40px" 
              alt="" />
         <div class="company-info">
           <div>谷器数据<span>@2020</span></div>
