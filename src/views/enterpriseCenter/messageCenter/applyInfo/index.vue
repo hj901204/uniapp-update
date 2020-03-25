@@ -6,7 +6,7 @@
           :key="item.id">
         <div class="info-title">
           <div class="info-title-box">
-            <h3>应用申请结果通知</h3>
+            <h3>{{item.title}}</h3>
             <span class="time">
               {{item.sendTime}}
             </span>
@@ -15,7 +15,10 @@
              @click="handleDelete(item)"></i>
         </div>
         <div class="info-description">
-          您的<span>{{item.title}}</span>应用申请已经通过，请查收您的邮件进行确认。
+          From: {{ item.tsSendUserName}} @ {{item.tsSendEnterId}}
+        </div>
+        <div class="info-description">
+          <span>{{item.content}}</span>  
         </div>
       </li>
 
