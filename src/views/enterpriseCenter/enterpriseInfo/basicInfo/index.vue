@@ -3,7 +3,7 @@
     <!-- 显示企业基本信息 -->
     <template v-if="isShowMainPage">
       <div class="edit-btn"
-           style="margin:30px 20px 0 40px;text-align:right">
+           style="margin:5px 20px 0 40px;text-align:right">
         <el-button type="primary"
                    size="small"
                    @click="handleEdit"
