@@ -113,14 +113,13 @@ export default {
       this.isShowResetBtn = true //是否显示重置按钮
       this.userForm = Object.assign({}, row)
       this.userForm.isEnable = row.isEnable == '否' ? false : true
-      
+
       this.isShowMainPage = false
     },
     //点击保存按钮
     handleSave () {
       this.userForm.isEnable = this.userForm.isEnable == true ? 1 : 0
       this.userForm.username = this.userForm.email
-      console.log(this.userForm)
       const status = this.userForm.id ? 'edit' : 'add'
       if (status == 'add') {
         this.addUserFunc(this.userForm)
@@ -134,16 +133,17 @@ export default {
         if (result.code == 0) {
           this.isShowMainPage = true
           this.getUserData()
+          return this.$message.success('添加成功')
         }
       })
     },
     //修改用户方法
     updateUserFunc (obj) {
-      console.log(obj)
       this.$api.post(this.$lesUiPath.enteruserUpdate, obj).then(result => {
         if (result.code == 0) {
           this.isShowMainPage = true
           this.getUserData()
+          return this.$message.success('修改成功')
         }
       })
     },
