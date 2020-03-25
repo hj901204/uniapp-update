@@ -6,10 +6,7 @@
       <!-- 注册成功提示 -->
       <div class="submit-success">
         <i class="el-icon-my-tijiao"></i>
-        <span
-          >尊敬的 <span>{{ data.enterName }}</span
-          >，您的信息已经提交成功。</span
-        >
+        <span>尊敬的 <span>{{ data.enterName }}</span>，您的信息已经提交成功。</span>
       </div>
       <!-- 注册信息 -->
       <ul class="register-info">
@@ -66,28 +63,19 @@ export default {
       require(["@/components/ProcessTitle/index.vue"], reslove),
     PageTitle: reslove => require(["@/components/PageTitle.vue"], reslove)
   },
-  data() {
+  data () {
     return {
       regEntInfo: {},
       data: this.$route.query.data
     }
   },
-  mounted() {
-    this.getRegentInfo()
+  mounted () {
   },
   methods: {
-    handleBackLogin() {
+    handleBackLogin () {
       this.$router.push({ path: "/login" })
     },
-    //我的企业信息查询
-    getRegentInfo() {
-      this.$api.post(this.$lesUiPath.enterpriseFindEnt, {}).then(result => {
-        if (result.code == 0) {
-          console.log(result.data)
-          this.regEntInfo = result.data
-        }
-      })
-    }
+
   }
 }
 </script>
