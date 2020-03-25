@@ -29,13 +29,13 @@
         <h3>用户状态</h3>
         <!-- 饼图 -->
         <div class="chart-box">
-          <PieChart />
+          <!-- <PieChart /> -->
           <LineChart />
         </div>
       </div>
       <!-- 用户活跃排行榜 -->
       <div class="user-list">
-        <h3>用户活跃排行榜</h3>
+        <h3>用户活跃排行榜Top10</h3>
         <!-- <fieldset> -->
         <!-- <legend>用户活跃排行榜</legend> -->
         <Table :tableHead="tableHead"
@@ -56,7 +56,7 @@
 export default {
   name: 'applicationStatus',
   components: {
-    PieChart: resolve => require(["./components/PieChart"], resolve),
+    //PieChart: resolve => require(["./components/PieChart"], resolve),
     LineChart: resolve => require(["./components/LineChart"], resolve),
     Table: resolve => require(["@/components/Table"], resolve)
   },
@@ -68,28 +68,28 @@ export default {
       paramsObj: JSON.parse(this.$route.query.params),
       tableHead: [
         {
-          fieldNo: "userName",
+          fieldNo: "name",
           fieldName: "用户名",
           id: 1,
           width: "100"
         },
         {
-          fieldNo: "userEmail",
+          fieldNo: "email",
           fieldName: "Email",
           id: 2,
           width: 400
         },
         {
-          fieldNo: "loginCout",
+          fieldNo: "daycount",
           fieldName: "总登陆次数",
           id: 3,
           width: 100
         },
-        {
-          fieldNo: "lastLoginTime",
-          fieldName: "最近登陆时间",
-          id: 4
-        }
+        // {
+        //   fieldNo: "lastLoginTime",
+        //   fieldName: "最近登陆时间",
+        //   id: 4
+        // }
       ],
       tableData: [],
       currentSize: 10,

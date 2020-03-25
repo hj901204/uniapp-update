@@ -64,7 +64,7 @@ const enterAppFindList = baseUrl + "/enterApp/findList"
 // const enterAppRun = "http://47.105.182.148:8862" + baseUrl + "/application/run"
 const enterAppRun = baseUrl + "/application/run"
 //应用状态-用户活跃排行榜
-const activeUserLeaderboard = baseUrl + "/enterApp/activeUserLeaderboard"
+const activeUserLeaderboard = baseUrl + "/log/daystopten"
 //应用设定-查询列表
 const enterAppUserFindList = baseUrl + "/enterAppUser/findList"
 //应用设定-用户查询列表
