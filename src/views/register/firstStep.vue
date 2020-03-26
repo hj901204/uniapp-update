@@ -179,7 +179,7 @@
 </template>
 
 <script>
-import { validateNumAndCh } from '@/utils/validate'
+import { validateNumAndCh, validateEmail } from '@/utils/validate'
 export default {
   name: "first-step",
   components: {
@@ -229,7 +229,9 @@ export default {
       },
       rules3: {
         enterAccount: [
-          { required: true, message: "请输入管理员账号", trigger: "blur" }
+          { required: true, message: "请输入管理员账号", trigger: "blur" },
+          { validator: validateEmail.bind(this), message: "不允许邮箱注册", trigger: "blur" },
+
         ],
         password: [
           { required: true, message: "请输入登录密码", trigger: "blur" }

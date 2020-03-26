@@ -21,3 +21,14 @@ export function validateNumAndCh(rule, value, callback) {
     }
   }
 }
+export function validateEmail(rule, value, callback) {
+  // 邮箱验证正则
+  let reg = /^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/
+  if (value) {
+    if (reg.test(value)) {
+      return callback(new Error("不允许邮箱注册"))
+    } else {
+      return callback()
+    }
+  }
+}
