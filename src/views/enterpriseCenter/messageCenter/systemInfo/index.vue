@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     //获取消息中心列表
-    getMessageList (page = 1, length = 1000) {
+    getMessageList (page = 1, length = 20) {
       const queryInfo = { page: page, length: length };
       this.$api.post(this.$lesUiPath.smsFindList, queryInfo).then(result => {
         if (result.code == 0) {

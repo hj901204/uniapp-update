@@ -3,54 +3,57 @@
     <!-- 显示企业基本信息 -->
     <template v-if="isShowMainPage">
       <div class="edit-btn"
-           style="margin:30px 20px 0 40px;text-align:right">
+           style="margin:5px 20px 0 40px;text-align:right">
         <el-button type="primary"
                    size="small"
                    @click="handleEdit"
                    v-if="type==1">修改
         </el-button>
       </div>
-      <div class="main-page">
-        <ul>
-          <li>
-            <div class="form-field">SupplyX ID:</div>
-            <div class="form-val">{{ form.xid }}</div>
-          </li>
-          <li>
-            <div class="form-field">企业名称:</div>
-            <div class="form-val">{{ form.enterName }}</div>
-          </li>
-          <li>
-            <div class="form-field">企业英文名称:</div>
-            <div class="form-val">{{ form.enterNameEn }}</div>
-          </li>
-          <li>
-            <div class="form-field">企业简称:</div>
-            <div class="form-val">{{ form.enterShortName }}</div>
-          </li>
-          <li>
-            <div class="form-field">企业地址:</div>
-            <div class="form-val">{{ form.enterAddress }}</div>
-          </li>
-          <!--
-          <li>
-            <div class="form-field">企业编码:</div>
-            <div class="form-val">{{ form.xid }}</div>
-          </li>
-          -->
-          <li>
-            <div class="form-field">联系电话:</div>
-            <div class="form-val">{{ form.enterTelNum }}</div>
-          </li>
-          <li>
-            <div class="form-field">联系人:</div>
-            <div class="form-val">{{ form.liaisonMan }}</div>
-          </li>
-          <li>
-            <div class="form-field">联系邮件:</div>
-            <div class="form-val">{{ form.enterMail }}</div>
-          </li>
-        </ul>
+      <div>
+          <div class="invoice-info">
+            <h3 class="form-title">基本信息</h3>
+            <ul class="invoice-info-box">
+              <li>
+                <div>SupplyX ID:</div>
+                <p>{{ form.xid }}</p>
+              </li>
+              <li>
+                <div>企业名称:</div>
+                <p>{{ form.enterName }}</p>
+              </li>
+              <li>
+                <div>企业英文名称:</div>
+                <p>{{ form.enterNameEn }}</p>
+              </li>
+              <li>
+                <div>企业简称:</div>
+                <p>{{ form.enterShortName }}</p>
+              </li>
+              <li>
+                <div>企业地址:</div>
+                <p>{{ form.enterAddress }}</p>
+              </li>
+              <!--
+              <li>
+                <div>企业编码:</div>
+                <p>{{ form.xid }}</p>
+              </li>
+              -->
+              <li>
+                <div>联系电话:</div>
+                <p>{{ form.enterTelNum }}</p>
+              </li>
+              <li>
+                <div>联系人:</div>
+                <p>{{ form.liaisonMan }}</p>
+              </li>
+              <li>
+                <div>联系邮件:</div>
+                <p>{{ form.enterMail }}</p>
+              </li>
+            </ul>
+          </div>
         <!-- 发票信息 -->
         <div class="invoice-info">
           <h3 class="form-title">我的发票信息</h3>
