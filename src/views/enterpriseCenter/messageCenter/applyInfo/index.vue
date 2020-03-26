@@ -10,12 +10,18 @@
             <span class="time">
               {{item.sendTime}}
             </span>
+            <span v-if="item.status == '1'">
+              已读 由 {{ item.recTime}} @ {{item.recUserName}} 
+            </span>
+            <span v-if="item.status == '0'">
+              未读 
+            </span>
           </div>
           <i class="el-icon-my-guanbi"
-             @click="handleDelete(item)"></i>
+             @click="handleDelete(item)" alt="删除"></i>
         </div>
         <div class="info-description">
-          From: {{ item.tsSendUserName}} @ {{item.tsSendEnterId}}
+          来自: {{ item.tsSendUserName}} @ {{item.tsSendEnterName}}   
         </div>
         <div class="info-description">
           <span>{{item.content}}</span>  
@@ -40,7 +46,10 @@ export default {
   methods: {
     //获取消息中心列表
     getMessageList (page = 1, length = 20) {
-      const queryInfo = { page: page, length: length };
+      const queryInfo = { 
+        page: page, 
+        length: length,
+        msgType: "1" };
       this.$api.post(this.$lesUiPath.smsFindList, queryInfo).then(result => {
         if (result.code == 0) {
           this.list = result.data
