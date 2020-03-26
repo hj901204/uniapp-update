@@ -35,115 +35,20 @@ service.interceptors.response.use(
      * 如通过xmlhttprequest 状态码标识 逻辑可写在下面error中
      */
     const res = response.data
-    if (response.status === 500 || res.status === 500) {
-      MessageBox.confirm(
-        "你已被登出，可以取消继续留在该页面，或者重新登录",
-        "确定登出",
-        {
-          confirmButtonText: "重新登录",
-          cancelButtonText: "取消",
-          type: "warning"
-        }
-      ).then(() => {
-        store.dispatch("LogOut").then(() => {
-          location.reload() // 为了重新实例化vue-router对象 避免bug
-        })
-      })
-      return Promise.reject("error")
-    }
-    // if (response.status == 40131) {
-    //   Message({
-    //     message: '当前用户无相关操作权限！',
-    //     type: 'error',
-    //     duration: 1 * 1000
-    //   })
-    // }
-    if (res.status === 40301 || response.status === 403 || res.status == 403) {
-      if (response.status == 40131) {
-        Message({
-          message: "当前用户无相关操作权限！",
-          type: "error",
-          duration: 1 * 1000
-        })
-      } else {
-        store.dispatch("LogOut").then(() => {
-          location.reload() // 为了重新实例化vue-router对象 避免bug
-        })
-      }
-      return Promise.reject("error")
-    }
-    if (response.status !== 200 && res.status !== 200) {
+    if (res.code != 0) {
       Message({
-        message: res.message,
+        message: res.msg,
         type: "error",
         duration: 5 * 1000
       })
+      return Promise.reject("error")
     } else {
-      return response.data
+      return res
     }
   },
   error => {
     // 错误拦截
     const response = error.response
-    if (response.status === 401 || response.data.status === 40101) {
-      store.dispatch("user/LogOut").then(() => {
-        location.reload() // 为了重新实例化vue-router对象 避免bug
-      })
-      return Promise.reject("error")
-    }
-    if (response.status === 401 || response.status === 403) {
-      if (response.status == 40131 || response.data.status === 40131) {
-        Message({
-          message: "当前用户无相关操作权限！",
-          type: "error",
-          duration: 1 * 1000
-        })
-      } else {
-        store.dispatch("LogOut").then(() => {
-          location.reload() // 为了重新实例化vue-router对象 避免bug
-        })
-      }
-      return Promise.reject("error")
-    }
-    if (
-      response.data.message &&
-      response.data.message.indexOf("ORA-12899") != -1
-    ) {
-      Message({
-        message: "输入字符长度过长，请重新输入",
-        type: "error"
-      })
-      return Promise.reject(error)
-    }
-    if (response.status === 500) {
-      Message({
-        message: response.data.message,
-        type: "error",
-        duration: 5 * 1000
-      })
-      return Promise.reject(error)
-    }
-    if (
-      (response.data &&
-        response.data.error_description === "Bad credentials" &&
-        response.data.error === "invalid_grant") ||
-      (response.data &&
-        response.data.error_description ===
-          "IUserService#getUserInfoByUsername(String) failed and no fallback available.")
-    ) {
-      Message({
-        message: "用户名或者密码错误",
-        type: "error",
-        duration: 5 * 1000
-      })
-      return Promise.reject(error)
-    }
-    Message({
-      message: error.message,
-      type: "error",
-      duration: 5 * 1000
-    })
-    return Promise.reject(error)
   }
 )
 
