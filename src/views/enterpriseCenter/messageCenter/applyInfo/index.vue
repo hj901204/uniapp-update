@@ -1,34 +1,44 @@
 <template>
   <div class="system-info">
-    <!-- 消息中心-系统信息 -->
-    <ul>
-      <li v-for="item in list"
-          :key="item.id">
-        <div class="info-title">
-          <div class="info-title-box">
-            <h3>{{item.title}}</h3>
-            <span class="time">
-              {{item.sendTime}}
-            </span>
-            <span v-if="item.status == '1'">
-              已读 由 {{ item.recTime}} @ {{item.recUserName}} 
-            </span>
-            <span v-if="item.status == '0'">
-              未读 
-            </span>
+    <template v-if="isShowMainPage">
+      <!-- 消息中心-系统信息 -->
+      <ul>
+        <li v-for="item in list"
+            :key="item.id">
+          <div class="info-title">
+            <div class="info-title-box">
+              <h3 @click="handleNotice(item)">{{item.title}}</h3>
+              <span class="time">
+                {{item.sendTime}}
+              </span>
+              <span v-if="item.status == '1'">
+                已读 由 {{ item.recTime}} @ {{item.recUserName}}
+              </span>
+              <span v-if="item.status == '0'">
+                未读
+              </span>
+            </div>
+            <i class="el-icon-my-guanbi"
+               @click="handleDelete(item)"
+               alt="删除"></i>
           </div>
-          <i class="el-icon-my-guanbi"
-             @click="handleDelete(item)" alt="删除"></i>
-        </div>
-        <div class="info-description">
-          来自: {{ item.tsSendUserName}} @ {{item.tsSendEnterName}}   
-        </div>
-        <div class="info-description">
-          <span>{{item.content}}</span>  
-        </div>
-      </li>
+          <div class="info-description">
+            来自: {{ item.tsSendUserName}} @ {{item.tsSendEnterName}}
+          </div>
+          <div class="info-description">
+            <span>{{item.content}}</span>
+          </div>
+        </li>
 
-    </ul>
+      </ul>
+    </template>
+    <template v-else>
+      <div style="text-align:right">
+        <el-button size="small"
+                   @click="handleBack">返回</el-button>
+      </div>
+      {{item}}
+    </template>
   </div>
 </template>
 
@@ -37,7 +47,9 @@ export default {
   name: "system-info",
   data () {
     return {
-      list: []
+      isShowMainPage: true, //  是否显示主界面
+      list: [],
+      item: {}, //详情信息
     }
   },
   mounted () {
@@ -46,10 +58,10 @@ export default {
   methods: {
     //获取消息中心列表
     getMessageList (page = 1, length = 20) {
-      const queryInfo = { 
-        page: page, 
+      const queryInfo = {
+        page: page,
         length: length,
-        msgType: "1" };
+        msgType: "1"      };
       this.$api.post(this.$lesUiPath.smsFindList, queryInfo).then(result => {
         if (result.code == 0) {
           this.list = result.data
@@ -69,6 +81,16 @@ export default {
           }
         })
       })
+    },
+    //通知发货
+    handleNotice (item) {
+      console.log(item)
+      this.item = item
+      this.isShowMainPage = !this.isShowMainPage
+    },
+    //返回
+    handleBack () {
+      this.isShowMainPage = !this.isShowMainPage
     }
   }
 }
@@ -101,6 +123,10 @@ export default {
           & > span {
             font-size: 12px;
             color: rgba(0, 0, 0, 0.5);
+          }
+          & > h3:hover {
+            color: #4a90e2;
+            cursor: pointer;
           }
         }
         & > i {
