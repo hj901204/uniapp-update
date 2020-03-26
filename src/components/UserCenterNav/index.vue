@@ -11,7 +11,7 @@
         </span>
         <el-dropdown-menu slot="dropdown"
                           class="user-dropdown">
-          <el-dropdown-item>修改密码</el-dropdown-item>
+          <!-- <el-dropdown-item>修改密码</el-dropdown-item> -->
           <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
