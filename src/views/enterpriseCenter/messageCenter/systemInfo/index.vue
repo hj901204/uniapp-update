@@ -24,7 +24,7 @@
                alt="删除"></i>
           </div>
           <div class="info-description">
-            来自: {{ item.tsSendUserName}} @ {{item.tsSendEnterName}}
+            应用名称：{{item.appName}} 来自 {{ item.tsSendUserName}} @ {{item.tsSendEnterName}}
           </div>
         </li>
       </ul>
@@ -44,6 +44,9 @@
                 {{item.sendTime}}
               </span>
             </div>
+          </div>
+          <div class="info-description">
+          消息应用：{{ item.appName}} 
           </div>
           <div class="info-description">
           消息来源：{{ item.tsSendUserName}} @ {{item.tsSendEnterName}}
