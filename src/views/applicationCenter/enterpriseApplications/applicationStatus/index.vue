@@ -17,7 +17,7 @@
           </div>
           <div class="expiration-date">
             <p v-if="paramsObj.expireTime">过期时间 :</p><span v-if="">{{paramsObj.expireTime}}</span>
-            <p v-if="!paramsObj.expireTime">有效期 :</p><span v-if="">一年</span>
+            <!-- <p v-if="!paramsObj.expireTime">有效期 :</p><span v-if="">一年</span> -->
             <!-- <el-button type="danger"
                        size="mini"
                        @click="handleRenew">续 费</el-button> -->
@@ -119,12 +119,12 @@ export default {
     },
     //获取用户活跃排行榜
     getUserData (page = 1, length = 10) {
-      const queryInfo = { 
-        page: page, 
+      const queryInfo = {
+        page: page,
         length: length,
         acpath: "/application/run",
         days: "10"
-        };
+      };
       this.$api.post(this.$lesUiPath.activeUserLeaderboard, queryInfo).then(result => {
         if (result.code == 0) {
           this.tableData = result.data
