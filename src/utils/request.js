@@ -1,7 +1,7 @@
 import axios from "axios"
 import { MessageBox, Message } from "element-ui"
 import store from "../store"
-import { getToken } from "@/utils/auth"
+import { getToken, removeToken } from "@/utils/auth"
 
 // create an axios instance
 const service = axios.create({
@@ -35,7 +35,34 @@ service.interceptors.response.use(
      * 如通过xmlhttprequest 状态码标识 逻辑可写在下面error中
      */
     const res = response.data
-    if (res.code != 0) {
+    if (res.code == 1) {
+      Message({
+        message: res.msg,
+        type: "error",
+        duration: 5 * 1000
+      })
+      return Promise.reject("error")
+    } else if (res.code == 40401) {
+      //登陆过期
+      Message({
+        message: res.msg,
+        type: "error",
+        duration: 5 * 1000
+      })
+      store.dispatch("user/LogOut").then(() => {
+        location.reload() // In order to re-instantiate the vue-router object to avoid bugs
+      })
+      return Promise.reject("error")
+    } else if (res.code == 40103) {
+      //用户密码错误
+      Message({
+        message: res.msg,
+        type: "error",
+        duration: 5 * 1000
+      })
+      return Promise.reject("error")
+    } else if (res.code == 40102) {
+      //应用过期
       Message({
         message: res.msg,
         type: "error",
