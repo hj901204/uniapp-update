@@ -53,8 +53,10 @@
              @currentChange='userCurrentChange'
              :currentSize='userCurrentSize'
              :currentPage='userCurrentPage'
-             :isShowSelection='true'
-             @getSelection='getSelection' />
+             :isShowSelection='false'
+             :isShowSort='false'
+             :isShowRadio='true'
+             @getCurrentRow='getCurrentRow' />
       <span slot="footer"
             class="dialog-footer">
         <el-button @click="dialogVisible = false"
@@ -156,16 +158,12 @@ export default {
       this.dialogVisible = true
       this.getUserData()
     },
-    //获取表格选项
-    getSelection (val) {
-      this.selectList = val
-    },
     //添加用户保存
     handleSaveAdd () {
-      if (!this.selectList || (this.selectList && this.selectList.length != 1)) return this.$message.warning('请选择一条用户数据')
+      if (!this.selectObj) return this.$message.warning('请选择用户数据')
       this.selectinfo = {
-        tsUserId: this.selectList[0].id,
-        isEnable: this.selectList[0].isEnable,
+        tsUserId: this.selectObj.id,
+        isEnable: this.selectObj.isEnable,
         tsEnterAppId: this.params.id
       }
       this.$api.post(this.$lesUiPath.enterAppUserAdd, this.selectinfo).then(result => {
@@ -204,7 +202,12 @@ export default {
           this.getBoardData()
         }
       })
+    },
+    //单选用户
+    getCurrentRow (val) {
+      this.selectObj = val
     }
+
   }
 }
 </script>

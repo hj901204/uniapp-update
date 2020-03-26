@@ -16,10 +16,23 @@
                        type="selection"
                        align="center"
                        width="45" />
+      <!-- 单选表格 -->
+      <el-table-column width="60"
+                       label="#"
+                       align="center"
+                       v-if="isShowRadio">
+        <template scope="scope">
+          <el-radio :label="scope.$index+1"
+                    v-model="radio"
+                    @change.native="getCurrentRow(scope.row)"></el-radio>
+        </template>
+      </el-table-column>
+      <!-- 排序 -->
       <el-table-column type="index"
                        width="50"
                        label="#"
-                       align="center"></el-table-column>
+                       align="center"
+                       v-if="isShowSort"></el-table-column>
 
       <el-table-column v-for="item in tableHead"
                        :key="item.id"
@@ -93,6 +106,8 @@ export default {
     isShowStopBtns: { type: Boolean, default: false },
     isShowDeleteBtn: { type: Boolean, default: false },
     isShowSelection: { type: Boolean, default: false },
+    isShowRadio: { type: Boolean, default: false },
+    isShowSort: { type: Boolean, default: true },
     isShowPage: { type: Boolean, default: true },
     currentPage: { type: Number, default: 1 },
     currentSize: { type: Number, default: 10 },
@@ -100,7 +115,9 @@ export default {
     maxHeight: { type: Number, default: document.body.clientHeight - 420 }
   },
   data () {
-    return {}
+    return {
+      radio: ''
+    }
   },
   methods: {
     // 禁用
@@ -130,6 +147,10 @@ export default {
     getSelection (val) {
       this.$emit("getSelection", val);
     },
+    //表格单选
+    getCurrentRow (row) {
+      this.$emit("getCurrentRow", row);
+    }
   }
 }
 </script>
