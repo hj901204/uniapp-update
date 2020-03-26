@@ -218,6 +218,8 @@ export default {
           if (result.code == 0) {
             this.getdepartTreeData()
             return this.$message.success('删除成功')
+          } else {
+            this.$message.warning(result.msg)
           }
         })
       })
@@ -242,7 +244,9 @@ export default {
         if (result.code == 0) {
           this.tableData = result.data
           this.total = this.tableData.length
-        }
+        } else {
+            this.$message.warning(result.msg)
+          }
       })
     },
     // 分页
