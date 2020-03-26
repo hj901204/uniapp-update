@@ -1,25 +1,66 @@
 <template>
   <div class="system-info">
-    <!-- 消息中心-系统信息 -->
-    <ul>
-      <li v-for="item in list"
-          :key="item.id">
-        <div class="info-title">
-          <div class="info-title-box">
-            <h3>应用申请结果通知</h3>
-            <span class="time">
-              {{item.sendTime}}
-            </span>
+    <template v-if="isShowMainPage">
+      <!-- 消息中心-系统信息 -->
+      <ul>
+        <li v-for="item in list"
+            :key="item.id">
+          <div class="info-title">
+            <div class="info-title-box">
+              <i class="el-icon-message"></i>
+              <h3 @click="handleNotice(item)">{{item.title}}</h3>
+              <span class="time">
+                {{item.sendTime}}
+              </span>
+              <span v-if="item.status == '1'">
+                已读 由 {{ item.recTime}} @ {{item.recUserName}}
+              </span>
+              <span v-if="item.status == '0'">
+                未读
+              </span>
+            </div>
+            <i class="el-icon-my-guanbi"
+               @click="handleDelete(item)"
+               alt="删除"></i>
           </div>
-          <i class="el-icon-my-guanbi"
-             @click="handleDelete(item)"></i>
-        </div>
-        <div class="info-description">
-          您的<span>{{item.title}}</span>应用申请已经通过，请查收您的邮件进行确认。
-        </div>
-      </li>
-
-    </ul>
+          <div class="info-description">
+            来自: {{ item.tsSendUserName}} @ {{item.tsSendEnterName}}
+          </div>
+        </li>
+      </ul>
+    </template>
+    <template v-else>
+      <div style="text-align:right">
+        <br>
+        <el-button size="small" @click="handleBack">返回</el-button>
+      </div>
+      <ul>
+        <li>
+          <div class="info-title">
+            <div class="info-title-box">
+              <i class="el-icon-message"></i>
+              <h3 @click="handleNotice(item)">{{item.title}}</h3>
+              <span class="time">
+                {{item.sendTime}}
+              </span>
+            </div>
+          </div>
+          <div class="info-description">
+          消息来源：{{ item.tsSendUserName}} @ {{item.tsSendEnterName}}
+          </div>
+          <div class="info-description">
+          首次阅读：{{item.recUserName}} @ {{ item.recTime}}
+          </div>
+          <div class="info-description">
+            <!-- <span> -->
+            <p class="cont">
+              {{item.content}}
+            </p>
+            <!-- </span> -->
+          </div>
+        </li>
+      </ul>
+    </template>
   </div>
 </template>
 
@@ -28,7 +69,9 @@ export default {
   name: "system-info",
   data () {
     return {
-      list: []
+      isShowMainPage: true, //  是否显示主界面
+      list: [],
+      item: {}, //详情信息
     }
   },
   mounted () {
@@ -37,7 +80,10 @@ export default {
   methods: {
     //获取消息中心列表
     getMessageList (page = 1, length = 20) {
-      const queryInfo = { page: page, length: length };
+      const queryInfo = {
+        page: page,
+        length: length,
+        msgType: "0"      };
       this.$api.post(this.$lesUiPath.smsFindList, queryInfo).then(result => {
         if (result.code == 0) {
           this.list = result.data
@@ -57,6 +103,25 @@ export default {
           }
         })
       })
+    },
+    //通知发货
+    handleNotice (item) {
+      if (item.status == "0") {
+        this.$api.post(this.$lesUiPath.smsRead, { id: item.id }).then(result => {
+          if (result.code == 0) {
+            this.item = result.data
+            this.isShowMainPage = !this.isShowMainPage
+          }
+        })
+      } else {
+        this.item = item
+        this.isShowMainPage = !this.isShowMainPage
+      }
+    },
+    //返回
+    handleBack () {
+      this.getMessageList()
+      this.isShowMainPage = !this.isShowMainPage
     }
   }
 }
@@ -90,6 +155,10 @@ export default {
             font-size: 12px;
             color: rgba(0, 0, 0, 0.5);
           }
+          & > h3:hover {
+            color: #4a90e2;
+            cursor: pointer;
+          }
         }
         & > i {
           float: right;
@@ -105,6 +174,19 @@ export default {
           line-height: 20px;
         }
       }
+      .back {
+        padding: 10px;
+        font-size: 14px;
+        & > div {
+          line-height: 20px;
+        }
+      }
+      .cont {
+        text-align: left;
+        font-size: 12px;
+        margin: 15px;
+        line-height: 28px;
+        }
     }
   }
 }

@@ -4,7 +4,7 @@
       <span><i>SupplyX</i>{{ params.appName }}</span>
     </div>
     <div class="submit-success">
-      <span>尊敬的&nbsp<span>{{ params.enter.liaisonMan }}</span>&nbsp，您的信息已经{{ params.result }}。</span>
+      <span>尊敬的&nbsp<span>{{ params.enter.enterName }}</span>&nbsp，您的信息已经{{ params.result }}。</span>
     </div>
     <ul class="apply-info">
       <li>

@@ -95,6 +95,8 @@ const enteruserRemove = baseUrl + "/enteruser/remove"
 const smsFindList = baseUrl + "/sms/findList"
 //消息列表 删除
 const smsDelete = baseUrl + "/sms/delete"
+//消息列表 已读
+const smsRead = baseUrl + "/sms/read"
 
 //部门管理
 // 添加部门
@@ -132,6 +134,7 @@ export default {
       enteruserRemove,
       smsFindList,
       smsDelete,
+      smsRead,
       enterAppUserAdd,
       enterAppUserRemove,
       enterAppUserEdit,
