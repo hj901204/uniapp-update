@@ -70,7 +70,6 @@ export default {
   computed: {
     //清空表单验证
     resetForm (formName) {
-      console.log(this.$refs)
       this.$refs[formName].clearValidate();
     }
   },
@@ -164,7 +163,6 @@ export default {
     handleSaveAdd () {
       this.$refs.ruleFormRef.validate(valid => {
         if (valid) {
-          console.log(this.ruleForm)
           const status = this.ruleForm.id ? 'edit' : 'add'
           if (status == 'add') {
             this.addDepartFunc(this.ruleForm)
