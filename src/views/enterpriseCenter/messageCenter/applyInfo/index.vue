@@ -7,6 +7,7 @@
             :key="item.id">
           <div class="info-title">
             <div class="info-title-box">
+              <i class="el-icon-message"></i>
               <h3 @click="handleNotice(item)">{{item.title}}</h3>
               <span class="time">
                 {{item.sendTime}}
@@ -25,19 +26,40 @@
           <div class="info-description">
             来自: {{ item.tsSendUserName}} @ {{item.tsSendEnterName}}
           </div>
-          <div class="info-description">
-            <span>{{item.content}}</span>
-          </div>
         </li>
-
       </ul>
     </template>
     <template v-else>
       <div style="text-align:right">
-        <el-button size="small"
-                   @click="handleBack">返回</el-button>
+        <br>
+        <el-button size="small" @click="handleBack">返回</el-button>
       </div>
-      {{item}}
+      <ul>
+        <li>
+          <div class="info-title">
+            <div class="info-title-box">
+              <i class="el-icon-message"></i>
+              <h3 @click="handleNotice(item)">{{item.title}}</h3>
+              <span class="time">
+                {{item.sendTime}}
+              </span>
+            </div>
+          </div>
+          <div class="info-description">
+          消息来源：{{ item.tsSendUserName}} @ {{item.tsSendEnterName}}
+          </div>
+          <div class="info-description">
+          首次阅读：{{item.recUserName}} @ {{ item.recTime}}
+          </div>
+          <div class="info-description">
+            <!-- <span> -->
+            <p class="cont">
+              {{item.content}}
+            </p>
+            <!-- </span> -->
+          </div>
+        </li>
+      </ul>
     </template>
   </div>
 </template>
@@ -84,12 +106,21 @@ export default {
     },
     //通知发货
     handleNotice (item) {
-      console.log(item)
-      this.item = item
-      this.isShowMainPage = !this.isShowMainPage
+      if (item.status == "0") {
+        this.$api.post(this.$lesUiPath.smsRead, { id: item.id }).then(result => {
+          if (result.code == 0) {
+            this.item = result.data
+            this.isShowMainPage = !this.isShowMainPage
+          }
+        })
+      } else {
+        this.item = item
+        this.isShowMainPage = !this.isShowMainPage
+      }
     },
     //返回
     handleBack () {
+      this.getMessageList()
       this.isShowMainPage = !this.isShowMainPage
     }
   }
@@ -143,6 +174,19 @@ export default {
           line-height: 20px;
         }
       }
+      .back {
+        padding: 10px;
+        font-size: 14px;
+        & > div {
+          line-height: 20px;
+        }
+      }
+      .cont {
+        text-align: left;
+        font-size: 12px;
+        margin: 15px;
+        line-height: 28px;
+        }
     }
   }
 }
