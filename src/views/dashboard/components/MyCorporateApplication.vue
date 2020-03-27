@@ -45,7 +45,7 @@ export default {
       })
     },
     handleToApply (item) {
-      if (item.appName == "SRM") {
+      if (item.appName == "SupplyX·SRM") {
         this.$router.push('/application/enterpriseApplications')
       }
     }
