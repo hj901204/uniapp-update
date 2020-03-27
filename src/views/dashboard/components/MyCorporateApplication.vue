@@ -15,7 +15,7 @@
       <ul>
         <li v-for="item in list"
             :key="item.id"
-            @click="handleToApply(item)"> <span>SUPPLY</span>-<span>{{item.appName}}</span></li>
+            @click="handleToApply(item)"><span>{{item.appName}}</span></li>
       </ul>
     </div>
   </div>

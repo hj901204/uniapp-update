@@ -11,7 +11,7 @@
               <img src="@/assets/img/application/biaoqian.png"
                    alt="" />
               <span class="apply-info">
-                <div><i>SupplyX</i>{{ item.appName }}</div>
+                <div>{{ item.appName }}</div>
                 <div :class="item.isEnable?'green':'red'">状态：<i v-if="item.isEnable==1">正常</i><i v-if="item.isEnable==0">停用</i></div>
               </span>
             </div>
