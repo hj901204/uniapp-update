@@ -71,8 +71,8 @@ const actions = {
             const token = response.data.token
             const type = response.data.authType.toString()
             let userName = ""
-            if (type == '1') {
-              userName = response.data.userName
+            if (type == "1") {
+              userName = response.data.name
             } else {
               userName = response.data.name
             }
