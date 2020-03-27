@@ -45,7 +45,8 @@ export default {
       })
     },
     handleToApply (item) {
-      if (item.appName == "SupplyX·SRM") {
+      console.log(item)
+      if (item.appId == "E5CD4719") {
         this.$router.push('/application/enterpriseApplications')
       }
     }
