@@ -45,7 +45,7 @@ export default {
       })
     },
     handleToApply (item) {
-      console.log(item)
+      // console.log(item)
       if (item.appId == "E5CD4719") {
         this.$router.push('/application/enterpriseApplications')
       }
