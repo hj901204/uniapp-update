@@ -2,20 +2,21 @@
   <div class="app-store">
     <router-view> </router-view>
 
-    <div v-if="$route.path == '/application/appStore'" class="app-list">
+    <div v-if="$route.path == '/application/appStore'"
+         class="app-list">
       <ul>
-        <li v-for="item in appList" :key="item.id">
+        <li v-for="item in appList"
+            :key="item.id">
           <div class="app-title-box">
             <div class="app-title">
-              <img src="../../../assets/img/appStore/log1.png" alt="" />
-              <span><i>SupplyX</i>{{ item.appName }}</span>
+              <img src="../../../assets/img/appStore/log1.png"
+                   alt="" />
+              <span>{{ item.appName }}</span>
             </div>
-            <el-button 
-              @click="handleJumpRpute(item)"
-              size="small"
-              type="primary"
-              style="float: right;"
-            >查看详情
+            <el-button @click="handleJumpRpute(item)"
+                       size="small"
+                       type="primary"
+                       style="float: right;">查看详情
             </el-button>
           </div>
           <div class="app-describe">
@@ -32,7 +33,7 @@
 <script>
 export default {
   name: "app-store",
-  data() {
+  data () {
     return {
       appList: []
     }
@@ -42,7 +43,7 @@ export default {
   },
   methods: {
     // 应用列表
-    getAppList() {
+    getAppList () {
       let obj = {}
       this.$api.post(this.$lesUiPath.appStore, obj).then(result => {
         if (result.code == 0) {
@@ -53,7 +54,7 @@ export default {
       })
     },
     // 查看详情
-    handleJumpRpute(item) {
+    handleJumpRpute (item) {
       this.$router.push({
         path: "/application/appStore/applicationDetails",
         query: {
@@ -66,10 +67,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-img,ul,li {
+img,
+ul,
+li {
   margin: 0;
   padding: 0;
-  border:none;
+  border: none;
 }
 .app-store {
   overflow: hidden;
@@ -99,17 +102,18 @@ img,ul,li {
             float: left;
             & > img {
               width: 32px;
-            margin-right: 8px;
-            vertical-align: middle;
+              margin-right: 8px;
+              vertical-align: middle;
             }
-            & > span,i {
-            font-weight: bold;
-            font-size: 18px;
-            font-style: normal;
+            & > span,
             i {
-              margin: 0 5px;
+              font-weight: bold;
+              font-size: 18px;
+              font-style: normal;
+              i {
+                margin: 0 5px;
+              }
             }
-          }
           }
         }
         .app-describe {
@@ -119,11 +123,11 @@ img,ul,li {
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 5;
             overflow: hidden;
-            font-family:PingFangSC-Regular;
-            font-size:14px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
             line-height: 1.5;
-            color:#666666;
-            text-align:left;
+            color: #666666;
+            text-align: left;
             padding: 10px;
           }
         }
