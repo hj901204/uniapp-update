@@ -69,15 +69,19 @@ const actions = {
         .then(response => {
           if (response.code == 0) {
             const token = response.data.token
-            const userName = response.data.userName
             const type = response.data.authType.toString()
+            let userName = ""
+            if (type == '1') {
+              userName = response.data.userName
+            } else {
+              userName = response.data.name
+            }
             commit("SET_TOKEN", token)
             commit("SET_NAME", userName)
             commit("SET_AUTHTYPE", type)
             setToken(token)
             setUserName(userName)
             setAuthType(type)
-
             // resetRouter()
             resolve()
           } else {
