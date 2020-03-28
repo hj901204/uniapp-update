@@ -39,7 +39,7 @@
           <div class="info-title">
             <div class="info-title-box">
               <i class="el-icon-message"></i>
-              <h3 @click="handleNotice(item)">{{item.title}}</h3>
+              <h3>{{item.title}}</h3>
               <span class="time">
                 {{item.sendTime}}
               </span>
@@ -112,6 +112,7 @@ export default {
       if (item.status == "0") {
         this.$api.post(this.$lesUiPath.smsRead, { id: item.id }).then(result => {
           if (result.code == 0) {
+            console.log(result.data.appName)
             this.item = result.data
             this.isShowMainPage = !this.isShowMainPage
           }
