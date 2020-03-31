@@ -88,9 +88,7 @@ export default {
         if (result.code == 0) {
           console.log(result)
           this.myApplyList = result.data
-          this.myApplyList.map(item => {
-            item.initiateTime = this.$global.dateTime(item.initiateTime)
-          })
+
         }
       })
     }

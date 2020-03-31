@@ -71,19 +71,16 @@ export default {
           fieldNo: "name",
           fieldName: "用户名",
           id: 1,
-          width: "100"
         },
         {
           fieldNo: "email",
           fieldName: "Email",
           id: 2,
-          width: 400
         },
         {
           fieldNo: "daycount",
           fieldName: "总登陆次数",
           id: 3,
-          width: 100
         },
         // {
         //   fieldNo: "lastLoginTime",
@@ -129,9 +126,7 @@ export default {
         if (result.code == 0) {
           this.tableData = result.data
           this.total = result.data.length
-          this.tableData.map(item => {
-            item.lastLoginTime = this.$global.dateTime(item.lastLoginTime)
-          })
+
         }
       })
     }

@@ -32,7 +32,8 @@
     <template v-else>
       <div style="text-align:right">
         <br>
-        <el-button size="small" @click="handleBack">返回</el-button>
+        <el-button size="small"
+                   @click="handleBack">返回</el-button>
       </div>
       <ul>
         <li>
@@ -46,13 +47,13 @@
             </div>
           </div>
           <div class="info-description">
-          消息应用：{{ item.appName}} 
+            消息应用：{{ item.appName}}
           </div>
           <div class="info-description">
-          消息来源：{{ item.tsSendUserName}} @ {{item.tsSendEnterName}}
+            消息来源：{{ item.tsSendUserName}} @ {{item.tsSendEnterName}}
           </div>
           <div class="info-description">
-          首次阅读：{{item.recUserName}} @ {{ item.recTime}}
+            首次阅读：{{item.recUserName}} @ {{ item.recTime}}
           </div>
           <div class="info-description">
             <!-- <span> -->
@@ -90,9 +91,7 @@ export default {
       this.$api.post(this.$lesUiPath.smsFindList, queryInfo).then(result => {
         if (result.code == 0) {
           this.list = result.data
-          this.list.map(item => {
-            item.sendTime = this.$global.dateTime(item.sendTime)
-          })
+
         }
       })
     },
@@ -189,7 +188,7 @@ export default {
         font-size: 12px;
         margin: 15px;
         line-height: 28px;
-        }
+      }
     }
   }
 }
