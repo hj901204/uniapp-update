@@ -104,14 +104,14 @@ export default {
         }
       ],
       tableData: [
-        {
-          name: "木村文乃",
-          email: "fumino.kimura@gocdata.com"
-        },
-        {
-          name: "溜溜",
-          email: "liuliu.kimura@gocdata.com"
-        }
+        // {
+        //   name: "木村文乃",
+        //   email: "fumino.kimura@gocdata.com"
+        // },
+        // {
+        //   name: "溜溜",
+        //   email: "liuliu.kimura@gocdata.com"
+        // }
       ],
       // 分页
       currentPage: 1,
