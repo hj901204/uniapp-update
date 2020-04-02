@@ -121,7 +121,7 @@ export default {
   },
   mounted () {
     this.getdepartTreeData()
-    this.getUserData()
+    //this.getUserData()
   },
   methods: {
     //  点击节点获取节点id
