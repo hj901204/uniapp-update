@@ -139,6 +139,11 @@ export default {
     },
     //修改用户方法
     updateUserFunc (obj) {
+      for(let i in obj){
+        if(obj[i] == ""){
+          delete obj[i]
+        }
+      }
       this.$api.post(this.$lesUiPath.enteruserUpdate, obj).then(result => {
         if (result.code == 0) {
           this.isShowMainPage = true

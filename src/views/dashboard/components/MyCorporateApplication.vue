@@ -47,7 +47,9 @@ export default {
     handleToApply (item) {
       // console.log(item)
       if (item.appId == "E5CD4719") {
-        this.$router.push('/application/enterpriseApplications')
+        //this.$router.push('/application/enterpriseApplications')
+        let token = this.$store.getters.token
+        window.open(this.$lesUiPath.enterAppRun + "?appId=" + item.appId + '&token=' + token)
       }
     }
   }
