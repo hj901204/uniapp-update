@@ -15,7 +15,8 @@
       <ul>
         <li v-for="item in list"
             :key="item.id"
-            @click="handleToApply(item)"><span>{{item.appName}}</span></li>
+            :class="item.useFlag != '0'? '' : 'enable'"
+            @click="item.useFlag != '0'? handleToApply(item) : ''"><span>{{item.appName}}</span></li>
       </ul>
     </div>
   </div>
@@ -91,6 +92,10 @@ export default {
         cursor: pointer;
       }
     }
+  }
+  .enable{
+    background-color:#4a90e257 !important;
+    cursor: default !important;
   }
 }
 </style>

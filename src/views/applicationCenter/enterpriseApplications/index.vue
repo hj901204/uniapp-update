@@ -18,7 +18,10 @@
             <div class="start-use-btn">
               <el-button @click="handleStartUse(item.appId)"
                          size="small"
-                         type="primary">开始使用
+                         type="primary"
+                         :disabled="item.useFlag == '0'"
+                         >
+                        {{ item.useFlag == '0' ? '尚未获得权限' : '开始使用' }} 
               </el-button>
             </div>
           </div>
@@ -121,7 +124,7 @@ export default {
           vertical-align: middle;
           overflow: hidden;
           padding: 10px 0;
-          width: 80%;
+          width: 74%;
           & > img {
             width: 32px;
             margin-right: 8px;
