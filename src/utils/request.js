@@ -6,7 +6,7 @@ import { getToken, removeToken } from "@/utils/auth"
 // create an axios instance
 const service = axios.create({
   // baseURL: process.env.BASE_API, // api的base_url
-  timeout: 15000 // 请求超时时间
+  timeout: 30000 // 请求超时时间
 })
 
 // request拦截器

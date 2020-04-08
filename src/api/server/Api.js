@@ -24,8 +24,8 @@ export default {
       })
     }
 
-    Api.prototype.post = (url, config, params) => {
-      return request({
+    Api.prototype.post = async (url, config, params) =>  {
+      return await request({
         url: url,
         method: "post",
         data: config,
