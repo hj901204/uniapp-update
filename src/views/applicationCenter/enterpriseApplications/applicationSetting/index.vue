@@ -176,7 +176,9 @@ export default {
     // 用户删除
     handleDelete (row) {
       this.$confirm('此操作将永久删除, 是否继续?', '提示', this.$global.confirmConfig).then(() => {
-        this.$api.post(this.$lesUiPath.enterAppUserRemove, { id: row.id }).then(result => {
+        let data ="id=" + row.id ;
+        console.log(data);
+        this.$api.post(this.$lesUiPath.enterAppUserRemove, data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}}).then(result => {
           if (result.code == 0) {
             this.getBoardData()
             return this.$message.success('删除成功')
