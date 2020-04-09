@@ -6,7 +6,7 @@ import { getToken, removeToken } from "@/utils/auth"
 // create an axios instance
 const service = axios.create({
   // baseURL: process.env.BASE_API, // api的base_url
-  timeout: 15000 // 请求超时时间
+  timeout: 30000 // 请求超时时间
 })
 
 // request拦截器
@@ -35,9 +35,9 @@ service.interceptors.response.use(
      * 如通过xmlhttprequest 状态码标识 逻辑可写在下面error中
      */
     const res = response.data
-    console.log("-------------------------------返回开始----------------------------");    
-    console.log(res);
-    console.log("-------------------------------返回结束----------------------------");   
+    // console.log("-------------------------------返回开始----------------------------");    
+    // console.log(res);
+    // console.log("-------------------------------返回结束----------------------------");   
     if (res.code == 1) {
       Message({
         message: res.msg,
@@ -56,22 +56,24 @@ service.interceptors.response.use(
         location.reload() // In order to re-instantiate the vue-router object to avoid bugs
       })
       return Promise.reject("error")
-    } else if (res.code == 40103) {
-      //用户密码错误
-      Message({
-        message: res.msg,
-        type: "error",
-        duration: 5 * 1000
-      })
-      return Promise.reject("error")
-    } else if (res.code == 40102) {
-      //应用过期
-      Message({
-        message: res.msg,
-        type: "error",
-        duration: 5 * 1000
-      })
-      return Promise.reject("error")
+    // } else if (res.code == 40103) {
+    //   //用户密码错误
+    //   Message({
+    //     message: res.msg,
+    //     type: "error",
+    //     duration: 5 * 1000
+    //   })
+    //   return Promise.reject("error")
+  } else if (res.code == 40102 || res.code == 40103) {
+    //应用过期
+    Message({
+      message: res.msg,
+      type: "error",
+      duration: 5 * 1000
+    })
+    removeToken()
+    removeUserName()
+    window.location.href = res.data.url
     } else {
       return res
     }
