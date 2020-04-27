@@ -110,29 +110,42 @@
                  hide-required-asterisk
                  class="infor-form">
           <el-row>
-            <el-col :span="11">
-              <el-form-item label="管理员账号"
+            <el-col :span="12">
+              <el-form-item label="管理员账号" style="width:90%;position:relative" prop="enterAccount">
+                <el-input v-model.trim="enteradminForm.enterAccount" placeholder="30长度以内英文数字的组合，管理员账号设置后不允许修改!" maxlength='30'>
+                </el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="9">
+              <el-form-item label="管理员手机" style="width:90%;position:relative" prop="enterCellPhone">
+                <el-input v-model.trim="enteradminForm.phone" maxlength='11' placeholder="手机号码用于密码找回!"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="6">
+              <el-form-item label="验证码"
                             style="width:90%;position:relative"
-                            prop="enterAccount">
-                <el-input v-model.trim="enteradminForm.enterAccount"
-                          maxlength='100'></el-input>
-                <i class="el-icon-info"
-                   style="position:absolute;right:-200px;top:6px;"><span>管理员账号设置后不允许修改!</span>
-                </i>
+                            prop="enterValidCode">
+                <el-input v-model.trim="enteradminForm.validCode" maxlength='6'>
+                    <template slot="append" style="color:white;background-color: #4A90E2;border-color: #4A90E2;">
+                      <el-button size="small" type="primary" @click="validCode">获取验证码</el-button>
+                    </template>
+                </el-input>
+                
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="11">
-              <el-form-item label="管理员邮箱"
-                            style="width:90%;position:relative"
-                            type="email"
-                            prop="email">
-                <el-input v-model.trim="enteradminForm.email"
-                          maxlength='100'></el-input>
+              <el-form-item label="管理员邮箱" style="width:90%;position:relative" type="email" prop="email">
+                <el-input v-model.trim="enteradminForm.email" maxlength='90'></el-input>
               </el-form-item>
             </el-col>
           </el-row>
+          
           <el-row>
             <el-col :span="11">
               <el-form-item label="登陆密码"
@@ -159,21 +172,12 @@
       </div>
     </div>
 
-    <!-- TODO0001:
-    这里注册之后会传回来当前企业的信息，点击下一步后跳转到下一个页面之后展示出来；，返回数据式样：
-    { "code": "0", "recordCount": 1, "data": { "id":
-    "7ED9F81AE88D4A4A8D92DBD16A89B236", "length": 20, "verson": 0, "xid":
-    "KVDSUIXXZPAT", "enterName": "5555", "enterNameEn": "5555",
-    "enterShortName": "5555", "enterAddress": "5555", "enterTelNum": "5555",
-    "enterMail": "5555@dddd.com", "liaisonMan": "5555", "position": "5555" } } -->
-
     <div class="edit-btn">
-      <el-button size="small"
+      <el-button size="small" icon="el-icon-back"
                  @click="handleBack">返回</el-button>
-      <el-button type="primary"
+      <el-button type="primary" icon="el-icon-arrow-right"
                  size="small"
                  @click="handleNextStep">下一步</el-button>
-      <!-- <div @click="handleNextStep" class="next-btn"><span>下一步</span></div> -->
     </div>
   </div>
 </template>
@@ -294,6 +298,19 @@ export default {
     //返回
     handleBack () {
       this.$router.go(-1)
+    },
+    // 获取验证码
+    validCode () {
+      // phone 数据必须输入；
+      let obj = {}
+      obj.phone = this.enteradminForm.phone
+      console.log(obj)
+
+      // 接口： /h/code
+      // 返回成功后，按钮灰掉倒计时60秒
+      
+
+      alert("需要实现!!!按钮按下去之后倒计时60秒");
     }
   }
 }
