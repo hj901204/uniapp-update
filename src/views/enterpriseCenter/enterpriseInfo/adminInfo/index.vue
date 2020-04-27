@@ -11,10 +11,13 @@
       <div class="btns">
         <el-button type="primary"
                    size="small"
-                   @click="handleEdit">编辑管理员账号</el-button>
+                   @click="handleEdit">编辑管理员基本信息</el-button>
+        <el-button type="primary"
+                   size="small"
+                   @click="handlePassword">修改管理员账号密码</el-button>
       </div>
     </template>
-    <template v-else>
+    <template v-if="isShowBasicInfo">
       <el-form :model="adminForm"
                ref="ruleForm"
                hide-required-asterisk
@@ -58,6 +61,45 @@
         </el-button>
       </div>
     </template>
+    <template v-if="isShowPasswordInfo">
+      <el-form :model="adminPasswordForm"
+               ref="ruleForm"
+               hide-required-asterisk
+               label-width="100px"
+               class="admin-form"
+               size="small"
+               :rules="rules"
+               inline-message>
+        <el-form-item label="管理员账号"
+                      prop="enterAccount">
+          <el-input v-model="adminPasswordForm.enterAccount"
+                    style="width:50%"
+                    disabled></el-input>
+        </el-form-item>
+        </el-form-item>
+        <el-form-item label="登陆密码"
+                      prop="password">
+          <el-input type="password"
+                    v-model="adminPasswordForm.password"
+                    style="width:50%"></el-input>
+        </el-form-item>
+        <el-form-item label="确认密码"
+                      prop="checkPass">
+          <el-input type="password"
+                    v-model="adminPasswordForm.checkPass"
+                    style="width:50%"></el-input>
+        </el-form-item>
+      </el-form>
+      <div class="edit-btn"
+           style="padding-left:40px;margin-top:30px;">
+        <el-button size="small"
+                   @click="handleBack">返回 </el-button>
+        <el-button size="small"
+                   type="primary"
+                   @click="handleSave">保存
+        </el-button>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -86,6 +128,8 @@ export default {
         checkPass: [{ validator: validatePass, trigger: 'blur' }]
       },
       isShowMainPage: true,
+      isShowBasicInfo: false,
+      isShowPasswordInfo: false,
       adminForm: { checkPass: '' },
     }
   },
@@ -111,11 +155,22 @@ export default {
     handleEdit () {
       this.adminForm
       this.isShowMainPage = false
+      this.isShowPasswordInfo = false
+      this.isShowBasicInfo = true
+    },
+    // 点击修改密码按钮
+    handlePassword () {
+      this.adminPasswordForm
+      this.isShowMainPage = false
+      this.isShowPasswordInfo = true
+      this.isShowBasicInfo = false
     },
     //返回
     handleBack () {
       this.getAdminInfo()
       this.isShowMainPage = true
+      this.isShowPasswordInfo = false
+      this.isShowBasicInfo = false
     },
     //点击保存按钮
     handleSave () {

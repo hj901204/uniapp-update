@@ -16,20 +16,20 @@
             <ul class="invoice-info-box">
               <li>
                 <div>SupplyX ID:</div>
-                <p>{{ form.xid }}</p>
+                <p style="color: red;">{{ form.xid }}</p>
               </li>
               <li>
                 <div>企业名称:</div>
                 <p>{{ form.enterName }}</p>
               </li>
-              <li>
+              <!-- <li>
                 <div>企业英文名称:</div>
                 <p>{{ form.enterNameEn }}</p>
               </li>
               <li>
                 <div>企业简称:</div>
                 <p>{{ form.enterShortName }}</p>
-              </li>
+              </li> -->
               <li>
                 <div>企业地址:</div>
                 <p>{{ form.enterAddress }}</p>
@@ -107,7 +107,7 @@
     </template>
     <template v-else>
       <div class="basic-form">
-        <div class="supplyxId"> <span>SupplyX ID:</span>{{supplyxId}}</div>
+        <!-- <div class="supplyxId"> <span >SupplyX ID:</span>{{supplyxId}}</div> -->
         <el-form :model="form"
                  status-icon
                  ref="ruleForm"
@@ -190,18 +190,18 @@ export default {
           index: 1,
           maxlength: 100
         },
-        {
-          label: "企业英文名称:",
-          model: "enterNameEn",
-          index: 2,
-          maxlength: 100
-        },
-        {
-          label: "企业简称:",
-          model: "enterShortName",
-          index: 3,
-          maxlength: 100
-        },
+        // {
+        //   label: "企业英文名称:",
+        //   model: "enterNameEn",
+        //   index: 2,
+        //   maxlength: 100
+        // },
+        // {
+        //   label: "企业简称:",
+        //   model: "enterShortName",
+        //   index: 3,
+        //   maxlength: 100
+        // },
         {
           label: "企业地址:",
           model: "enterAddress",

@@ -22,22 +22,22 @@
                           maxlength='100'></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="11">
+            <!-- <el-col :span="11">
               <el-form-item label="企业英文名称"
                             style="width:90%"
                             prop="enterNameEn"
                             maxlength='100'>
                 <el-input v-model.trim="form.enterNameEn"></el-input>
               </el-form-item>
-            </el-col>
-            <el-col :span="11">
+            </el-col> -->
+            <!-- <el-col :span="11">
               <el-form-item label="企业简称"
                             style="width:90%"
                             prop="enterShortName">
                 <el-input v-model.trim="form.enterShortName"
                           maxlength='100'></el-input>
               </el-form-item>
-            </el-col>
+            </el-col> -->
 
             <el-col :span="11">
               <el-form-item label="联系电话"
@@ -119,8 +119,8 @@
           </el-row>
           <el-row>
             <el-col :span="9">
-              <el-form-item label="管理员手机" style="width:90%;position:relative" prop="enterCellPhone">
-                <el-input v-model.trim="enteradminForm.phone" maxlength='11' placeholder="手机号码用于密码找回!"></el-input>
+              <el-form-item label="管理员手机" style="width:90%;position:relative" prop="mobile">
+                <el-input v-model.trim="enteradminForm.mobile" maxlength='11' placeholder="手机号码用于密码找回!"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -128,8 +128,8 @@
             <el-col :span="6">
               <el-form-item label="验证码"
                             style="width:90%;position:relative"
-                            prop="enterValidCode">
-                <el-input v-model.trim="enteradminForm.validCode" maxlength='6'>
+                            prop="code">
+                <el-input v-model.trim="enteradminForm.code" maxlength='6'>
                     <template slot="append" style="color:white;background-color: #4A90E2;border-color: #4A90E2;">
                       <el-button size="small" type="primary" @click="validCode">获取验证码</el-button>
                     </template>
@@ -308,7 +308,7 @@ export default {
 
       // 接口： /h/code
       // 返回成功后，按钮灰掉倒计时60秒
-      
+
 
       alert("需要实现!!!按钮按下去之后倒计时60秒");
     }
