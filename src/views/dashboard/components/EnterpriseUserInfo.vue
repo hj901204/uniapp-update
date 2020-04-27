@@ -47,7 +47,7 @@ export default {
     getCount () {
       this.$api.post(this.$lesUiPath.enteruserFindCount, {}).then(result => {
         if (result.code == 0) {
-          this.count = result.data + 1
+          this.count = result.data
         }
       })
     }

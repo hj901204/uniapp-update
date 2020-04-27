@@ -53,8 +53,8 @@ export default {
           id: 2
         },
         {
-          fieldNo: "telPhone",
-          fieldName: "联系电话",
+          fieldNo: "mobilePhone",
+          fieldName: "手机号码",
           id: 3
         },
         {
@@ -154,7 +154,7 @@ export default {
     },
     //获取用户列表
     getUserData (page = 1, length = 10) {
-      const queryInfo = { page: page, length: length };
+      const queryInfo = { page: page, length: length, isSuperAdmin:'0' };
       this.$api.post(this.$lesUiPath.enteruserFindUserList, queryInfo).then(result => {
         if (result.code == 0) {
           this.tableData = result.data

@@ -30,8 +30,8 @@
                    @click="handleResetPsd"
                    icon="el-icon-my-zhongzhi">重置</el-button>
       </el-form-item>
-      <el-form-item label="联系电话">
-        <el-input v-model="userForm.telPhone"
+      <el-form-item label="手机号码">
+        <el-input v-model="userForm.mobilePhone"
                   type="tel"
                   style="width:50%"></el-input>
       </el-form-item>
@@ -98,7 +98,9 @@ export default {
         departId: [
           { required: true, message: "请选择部门", trigger: 'blur' }
         ],
-
+        mobilePhone: [
+          { required: true, message: "请输入手机号码", trigger: 'blur' }
+        ],
       },
 
       departOptions: [],  //部门数组
