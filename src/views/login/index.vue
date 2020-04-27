@@ -30,7 +30,7 @@
                         type="text"
                         auto-complete="on"
                         class="username"
-                        placeholder="请输入用户名">
+                        placeholder="请使用手机号码或企业账号登陆">
                 <!-- <i slot="suffix" class="el-input__icon el-icon-question"></i> -->
               </el-input>
               <!-- prefix-icon="el-icon-user-solid" -->
@@ -38,7 +38,7 @@
               <!-- 提示文字 -->
               <el-tooltip class="tooltip"
                           effect="dark"
-                          content="请使用邮箱或者企业账号登录"
+                          content="请使用手机号码或企业账号登陆"
                           placement="top">
                 <i class="el-icon-question account-prompt"
                    style="font-size:22px;vertical-align: middle"></i>
