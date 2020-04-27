@@ -4,17 +4,17 @@
     <div class="warn-info">
       <i class="el-icon-warning"></i>
       <span>
-        企业的管理员账号相关信息可以在这里进行修改，可以通过修改管理员联系邮件重新分配管理员企业账号到别的员工；</span>
+        企业的管理员账号相关信息可以在这里进行修改，修改密码必须使用登记的管理员的手机号码验证；</span>
     </div>
     <template v-if="isShowMainPage">
-      <div class="admin-num">管理员账号:<span>{{ adminForm.enterAccount }}</span></div>
+      <div class="admin-num">管理员账号:<span>{{ admindata.username }}</span></div>
       <div class="btns">
-        <el-button type="primary"
-                   size="small"
+        <el-button type="primary" icon="el-icon-edit"
+                   size="small" 
                    @click="handleEdit">编辑管理员基本信息</el-button>
-        <el-button type="primary"
+        <el-button type="primary"  icon="el-icon-edit"
                    size="small"
-                   @click="handlePassword">修改管理员账号密码</el-button>
+                   @click="handlePassword">修改管理员密码</el-button>
       </div>
     </template>
     <template v-if="isShowBasicInfo">
@@ -24,21 +24,21 @@
                label-width="100px"
                class="admin-form"
                size="small"
-               :rules="rules"
+               :rules="rules1"
                inline-message>
         <el-form-item label="管理员账号"
-                      prop="enterAccount">
-          <el-input v-model="adminForm.enterAccount"
+                      prop="username">
+          <el-input v-model="admindata.username"
                     style="width:50%"
                     disabled></el-input>
         </el-form-item>
         <el-form-item label="管理员邮箱"
                       prop="email">
-          <el-input v-model="adminForm.email"
+          <el-input v-model="admindata.email"
                     style="width:50%">
           </el-input>
         </el-form-item>
-        <el-form-item label="登陆密码"
+        <!-- <el-form-item label="登陆密码"
                       prop="password">
           <el-input type="password"
                     v-model="adminForm.password"
@@ -49,7 +49,7 @@
           <el-input type="password"
                     v-model="adminForm.checkPass"
                     style="width:50%"></el-input>
-        </el-form-item>
+        </el-form-item> -->
       </el-form>
       <div class="edit-btn"
            style="padding-left:40px;margin-top:30px;">
@@ -68,35 +68,42 @@
                label-width="100px"
                class="admin-form"
                size="small"
-               :rules="rules"
+               :rules="rules2"
                inline-message>
-        <el-form-item label="管理员账号"
-                      prop="enterAccount">
-          <el-input v-model="adminPasswordForm.enterAccount"
-                    style="width:50%"
-                    disabled></el-input>
+        <el-form-item label="管理员手机"
+                      prop="mobilePhone">
+          <el-input v-model="admindata.mobilePhone"
+                    style="width:30%"></el-input>
+        </el-form-item>
+        <el-form-item label="验证码"
+                      prop="code">
+          <el-input v-model="code" style="width:30%">
+            <template slot="append" style="color:white;background-color: #4A90E2;border-color: #4A90E2;">
+              <el-button size="small" type="primary" @click="validCode">获取验证码</el-button>
+            </template>
+          </el-input>
         </el-form-item>
         </el-form-item>
         <el-form-item label="登陆密码"
                       prop="password">
           <el-input type="password"
-                    v-model="adminPasswordForm.password"
-                    style="width:50%"></el-input>
+                    v-model="admindata.password"
+                    style="width:30%"></el-input>
         </el-form-item>
         <el-form-item label="确认密码"
                       prop="checkPass">
           <el-input type="password"
-                    v-model="adminPasswordForm.checkPass"
-                    style="width:50%"></el-input>
+                    v-model="admindata.checkPass"
+                    style="width:30%"></el-input>
         </el-form-item>
       </el-form>
       <div class="edit-btn"
            style="padding-left:40px;margin-top:30px;">
         <el-button size="small"
-                   @click="handleBack">返回 </el-button>
+                   @click="handlePBack">返回 </el-button>
         <el-button size="small"
                    type="primary"
-                   @click="handleSave">保存
+                   @click="handlePSave">保存
         </el-button>
       </div>
     </template>
@@ -120,18 +127,23 @@ export default {
       }
     };
     return {
-      rules: {
-        enterAccount: [{ required: true, message: '请输入管理员账号', trigger: 'blur' }],
+      rules1: {
+        username: [{ required: true, message: '请输入管理员账号', trigger: 'blur' }],
         email: [{ required: true, message: '请输入管理员邮箱', trigger: 'blur' },
-        { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }],
+        { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }]
+      },
+      rules2: {
+        mobilePhone: [{ required: true, message: '请输入手机号码', trigger: 'blur' }],
         password: [{ required: true, message: '请输入登录密码', trigger: 'blur' }],
         checkPass: [{ validator: validatePass, trigger: 'blur' }]
       },
       isShowMainPage: true,
       isShowBasicInfo: false,
       isShowPasswordInfo: false,
-      adminForm: { checkPass: '' },
+      adminPasswordForm: { checkPass: '' },
+      admindata: {}
     }
+    
   },
   created () {
     this.getAdminInfo()
@@ -141,9 +153,10 @@ export default {
     getAdminInfo (obj = {}) {
       this.$api.post(this.$lesUiPath.adminInfo, obj).then(result => {
         if (result.code == 0) {
-          this.adminForm = Object.assign({ checkPass: '' }, result.data[0])
-          this.adminForm['checkPass'] = result.data[0].password
-
+          this.admindata = result.data
+          this.adminForm = Object.assign({ checkPass: '' }, result.data)
+          this.adminPasswordForm = Object.assign({ checkPass: '' }, result.data)
+          this.adminPasswordForm['checkPass'] = result.data.password
         } else {
           if (result.msg) {
             return this.$message.error(result.msg)
@@ -172,13 +185,45 @@ export default {
       this.isShowPasswordInfo = false
       this.isShowBasicInfo = false
     },
+    //返回
+    handlePBack () {
+      this.getAdminInfo()
+      this.isShowMainPage = true
+      this.isShowPasswordInfo = false
+      this.isShowBasicInfo = false
+    },
     //点击保存按钮
     handleSave () {
       let valid = this.validateFunc('ruleForm')
       if (valid) {
         let obj = {}
-        obj = Object.assign(this.adminForm)
-        this.adminForm.checkPass = this.checkPass
+        //obj = Object.assign(this.adminForm)
+        //this.adminForm.checkPass = this.checkPass
+        obj.email = this.adminForm.email
+        obj.id = this.adminForm.id
+        console.log(obj)
+        console.log("this.adminForm.id = " + this.adminForm.id)
+        console.log("this.adminForm.email = " + this.adminForm.email)
+        //return;
+        this.$api.post(this.$lesUiPath.editAdminInfo, obj).then(result => {
+          if (result.code == 0) {
+            this.isShowMainPage = true
+          } else {
+            return this.$message.error(result.msg)
+          }
+        })
+      }
+    },
+
+    handlePSave () {
+      let valid = this.validateFunc('ruleForm')
+      if (valid) {
+        let obj = {}
+        obj = Object.assign(this.adminPasswordForm)
+        
+        this.adminPasswordForm.checkPass = this.checkPass
+        console.log(obj)
+        return;
         this.$api.post(this.$lesUiPath.editAdminInfo, obj).then(result => {
           if (result.code == 0) {
             this.isShowMainPage = true

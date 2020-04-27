@@ -18,9 +18,9 @@ const enterpriseBasicInfo = baseUrl + "/enterprise/findEnt"
 // 企业基本信息-修改
 const editEnterpriseBasicInfo = baseUrl + "/enterprise/update"
 // 管理员信息
-const adminInfo = baseUrl + "/enteradmin/findAdminList"
+const adminInfo = baseUrl + "/user/admin"
 // 编辑管理员信息-保存
-const editAdminInfo = baseUrl + "/enteradmin/update"
+const editAdminInfo = baseUrl + "/user/upd"
 
 // 消息中心
 // 系统信息
