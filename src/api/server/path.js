@@ -4,6 +4,8 @@ const baseUrl = "/supplyx"
 const login = baseUrl + "/system/login"
 //企业注册
 const enterpriseRegister = baseUrl + "/enterprise/register"
+//获取验证码
+const code = baseUrl + "/h/code"
 // 应用中心-应用商城
 const appStore = baseUrl + "/app/findList"
 // 应用详情
@@ -139,7 +141,8 @@ export default {
       enterAppUserRemove,
       enterAppUserEdit,
       enteruserLogin,
-      enterAppRun
+      enterAppRun,
+      code
     }
   }
 }

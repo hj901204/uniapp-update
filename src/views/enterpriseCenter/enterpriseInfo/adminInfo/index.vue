@@ -77,12 +77,11 @@
         </el-form-item>
         <el-form-item label="验证码"
                       prop="code">
-          <el-input v-model="code" style="width:30%">
+          <el-input v-model="admindata.code" style="width:30%">
             <template slot="append" style="color:white;background-color: #4A90E2;border-color: #4A90E2;">
-              <el-button size="small" type="primary" @click="validCode">获取验证码</el-button>
+              <el-button size="small" :disabled="canClick" type="primary" @click="validCode">获取验证码</el-button>
             </template>
           </el-input>
-        </el-form-item>
         </el-form-item>
         <el-form-item label="登陆密码"
                       prop="password">
@@ -141,7 +140,11 @@ export default {
       isShowBasicInfo: false,
       isShowPasswordInfo: false,
       adminPasswordForm: { checkPass: '' },
-      admindata: {}
+      admindata: {},
+      btnContent:'获取验证码',
+      canClick:false,
+      time: 60,
+      timer:'cloak',
     }
     
   },
@@ -191,6 +194,34 @@ export default {
       this.isShowMainPage = true
       this.isShowPasswordInfo = false
       this.isShowBasicInfo = false
+    },
+    //获取验证码
+    validCode () {
+      if(!this.admindata.mobilePhone) return this.$message.warning("请先输入手机号码")
+      let obj = {}
+      obj.phone = this.admindata.mobilePhone
+      this.canClick = true
+      this.getTimeOut(); 
+      // this.$api.post(this.$lesUiPath.code, obj).then(result => {
+      //   if (result.code == 0) {
+          
+      //   } else {
+      //     return this.$message.error(result.msg)
+      //   }
+      // })
+    },
+    getTimeOut(){
+      this.cloak = setInterval( () => {
+        this.time--
+        if(this.time > 0){
+          this.btnContent = this.time + "s后重新发送"
+        }else if(this.time <= 0){
+          window.clearInterval(this.cloak)
+          this.btnContent = "重新发送"
+          this.time = 60
+          this.canClick = false
+        }
+      },1000)
     },
     //点击保存按钮
     handleSave () {

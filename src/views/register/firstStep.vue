@@ -125,13 +125,13 @@
             </el-col>
           </el-row>
           <el-row>
-            <el-col :span="6">
+            <el-col :span="7">
               <el-form-item label="验证码"
                             style="width:90%;position:relative"
                             prop="code">
                 <el-input v-model.trim="enteradminForm.code" maxlength='6'>
                     <template slot="append" style="color:white;background-color: #4A90E2;border-color: #4A90E2;">
-                      <el-button size="small" type="primary" @click="validCode">获取验证码</el-button>
+                      <el-button size="small" type="primary" :disabled="canClick" @click="validCode">{{ btnContent }}</el-button>
                     </template>
                 </el-input>
                 
@@ -248,7 +248,11 @@ export default {
       },
       form: { adminName: "" }, //表单
       form2: {},
-      enteradminForm: {}
+      enteradminForm: {},
+      btnContent:'获取验证码',
+      canClick:false,
+      time: 60,
+      timer:'cloak',
     }
   },
   methods: {
@@ -301,16 +305,32 @@ export default {
     },
     // 获取验证码
     validCode () {
-      // phone 数据必须输入；
+      if(!this.enteradminForm.mobile) return this.$message.warning("请先输入手机号码")
       let obj = {}
-      obj.phone = this.enteradminForm.phone
+      obj.phone = this.enteradminForm.mobile
       console.log(obj)
-
-      // 接口： /h/code
-      // 返回成功后，按钮灰掉倒计时60秒
-
-
-      alert("需要实现!!!按钮按下去之后倒计时60秒");
+      this.canClick = true
+      this.getTimeOut(); 
+      // this.$api.post(this.$lesUiPath.code, obj).then(result => {
+      //   if (result.code == 0) {
+          
+      //   } else {
+      //     return this.$message.error(result.msg)
+      //   }
+      // })
+    },
+    getTimeOut(){
+      this.cloak = setInterval( () => {
+        this.time--
+        if(this.time > 0){
+          this.btnContent = this.time + "s后重新发送"
+        }else if(this.time <= 0){
+          window.clearInterval(this.cloak)
+          this.btnContent = "重新发送"
+          this.time = 60
+          this.canClick = false
+        }
+      },1000)
     }
   }
 }
