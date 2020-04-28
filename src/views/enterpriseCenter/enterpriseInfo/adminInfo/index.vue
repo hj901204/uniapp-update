@@ -79,7 +79,7 @@
                       prop="code">
           <el-input v-model="admindata.code" style="width:30%">
             <template slot="append" style="color:white;background-color: #4A90E2;border-color: #4A90E2;">
-              <el-button size="small" :disabled="canClick" type="primary" @click="validCode">获取验证码</el-button>
+              <el-button size="small" :disabled="canClick" type="primary" @click="validCode">{{ btnContent }}</el-button>
             </template>
           </el-input>
         </el-form-item>
@@ -201,7 +201,7 @@ export default {
       let obj = {}
       obj.phone = this.admindata.mobilePhone
       this.canClick = true
-      this.getTimeOut(); 
+      this.getTimeOut() 
       // this.$api.post(this.$lesUiPath.code, obj).then(result => {
       //   if (result.code == 0) {
           
