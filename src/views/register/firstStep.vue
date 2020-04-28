@@ -110,7 +110,7 @@
                  hide-required-asterisk
                  class="infor-form">
           <el-row>
-            <el-col :span="12">
+            <el-col :span="11">
               <el-form-item label="管理员账号" style="width:90%;position:relative" prop="enterAccount">
                 <el-input v-model.trim="enteradminForm.enterAccount" placeholder="30长度以内英文数字的组合，管理员账号设置后不允许修改!" maxlength='30'>
                 </el-input>
@@ -118,7 +118,7 @@
             </el-col>
           </el-row>
           <el-row>
-            <el-col :span="9">
+            <el-col :span="11">
               <el-form-item label="管理员手机" style="width:90%;position:relative" prop="mobile">
                 <el-input v-model.trim="enteradminForm.mobile" maxlength='11' placeholder="手机号码用于密码找回!"></el-input>
               </el-form-item>
