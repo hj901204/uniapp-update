@@ -7,9 +7,9 @@
       <div class="type">
         <div class="title">您提交的内容有如下错误:</div>
         <ul>
-          <li><img class="liImg" src="@/assets/img/guanbi-2.png" alt="">你的企业账号已被停用</li>
-          <li><img class="liImg" src="@/assets/img/guanbi-2.png" alt="">你的个人账号被停用</li>
-          <li><img class="liImg" src="@/assets/img/guanbi-2.png" alt="">没有关联的企业</li>
+          <li><img class="liImg" src="@/assets/img/guanbi-2.png" alt=""><span style="vertical-align: super;">你的企业账号已被停用</span></li>
+          <li><img class="liImg" src="@/assets/img/guanbi-2.png" alt=""><span style="vertical-align: super;">你的个人账号被停用</span></li>
+          <li><img class="liImg" src="@/assets/img/guanbi-2.png" alt=""><span style="vertical-align: super;">没有关联的企业</span></li>
         </ul>
       </div>
       <div class="return">
@@ -38,7 +38,8 @@ export default {
 <style lang="scss">
 
 .container {
-  width: 100%;
+  width: 70%;
+  margin: auto;
   height: 100%;
   .forbiddenImg{
     width: 50px;
@@ -58,11 +59,12 @@ export default {
   .type{
     width: 70%;
     margin: 0 auto;
-    background-color: #dfe4ed;
+    background-color: #e4e7ed;
     text-align: left;
     padding: 20px 30px;
     .title{
       font-size: 14px;
+      margin: 8px 0;
     }
     ul li {
       img{
@@ -71,7 +73,7 @@ export default {
         margin-right: 5px;
       }
       padding: 0;
-      margin: 0;
+      margin: 5px;
       font-size: 12px;
     }
   }
@@ -79,7 +81,7 @@ export default {
     margin-top: 20px;
   }
   .content{
-    margin:20% auto;
+    margin:15% auto;
     
   }
   

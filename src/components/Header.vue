@@ -7,7 +7,7 @@
         <img src="@/assets/img/logo-w.png"
              alt="" />
       </div>
-      <div class="top-nav">
+      <!-- <div class="top-nav">
         <router-link to="/"
                      tag="li"
                      :class="$route.path == '/dashboard' ? 'nav-active' : ''">
@@ -29,8 +29,8 @@
                      :class="$route.path == '/help' ? 'nav-active' : ''">
           <span>帮助中心</span>
         </router-link>
-      </div>
-      <UserCenterNav style="float:right;" />
+      </div> -->
+      <UserCenterNav v-if="this.$store.getters.name" style="float:right;" />
     </div>
   </div>
 </template>
@@ -49,12 +49,13 @@ export default {
     handleJudgePath () {
       let paths = [
         "/login",
-        "/forbidden",
-        "/register",
-        "/register/firstStep",
-        "/register/secondStep",
-        "/register/thirdStep",
-        "/register/fourthStep"
+        // "/forbidden",
+        // "/findPassword",
+        // "/register",
+        // "/register/firstStep",
+        // "/register/secondStep",
+        // "/register/thirdStep",
+        // "/register/fourthStep"
       ]
       let routePath = this.$route.path
       if (paths.indexOf(routePath) != -1) {

@@ -22,11 +22,13 @@ export default {
       let paths = [
         "/login",
         "/forbidden",
+        "/findPassword",
         "/register",
         "/register/firstStep",
         "/register/secondStep",
         "/register/thirdStep",
-        "/register/fourthStep"
+        "/register/fourthStep",
+        "/register/lastStep"
       ]
       let routePath = this.$route.path
       if (paths.indexOf(routePath) != -1) {

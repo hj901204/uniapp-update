@@ -21,6 +21,18 @@ export function validateNumAndCh(rule, value, callback) {
     }
   }
 }
+//只允许输入数字或字母
+export function validateNumAndEN(rule, value, callback) {
+  let reg = /^[A-Za-z0-9]+$/
+  if (value) {
+    if (reg.test(value)) {
+      return callback()
+    } else {
+      return callback(new Error("只允许输入数字或字母"))
+    }
+  }
+}
+
 export function validateEmail(rule, value, callback) {
   // 邮箱验证正则
   let reg = /^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/
@@ -29,6 +41,26 @@ export function validateEmail(rule, value, callback) {
       return callback(new Error("不允许邮箱注册"))
     } else {
       return callback()
+    }
+  }
+}
+//手机号和座机号正则
+export function validatePhone(rule, value, callback) {
+  var phoneReg = /(^1[3|4|5|7|8|9]\d{9}$)|(^09\d{8}$)/ //手机号码
+  var telReg = /^0\d{2,3}-?\d{7,8}$/ //座机号码
+  if (value) {
+    if (value.length == 11) {
+      //手机号码
+      if (phoneReg.test(value)) {
+        return callback()
+      }
+    } else if (value.length == 13 && value.indexOf("-") != -1) {
+      //固定电话
+      if (telReg.test(value)) {
+        return callback()
+      }
+    } else {
+      return callback(new Error("请输入正确联系电话"))
     }
   }
 }

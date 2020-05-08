@@ -36,7 +36,7 @@ export default {
     color: #ffffff;
     text-align: center;
     overflow: hidden;
-    width: 79.2%;
+    width: 100%;
     // margin: 0 auto;
     // padding: 24px 0;
     & > img {

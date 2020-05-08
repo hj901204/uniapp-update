@@ -60,7 +60,7 @@
             </el-form-item>
           </el-form>
           <div class="forgetpsd">
-            <router-link to="/forbidden">管理员忘记密码</router-link>
+            <router-link to="/findPassword">管理员忘记密码</router-link>
           </div>
           <el-button type="primary"
                      class="login-button"

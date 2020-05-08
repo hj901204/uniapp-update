@@ -3,6 +3,7 @@ import VueRouter from "vue-router"
 import Login from "@/views/login/index.vue"
 import Forbidden from "@/views/forbidden/forbidden.vue"
 import Dashboard from "@/views/dashboard/index"
+import FindPassword from "@/views/findPassword/index.vue"
 
 import Help from "@/views/help/index"
 
@@ -73,6 +74,17 @@ export const constantRoutes = [
       breadcrumb: true
     }
   },
+  //忘记密码
+  {
+    path: "/findPassword",
+    name: "findPassword",
+    component: FindPassword,
+    meta: {
+      title: "找回密码",
+      breadcrumbTitle: "找回密码",
+      breadcrumb: true
+    }
+  },
   //注册页面
   {
     path: "/register",
@@ -123,6 +135,16 @@ export const constantRoutes = [
           breadcrumb: false
         },
         component: () => import("../views/register/fourthStep.vue")
+      },
+      {
+        path: "lastStep",
+        name: "lastStep",
+        meta: {
+          title: "完成",
+          showRoute: false,
+          breadcrumb: false
+        },
+        component: () => import("../views/register/end.vue")
       }
     ]
   }

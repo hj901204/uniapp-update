@@ -6,6 +6,10 @@ const login = baseUrl + "/system/login"
 const enterpriseRegister = baseUrl + "/enterprise/register"
 //获取验证码
 const code = baseUrl + "/h/code"
+//重置密码
+const password = baseUrl + "/system/forgot"
+//获取验证码-忘记密码
+const forgetCode = baseUrl + "/h/code/forgot"
 // 应用中心-应用商城
 const appStore = baseUrl + "/app/findList"
 // 应用详情
@@ -142,7 +146,9 @@ export default {
       enterAppUserEdit,
       enteruserLogin,
       enterAppRun,
-      code
+      code,
+      password,
+      forgetCode
     }
   }
 }

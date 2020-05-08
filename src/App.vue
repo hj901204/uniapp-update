@@ -1,7 +1,7 @@
 <template>
   <div id="app" :class="$route.path != '/login' ? 'app' : ''">
     <HeaderNav />
-    <div :class="$route.path == '/login' ? 'views views-height' : 'views'">
+    <div :class="$route.path == '/login' || $route.path == '/findPassword' ? 'views views-height' : 'views'">
       <Layout />
       <router-view />
       <!-- 页脚 -->

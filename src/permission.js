@@ -11,11 +11,13 @@ NProgress.configure({
 const whiteList = [
   "/login",
   "/forbidden",
+  "/findPassword",
   "/register",
   "/register/firstStep",
   "/register/secondStep",
   "/register/thirdStep",
-  "/register/fourthStep"
+  "/register/fourthStep",
+  "/register/lastStep"
 ] // no redirect whitelist
 
 router.beforeEach((to, from, next) => {

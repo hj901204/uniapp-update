@@ -42,6 +42,11 @@
                        class="confirm-register"
                        @click="handleStartResgister">确定开始注册</el-button>
           </div>
+          <div class="register-btn">
+            <el-button type="text"
+                       class="confirm-register"
+                       @click="handleback">已有账户？点击返回登录</el-button>
+          </div>
         </div>
       </div>
     </div>
@@ -70,6 +75,9 @@ export default {
           type: "warning"
         })
       }
+    },
+    handleback(){
+      this.$router.push({path:'/login'})
     }
   }
 }
@@ -121,7 +129,7 @@ export default {
 
     .protocol-content {
       width: 100%;
-      height: 100%;
+      height: 95%;
       margin: 0 auto;
       border: 2px solid rgba(0, 0, 0, 0.1);
     }

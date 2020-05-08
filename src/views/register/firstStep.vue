@@ -5,7 +5,7 @@
     <!-- 表单部分 -->
     <div class="form-part">
       <div class="detail-info-form">
-        <h3>企业详细信息</h3>
+        <h3>企业基本信息</h3>
         <el-form ref="formRef"
                  :model="form"
                  size="mini"
@@ -19,7 +19,8 @@
                             style="width:90%"
                             prop="enterName">
                 <el-input v-model.trim="form.enterName"
-                          maxlength='100'></el-input>
+                          placeholder="请输入企业名称"
+                          maxlength='30'></el-input>
               </el-form-item>
             </el-col>
             <!-- <el-col :span="11">
@@ -42,6 +43,7 @@
             <el-col :span="11">
               <el-form-item label="联系电话"
                             style="width:90%"
+                            placeholder="请输入电话号码"
                             prop="enterTelNum">
                 <el-input v-model.trim="form.enterTelNum"
                           type="tel"
@@ -51,6 +53,7 @@
             <el-col :span="11">
               <el-form-item label="企业地址"
                             style="width:90%"
+                            placeholder="请输入企业地址"
                             prop="enterAddress">
                 <el-input v-model.trim="form.enterAddress"
                           maxlength='100'></el-input>
@@ -60,15 +63,34 @@
               <el-form-item label="联系邮件"
                             style="width:90%"
                             type="email"
+                            placeholder="企业找回密码使用"
                             prop="enterMail">
                 <el-input v-model.trim="form.enterMail"
+                          maxlength='100'></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="11">
+              <el-form-item label="主要联系人"
+                            style="width:90%"
+                            placeholder="请输入姓名"
+                            prop="liaisonMan">
+                <el-input v-model.trim="form.liaisonMan"
+                          maxlength='100'></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="11">
+              <el-form-item label="联系人职务"
+                            style="width:90%"
+                            placeholder="请输入职位"
+                            prop="position">
+                <el-input v-model.trim="form.position"
                           maxlength='100'></el-input>
               </el-form-item>
             </el-col>
           </el-row>
         </el-form>
       </div>
-      <div class="detail-info-form">
+      <!-- <div class="detail-info-form">
         <h3>主要联系人信息</h3>
         <el-form ref="formRef2"
                  :model="form2"
@@ -77,28 +99,9 @@
                  hide-required-asterisk
                  label-width="100px"
                  class="infor-form">
-          <el-row>
-            <el-col :span="11">
-              <el-form-item label="姓名"
-                            style="width:90%"
-                            prop="liaisonMan">
-                <el-input v-model.trim="form2.liaisonMan"
-                          maxlength='100'></el-input>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span="11">
-              <el-form-item label="职位"
-                            style="width:90%"
-                            prop="position">
-                <el-input v-model.trim="form2.position"
-                          maxlength='100'></el-input>
-              </el-form-item>
-            </el-col>
-          </el-row>
+            
         </el-form>
-      </div>
+      </div> -->
 
       <div class="detail-info-form">
         <h3>企业账户信息</h3>
@@ -138,13 +141,13 @@
               </el-form-item>
             </el-col>
           </el-row>
-          <el-row>
+          <!-- <el-row>
             <el-col :span="11">
               <el-form-item label="管理员邮箱" style="width:90%;position:relative" type="email" prop="email">
                 <el-input v-model.trim="enteradminForm.email" maxlength='90'></el-input>
               </el-form-item>
             </el-col>
-          </el-row>
+          </el-row> -->
           
           <el-row>
             <el-col :span="11">
@@ -183,7 +186,7 @@
 </template>
 
 <script>
-import { validateNumAndCh, validateEmail } from '@/utils/validate'
+import { validateNumAndCh, validateEmail, validatePhone} from '@/utils/validate'
 export default {
   name: "first-step",
   components: {
@@ -221,29 +224,26 @@ export default {
         enterNameEn: [
           { required: true, message: "请输入企业英文名称", trigger: "blur" }
         ],
-        enterAddress: [
-          { required: true, message: "请输入企业地址", trigger: "blur" }
-        ]
-      },
-      rules2: {
-        liaisonMan: [
-          { required: true, message: "请输入姓名", trigger: "blur" }
-        ],
-        position: [{ required: true, message: "请输入职位", trigger: "blur" }]
       },
       rules3: {
         enterAccount: [
           { required: true, message: "请输入管理员账号", trigger: "blur" },
           { validator: validateEmail.bind(this), message: "不允许邮箱注册", trigger: "blur" },
-
+        ],
+        mobile: [
+          { required: true, message: "请输入管理员手机号码", trigger: "blur" },
+          { validator: validatePhone.bind(this), message: "请输入正确联系电话", trigger: "blur" },
+        ],
+        code: [
+          { required: true, message: "请输入验证码", trigger: "blur" }
         ],
         password: [
           { required: true, message: "请输入登录密码", trigger: "blur" }
         ],
-        email: [
-          { required: true, message: "请输入管理员邮箱", trigger: "blur" },
-          { type: "email", message: "请输入正确的邮箱地址", trigger: "blur" }
-        ],
+        // email: [
+        //   { required: true, message: "请输入管理员邮箱", trigger: "blur" },
+        //   { type: "email", message: "请输入正确的邮箱地址", trigger: "blur" }
+        // ],
         checkPsd: [{ validator: validatePass, trigger: "blur" }]
       },
       form: { adminName: "" }, //表单
@@ -258,9 +258,8 @@ export default {
   methods: {
     handleNextStep () {
       let valid1 = this.validateFunc("formRef")
-      let valid2 = this.validateFunc("formRef2")
       let valid3 = this.validateFunc("formRef3")
-      if (valid1 && valid2 && valid3) {
+      if (valid1 && valid3) {
         let obj = {}
         obj.enterprise = Object.assign(this.form, this.form2)
         obj.enteradmin = this.enteradminForm
@@ -269,7 +268,7 @@ export default {
           console.log("enterpriseRegister:" + result)
           if (result.code == 0) {
             this.$router.push({
-              path: "/register/secondStep",
+              path: "/register/lastStep",
               query: { data: result.data }
             })
           } else {
