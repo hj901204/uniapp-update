@@ -64,6 +64,7 @@ const actions = {
   LoginByUsername({ commit }, userInfo) {
     const username = userInfo.username.trim()
     const password = userInfo.password
+    
     return new Promise((resolve, reject) => {
       loginByUsername(username, password)
         .then(response => {
@@ -84,7 +85,7 @@ const actions = {
             setAuthType(type)
             // resetRouter()
             resolve()
-          } else {
+          }else {
             Message({
               message: response.msg,
               type: "error"

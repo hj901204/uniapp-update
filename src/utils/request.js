@@ -65,15 +65,19 @@ service.interceptors.response.use(
     //   })
     //   return Promise.reject("error")
   } else if (res.code == 40102 || res.code == 40103) {
-    //应用过期
-    Message({
-      message: res.msg,
-      type: "error",
-      duration: 5 * 1000
-    })
-    removeToken()
-    removeUserName()
-    window.location.href = res.data.url
+    if(res.code == 40103 && res.msg.indexOf("停用") != -1){
+      window.location.href = '/#/forbidden'
+    }else{
+       //应用过期
+        Message({
+          message: res.msg,
+          type: "error",
+          duration: 5 * 1000
+        })
+        removeToken()
+        removeUserName()
+        window.location.href = res.data.url
+    }
     } else {
       return res
     }

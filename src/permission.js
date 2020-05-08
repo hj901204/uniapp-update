@@ -10,6 +10,7 @@ NProgress.configure({
 
 const whiteList = [
   "/login",
+  "/forbidden",
   "/register",
   "/register/firstStep",
   "/register/secondStep",

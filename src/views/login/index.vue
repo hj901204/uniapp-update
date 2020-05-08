@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <div class="logo-box">
+    <!-- <div class="logo-box">
       <img src="@/assets/img/login/login.png"
            alt="" />
       <div class="logo-container">
@@ -11,10 +11,11 @@
                alt="" />
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="login-box">
       <div class="login-background">
         <div class="login-main">
+          <div class="login-title">Supply X 供应链协同平台</div>
           <el-form ref="loginForm"
                    :model="loginForm"
                    :rules="loginRules"
@@ -22,15 +23,16 @@
                    auto-complete="on"
                    label-position="left">
             <el-form-item prop="username">
-              <p style="height:20px;line-height:20px;margin-bottom:10px;color:#7e7e7e">
-                登陆账号
+              <p style="text-align: left;height:20px;line-height:20px;margin-bottom:10px;color:#7e7e7e;">
+                账户密码登录
               </p>
               <el-input v-model.trim="loginForm.username"
                         name="username"
                         type="text"
                         auto-complete="on"
                         class="username"
-                        placeholder="请使用手机号码或企业账号登陆">
+                        placeholder="账户/手机号"
+                        prefix-icon="el-icon-user">
                 <!-- <i slot="suffix" class="el-input__icon el-icon-question"></i> -->
               </el-input>
               <!-- prefix-icon="el-icon-user-solid" -->
@@ -45,19 +47,20 @@
               </el-tooltip>
             </el-form-item>
             <el-form-item prop="password">
-              <p style="height:20px;line-height:20px;margin-bottom:10px;color:#7e7e7e">
+              <!-- <p style="height:20px;line-height:20px;margin-bottom:10px;color:#7e7e7e">
                 密码
-              </p>
+              </p> -->
               <el-input type="password"
                         v-model.trim="loginForm.password"
                         name="password"
                         auto-complete="on"
-                        placeholder="请输入密码" />
+                        placeholder="请输入密码"
+                        prefix-icon="el-icon-lock" />
               <!-- prefix-icon="el-icon-lock" -->
             </el-form-item>
           </el-form>
           <div class="forgetpsd">
-            <router-link to="">忘记密码?</router-link>
+            <router-link to="/forbidden">管理员忘记密码</router-link>
           </div>
           <el-button type="primary"
                      class="login-button"
@@ -74,16 +77,14 @@
           </div>
         </div>
       </div>
-      <div class="company-info-box">
-        <img src="@/assets/img/application/242-01.png" height="40px" 
-             alt="" />
+    </div>
+    <div class="company-info-box">
         <div class="company-info">
-          <div>谷器数据<span>@2020</span></div>
-          <p>联系电话：400-0530-512</p>
-          <p>Email：marketing@zkyda.com</p>
+          <span>谷器数据<span>@2020</span></span>
+          <span style="display:inline-block;margin:0 10px">联系电话：400-0530-512</span>
+          <span>Email：marketing@zkyda.com</span>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
@@ -142,10 +143,10 @@ export default {
 }
 </script>
 <style lang="scss">
+
 .login-container {
   width: 100%;
   height: 100%;
-  position: relative;
 
   .logo-box {
     width: 50%;
@@ -178,18 +179,31 @@ export default {
   }
 
   .login-box {
-    float: left;
-    width: 50%;
-    height: 100%;
+    // float: left;
+    // width: 50%;
+    // height: 100%;
+    border-radius: 5px;
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    background-color: #ffffff;
     overflow: hidden;
 
     .login-background {
+      
       width: 350px;
-      margin: 0 auto;
-      margin-top: 20%;
       a {
         font-size: 12px;
         color: #409eff;
+      }
+      .login-main{
+        padding: 20px;
+        .login-title{
+          text-align: center;
+          font-size: 16px;
+          font-weight: 500;
+          margin-bottom: 30px;
+        }
       }
       .forgetpsd {
         float: right;
@@ -226,10 +240,16 @@ export default {
     }
   }
   .company-info-box {
-    margin-top: 40%;
-    & > img {
-      width: 100px;
-    }
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    opacity: .5;
+    text-align: center;
+    color: #ffffff;
+    background-color: #000000;
     .company-info {
       & > div,
       & > p {
@@ -238,5 +258,17 @@ export default {
       }
     }
   }
+}
+.login-container::before{
+  content: "";
+  background: url(../../assets/img/login.jpg) no-repeat top center;
+  background-size: cover;
+  opacity: 0.5;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 </style>

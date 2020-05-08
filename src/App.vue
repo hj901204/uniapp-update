@@ -52,7 +52,9 @@ body {
   margin-bottom: 120px;
 }
 .views-height {
+  width: 100%;
   height: 100%;
   margin-bottom: 0;
+  position: relative;
 }
 </style>

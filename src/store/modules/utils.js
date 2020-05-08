@@ -5,6 +5,7 @@ const getters = {
   handleJudgePath: state => () => {
     let paths = [
       "/login",
+      "/forbidden",
       "/register",
       "/register/firstStep",
       "/register/secondStep",

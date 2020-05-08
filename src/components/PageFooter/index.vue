@@ -1,11 +1,11 @@
 <template>
   <div class="page-footer">
     <div class="page-footer-box">
-      <img src="@/assets/img/QR-code.jpg" alt="" />
+      <!-- <img src="@/assets/img/QR-code.jpg" alt="" /> -->
       <div class="footer-content">
-        <div>谷器数据<span>@2020</span>   v2020150400</div>
-        <p>联系电话：400-0530-512</p>
-        <p>Email：marketing@zkyda.com</p>
+        <span>谷器数据<span>@2020</span>   v2020150400</span>
+        <span style="display:inline-block;margin:0 10px">联系电话：400-0530-512</span>
+        <span>Email：marketing@zkyda.com</span>
       </div>
     </div>
   </div>
@@ -22,10 +22,10 @@ export default {
 
 <style lang="scss" scoped>
 .page-footer {
-  background-color: #fff;
+  background-color: #00000080;
   // margin-top: 100%;
   margin-top: 48px;
-  height: 112px;
+  height:40px;
   box-sizing: border-box;
   position: absolute;
   left: 0;
@@ -33,28 +33,21 @@ export default {
   bottom: 0;
 
   .page-footer-box {
-    text-align: left;
+    color: #ffffff;
+    text-align: center;
     overflow: hidden;
     width: 79.2%;
-    margin: 0 auto;
-    padding: 24px 0;
+    // margin: 0 auto;
+    // padding: 24px 0;
     & > img {
       float: left;
       width: 64px;
       margin-right: 24px;
     }
     .footer-content {
-      margin-top: 8px;
-      & > div,
-      & > p {
-        font-size: 12px;
-        line-height: 20px;
-        letter-spacing: 2px;
-      }
-      & > p {
-        float: left;
-        margin-right: 16px;
-      }
+      height: 40px;
+      line-height: 40px;
+      font-size: 12px;
     }
   }
 }

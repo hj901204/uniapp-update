@@ -1,6 +1,7 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 import Login from "@/views/login/index.vue"
+import Forbidden from "@/views/forbidden/forbidden.vue"
 import Dashboard from "@/views/dashboard/index"
 
 import Help from "@/views/help/index"
@@ -58,6 +59,17 @@ export const constantRoutes = [
     meta: {
       title: "登陆",
       breadcrumbTitle: "登陆",
+      breadcrumb: true
+    }
+  },
+  //禁用
+  {
+    path: "/forbidden",
+    name: "forbidden",
+    component: Forbidden,
+    meta: {
+      title: "禁用",
+      breadcrumbTitle: "禁用",
       breadcrumb: true
     }
   },
