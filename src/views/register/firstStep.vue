@@ -156,7 +156,7 @@
                             prop="password">
                 <el-input v-model.trim="enteradminForm.password"
                           type="password"
-                          maxlength='100'></el-input>
+                          maxlength='30'></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -167,7 +167,7 @@
                             prop="checkPsd">
                 <el-input v-model.trim="enteradminForm.checkPsd"
                           type="password"
-                          maxlength='100'></el-input>
+                          maxlength='30'></el-input>
               </el-form-item>
             </el-col>
           </el-row>

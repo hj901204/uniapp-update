@@ -32,6 +32,7 @@
                         auto-complete="on"
                         class="username"
                         placeholder="账户/手机号"
+                        maxlength="30"
                         prefix-icon="el-icon-user">
                 <!-- <i slot="suffix" class="el-input__icon el-icon-question"></i> -->
               </el-input>
@@ -55,6 +56,7 @@
                         name="password"
                         auto-complete="on"
                         placeholder="请输入密码"
+                        maxlength="30"
                         prefix-icon="el-icon-lock" />
               <!-- prefix-icon="el-icon-lock" -->
             </el-form-item>
