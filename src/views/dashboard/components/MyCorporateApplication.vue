@@ -3,13 +3,6 @@
   <div class="my-corporate-application">
     <div class="my-corporate-title">
       <h3>我的企业应用</h3>
-      <!-- <div class="edit-btn">
-        <el-button type="primary"
-                   size="small"
-                   @click="handleToJump"
-                   v-if="type==1">修 改
-        </el-button>
-      </div> -->
     </div>
     <div class="apply-box">
       <ul>
@@ -17,17 +10,17 @@
             :key="item.id">
           <div class="apply-title-box">
             <div class="apply-title">
-              {{type == 1 ? item.appName + '-供应商' : type == 2 ? item.appName + '-采购商' :  item.appName}}
+              {{type == 1 ? item.appName + '-供应商' : item.appName + '-采购商'}}
             </div>
           </div>
           <div class="start-date">
-            {{ type == 1 ? "我的客户" : "我的供应商"}}:<span>{{item.initiateTime}}</span>
+            {{ type == 1 ? "我的采购商" : "我的供应商"}}:<span>{{ 0 }}</span>
           </div>
-          <div class="expiration-date">累计采购单:<span>{{item.expireTime}}</span></div>
+          <div class="expiration-date">{{ type == 1 ? "累计订单" : "累计采购单"}}:<span>{{ 0 }}</span></div>
           <div class="my-apply-btns">
             <el-button @click="handleApplyStatus(item)"
                        size="small"
-                       type="text">邀请供应商
+                       type="text">{{ type == 1 ? "关联采购商" : "邀请供应商"}}
             </el-button>
             <el-button @click="handleToApply(item)"
                        size="small"

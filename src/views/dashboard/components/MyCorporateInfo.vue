@@ -3,28 +3,18 @@
   <div class="my-corporate-info">
     <div class="my-corporate-title">
       <h3>反馈速度</h3>
-      <!-- <div class="edit-btn">
-        <el-button type="primary"
-                   size="small"
-                   @click="handleToJump"
-                   v-if="type==1">修 改
-        </el-button>
-      </div> -->
     </div>
     <div class="detail-info">
-      <!-- <h4>SupplyX ID:<span class="corporate-id">{{myEnterpriseData.xid}}</span></h4>
-      <p>{{myEnterpriseData.enterName}}({{myEnterpriseData.enterNameEn}})</p>
-      <p>{{myEnterpriseData.enterAddress}}</p> -->
       <div style="display:flex">
         <div class="box">
           <div class="boxFont">平均我的反应速度</div>
           <div class="boxTime">30分钟</div>
-          <div></div>
+          <div id="chart1"></div>
         </div>
         <div class="box">
           <div class="boxFont">平均响应我的反应速度</div>
           <div class="boxTime">50分钟</div>
-          <div></div>
+          <div id="chart2"></div>
         </div>
       </div>
       <div>
@@ -32,7 +22,6 @@
           border="outer"
           style="text-algin:center"
           :data="tableData">
-          <!-- <vxe-table-column type="seq" width="60"></vxe-table-column> -->
           <vxe-table-column field="index" title="排名"></vxe-table-column>
           <vxe-table-column field="component" title="模块"></vxe-table-column>
           <vxe-table-column field="time" title="平均用时"></vxe-table-column>
@@ -57,6 +46,7 @@ export default {
   },
   mounted () {
     this.getMyEnterpriseData()
+    //this.drawChart();
   },
   methods: {
     handleToJump () {
@@ -75,6 +65,41 @@ export default {
       })
 
     },
+
+    drawChart(){
+      const chart = new G2.Chart({
+        container: "chart1",
+        height: 50,
+        width: 100,
+        title: true,
+      })
+      let data = [
+        {daydate:'2020.04.02',daycount:'30'},
+        {daydate:'2020.04.12',daycount:'10'}
+      ]
+      chart.source(data)
+          chart.animate(true) 
+          chart.scale("daycount", {
+            min: 0
+          })
+      chart.tooltip({
+            crosshairs: {
+              type: "line"
+            }
+          })
+      chart.line().position("daydate*daycount")
+      chart.area().position('year*value');
+      chart
+        .point()
+        .position("daydate*daycount")
+        .size(4)
+        .shape("circle")
+        .style({
+          stroke: "#fff",
+          lineWidth: 1
+        })
+      chart.render()
+    }
 
   }
 }
