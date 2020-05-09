@@ -1,7 +1,7 @@
 <template>
   <div class="first-step">
     <!-- <PageTitle /> -->
-    <ProcessTitle :activeNum="1" />
+    <ProcessTitle :activeNum="2" />
     <!-- 表单部分 -->
     <div class="form-part">
       <div class="detail-info-form">
@@ -306,17 +306,17 @@ export default {
     validCode () {
       if(!this.enteradminForm.mobile) return this.$message.warning("请先输入手机号码")
       let obj = {}
-      obj.phone = this.enteradminForm.mobile
+      obj.mobile = this.enteradminForm.mobile
       console.log(obj)
       this.canClick = true
       this.getTimeOut(); 
-      // this.$api.post(this.$lesUiPath.code, obj).then(result => {
-      //   if (result.code == 0) {
+      this.$api.post(this.$lesUiPath.code, obj).then(result => {
+        if (result.code == 0) {
           
-      //   } else {
-      //     return this.$message.error(result.msg)
-      //   }
-      // })
+        } else {
+          return this.$message.error(result.msg)
+        }
+      })
     },
     getTimeOut(){
       this.cloak = setInterval( () => {

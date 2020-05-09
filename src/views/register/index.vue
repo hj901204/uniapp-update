@@ -3,27 +3,28 @@
     <div v-if="$route.path == '/register'">
       <!-- <PageTitle />
       <h3 class="process-title">注册流程说明</h3> -->
-      <ul class="process-list">
+      <ProcessTitle :activeNum="1" />
+      <!-- <ul class="process-list">
         <li>
           <i>1</i>
-          <span>基本信息</span>
+          <span>确认协议</span>
         </li>
         <li class="line"></li>
         <li>
           <i>2</i>
-          <span>提交确认</span>
+          <span>注册信息</span>
         </li>
         <li class="line"></li>
         <li>
           <i>3</i>
-          <span>获取企业账号</span>
+          <span>完成</span>
         </li>
         <li class="line"></li>
         <li>
           <i>4</i>
           <span>访问系统</span>
         </li>
-      </ul>
+      </ul> -->
       <!-- 协议内容 -->
       <div class="protocol-content-box">
         <div class="protocol-content">
@@ -59,7 +60,9 @@ import PageTitle from "@/components/PageTitle"
 import Agreement from './Agreement'
 export default {
   name: "register-page",
-  components: { PageTitle, Agreement },
+  components: { PageTitle, Agreement,
+  ProcessTitle: reslove =>
+      require(["@/components/ProcessTitle/index.vue"], reslove), },
   data () {
     return {
       checked: false //勾选用户查协议

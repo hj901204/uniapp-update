@@ -5,7 +5,7 @@ const login = baseUrl + "/system/login"
 //企业注册
 const enterpriseRegister = baseUrl + "/enterprise/register"
 //获取验证码
-const code = baseUrl + "/h/code"
+const code = baseUrl + "/h/code/register"
 //重置密码
 const password = baseUrl + "/system/forgot"
 //获取验证码-忘记密码

@@ -7,7 +7,7 @@
         "
       >
         <i>1</i>
-        <span>基本信息</span>
+        <span>确认协议</span>
       </li>
       <li
         :class="
@@ -22,18 +22,18 @@
         "
       >
         <i>2</i>
-        <span>提交确认</span>
+        <span>注册信息</span>
       </li>
       <li class="line"></li>
       <li>
         <i>3</i>
-        <span>获取企业账号</span>
+        <span>完成</span>
       </li>
-      <li class="line"></li>
+      <!-- <li class="line"></li>
       <li>
         <i>4</i>
         <span>访问系统</span>
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>

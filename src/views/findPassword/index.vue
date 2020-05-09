@@ -159,6 +159,7 @@ export default {
             this.passwordForm
           )
           this.$api.post(this.$lesUiPath.password, data).then(result => {
+            alert(result)
             if (result.code == 0) {
               this.$router.push({
                 path: "/login"

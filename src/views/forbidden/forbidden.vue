@@ -82,7 +82,6 @@ export default {
   }
   .content{
     margin:15% auto;
-    
   }
   
 }
