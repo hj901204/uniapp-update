@@ -2,8 +2,11 @@
   <div id="app" :class="$route.path != '/login' ? 'app' : ''">
     <HeaderNav />
     <div :class="$route.path == '/login' || $route.path == '/findPassword' ? 'views views-height' : 'views'">
-      <Layout />
-      <router-view />
+      <LeftNav v-if="$route.path !== '/login'" />
+      <div>
+        <Layout />
+        <router-view />
+      </div>
       <!-- 页脚 -->
     </div>
     <PageFooter v-if="$route.path !== '/login'" />
@@ -12,6 +15,7 @@
 <script>
 export default {
   components: {
+    LeftNav: reslove => require(["@/components/LeftNav/index.vue"], reslove),
     Layout: reslove => require(["./views/layout/index.vue"], reslove),
     HeaderNav: reslove => require(["@/components/Header"], reslove),
     PageFooter: reslove => require(["@/components/PageFooter"], reslove)
@@ -50,6 +54,7 @@ body {
   width: 79.2%;
   margin: 0 auto;
   margin-bottom: 120px;
+  display: flex;
 }
 .views-height {
   width: 100%;

@@ -63,6 +63,7 @@ const enterpriseFindEnt = baseUrl + "/enterprise/findEnt"
 //企业用户信息 人数
 const enteruserFindCount = baseUrl + "/enteruser/findCount"
 const enteruserLogin = baseUrl + "/log/daysaction"
+const enteruserVisit = baseUrl + "/log/visits"
 //--------------应用中心
 // 查询我的应用列表
 const enterAppFindList = baseUrl + "/enterApp/findList"
@@ -148,7 +149,8 @@ export default {
       enterAppRun,
       code,
       password,
-      forgetCode
+      forgetCode,
+      enteruserVisit
     }
   }
 }

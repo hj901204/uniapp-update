@@ -1,6 +1,9 @@
 <template>
   <div class="help-page">
-    帮助
+    <!-- <LeftNav /> -->
+    <div>
+      帮助
+    </div>
   </div>
 </template>
 
@@ -9,6 +12,9 @@ export default {
   name: "helpPage",
   data() {
     return {}
+  },
+  components:{
+    LeftNav: reslove => require(["@/components/LeftNav/index.vue"], reslove),
   }
 }
 </script>

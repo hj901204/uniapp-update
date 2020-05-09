@@ -1,7 +1,27 @@
 <template>
   <div class="layout">
     <div style="overflow:hidden" v-if="handleJudgePath" class="second-nav">
-      <Breadcrumb style="float:left" />
+      <Breadcrumb style="float:left;margin-left: 20px;width:100%" />
+      <div class="companyInfo">
+        <div class="name">
+          <div style="font-weight:500;font-size:18px">{{ enterName }}</div>
+          <div class="fontsize">{{ xid }}</div>
+        </div>
+        <div class="infoPosition">
+          <div class="borderDiv">
+            <div class="fontsize">当前应用</div>
+            <div class="numberSize">{{ appNum }}</div>
+          </div>
+          <div class="border">
+            <div class="fontsize">企业用户数</div>
+            <div class="numberSize">{{ count }}</div>
+          </div>
+          <div class="borderDiv">
+            <div class="fontsize">累计访问</div>
+            <div class="numberSize">{{ visitCount }}</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -14,7 +34,13 @@ export default {
       require(["@/components/Breadcrumb/index.vue"], reslove)
   },
   data() {
-    return {}
+    return {
+      enterName:localStorage.getItem('enterName'),
+      xid:localStorage.getItem('xid'),
+      appNum:localStorage.getItem('appNum'),
+      count:localStorage.getItem('count'),
+      visitCount:localStorage.getItem('visitCount'),
+    }
   },
   computed: {
     // 判断路由即将跳转的页面，从而不显示路由导航
@@ -41,10 +67,51 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.layout{
+  margin-left: 200px;
+}
 .second-nav {
   padding: 20px 0 10px 0;
+  background-color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 10px;
   & > div {
     vertical-align: middle;
+  }
+}
+.companyInfo{
+  display: flex;
+  width: 100%;
+  position: relative;
+  .name{
+    margin-left: 20px;
+    text-align: left;
+    div{
+      margin: 10px 0;
+    }
+  }
+  .fontsize{
+    font-size: 14px;
+    color: #00000073;
+  }
+  .border{
+    border-right: 1px solid #e9e9e9;
+    border-left: 1px solid #e9e9e9;
+    padding: 10px;
+  }
+  .numberSize{
+    font-size: 20px;
+    font-weight: 500;
+    padding-top: 8px;
+  }
+  .borderDiv{
+    padding: 10px;
+    text-align: right;
+  }
+  .infoPosition{
+    display: flex;
+    position: absolute;
+    right: 0;
   }
 }
 </style>

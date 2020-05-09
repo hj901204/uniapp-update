@@ -53,7 +53,7 @@ export default {
 <style lang="scss">
 .user-nav {
   height: 72px;
-  width: 20%;
+  //width: 20%;
   // line-height: 72px;
   padding-top: 20px;
   box-sizing: border-box;

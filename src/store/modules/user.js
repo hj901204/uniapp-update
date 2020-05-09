@@ -77,6 +77,7 @@ const actions = {
             } else {
               userName = response.data.name
             }
+            
             commit("SET_TOKEN", token)
             commit("SET_NAME", userName)
             commit("SET_AUTHTYPE", type)

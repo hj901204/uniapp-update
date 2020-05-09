@@ -1,6 +1,6 @@
 <template>
   <div class="enterprise">
-    <LeftNav />
+    <!-- <LeftNav /> -->
     <PageTitle :isShowBreadcrub="false"
                style="margin-left:210px;" />
     <div style=""

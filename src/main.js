@@ -9,6 +9,10 @@ import Element from "element-ui"
 import "element-ui/lib/theme-chalk/index.css"
 import "./styles/index.scss"
 
+import 'xe-utils'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/index.css'
+
 import Api from "./api/server/Api" // api 放置
 import Path from "./api/server/path" // path放置
 import Global from "./utils/vueGlobal" // path放置
@@ -19,6 +23,8 @@ Vue.use(Api)
 Vue.use(Path)
 Vue.use(Global)
 Vue.use(Element)
+Vue.use(VXETable)
+Vue.prototype.$XModal = VXETable.modal
 new Vue({
   router,
   store,

@@ -34,18 +34,18 @@ export default {
           chart.scale("daycount", {
             min: 0
           })
-          chart.scale("daydate", {
-            alias: "近7日系统登陆人次"
-          })
-          chart.axis("daydate", {
-            title: {
-              textStyle: {
-                fontSize: 14, // 文本大小
-                textAlign: "center", // 文本对齐方式
-                fill: "#3A3E51" // 文本颜色
-              }
-            }
-          })
+          // chart.scale("daydate", {
+          //   alias: ""
+          // })
+          // chart.axis("daydate", {
+          //   title: {
+          //     textStyle: {
+          //       fontSize: 14, // 文本大小
+          //       textAlign: "center", // 文本对齐方式
+          //       fill: "#3A3E51" // 文本颜色
+          //     }
+          //   }
+          // })
 
           chart.tooltip({
             crosshairs: {

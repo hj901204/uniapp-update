@@ -3,15 +3,15 @@
   <div class="enterprise-user-info">
     <div class="my-corporate-title">
       <h3>企业用户信息</h3>
-      <div class="edit-btn">
+      <!-- <div class="edit-btn">
         <el-button type="primary"
                    size="small"
                    @click="handleToJump"
                    v-if="type==1">修 改
         </el-button>
-      </div>
+      </div> -->
     </div>
-    <div class="user-num">
+    <!-- <div class="user-num">
       <div class="icon">
         <i class="el-icon-user-solid"></i>
       </div>
@@ -19,7 +19,10 @@
         <h2 class="num">{{this.count}}</h2>
         <p class="num-description">企业用户数</p>
       </div>
-    </div>
+    </div> -->
+      <div style="font-size:14px;color:#505050;margin:10px">
+        近7日系统登陆人次
+      </div>
     <!-- 图表 -->
     <div class="chart-box">
       <Chart />
@@ -48,6 +51,16 @@ export default {
       this.$api.post(this.$lesUiPath.enteruserFindCount, {}).then(result => {
         if (result.code == 0) {
           this.count = result.data
+          localStorage.setItem('count', result.data);
+        }
+      })
+      let obj = {
+        acpath: "/system/login"
+      }
+      this.$api.post(this.$lesUiPath.enteruserVisit, {}).then(result => {
+        if (result.code == 0) {
+          this.count = result.data
+          localStorage.setItem('visitCount', result.data);
         }
       })
     }

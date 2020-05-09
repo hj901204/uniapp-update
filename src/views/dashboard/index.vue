@@ -1,11 +1,15 @@
 <template>
   <div class="home">
-    <!-- 我的企业信息 -->
-    <MyCorporateInfo />
-    <!-- 我的企业应用 -->
-    <MyCorporateApplication />
-    <!-- 企业用户信息 -->
-    <EnterpriseUserInfo />
+    <div style="padding-left:210px;">
+      <div style="display:flex">
+        <!-- 我的企业信息 -->
+        <MyCorporateInfo style="width:65%;margin:10px" />
+        <!-- 我的企业应用 -->
+        <MyCorporateApplication style="width:32%;margin:10px" />
+      </div>
+      <!-- 企业用户信息 -->
+      <EnterpriseUserInfo style="margin:10px" />
+    </div>
   </div>
 </template>
 

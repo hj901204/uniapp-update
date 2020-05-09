@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <LeftNav />
+    <!-- <LeftNav /> -->
     <!-- <PageTitle :isShowBreadcrub="false" style="padding-left:10px;" /> -->
     <div style="padding-left:210px;">
       <router-view />

@@ -2,11 +2,19 @@
   <div class="header-nav"
        v-if="handleJudgePath">
     <div class="nav-content">
-      <div class="logo-img"
-           @click="handleToDashboard">
-        <img src="@/assets/img/logo-w.png"
-             alt="" />
-      </div>
+      <el-row style="width:100%">
+        <el-col :span="6">
+          <div class="logo-img"
+              @click="handleToDashboard">
+            <img src="@/assets/img/logo-w.png"
+                alt="" />
+          </div>
+        </el-col>
+        <el-col :span="6" :offset="12">
+          <UserCenterNav v-if="this.$store.getters.name" />
+        </el-col>
+      </el-row>
+      
       <!-- <div class="top-nav">
         <router-link to="/"
                      tag="li"
@@ -30,7 +38,7 @@
           <span>帮助中心</span>
         </router-link>
       </div> -->
-      <UserCenterNav v-if="this.$store.getters.name" style="float:right;" />
+      
     </div>
   </div>
 </template>
