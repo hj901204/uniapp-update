@@ -23,10 +23,17 @@
           </div>
           <div class="my-apply-btns">
             <el-button @click="handleToCode(item)"
+                       v-if="item.appId == 'E5CD4720'"
                        size="small"
-                       type="text">{{ item.appId == "E5CD4720" ? "关联采购商" : "邀请供应商"}}
+                       type="text">关联采购商
+            </el-button>
+            <el-button @click="handleToCode(item)"
+                       v-if="item.appId == 'E5CD4719'"
+                       size="small"
+                       type="text">邀请供应商
             </el-button>
             <el-button @click="handleToApply(item)"
+                       v-if="item.appId == 'E5CD4719' || item.appId == 'E5CD4720'"
                        size="small"
                        type="text">进入应用
             </el-button>

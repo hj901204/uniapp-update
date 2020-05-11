@@ -7,22 +7,28 @@
              label-width="100px"
              size="small"
              :rules="rules">
-      <el-form-item label="姓名"
+      <el-form-item label="姓名:"
                     prop="name">
         <el-input v-model="userForm.name"
+                  v-if="isAdd"
+                  placeholder="请输入用户名称"
                   style="width:50%"></el-input>
+        <span v-if="!isAdd">{{ userForm.name }}</span>
       </el-form-item>
-      <el-form-item label="电子邮件"
-                    prop="email">
-        <el-input v-model="userForm.email"
-                  type="email"
+      <el-form-item label="手机号码:" prop="mobilePhone">
+        <el-input v-model="userForm.mobilePhone"
+                  type="tel"
+                  v-if="isAdd"
+                  placeholder="请输入用户手机号"
                   style="width:50%"></el-input>
+        <span v-if="!isAdd">{{ userForm.mobilePhone }}</span>
       </el-form-item>
-      <el-form-item label="登陆密码"
+      <el-form-item label="登陆密码:"
                     prop="password">
         <el-input type="password"
                   v-model="userForm.password"
                   autocomplete="off"
+                  placeholder="输入密码，最少6个字符"
                   style="width:50%;margin-right:10px;"></el-input>
         <el-button type="danger"
                    size="mini"
@@ -30,12 +36,13 @@
                    @click="handleResetPsd"
                    icon="el-icon-my-zhongzhi">重置</el-button>
       </el-form-item>
-      <el-form-item label="手机号码">
-        <el-input v-model="userForm.mobilePhone"
-                  type="tel"
+      <!-- <el-form-item label="电子邮件"
+                    prop="email">
+        <el-input v-model="userForm.email"
+                  type="email"
                   style="width:50%"></el-input>
-      </el-form-item>
-      <el-form-item label="所属部门"
+      </el-form-item> -->
+      <el-form-item label="所属部门:"
                     prop="departId">
         <el-select v-model="userForm.departId"
                    placeholder="请选择"
@@ -52,7 +59,7 @@
                      :props="defaultProps"
                      @change='getNode'></el-cascader> -->
       </el-form-item>
-      <el-form-item>
+      <el-form-item label="应用权限:">
         <el-checkbox v-model="userForm.isEnable"
                      @change="handleCheckBox">允许访问系统</el-checkbox>
       </el-form-item>
@@ -75,6 +82,7 @@ export default {
     isShowResetBtn: { type: Boolean, default: false },
     userForm: { type: Object, default: () => { } },
     formRef: { type: String, default: '' },
+    isAdd: {type: Boolean, default: true }
   },
   data () {
     return {
@@ -83,21 +91,21 @@ export default {
       defaultProps: { value: 'id', label: 'name', children: 'children' },
 
       rules: {
-        username: [{ required: true, message: "请输入姓名", trigger: "blur" }],
-        email: [
-          { required: true, message: "请输入邮箱地址", trigger: "blur" },
-          {
-            type: "email",
-            message: "请输入正确的邮箱地址",
-            trigger: ["blur", "change"]
-          }
-        ],
-        password: [
-          { required: true, message: "请输入登陆密码", trigger: "blur" }
-        ],
-        departId: [
-          { required: true, message: "请选择部门", trigger: 'blur' }
-        ],
+        name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
+        // email: [
+        //   { required: true, message: "请输入邮箱地址", trigger: "blur" },
+        //   {
+        //     type: "email",
+        //     message: "请输入正确的邮箱地址",
+        //     trigger: ["blur", "change"]
+        //   }
+        // ],
+        // password: [
+        //   { required: true, message: "请输入登陆密码", trigger: "blur" }
+        // ],
+        // departId: [
+        //   { required: true, message: "请选择部门", trigger: 'blur' }
+        // ],
         mobilePhone: [
           { required: true, message: "请输入手机号码", trigger: 'blur' }
         ],
