@@ -12,6 +12,7 @@ import "./styles/index.scss"
 import 'xe-utils'
 import VXETable from 'vxe-table'
 import 'vxe-table/lib/index.css'
+import VueClipboard from "vue-clipboard2" //复制功能
 
 import Api from "./api/server/Api" // api 放置
 import Path from "./api/server/path" // path放置
@@ -24,6 +25,7 @@ Vue.use(Path)
 Vue.use(Global)
 Vue.use(Element)
 Vue.use(VXETable)
+Vue.use(VueClipboard)
 Vue.prototype.$XModal = VXETable.modal
 new Vue({
   router,

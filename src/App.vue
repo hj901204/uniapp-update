@@ -7,7 +7,7 @@
                      && $route.path !== '/register'
                      && $route.path !== '/register/firstStep'
                      && $route.path !== '/register/lastStep'"  />
-      <div :style="$route.path == '/findPassword' ? 'width:100%':''">
+      <div style="width:100%">
         <Layout />
         <router-view />
       </div>

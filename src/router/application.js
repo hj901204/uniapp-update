@@ -114,6 +114,34 @@ const applicationRouter = {
             breadcrumb: true,
             path: "/application/enterpriseApplications/applicationSetting"
           }
+        },
+        {
+          path: "enterpriseCode",
+          component: () =>
+            import(
+              "../views/applicationCenter/enterpriseApplications/enterpriseCode/index.vue"
+            ),
+          name: "enterpriseCode",
+          meta: {
+            title: "邀请供应商",
+            breadcrumbTitle: "邀请供应商",
+            breadcrumb: true,
+            path: "/application/enterpriseApplications/enterpriseCode"
+          }
+        },
+        {
+          path: "linkSupplier",
+          component: () =>
+            import(
+              "../views/applicationCenter/enterpriseApplications/linkSupplier/index.vue"
+            ),
+          name: "linkSupplier",
+          meta: {
+            title: "关联采购商",
+            breadcrumbTitle: "关联采购商",
+            breadcrumb: true,
+            path: "/application/enterpriseApplications/linkSupplier"
+          }
         }
       ]
     }

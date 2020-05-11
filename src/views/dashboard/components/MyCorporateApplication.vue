@@ -10,17 +10,17 @@
             :key="item.id">
           <div class="apply-title-box">
             <div class="apply-title">
-              {{type == 1 ? item.appName + '-供应商' : item.appName + '-采购商'}}
+              {{type == 2 ? item.appName + '-供应商' : item.appName + '-采购商'}}
             </div>
           </div>
           <div class="start-date">
-            {{ type == 1 ? "我的采购商" : "我的供应商"}}:<span>{{ 0 }}</span>
+            {{ type == 2 ? "我的采购商" : "我的供应商"}}:<span>{{ 0 }}</span>
           </div>
-          <div class="expiration-date">{{ type == 1 ? "累计订单" : "累计采购单"}}:<span>{{ 0 }}</span></div>
+          <div class="expiration-date">{{ type == 2 ? "累计订单" : "累计采购单"}}:<span>{{ 0 }}</span></div>
           <div class="my-apply-btns">
             <el-button @click="handleApplyStatus(item)"
                        size="small"
-                       type="text">{{ type == 1 ? "关联采购商" : "邀请供应商"}}
+                       type="text">{{ type == 2 ? "关联采购商" : "邀请供应商"}}
             </el-button>
             <el-button @click="handleToApply(item)"
                        size="small"
@@ -51,10 +51,20 @@ export default {
       this.$router.push({ path: "/application/enterpriseApplications" })
     },
     getMyApplication () {
-      this.$api.post(this.$lesUiPath.enterAppFindList, { page: 1, length: 1000 }).then(result => {
+      // let data = {
+      //    page: 1, length: 1000 
+      // }
+      let data = {
+        acpath: "/system/login"
+      }
+      this.$api.post(this.$lesUiPath.enterAppFindList, data ).then(result => {
         if (result.code == 0) {
-          this.list = result.data
-          localStorage.setItem('appNum', result.data.length);
+          this.list = result.data.enterApps
+          localStorage.setItem('appNum', result.data.appCount);
+          localStorage.setItem('enterName', result.data.enterprise.enterName);
+          localStorage.setItem('xid', result.data.enterprise.xid);
+          localStorage.setItem('visitCount', result.data.visitsCount);
+          localStorage.setItem('count', result.data.userCount);
         }
       })
     },

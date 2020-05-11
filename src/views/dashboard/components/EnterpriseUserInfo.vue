@@ -41,7 +41,7 @@ export default {
     }
   },
   mounted () {
-    this.getCount()
+    //this.getCount()
   },
   methods: {
     handleToJump () {
@@ -51,18 +51,17 @@ export default {
       this.$api.post(this.$lesUiPath.enteruserFindCount, {}).then(result => {
         if (result.code == 0) {
           this.count = result.data
-          localStorage.setItem('count', result.data);
+          
         }
       })
-      let obj = {
-        acpath: "/system/login"
-      }
-      this.$api.post(this.$lesUiPath.enteruserVisit, {}).then(result => {
-        if (result.code == 0) {
-          this.count = result.data
-          localStorage.setItem('visitCount', result.data);
-        }
-      })
+      // let obj = {
+      //   acpath: "/system/login"
+      // }
+      // this.$api.post(this.$lesUiPath.enteruserVisit, {}).then(result => {
+      //   if (result.code == 0) {
+      //     this.count = result.data
+      //   }
+      // })
     }
   },
   components: { Chart }

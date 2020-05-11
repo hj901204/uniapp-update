@@ -45,7 +45,7 @@ export default {
     }
   },
   mounted () {
-    this.getMyEnterpriseData()
+    //this.getMyEnterpriseData()
     //this.drawChart();
   },
   methods: {
@@ -59,8 +59,6 @@ export default {
         if (result.code == 0) {
           // console.log(result.data)
           this.myEnterpriseData = result.data
-          localStorage.setItem('enterName', result.data.enterName);
-          localStorage.setItem('xid', result.data.xid);
         }
       })
 

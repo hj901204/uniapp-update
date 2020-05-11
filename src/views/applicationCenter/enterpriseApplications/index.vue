@@ -11,7 +11,7 @@
               <img src="@/assets/img/application/biaoqian.png"
                    alt="" />
               <span class="apply-info">
-                <div>{{ item.appName }}</div>
+                <div>{{type == 2 ? item.appName + '-供应商' : item.appName + '-采购商'}}</div>
                 <div :class="item.isEnable?'green':'red'">状态：<i v-if="item.isEnable==1">正常</i><i v-if="item.isEnable==0">停用</i></div>
               </span>
             </div>
@@ -34,10 +34,23 @@
                        size="small"
                        type="text">点击查看应用状态
             </el-button>
-            <el-button @click="handleUserSetting(item)"
+            <el-button @click="handleJumpUserList(item)"
+                       size="small"
+                       type="text">用户列表
+            </el-button>
+            <el-button @click="handleJumpRoleList(item)"
+                       size="small"
+                       type="text">角色管理
+            </el-button>
+            <el-button @click="handleSupplier(item)"
                        size="small"
                        type="text"
-                       v-if="type==1">用户设定
+                       v-if="type==1">邀请供应商
+            </el-button>
+            <el-button @click="handleEnter(item)"
+                       size="small"
+                       type="text"
+                       v-if="type==2">关联采购商
             </el-button>
           </div>
         </li>
@@ -68,7 +81,6 @@ export default {
           params: JSON.stringify(item)
         }
       })
-
     },
     //开始使用
     handleStartUse (appId) {
@@ -86,11 +98,31 @@ export default {
         }
       })
     },
+    //用户列表
+    handleJumpUserList (item) {
+
+    },
+    //角色列表
+    handleJumpRoleList (item) {
+
+    },
+    //邀请供应商
+    handleSupplier () {
+      this.$router.push({
+        path: "/application/enterpriseApplications/enterpriseCode"
+      })
+    },
+    //关联采购商
+    handleEnter () {
+      this.$router.push({
+        path: "/application/enterpriseApplications/linkSupplier"
+      })
+    },
     getMyAppData () {
       this.$api.post(this.$lesUiPath.enterAppFindList, { page: 1, length: 1000 }).then(result => {
         if (result.code == 0) {
           console.log(result)
-          this.myApplyList = result.data
+          this.myApplyList = result.data.enterApps
 
         }
       })
@@ -178,7 +210,10 @@ export default {
       }
       .my-apply-btns {
         & > button:first-child {
-          margin-right: 24px;
+          //margin-right: 24px;
+        }
+        .el-button + .el-button{
+          width: 20%;
         }
         // margin-top: 20px;
       }

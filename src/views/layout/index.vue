@@ -98,6 +98,8 @@ export default {
     border-right: 1px solid #e9e9e9;
     border-left: 1px solid #e9e9e9;
     padding: 10px;
+    margin: 0 10px;
+    text-align: right;
   }
   .numberSize{
     font-size: 20px;
@@ -111,7 +113,7 @@ export default {
   .infoPosition{
     display: flex;
     position: absolute;
-    right: 0;
+    right: 20px;
   }
 }
 </style>
