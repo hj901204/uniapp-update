@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="enterpCode">
     <div class="codeBox">
       <div class="codeTitle">微信扫码邀请注册</div>
@@ -32,6 +33,10 @@
       </div>
     </div>
   </div>
+  <div class="btn">
+    <el-button @click="handleBack" size="small" style="width:100%" >返回</el-button>
+  </div>
+</div>
 </template>
 
 <script>
@@ -44,7 +49,7 @@ export default {
   },
   data () {
     return {
-      message:'hhbhbdc9891798'
+      message:this.$route.query.params
     }
   },
   methods: {
@@ -60,6 +65,11 @@ export default {
         if (result.code == 0) {
           
         }
+      })
+    },
+    handleBack(){
+      this.$router.push({
+        path: "/application/enterpriseApplications",
       })
     }
   }
@@ -113,5 +123,9 @@ export default {
     border: 1px solid #e9e9e9;
     height: 70%;
   }
+}
+.btn{
+  width: 80px;
+  margin-top: 10px;
 }
 </style>

@@ -11,7 +11,7 @@
               <img src="@/assets/img/application/biaoqian.png"
                    alt="" />
               <span class="apply-info">
-                <div>{{type == 2 ? item.appName + '-供应商' : item.appName + '-采购商'}}</div>
+                <div>{{ item.appName }}</div>
                 <div :class="item.isEnable?'green':'red'">状态：<i v-if="item.isEnable==1">正常</i><i v-if="item.isEnable==0">停用</i></div>
               </span>
             </div>
@@ -34,23 +34,23 @@
                        size="small"
                        type="text">点击查看应用状态
             </el-button>
+             <el-button @click="handleUserSetting(item)"
+                       size="small"
+                       type="text">用户设定
+            </el-button>
             <el-button @click="handleJumpUserList(item)"
                        size="small"
                        type="text">用户列表
             </el-button>
-            <el-button @click="handleJumpRoleList(item)"
-                       size="small"
-                       type="text">角色管理
-            </el-button>
             <el-button @click="handleSupplier(item)"
                        size="small"
                        type="text"
-                       v-if="type==1">邀请供应商
+                       v-if="item.appId == 'E5CD4719'">邀请供应商
             </el-button>
             <el-button @click="handleEnter(item)"
                        size="small"
                        type="text"
-                       v-if="type==2">关联采购商
+                       v-if="item.appId == 'E5CD4720'">关联采购商
             </el-button>
           </div>
         </li>
@@ -66,7 +66,8 @@ export default {
   data () {
     return {
       myApplyList: [],
-      type: this.$store.getters.type
+      type: this.$store.getters.type,
+      code:''
     }
   },
   mounted () {
@@ -109,7 +110,10 @@ export default {
     //邀请供应商
     handleSupplier () {
       this.$router.push({
-        path: "/application/enterpriseApplications/enterpriseCode"
+        path: "/application/enterpriseApplications/enterpriseCode",
+        query: {
+          params: this.code
+        }
       })
     },
     //关联采购商
@@ -121,9 +125,8 @@ export default {
     getMyAppData () {
       this.$api.post(this.$lesUiPath.enterAppFindList, { page: 1, length: 1000 }).then(result => {
         if (result.code == 0) {
-          console.log(result)
           this.myApplyList = result.data.enterApps
-
+          this.code = result.data.enterprise.invCode
         }
       })
     }

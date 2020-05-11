@@ -10,22 +10,25 @@
             :key="item.id">
           <div class="apply-title-box">
             <div class="apply-title">
-              {{type == 2 ? item.appName + '-供应商' : item.appName + '-采购商'}}
+              {{ item.appName }}
             </div>
           </div>
           <div class="start-date">
-            {{ type == 2 ? "我的采购商" : "我的供应商"}}:<span>{{ 0 }}</span>
+            <span v-if="item.appId == 'E5CD4720'">我的采购商:<span>{{ 0 }}</span></span>
+            <span v-if="item.appId == 'E5CD4719'">我的供应商:<span>{{ 0 }}</span></span>
           </div>
-          <div class="expiration-date">{{ type == 2 ? "累计订单" : "累计采购单"}}:<span>{{ 0 }}</span></div>
+          <div class="expiration-date">
+            <span v-if="item.appId == 'E5CD4720'">累计订单:<span>{{ 0 }}</span></span>
+            <span v-if="item.appId == 'E5CD4719'">累计采购单:<span>{{ 0 }}</span></span>
+          </div>
           <div class="my-apply-btns">
-            <el-button @click="handleApplyStatus(item)"
+            <el-button @click="handleToCode(item)"
                        size="small"
-                       type="text">{{ type == 2 ? "关联采购商" : "邀请供应商"}}
+                       type="text">{{ item.appId == "E5CD4720" ? "关联采购商" : "邀请供应商"}}
             </el-button>
             <el-button @click="handleToApply(item)"
                        size="small"
-                       type="text"
-                       v-if="type==1">进入应用
+                       type="text">进入应用
             </el-button>
           </div>
         </li>
@@ -40,7 +43,8 @@ export default {
   data () {
     return {
       type: this.$store.getters.type,
-      list: []
+      list: [],
+      code:''
     }
   },
   mounted () {
@@ -60,6 +64,7 @@ export default {
       this.$api.post(this.$lesUiPath.enterAppFindList, data ).then(result => {
         if (result.code == 0) {
           this.list = result.data.enterApps
+          this.code = result.data.enterprise.invCode
           localStorage.setItem('appNum', result.data.appCount);
           localStorage.setItem('enterName', result.data.enterprise.enterName);
           localStorage.setItem('xid', result.data.enterprise.xid);
@@ -74,6 +79,26 @@ export default {
         //this.$router.push('/application/enterpriseApplications')
         let token = this.$store.getters.token
         window.open(this.$lesUiPath.enterAppRun + "?appId=" + item.appId + '&token=' + token)
+      }
+      if (item.appId == "E5CD4720") {
+        //this.$router.push('/application/enterpriseApplications')
+        let token = this.$store.getters.token
+        window.open(this.$lesUiPath.enterAppRun + "?appId=" + item.appId + '&token=' + token)
+      }
+    },
+    handleToCode (item) {
+      if(item.appId == "E5CD4719") {
+        this.$router.push({
+          path: "/application/enterpriseApplications/enterpriseCode",
+          query: {
+            params: this.code
+          }
+        })
+      }
+      if(item.appId == "E5CD4720") {
+        this.$router.push({
+          path: "/application/enterpriseApplications/linkSupplier"
+        })
       }
     }
   }
