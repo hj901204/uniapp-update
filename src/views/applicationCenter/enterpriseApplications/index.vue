@@ -4,8 +4,7 @@
     <div v-if="$route.path == '/application/enterpriseApplications'">
       <ul>
         <li v-for="item in myApplyList"
-            :key="item.id"
-            v-if="myApplyList">
+            :key="item.id">
           <div class="apply-title-box">
             <div class="apply-title">
               <img src="@/assets/img/application/biaoqian.png"
@@ -34,24 +33,24 @@
                        size="small"
                        type="text">点击查看应用状态
             </el-button>
-             <!-- <el-button @click="handleUserSetting(item)"
+            <el-button @click="handleUserSetting(item)"
                        size="small"
                        type="text">用户设定
-            </el-button> -->
-            <el-button @click="handleJumpUserList(item)"
+            </el-button>
+            <!-- <el-button @click="handleJumpUserList(item)"
                        size="small"
                        v-if="item.userListBtn"
                        type="text">用户列表
-            </el-button>
+            </el-button> -->
             <el-button @click="handleSupplier(item)"
                        size="small"
                        type="text"
-                       v-if="item.purBtn">邀请供应商
+                       v-if="item.supBtn">邀请供应商
             </el-button>
             <el-button @click="handleEnter(item)"
                        size="small"
                        type="text"
-                       v-if="item.supBtn">关联采购商
+                       v-if="item.purBtn">关联采购商
             </el-button>
           </div>
         </li>
@@ -102,7 +101,12 @@ export default {
     },
     //用户列表
     handleJumpUserList (item) {
-
+      this.$router.push({
+        path: "/application/rightsManagement",
+        query: {
+          params: item.appId
+        }
+      })
     },
     //角色列表
     handleJumpRoleList (item) {

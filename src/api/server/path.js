@@ -68,6 +68,8 @@ const enteruserVisit = baseUrl + "/log/visits"
 // 查询我的应用列表
 //const enterAppFindList = baseUrl + "/enterApp/findList"
 const enterAppFindList = baseUrl + "/enterApp/findAppMessage"
+//关联供应商
+const supLinkEnter = baseUrl + "/enterApp/apply"
 // 用户启动APP
 // const enterAppRun = "http://47.105.182.148:8862" + baseUrl + "/application/run"
 const enterAppRun = baseUrl + "/application/run"
@@ -151,7 +153,8 @@ export default {
       code,
       password,
       forgetCode,
-      enteruserVisit
+      enteruserVisit,
+      supLinkEnter
     }
   }
 }

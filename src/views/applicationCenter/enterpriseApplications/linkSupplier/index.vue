@@ -2,8 +2,8 @@
   <div class="linkSupplier">
     <div v-if="main" class="first">
       <div class="linkfont">请输入采购商的邀请码</div>
-      <el-input :class="invalidCode ? 'red' : ''" size="small" v-model="code" placeholder="请输入企业邀请码" clearable></el-input>
-      <div v-if="invalidCode" class="linkerror">无效的邀请码</div>
+      <el-input :class="invalidCode ? 'red' : ''" size="small" v-model="invCode" placeholder="请输入企业邀请码" clearable></el-input>
+      <div v-if="invalidCode" class="linkerror">{{ message }}</div>
       <div class="btns">
         <el-button size="small" type="primary" @click="handleCode">提交邀请码</el-button>
         <el-button size="small" @click="handleback">返回应用列表</el-button>
@@ -36,14 +36,26 @@ export default {
     return {
       main:true,
       invalidCode:false,
-      code:'',
+      invCode:'',
       name:'示例',
-      time:'20分钟'
+      time:'20分钟',
+      message:''
     }
   },
   methods: {
     handleCode(){
-      this.main = false
+      this.$api.post(this.$lesUiPath.supLinkEnter, { invCode: this.invCode }).then(result => {
+        if (result.code == 0) {
+          if(result.data.code == 0){
+            this.main = false
+            this.name = result.data.msg
+          }else{
+            this.message = result.data.msg
+            this.invalidCode = true
+            console.log(this.message)
+          }
+        }
+      })
     },
     handleback(){
       this.$router.push({

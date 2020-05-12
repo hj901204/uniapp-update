@@ -135,6 +135,13 @@ export default {
   },
   mounted () {
     this.getBoardData()
+    if(this.$route.query.params){
+      if(this.$route.query.params == 'E5CD4719'){
+        this.activeName = 'second'
+      }else if(this.$route.query.params == 'E5CD4720'){
+        this.activeName = 'first'
+      }
+    }
   },
   data () {
     return {
