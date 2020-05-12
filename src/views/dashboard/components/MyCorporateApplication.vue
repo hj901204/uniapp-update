@@ -65,6 +65,7 @@ export default {
       // let data = {
       //    page: 1, length: 1000 
       // }
+      localStorage.clear();
       let data = {
         acpath: "/system/login"
       }
@@ -77,6 +78,16 @@ export default {
           localStorage.setItem('xid', result.data.enterprise.xid);
           localStorage.setItem('visitCount', result.data.visitsCount);
           localStorage.setItem('count', result.data.userCount);
+          if(result.data.appCount != 0) {
+            result.data.enterApps.map(x => {
+              if(x.appId == 'E5CD4719'){
+                localStorage.setItem('enterpriseId', x.id);
+              }
+              if(x.appId == 'E5CD4720'){
+                localStorage.setItem('supplierId', x.id);
+              }
+            })
+          }
         }
       })
     },

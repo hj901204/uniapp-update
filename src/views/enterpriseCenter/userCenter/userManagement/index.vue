@@ -103,8 +103,8 @@ export default {
           id: 6
         },
         {
-          fieldNo: "isEnable",
-          fieldName: "审核时间",
+          fieldNo: "crtTime",
+          fieldName: "创建时间",
           id: 7
         }
       ],

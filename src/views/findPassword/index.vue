@@ -41,12 +41,12 @@
           <el-form-item prop="password"
                         label="登录密码"
                         label-width="90px">
-            <el-input v-model="passwordForm.password" maxlength="30"></el-input>
+            <el-input v-model="passwordForm.password" type="password" maxlength="30"></el-input>
           </el-form-item>
           <el-form-item prop="confirmPassWord"
                         label="确认密码"
                         label-width="90px">
-            <el-input v-model="passwordForm.confirmPassWord" maxlength="30"></el-input>
+            <el-input v-model="passwordForm.confirmPassWord" type="password" maxlength="30"></el-input>
           </el-form-item>
         </el-form>
       <div class="btns">
@@ -159,8 +159,8 @@ export default {
             this.passwordForm
           )
           this.$api.post(this.$lesUiPath.password, data).then(result => {
-            alert(result)
             if (result.code == 0) {
+              this.$message.success("操作成功")
               this.$router.push({
                 path: "/login"
               })

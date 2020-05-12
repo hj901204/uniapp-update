@@ -10,7 +10,8 @@ const applicationRouter = {
     breadcrumbTitle: "应用中心",
     breadcrumb: true,
     path: "/application",
-    leftNav: true
+    leftNav: true,
+    icon: "el-icon-my-shangcheng"
   },
   redirect: "/application/appStore",
   children: [
@@ -24,7 +25,7 @@ const applicationRouter = {
         breadcrumb: true,
         path: "/application/appStore",
         isOnlyRoute: true, //用来左侧菜单栏隐藏路由的作用
-        icon: "el-icon-my-shangcheng"
+        
       },
       children: [
         {
@@ -67,7 +68,7 @@ const applicationRouter = {
         breadcrumb: true,
         path: "/application/enterpriseApplications",
         isOnlyRoute: true, //用来左侧菜单栏隐藏路由的作用
-        icon: "el-icon-my-yingyong"
+        //icon: "el-icon-my-yingyong"
       },
       children: [
         {
@@ -143,6 +144,51 @@ const applicationRouter = {
             path: "/application/enterpriseApplications/linkSupplier"
           }
         }
+      ]
+    },
+    {
+      path: "rightsManagement",
+      component: () =>
+        import("../views/applicationCenter/rightsManagement/index.vue"),
+      name: "rightsManagement",
+      // redirect: "/application/rightsManagement/myApplication",
+      meta: {
+        title: "用户应用权限管理",
+        breadcrumbTitle: "应用权限管理",
+        breadcrumb: true,
+        path: "/application/rightsManagement",
+        isOnlyRoute: true, //用来左侧菜单栏隐藏路由的作用
+        //icon: "el-icon-my-yingyong"
+      },
+      children: [
+        {
+          path: "supplierUserManage",
+          component: () =>
+            import(
+              "../views/applicationCenter/rightsManagement/supplierUserManage"
+            ),
+          name: "supplierUserManage",
+          meta: {
+            title: "SRM供应商用户管理",
+            breadcrumbTitle: "SRM供应商用户管理",
+            breadcrumb: true,
+            path: "/application/rightsManagement/supplierUserManage"
+          }
+        },
+        {
+          path: "enterpriseUserManage",
+          component: () =>
+            import(
+              "../views/applicationCenter/rightsManagement/enterpriseUserManage"
+            ),
+          name: "enterpriseUserManage",
+          meta: {
+            title: "SRM采购商用户管理",
+            breadcrumbTitle: "SRM采购商用户管理",
+            breadcrumb: true,
+            path: "/application/rightsManagement/enterpriseUserManage"
+          }
+        },
       ]
     }
   ]

@@ -9,7 +9,8 @@ const enterprise = {
     title: "企业中心",
     breadcrumbTitle: "企业中心",
     breadcrumb: true,
-    role: ["1", "2"]
+    role: ["1", "2"],
+    icon: "el-icon-my-qiye",
   },
   redirect: "/enterprise/enterpriseInfo/basicInfo",
   children: [
@@ -24,7 +25,7 @@ const enterprise = {
         breadcrumbTitle: "企业信息",
         breadcrumb: true,
         path: "/enterprise/enterpriseInfo",
-        icon: "el-icon-my-qiye",
+        
         role: ["1", "2"]
       },
       children: [
@@ -73,7 +74,7 @@ const enterprise = {
         breadcrumbTitle: "消息中心",
         breadcrumb: true,
         path: "/enterprise/messageCenter",
-        icon: "el-icon-my-xiaoxi",
+        //icon: "el-icon-my-xiaoxi",
         role: ["1", "2"]
       },
       children: [
@@ -121,7 +122,7 @@ const enterprise = {
         breadcrumbTitle: "用户中心",
         breadcrumb: true,
         path: "/enterprise/userCenter",
-        icon: "el-icon-my-yonghu",
+        //icon: "el-icon-my-yonghu",
         role: ["1", "2"]
       },
       children: [

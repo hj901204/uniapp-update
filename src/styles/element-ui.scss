@@ -97,3 +97,17 @@ $blue:#409EFF;
     border-color: #4a90e2;
   }
 }
+
+.transfer {
+  .el-transfer__button{
+    display: block;
+    padding: 8px 10px;
+    margin: 5px 5px;
+  }
+  .el-button + .el-button{
+    margin-left: 5px;
+  }
+  .el-transfer__buttons{
+    padding: 0 6px;
+  }
+}

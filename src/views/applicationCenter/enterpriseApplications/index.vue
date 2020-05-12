@@ -34,23 +34,24 @@
                        size="small"
                        type="text">点击查看应用状态
             </el-button>
-             <el-button @click="handleUserSetting(item)"
+             <!-- <el-button @click="handleUserSetting(item)"
                        size="small"
                        type="text">用户设定
-            </el-button>
+            </el-button> -->
             <el-button @click="handleJumpUserList(item)"
                        size="small"
+                       v-if="item.userListBtn"
                        type="text">用户列表
             </el-button>
             <el-button @click="handleSupplier(item)"
                        size="small"
                        type="text"
-                       v-if="item.appId == 'E5CD4719'">邀请供应商
+                       v-if="item.purBtn">邀请供应商
             </el-button>
             <el-button @click="handleEnter(item)"
                        size="small"
                        type="text"
-                       v-if="item.appId == 'E5CD4720'">关联采购商
+                       v-if="item.supBtn">关联采购商
             </el-button>
           </div>
         </li>
