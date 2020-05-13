@@ -52,7 +52,7 @@
       <div class="btns">
         <el-button 
                     size="small"
-                    @click="handleBack">返 回</el-button>
+                    @click="handleReturn">返 回</el-button>
         <el-button type="primary"
                     size="small"
                     :loading="loading"
@@ -113,8 +113,13 @@ export default {
     handleBack(){
       this.$router.push({path:'/login'})
     },
+    handleReturn(){
+      this.active = 1
+    },
     //下一步
     next(){
+      this.passwordForm = {}
+      this.loading = false
       this.$refs['mobileForm'].validate((valid) => {
         if(valid){
           this.$api.post(this.$lesUiPath.checkCode, this.mobileForm).then(result => {
@@ -171,7 +176,7 @@ export default {
                 path: "/login"
               })
             } else {
-              return this.$message.error(result.msg)
+              return this.$message.error(result.data)
             }
             this.loading = false
         })

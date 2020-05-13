@@ -39,8 +39,14 @@ service.interceptors.response.use(
     // console.log(res);
     // console.log("-------------------------------返回结束----------------------------");   
     if (res.code == 1) {
+      let errorMsg = ''
+      if(res.data){
+        errorMsg  = res.data
+      }else{
+        errorMsg = res.msg
+      }
       Message({
-        message: res.msg,
+        message: errorMsg,
         type: "error",
         duration: 5 * 1000
       })
