@@ -55,6 +55,7 @@ export default {
     }
   },
   mounted () {
+    //localStorage.clear();
     this.getMyApplication()
   },
   methods: {
@@ -65,7 +66,7 @@ export default {
       // let data = {
       //    page: 1, length: 1000 
       // }
-      localStorage.clear();
+      //localStorage.clear();
       let data = {
         acpath: "/system/login"
       }
@@ -73,11 +74,11 @@ export default {
         if (result.code == 0) {
           this.list = result.data.enterApps
           this.code = result.data.enterprise.invCode
-          localStorage.setItem('appNum', result.data.appCount);
-          localStorage.setItem('enterName', result.data.enterprise.enterName);
-          localStorage.setItem('xid', result.data.enterprise.xid);
-          localStorage.setItem('visitCount', result.data.visitsCount);
-          localStorage.setItem('count', result.data.userCount);
+          // localStorage.setItem('appNum', result.data.appCount);
+          // localStorage.setItem('enterName', result.data.enterprise.enterName);
+          // localStorage.setItem('xid', result.data.enterprise.xid);
+          // localStorage.setItem('visitCount', result.data.visitsCount);
+          // localStorage.setItem('count', result.data.userCount);
           if(result.data.appCount != 0) {
             result.data.enterApps.map(x => {
               if(x.appId == 'E5CD4719'){

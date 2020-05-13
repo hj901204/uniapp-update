@@ -129,7 +129,21 @@ export default {
           this.$store
             .dispatch("user/LoginByUsername", this[form])
             .then(() => {
-              this.$router.push({
+              let data = {
+                acpath: "/system/login"
+              }
+              localStorage.clear();
+              this.$api.post(this.$lesUiPath.enterAppFindList, data ).then(result => {
+                if (result.code == 0) {
+                  localStorage.setItem('appNum', result.data.appCount);
+                  localStorage.setItem('enterName', result.data.enterprise.enterName);
+                  localStorage.setItem('xid', result.data.enterprise.xid);
+                  localStorage.setItem('visitCount', result.data.visitsCount);
+                  localStorage.setItem('count', result.data.userCount);
+                  console.log(localStorage)
+                }
+              })
+               this.$router.push({
                 path: "/"
               })
             })

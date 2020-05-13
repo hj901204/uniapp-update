@@ -11,6 +11,7 @@
                     prop="name">
         <el-input v-model="userForm.name"
                   v-if="isAdd"
+                  maxlength="15"
                   placeholder="请输入用户名称"
                   style="width:50%"></el-input>
         <span v-if="!isAdd">{{ userForm.name }}</span>
@@ -28,13 +29,14 @@
         <el-input type="password"
                   v-model="userForm.password"
                   autocomplete="off"
+                  maxlength="30"
                   placeholder="输入密码，最少6个字符"
                   style="width:50%;margin-right:10px;"></el-input>
-        <el-button type="danger"
+        <!-- <el-button type="danger"
                    size="mini"
                    v-if="isShowResetBtn"
                    @click="handleResetPsd"
-                   icon="el-icon-my-zhongzhi">重置</el-button>
+                   icon="el-icon-my-zhongzhi">重置</el-button> -->
       </el-form-item>
       <!-- <el-form-item label="电子邮件"
                     prop="email">
@@ -100,9 +102,9 @@ export default {
         //     trigger: ["blur", "change"]
         //   }
         // ],
-        // password: [
-        //   { required: true, message: "请输入登陆密码", trigger: "blur" }
-        // ],
+        password: [
+          { required: true, message: "请输入登陆密码", trigger: "blur" }
+        ],
         // departId: [
         //   { required: true, message: "请选择部门", trigger: 'blur' }
         // ],
