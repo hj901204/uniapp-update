@@ -4,6 +4,7 @@
     <div :class="$route.path == '/login' || $route.path == '/findPassword' ? 'views views-height' : 'views'">
       <LeftNav v-if="$route.path !== '/login' 
                      && $route.path !== '/findPassword' 
+                     && $route.path !== '/forbidden' 
                      && $route.path !== '/register'
                      && $route.path !== '/register/firstStep'
                      && $route.path !== '/register/lastStep'"  />

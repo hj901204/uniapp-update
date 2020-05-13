@@ -259,11 +259,12 @@ export default {
     handleNextStep () {
       let valid1 = this.validateFunc("formRef")
       let valid3 = this.validateFunc("formRef3")
+      console.log(valid1)
+      console.log(valid3)
       if (valid1 && valid3) {
         let obj = {}
         obj.enterprise = Object.assign(this.form, this.form2)
         obj.enteradmin = this.enteradminForm
-        console.log(obj)
         this.$api.post(this.$lesUiPath.enterpriseRegister, obj).then(result => {
           console.log("enterpriseRegister:" + result)
           if (result.code == 0) {

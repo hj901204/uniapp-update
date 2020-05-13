@@ -45,12 +45,12 @@
             <el-button @click="handleSupplier(item)"
                        size="small"
                        type="text"
-                       v-if="item.supBtn">邀请供应商
+                       v-if="item.purBtn">邀请供应商
             </el-button>
             <el-button @click="handleEnter(item)"
                        size="small"
                        type="text"
-                       v-if="item.purBtn">关联采购商
+                       v-if="item.supBtn">关联采购商
             </el-button>
           </div>
         </li>
