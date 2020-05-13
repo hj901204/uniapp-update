@@ -102,9 +102,9 @@ export default {
         //     trigger: ["blur", "change"]
         //   }
         // ],
-        password: [
-          { required: true, message: "请输入登陆密码", trigger: "blur" }
-        ],
+        // password: [
+        //   { required: true, message: "请输入登陆密码", trigger: "blur" }
+        // ],
         // departId: [
         //   { required: true, message: "请选择部门", trigger: 'blur' }
         // ],
