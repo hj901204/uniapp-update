@@ -117,7 +117,13 @@ export default {
     next(){
       this.$refs['mobileForm'].validate((valid) => {
         if(valid){
-          this.active = 2
+          this.$api.post(this.$lesUiPath.checkCode, this.mobileForm).then(result => {
+            if (result.code == 0) {
+              this.active = 2
+            } else {
+              return this.$message.error(result.msg)
+            }
+          })
         }
       })
     },

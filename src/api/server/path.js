@@ -10,6 +10,8 @@ const code = baseUrl + "/h/code/register"
 const password = baseUrl + "/system/forgot"
 //获取验证码-忘记密码
 const forgetCode = baseUrl + "/h/code/forgot"
+//忘记密码校验验证码
+const checkCode = baseUrl + "/h/vcode"
 // 应用中心-应用商城
 const appStore = baseUrl + "/app/findList"
 // 应用详情
@@ -154,7 +156,8 @@ export default {
       password,
       forgetCode,
       enteruserVisit,
-      supLinkEnter
+      supLinkEnter,
+      checkCode
     }
   }
 }
