@@ -12,7 +12,8 @@
          <el-button type="primary"
                     size="small"
                     style="width:250px"
-                    @click="handleBack">开始使用</el-button>
+                    :loading="loading"
+                    @click="handleStartApp">开始使用</el-button>
       </div>
     </div>
   </div>
@@ -22,11 +23,40 @@
 export default {
   name: "last-step",
   data() {
-    return {}
+    return {
+      loading:false
+    }
   },
   methods: {
-    handleBack(){
-      this.$router.push({path:'/login'})
+    handleStartApp(){
+      let loginInfo = {
+        username:this.$route.query.data.enterAccount,
+        password:this.$route.query.data.password,
+      }
+      this.loading = true
+      this.$store
+        .dispatch("user/LoginByUsername", loginInfo)
+        .then(() => {
+          let data = {
+            acpath: "/system/login"
+          }
+          localStorage.clear();
+          this.$api.post(this.$lesUiPath.enterAppFindList, data ).then(result => {
+            if (result.code == 0) {
+              localStorage.setItem('appNum', result.data.appCount);
+              localStorage.setItem('enterName', result.data.enterprise.enterName);
+              localStorage.setItem('xid', result.data.enterprise.xid);
+              localStorage.setItem('visitCount', result.data.visitsCount);
+              localStorage.setItem('count', result.data.userCount);
+              this.$router.push({
+                path: "/"
+              })
+            }
+          })
+        })
+        .catch(e => {
+          this.loading = false
+        })
     }
   }
 }

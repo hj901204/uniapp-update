@@ -5,7 +5,7 @@
       <el-input :class="invalidCode ? 'red' : ''" size="small" v-model="invCode" placeholder="请输入企业邀请码" clearable></el-input>
       <div v-if="invalidCode" class="linkerror">{{ message }}</div>
       <div class="btns">
-        <el-button size="small" type="primary" @click="handleCode">提交邀请码</el-button>
+        <el-button size="small" type="primary" :loading="loading" @click="handleCode">提交邀请码</el-button>
         <el-button size="small" @click="handleback">返回应用列表</el-button>
       </div>
     </div>
@@ -18,7 +18,7 @@
         <img src="@/assets/img/QR-code.jpg" alt="">
       </div>
       <div>
-        <el-button size="small" @click="handleback">返回应用列表</el-button>
+        <el-button size="small"  @click="handleback">返回应用列表</el-button>
       </div>
     </div>
   </div>
@@ -39,12 +39,15 @@ export default {
       invCode:'',
       name:'示例',
       time:'20分钟',
-      message:''
+      message:'',
+      loading:false
     }
   },
   methods: {
     handleCode(){
+      this.loading = true
       this.$api.post(this.$lesUiPath.supLinkEnter, { invCode: this.invCode }).then(result => {
+        this.loading = false
         if (result.code == 0) {
           if(result.data.code == 0){
             this.main = false
