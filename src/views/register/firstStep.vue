@@ -263,14 +263,14 @@ export default {
       console.log(valid3)
       if (valid1 && valid3) {
         let obj = {}
-        obj.enterprise = Object.assign(this.form, this.form2)
+        obj.enterprise = Object.assign(this.form)
         obj.enteradmin = this.enteradminForm
         this.$api.post(this.$lesUiPath.enterpriseRegister, obj).then(result => {
           console.log("enterpriseRegister:" + result)
           if (result.code == 0) {
             this.$router.push({
               path: "/register/lastStep",
-              query: { data: result.data }
+              query: { data: this.enteradminForm }
             })
           } else {
             return this.$message.error(result.msg)

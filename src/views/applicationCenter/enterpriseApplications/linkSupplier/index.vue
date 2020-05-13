@@ -48,7 +48,7 @@ export default {
         if (result.code == 0) {
           if(result.data.code == 0){
             this.main = false
-            this.name = result.data.data
+            this.name = result.data.msg
           }else{
             this.message = result.data.msg
             this.invalidCode = true

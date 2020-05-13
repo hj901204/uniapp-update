@@ -71,7 +71,7 @@ service.interceptors.response.use(
     //   })
     //   return Promise.reject("error")
   } else if (res.code == 40102 || res.code == 40103) {
-    if(res.code == 40103 && res.msg.indexOf("停用") != -1){
+    if(res.code == 40102 ){
       window.location.href = '/#/forbidden'
     }else{
        //应用过期

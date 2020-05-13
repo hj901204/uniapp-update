@@ -56,7 +56,7 @@
         <el-button type="primary"
                     size="small"
                     :loading="loading"
-                    @click="handleSure">提交</el-button>
+                    @click="handleSure">提交并返回登录页</el-button>
       </div>
      </div>
     </div>
@@ -170,6 +170,7 @@ export default {
             this.passwordForm
           )
           this.$api.post(this.$lesUiPath.password, data).then(result => {
+            this.loading = false
             if (result.code == 0) {
               this.$message.success("操作成功")
               this.$router.push({
@@ -178,7 +179,7 @@ export default {
             } else {
               return this.$message.error(result.data)
             }
-            this.loading = false
+            
         })
         }
       })

@@ -9,7 +9,12 @@
                      && $route.path !== '/register/firstStep'
                      && $route.path !== '/register/lastStep'"  />
       <div style="width:100%">
-        <Layout />
+        <Layout v-if="$route.path !== '/login' 
+                     && $route.path !== '/findPassword' 
+                     && $route.path !== '/forbidden' 
+                     && $route.path !== '/register'
+                     && $route.path !== '/register/firstStep'
+                     && $route.path !== '/register/lastStep'" />
         <router-view />
       </div>
       <!-- 页脚 -->

@@ -140,11 +140,10 @@ export default {
                   localStorage.setItem('xid', result.data.enterprise.xid);
                   localStorage.setItem('visitCount', result.data.visitsCount);
                   localStorage.setItem('count', result.data.userCount);
-                  console.log(localStorage)
+                  this.$router.push({
+                    path: "/"
+                  })
                 }
-              })
-               this.$router.push({
-                path: "/"
               })
             })
             .catch(e => {
@@ -279,7 +278,7 @@ export default {
   content: "";
   background: url(../../assets/img/login.jpg) no-repeat top center;
   background-size: cover;
-  opacity: 0.5;
+  opacity: 0.65;
   z-index: -1;
   position: absolute;
   top: 0;

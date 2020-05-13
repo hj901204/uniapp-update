@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <div style="overflow:hidden" v-if="handleJudgePath" class="second-nav">
+    <div style="overflow:hidden" class="second-nav">
       <Breadcrumb style="float:left;margin-left: 20px;width:100%" />
       <div class="companyInfo">
         <div class="name">
@@ -35,34 +35,47 @@ export default {
   },
   data() {
     return {
-      enterName:localStorage.getItem('enterName'),
-      xid:localStorage.getItem('xid'),
-      appNum:localStorage.getItem('appNum'),
-      count:localStorage.getItem('count'),
-      visitCount:localStorage.getItem('visitCount'),
+      enterName:'',
+      xid:'',
+      appNum:'',
+      count:'',
+      visitCount:'',
     }
+  },
+  mounted(){
+    this.$nextTick(() => {
+       this.getData();
+    })
   },
   computed: {
     // 判断路由即将跳转的页面，从而不显示路由导航
-    handleJudgePath() {
-      let paths = [
-        "/login",
-        "/forbidden",
-        "/findPassword",
-        "/register",
-        "/register/firstStep",
-        "/register/secondStep",
-        "/register/thirdStep",
-        "/register/fourthStep",
-        "/register/lastStep"
-      ]
-      let routePath = this.$route.path
-      if (paths.indexOf(routePath) != -1) {
-        return false
-      }
-      return true
-    }
-    
+    // handleJudgePath() {
+    //   let paths = [
+    //     "/login",
+    //     "/forbidden",
+    //     "/findPassword",
+    //     "/register",
+    //     "/register/firstStep",
+    //     "/register/secondStep",
+    //     "/register/thirdStep",
+    //     "/register/fourthStep",
+    //     "/register/lastStep"
+    //   ]
+    //   let routePath = this.$route.path
+    //   if (paths.indexOf(routePath) != -1) {
+    //     return false
+    //   }
+    //   return true
+    // }
+  },
+  methods:{
+    getData(){
+      this.enterName = localStorage.getItem('enterName')
+      this.xid = localStorage.getItem('xid')
+      this.appNum = localStorage.getItem('appNum')
+      this.count = localStorage.getItem('count')
+      this.visitCount = localStorage.getItem('visitCount')
+    },
   }
 }
 </script>

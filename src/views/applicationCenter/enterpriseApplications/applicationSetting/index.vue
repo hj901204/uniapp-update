@@ -26,7 +26,7 @@
       <el-button size="small"
                  type="primary"
                  class="add-user-btn"
-                 @click="handleAddUser">添加用户</el-button>
+                 @click="handleAddUser">添加关联用户</el-button>
       <Table :tableHead="tableHead"
              :isShowOperation="true"
              :isShowStopBtns='true'
