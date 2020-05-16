@@ -213,6 +213,10 @@ export default {
       width: 300px;
       margin-top: 30px;
     }
+    .btns{
+      padding-top: 30px;
+      margin-left: 90px;
+    }
   }
   
 }
