@@ -38,6 +38,12 @@
                   ref="passwordForm"
                   size="small"
                   hide-required-asterisk>
+           <el-form-item prop="name"
+                        label="登录密码"
+                        label-width="90px">
+            <span style="float:left">{{ passwordForm.name + "***" }}</span>
+          </el-form-item>
+
           <el-form-item prop="password"
                         label="登录密码"
                         label-width="90px">
@@ -141,7 +147,7 @@ export default {
       this.getTimeOut() 
       this.$api.post(this.$lesUiPath.forgetCode, obj).then(result => {
         if (result.code == 0) {
-          
+          this.passwordForm.name = result.data
         } else {
           return this.$message.error(result.msg)
         }
@@ -169,6 +175,7 @@ export default {
             this.mobileForm,
             this.passwordForm
           )
+          delete data.name
           this.$api.post(this.$lesUiPath.password, data).then(result => {
             this.loading = false
             if (result.code == 0) {

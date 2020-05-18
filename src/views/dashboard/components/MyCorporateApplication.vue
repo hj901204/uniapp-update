@@ -39,6 +39,19 @@
             </el-button>
           </div>
         </li>
+        <li v-if="JSON.stringify(list).indexOf('E5CD4719') == -1">
+          <div class="apply-title-box">
+            <div class="apply-title">
+              SupplyX·SRM 采购商
+            </div>
+          </div>
+          <div>
+            <span>当前应用未开通</span>
+          </div>
+          <div>
+            <el-button type="primary" size="small" @click="handleApply">申请开通</el-button>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
@@ -74,11 +87,6 @@ export default {
         if (result.code == 0) {
           this.list = result.data.enterApps
           this.code = result.data.enterprise.invCode
-          // localStorage.setItem('appNum', result.data.appCount);
-          // localStorage.setItem('enterName', result.data.enterprise.enterName);
-          // localStorage.setItem('xid', result.data.enterprise.xid);
-          // localStorage.setItem('visitCount', result.data.visitsCount);
-          // localStorage.setItem('count', result.data.userCount);
           if(result.data.appCount != 0) {
             result.data.enterApps.map(x => {
               if(x.appId == 'E5CD4719'){
@@ -87,6 +95,7 @@ export default {
               if(x.appId == 'E5CD4720'){
                 localStorage.setItem('supplierId', x.id);
               }
+              
             })
           }
         }
@@ -119,6 +128,14 @@ export default {
           path: "/application/enterpriseApplications/linkSupplier"
         })
       }
+    },
+    handleApply() {
+      this.$router.push({
+        path: "/application/appStore/applicationDetails",
+        query: {
+          params: '5ee8deecb2a64982b449797b9a62a4a6'
+        }
+      })
     }
   }
 }
@@ -143,7 +160,8 @@ export default {
   }
   .apply-box {
     & > ul {
-      overflow: hidden;
+      height: 430px;
+      overflow: scroll;
       padding-top: 16px;
       & > li {
         float: left;

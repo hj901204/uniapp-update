@@ -63,6 +63,7 @@ export default {
         return x.path != "/" && x.path != "/login" && x.path != "/forbidden" && x.path != "/findPassword" && x.path != "/register"
       })
       this.navList = allRoutes
+      console.log(this.navList)
       return this.navList
     }
   }
