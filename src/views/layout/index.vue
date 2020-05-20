@@ -14,7 +14,7 @@
           </div>
           <div class="border">
             <div class="fontsize">企业用户数</div>
-            <div class="numberSize">{{ count }}</div>
+            <div class="numberSize">{{ count }}<i @click="handleJump" class="countImg"><img src="@/assets/img/userCount.png" alt=""></i></div>
           </div>
           <div class="borderDiv">
             <div class="fontsize">累计访问</div>
@@ -76,6 +76,11 @@ export default {
       this.count = localStorage.getItem('count')
       this.visitCount = localStorage.getItem('visitCount')
     },
+    handleJump(){
+      this.$router.push({
+        path:'/enterprise/userCenter/userManagement'
+      })
+    }
   }
 }
 </script>
@@ -119,6 +124,14 @@ export default {
     font-size: 20px;
     font-weight: 500;
     padding-top: 8px;
+    .countImg{
+      img{
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+    }
   }
   .borderDiv{
     padding: 10px;
