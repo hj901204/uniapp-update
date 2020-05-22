@@ -14,12 +14,12 @@
             </div>
           </div>
           <div class="start-date">
-            <span v-if="item.appId == 'E5CD4720'">我的采购商:<span>{{ 0 }}</span></span>
-            <span v-if="item.appId == 'E5CD4719'">我的供应商:<span>{{ 0 }}</span></span>
+            <span v-if="item.appId == 'E5CD4720'">我的客户:<span>{{ cusSupStatistic.cusNum }}</span></span>
+            <span v-if="item.appId == 'E5CD4719'">我的供应商:<span>{{ cusSupStatistic.supNum }}</span></span>
           </div>
           <div class="expiration-date">
-            <span v-if="item.appId == 'E5CD4720'">累计订单:<span>{{ 0 }}</span></span>
-            <span v-if="item.appId == 'E5CD4719'">累计采购单:<span>{{ 0 }}</span></span>
+            <span v-if="item.appId == 'E5CD4720'">我的订单:<span>{{ cusSupStatistic.supPoNum }}</span></span>
+            <span v-if="item.appId == 'E5CD4719'">累计采购单:<span>{{ cusSupStatistic.purPoNum }}</span></span>
           </div>
           <div class="my-apply-btns">
             <el-button @click="handleToCode(item)"
@@ -60,47 +60,48 @@
 <script>
 export default {
   name: "my-corporate-application",
+  props:{
+    list: { type: Array, default: () => [] },
+    code: { type: String, default: '' },
+    cusSupStatistic: { type: Object, default: () => {}},
+  },
   data () {
     return {
-      type: this.$store.getters.type,
-      list: [],
-      code:''
+      // type: this.$store.getters.type,
+      // list: [],
+      // code:''
     }
   },
   mounted () {
     //localStorage.clear();
-    this.getMyApplication()
+    //this.getMyApplication()
   },
   methods: {
     handleToJump () {
       this.$router.push({ path: "/application/enterpriseApplications" })
     },
-    getMyApplication () {
-      // let data = {
-      //    page: 1, length: 1000 
-      // }
-      //localStorage.clear();
-      let data = {
-        acpath: "/system/login"
-      }
-      this.$api.post(this.$lesUiPath.enterAppFindList, data ).then(result => {
-        if (result.code == 0) {
-          this.list = result.data.enterApps
-          this.code = result.data.enterprise.invCode
-          if(result.data.appCount != 0) {
-            result.data.enterApps.map(x => {
-              if(x.appId == 'E5CD4719'){
-                localStorage.setItem('enterpriseId', x.id);
-              }
-              if(x.appId == 'E5CD4720'){
-                localStorage.setItem('supplierId', x.id);
-              }
+    // getMyApplication () {
+    //   let data = {
+    //     acpath: "/system/login"
+    //   }
+    //   this.$api.post(this.$lesUiPath.enterAppFindList, data ).then(result => {
+    //     if (result.code == 0) {
+    //       this.list = result.data.enterApps
+    //       this.code = result.data.enterprise.invCode
+    //       if(result.data.appCount != 0) {
+    //         result.data.enterApps.map(x => {
+    //           if(x.appId == 'E5CD4719'){
+    //             localStorage.setItem('enterpriseId', x.id);
+    //           }
+    //           if(x.appId == 'E5CD4720'){
+    //             localStorage.setItem('supplierId', x.id);
+    //           }
               
-            })
-          }
-        }
-      })
-    },
+    //         })
+    //       }
+    //     }
+    //   })
+    // },
     handleToApply (item) {
       // console.log(item)
       if (item.appId == "E5CD4719") {
