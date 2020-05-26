@@ -205,7 +205,7 @@ export default {
     overflow: hidden;
 
     .login-background {
-      
+
       width: 350px;
       a {
         font-size: 12px;

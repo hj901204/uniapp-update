@@ -2,16 +2,16 @@
   <div id="app" :class="$route.path != '/login' ? 'app' : ''">
     <HeaderNav />
     <div :class="$route.path == '/login' || $route.path == '/findPassword' ? 'views views-height' : 'views'">
-      <LeftNav v-if="$route.path !== '/login' 
-                     && $route.path !== '/findPassword' 
-                     && $route.path !== '/forbidden' 
+      <LeftNav v-if="$route.path !== '/login'
+                     && $route.path !== '/findPassword'
+                     && $route.path !== '/forbidden'
                      && $route.path !== '/register'
                      && $route.path !== '/register/firstStep'
                      && $route.path !== '/register/lastStep'"  />
       <div style="width:100%">
-        <Layout v-if="$route.path !== '/login' 
-                     && $route.path !== '/findPassword' 
-                     && $route.path !== '/forbidden' 
+        <Layout v-if="$route.path !== '/login'
+                     && $route.path !== '/findPassword'
+                     && $route.path !== '/forbidden'
                      && $route.path !== '/register'
                      && $route.path !== '/register/firstStep'
                      && $route.path !== '/register/lastStep'" />

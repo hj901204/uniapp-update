@@ -96,7 +96,7 @@ export default {
     //           if(x.appId == 'E5CD4720'){
     //             localStorage.setItem('supplierId', x.id);
     //           }
-              
+
     //         })
     //       }
     //     }

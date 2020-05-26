@@ -1,5 +1,5 @@
-import { loginByUsername } from "@/api/login"
-import { Message } from "element-ui"
+import { loginByUsername } from '@/api/login'
+import { Message } from 'element-ui'
 import {
   getToken,
   setToken,
@@ -10,15 +10,15 @@ import {
   getAuthType,
   setAuthType,
   removeAuthType
-} from "@/utils/auth"
+} from '@/utils/auth'
+
 const state = {
-  user: "",
-  code: "",
+  user: '',
+  code: '',
   token: getToken(), //token
   name: getUserName(), // 登录名
-  type: getAuthType(),
-  introduction: "",
-
+  type: '',
+  introduction: '',
   roles: [],
   menus: undefined,
   elements: undefined,
@@ -64,32 +64,31 @@ const actions = {
   LoginByUsername({ commit }, userInfo) {
     const username = userInfo.username.trim()
     const password = userInfo.password
-    
+
     return new Promise((resolve, reject) => {
       loginByUsername(username, password)
         .then(response => {
           if (response.code == 0) {
             const token = response.data.token
             const type = response.data.authType.toString()
-            let userName = ""
-            if (type == "1") {
+            let userName = ''
+            if (type == '1') {
               userName = response.data.name
             } else {
               userName = response.data.name
             }
-            
-            commit("SET_TOKEN", token)
-            commit("SET_NAME", userName)
-            commit("SET_AUTHTYPE", type)
+
+            commit('SET_TOKEN', token)
+            commit('SET_NAME', userName)
             setToken(token)
             setUserName(userName)
             setAuthType(type)
             // resetRouter()
             resolve()
-          }else {
+          } else {
             Message({
               message: response.msg,
-              type: "error"
+              type: 'error'
             })
           }
         })
@@ -98,14 +97,17 @@ const actions = {
         })
     })
   },
-
+  getInfo({ commit, state }) {
+    const userType = getAuthType()
+    commit('SET_AUTHTYPE', userType)
+  },
   // 登出
   LogOut({ commit, state }) {
     return new Promise((resolve, reject) => {
       const token = state.token
-      commit("SET_TOKEN", "")
-      commit("SET_NAME", "")
-      commit("SET_AUTHTYPE", "")
+      commit('SET_TOKEN', '')
+      commit('SET_NAME', '')
+      commit('SET_AUTHTYPE', '')
       removeToken()
       removeUserName()
       removeAuthType()
