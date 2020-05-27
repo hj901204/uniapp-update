@@ -70,8 +70,8 @@ service.interceptors.response.use(
     //     duration: 5 * 1000
     //   })
     //   return Promise.reject("error")
-  } else if (res.code == 40102 || res.code == 40103) {
-    if(res.code == 40102 ){
+  } else if (res.code == 40102 || res.code == 40103 || res.code == 40109) {
+    if(res.code == 40102 || res.code == 40109){
       window.location.href = '/#/forbidden'
     }else{
        //应用过期

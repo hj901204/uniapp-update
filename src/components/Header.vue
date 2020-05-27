@@ -11,7 +11,7 @@
           </div>
         </el-col>
         <el-col :span="6" :offset="12">
-          <UserCenterNav v-if="this.$store.getters.name" />
+          <UserCenterNav />
         </el-col>
       </el-row>
       
