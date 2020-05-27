@@ -46,7 +46,7 @@ export default {
           this.list = result.data.enterApps
           this.code = result.data.enterprise.invCode
           this.enterName = result.data.enterprise.enterName
-          this.cusSupStatistic = result.data.cusSupStatisticList[0]
+          this.cusSupStatistic = result.data.cusSupStatisticList[0] || []
           this.billAvgCostList = result.data.billAvgCostList
           if(result.data.appCount != 0) {
             result.data.enterApps.map(x => {

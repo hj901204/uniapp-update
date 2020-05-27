@@ -14,12 +14,12 @@
             </div>
           </div>
           <div class="start-date">
-            <span v-if="item.appId == 'E5CD4720'">我的客户:<span>{{ cusSupStatistic.cusNum }}</span></span>
-            <span v-if="item.appId == 'E5CD4719'">我的供应商:<span>{{ cusSupStatistic.supNum }}</span></span>
+            <span v-if="item.appId == 'E5CD4720'">我的客户:<span>{{ cusSupStatistic.cusNum || '0' }}</span></span>
+            <span v-if="item.appId == 'E5CD4719'">我的供应商:<span>{{ cusSupStatistic.supNum  || '0'}}</span></span>
           </div>
           <div class="expiration-date">
-            <span v-if="item.appId == 'E5CD4720'">我的订单:<span>{{ cusSupStatistic.supPoNum }}</span></span>
-            <span v-if="item.appId == 'E5CD4719'">累计采购单:<span>{{ cusSupStatistic.purPoNum }}</span></span>
+            <span v-if="item.appId == 'E5CD4720'">我的订单:<span>{{ cusSupStatistic.supPoNum || '0' }}</span></span>
+            <span v-if="item.appId == 'E5CD4719'">累计采购单:<span>{{ cusSupStatistic.purPoNum || '0' }}</span></span>
           </div>
           <div class="my-apply-btns">
             <el-button @click="handleToCode(item)"

@@ -4,21 +4,21 @@
       <Breadcrumb style="float:left;margin-left: 20px;width:100%" />
       <div class="companyInfo">
         <div class="name">
-          <div style="font-weight:500;font-size:18px">{{ enterName }}</div>
+          <div style="font-weight:500;font-size:18px">{{ enterName  ||  '--' }}</div>
           <div class="fontsize">{{ xid }}</div>
         </div>
         <div class="infoPosition">
           <div class="borderDiv">
             <div class="fontsize">当前应用</div>
-            <div class="numberSize">{{ appNum }}</div>
+            <div class="numberSize">{{ appNum || '--' }}</div>
           </div>
           <div class="border">
             <div class="fontsize">企业用户数</div>
-            <div class="numberSize">{{ count }}<i @click="handleJump" class="countImg"><img src="@/assets/img/userCount.png" alt=""></i></div>
+            <div class="numberSize">{{ count || '--' }}<i @click="handleJump" class="countImg"><img src="@/assets/img/userCount.png" alt=""></i></div>
           </div>
           <div class="borderDiv">
             <div class="fontsize">累计访问</div>
-            <div class="numberSize">{{ visitCount }}</div>
+            <div class="numberSize">{{ visitCount || '--' }}</div>
           </div>
         </div>
       </div>
