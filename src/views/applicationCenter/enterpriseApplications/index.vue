@@ -18,9 +18,9 @@
               <el-button @click="handleStartUse(item.appId)"
                          size="small"
                          type="primary"
-                         :disabled="item.useFlag == '0'"
                          >
-                        {{ item.useFlag == '0' ? '尚未获得权限' : '开始使用' }} 
+                        开始使用 
+                        <!-- {{ item.useFlag == '0' ? '尚未获得权限' : '' }}  -->
               </el-button>
             </div>
           </div>

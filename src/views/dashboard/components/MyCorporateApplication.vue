@@ -13,15 +13,23 @@
               {{ item.appName }}
             </div>
           </div>
-          <div class="start-date">
+          <div class="start-date" >
             <span v-if="item.appId == 'E5CD4720'">我的客户:<span>{{ cusSupStatistic.cusNum || '0' }}</span></span>
-            <span v-if="item.appId == 'E5CD4719'">我的供应商:<span>{{ cusSupStatistic.supNum  || '0'}}</span></span>
+            <span v-if="item.appId == 'E5CD4719' && item.isEnable != 2 ">我的供应商:<span>{{ cusSupStatistic.supNum  || '0'}}</span></span>
           </div>
           <div class="expiration-date">
             <span v-if="item.appId == 'E5CD4720'">我的订单:<span>{{ cusSupStatistic.supPoNum || '0' }}</span></span>
-            <span v-if="item.appId == 'E5CD4719'">累计采购单:<span>{{ cusSupStatistic.purPoNum || '0' }}</span></span>
+            <span v-if="item.appId == 'E5CD4719' && item.isEnable != 2 ">累计采购单:<span>{{ cusSupStatistic.purPoNum || '0' }}</span></span>
           </div>
-          <div class="my-apply-btns">
+          <div v-if="item.appId == 'E5CD4719' && item.isEnable == 2">
+            <div>
+              <span>当前应用未开通</span>
+            </div>
+            <div>
+              <el-button type="primary" size="small" @click="handleApply">申请开通</el-button>
+            </div>
+          </div>
+          <div class="my-apply-btns" v-if="item.appId == 'E5CD4720' || (item.appId == 'E5CD4719' && item.isEnable != 2)">
             <el-button @click="handleToCode(item)"
                        v-if="item.appId == 'E5CD4720'"
                        size="small"
