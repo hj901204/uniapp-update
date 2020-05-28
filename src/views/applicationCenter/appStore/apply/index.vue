@@ -32,12 +32,12 @@
         @click="handleBack"
       >返回上一页
       </el-button>
-      <el-button 
+      <!-- <el-button 
         size="small" 
         type="primary"  
         @click="handleJumpAppStore"
       >申请应用
-      </el-button>
+      </el-button> -->
     </div>
   </div>
 </template>
