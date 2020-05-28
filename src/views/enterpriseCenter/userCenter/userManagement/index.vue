@@ -141,7 +141,7 @@ export default {
     handleAdd () {
       this.isShowMainPage = false
       this.isShowResetBtn = false // 是否显示重置按钮
-      this.userForm = {}
+      this.userForm = { isEnable:true }
       this.isAdd = true
     },
     //返回
@@ -159,7 +159,7 @@ export default {
     },
     //点击保存按钮
     handleSave () {
-      this.userForm.isEnable = this.userForm.isEnable == true ? 1 : 0
+      this.userForm.isEnable = this.userForm.isEnable == true ? '1' : '0'
       this.userForm.username = this.userForm.email
       const status = this.userForm.id ? 'edit' : 'add'
       if (status == 'add') {
@@ -195,7 +195,6 @@ export default {
     },
     //获取用户列表
     getUserData (data) {
-      console.log(data)
       //const queryInfo = { page: page, length: length, isSuperAdmin:'0' };
       data.isSuperAdmin = '0'
       this.$api.post(this.$lesUiPath.enteruserFindUserList, data).then(result => {
