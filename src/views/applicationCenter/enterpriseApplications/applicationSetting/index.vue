@@ -13,10 +13,10 @@
       </div>
       <div class="apply-info">
         <div class="start-date">
-          <p>开始日期 :</p><span>2020/01/21 12:32:34</span>
+          <p>开始日期 :</p><span>{{ params.initiateTime }}</span>
         </div>
         <div class="expiration-date">
-          <p>有效期 :</p><span>一年</span>
+          <p>有效期至 :</p><span>{{ params.expireTime }}</span>
         </div>
       </div>
     </div>
