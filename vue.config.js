@@ -39,6 +39,9 @@ module.exports = {
     }
   },
   configureWebpack: {
+    performance: {
+      hints:false
+    },
     plugins: [
       new webpack.ProvidePlugin({
         $: "jquery",
