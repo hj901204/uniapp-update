@@ -153,6 +153,7 @@ export default {
       padding: 10px 20px;
       box-sizing: border-box;
       width: 49%;
+      height: 192px;
       float: left;
       margin-bottom: 10px;
       .apply-title-box {
