@@ -43,11 +43,11 @@ export default {
           localStorage.clear();
           this.$api.post(this.$lesUiPath.enterAppFindList, data ).then(result => {
             if (result.code == 0) {
-              localStorage.setItem('appNum', result.data.appCount);
+              localStorage.setItem('appNum', result.data.statisticList[0] ? result.data.statisticList[0].appNum : '');
               localStorage.setItem('enterName', result.data.enterprise.enterName);
               localStorage.setItem('xid', result.data.enterprise.xid);
-              localStorage.setItem('visitCount', result.data.visitsCount);
-              localStorage.setItem('count', result.data.userCount);
+              localStorage.setItem('visitCount', result.data.statisticList[0] ? result.data.statisticList[0].visits : '');
+              localStorage.setItem('count', result.data.statisticList[0] ? result.data.statisticList[0].userNum : '');
               this.$router.push({
                 path: "/"
               })
