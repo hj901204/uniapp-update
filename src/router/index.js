@@ -34,7 +34,8 @@ export const constantRoutes = [
     meta: {
       title: "首页",
       breadcrumbTitle: "首页",
-      breadcrumb: true
+      breadcrumb: true,
+      icon:"el-icon-s-home",
     }
   },
   //应用中心
@@ -49,7 +50,8 @@ export const constantRoutes = [
     meta: {
       title: "帮助中心",
       breadcrumbTitle: "帮助中心",
-      breadcrumb: true
+      breadcrumb: true,
+      icon:"el-icon-collection-tag"
     }
   },
   //登陆页面
