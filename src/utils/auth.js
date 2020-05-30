@@ -1,6 +1,6 @@
 import Cookies from "js-cookie"
 
-const TokenKey = "Token"
+const TokenKey = "token"
 const userNameKey = "userName"
 const authTypeKey = "authType"
 const routesKey = "accessedRoutes"
