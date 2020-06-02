@@ -45,9 +45,9 @@ export default {
   },
   methods: {
     handleCode(){
-      this.loading = true
+      // this.loading = true
       this.$api.post(this.$lesUiPath.supLinkEnter, { invCode: this.invCode }).then(result => {
-        this.loading = false
+        // this.loading = false
         if (result.code == 0) {
           if(result.data.code == 0){
             this.main = false
@@ -82,6 +82,7 @@ export default {
       padding-bottom: 20px;
     }
     .linkerror{
+      margin-top: 6px;
       font-size: 12px;
       color: red;
       text-align: left;

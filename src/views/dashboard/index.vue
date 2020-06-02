@@ -44,6 +44,7 @@ export default {
       this.$api.post(this.$lesUiPath.enterAppFindList, data ).then(result => {
         if (result.code == 0) {
           this.list = result.data.enterApps
+          console.log(this.list)
           this.code = result.data.enterprise.invCode
           this.enterName = result.data.enterprise.enterName
           this.cusSupStatistic = result.data.cusSupStatisticList[0] || {}
@@ -56,7 +57,7 @@ export default {
               if(x.appId == 'E5CD4720'){
                 localStorage.setItem('supplierId', x.id);
               }
-              
+
             })
           }
         }
