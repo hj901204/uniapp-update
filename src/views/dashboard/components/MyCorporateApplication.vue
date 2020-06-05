@@ -55,10 +55,17 @@
                         </div>
                     </div>
                     <div>
-                        <span>当前应用未开通</span>
+                        <span v-if="applied">当前应用未开通</span>
+                        <span v-else>当前应用已申请，请耐心等待审核</span>
                     </div>
                     <div>
-                        <el-button type="primary" size="small" @click="handleApply">申请开通</el-button>
+                        <el-button v-if="applied" type="primary" size="small" @click="handleApply">申请开通</el-button>
+                        <el-button
+                                v-else
+                                disabled
+                                size="small"
+                                type="primary">已申请
+                        </el-button>
                     </div>
                 </li>
             </ul>
@@ -82,12 +89,14 @@
         // type: this.$store.getters.type,
         // list: [],
         // code:''
+        applied: ''
       }
     },
     mounted() {
       setTimeout(() => {
         console.log(this.list)
       }, 500)
+      this.getAppDetail()
       //localStorage.clear();
       //this.getMyApplication()
     },
@@ -144,6 +153,16 @@
             path: '/application/enterpriseApplications/linkSupplier'
           })
         }
+      },
+      getAppDetail() {
+        let obj = { id: '5ee8deecb2a64982b449797b9a62a4a6' }
+        this.$api.post(this.$lesUiPath.appDetail, obj).then(result => {
+          if (result.code === '0') {
+            this.applied = result.applied
+          } else {
+            return this.$message.error(result.msg)
+          }
+        })
       },
       handleApply() {
         this.$router.push({
