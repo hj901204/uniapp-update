@@ -23,10 +23,18 @@
                     </div>
                     <div v-if="item.appId == 'E5CD4719' && item.isEnable == 2">
                         <div>
-                            <span>当前应用未开通</span>
+                            <span v-if="!isBlo&&type==1">当前应用未开通</span>
+                            <span v-if="isBlo&&type==1">当前应用已申请，请耐心等待审核</span>
                         </div>
                         <div>
-                            <el-button type="primary" size="small" @click="handleApply">申请开通</el-button>
+                            <el-button v-if="!isBlo&&type==1" type="primary" size="small" @click="handleApply">申请开通
+                            </el-button>
+                            <el-button
+                                    v-if="isBlo&&type==1"
+                                    disabled
+                                    size="small"
+                                    type="primary">已申请
+                            </el-button>
                         </div>
                     </div>
                     <div class="my-apply-btns"
@@ -55,22 +63,17 @@
                         </div>
                     </div>
                     <div>
-                        <span v-if="applied">当前应用未开通</span>
-                        <span v-else>当前应用已申请，请耐心等待审核</span>
+                        <span>当前应用未开通</span>
                     </div>
                     <div>
-                        <el-button v-if="applied" type="primary" size="small" @click="handleApply">申请开通</el-button>
-                        <el-button
-                                v-else
-                                disabled
-                                size="small"
-                                type="primary">已申请
+                        <el-button type="primary" size="small" @click="handleApply">申请开通
                         </el-button>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -86,21 +89,32 @@
     },
     data() {
       return {
+        isBlo: '',
+        type: this.$store.getters.type
         // type: this.$store.getters.type,
         // list: [],
         // code:''
-        applied: ''
       }
     },
     mounted() {
       setTimeout(() => {
         console.log(this.list)
       }, 500)
-      this.getAppDetail()
       //localStorage.clear();
       //this.getMyApplication()
+      this.getAppDetail()
     },
     methods: {
+      getAppDetail() {
+        let obj = { id: '5ee8deecb2a64982b449797b9a62a4a6' }
+        this.$api.post(this.$lesUiPath.appDetail, obj).then(result => {
+          if (result.code == 0) {
+            this.isBlo = result.data.applied
+          } else {
+            return this.$message.error(result.msg)
+          }
+        })
+      },
       handleToJump() {
         this.$router.push({ path: '/application/enterpriseApplications' })
       },
@@ -153,16 +167,6 @@
             path: '/application/enterpriseApplications/linkSupplier'
           })
         }
-      },
-      getAppDetail() {
-        let obj = { id: '5ee8deecb2a64982b449797b9a62a4a6' }
-        this.$api.post(this.$lesUiPath.appDetail, obj).then(result => {
-          if (result.code === '0') {
-            this.applied = result.applied
-          } else {
-            return this.$message.error(result.msg)
-          }
-        })
       },
       handleApply() {
         this.$router.push({

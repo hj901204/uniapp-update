@@ -1,9 +1,9 @@
-import Cookies from "js-cookie"
+import Cookies from 'js-cookie'
 
-const TokenKey = "token"
-const userNameKey = "userName"
-const authTypeKey = "authType"
-const routesKey = "accessedRoutes"
+const TokenKey = 'token'
+const userNameKey = 'userName'
+const authTypeKey = 'authType'
+const routesKey = 'accessedRoutes'
 
 export function getToken() {
   return Cookies.get(TokenKey)
