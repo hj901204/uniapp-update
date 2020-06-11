@@ -51,6 +51,7 @@
             this.code = result.data.enterprise.invCode
             this.enterName = result.data.enterprise.enterName
             this.cusSupStatistic = result.data.cusSupStatisticList[0] || {}
+            console.log(result.data.cusSupStatisticList[0],'dsdadasdadas')
             this.billAvgCostList = result.data.billAvgCostList
             if (result.data.appCount != 0) {
               result.data.enterApps.map(x => {
