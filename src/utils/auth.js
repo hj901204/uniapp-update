@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-const TokenKey = 'srm-token'
+const TokenKey = 'token'
 const userNameKey = 'userName'
 const authTypeKey = 'authType'
 const routesKey = 'accessedRoutes'
