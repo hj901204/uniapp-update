@@ -1,5 +1,5 @@
 // 登陆
-const baseUrl = "/supplyx-ui"
+const baseUrl = "/supplyx"
 // 登陆
 const login = baseUrl + "/system/login"
 //企业注册
