@@ -8,7 +8,7 @@ function resolve(dir) {
 
 const port = 9527 // dev port
 
-const CompressionPlugin = require("compression-webpack-plugin");
+const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
   /**
@@ -34,7 +34,7 @@ module.exports = {
     },
     proxy: {
       '/supplyx': {
-        target: 'http://172.21.0.15:8082',
+        target: 'http://49.233.100.59:8082',
         changeOrigin: true,
         pathRewrite: {
           '^/supplyx': '/supplyx'
