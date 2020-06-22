@@ -8,6 +8,8 @@ function resolve(dir) {
 
 const port = 9527 // dev port
 
+const CompressionPlugin = require("compression-webpack-plugin");
+
 module.exports = {
   /**
    * You will need to set publicPath if you plan to deploy your site under a sub path,
@@ -32,7 +34,7 @@ module.exports = {
     },
     proxy: {
       '/supplyx': {
-        target: 'http://47.105.182.148:8862',
+        target: 'http://172.21.0.15:8082',
         changeOrigin: true,
         pathRewrite: {
           '^/supplyx': '/supplyx'
@@ -50,14 +52,22 @@ module.exports = {
         jquery: 'jquery',
         'window.jQuery': 'jquery',
         jQuery: 'jquery'
-      })
-      // new CompressionWebpackPlugin({
+      }),
+      // new CompressionPlugin({
       //   asset: "[path].gz[query]",
       //   algorithm: "gzip",
-      //   test: new RegExp("\\.(" + productionGzipExtensions.join("|") + ")$"),
+      //   test: /\.js$|\.html$|\.css$|\.jpg$|\.jpeg$|\.png/,
+      //   //new RegExp("\\.(" + productionGzipExtensions.join("|") + ")$"),
       //   threshold: 10240,
       //   minRatio: 0.8
       // })
+      new CompressionPlugin({
+        algorithm: 'gzip',
+        test: /\.(js|css|svg|woff|ttf|json|html)$/,// 匹配文件名
+        threshold: 10240, // 对超过10k的数据压缩
+        deleteOriginalAssets: false, // 不删除源文件
+        minRatio: 0.8 // 压缩比
+      })
     ],
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
