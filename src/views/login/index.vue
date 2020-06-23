@@ -20,7 +20,6 @@
                    :model="loginForm"
                    :rules="loginRules"
                    class="login-form"
-                   auto-complete="on"
                    label-position="left">
             <el-form-item prop="username">
               <p style="text-align: left;height:20px;line-height:20px;margin-bottom:10px;color:#7e7e7e;">
@@ -29,7 +28,8 @@
               <el-input v-model.trim="loginForm.username"
                         name="username"
                         type="text"
-                        auto-complete="on"
+                        autocomplete="new-password"
+                        auto-complete="off"
                         class="username"
                         placeholder="输入手机号或者管理员账号"
                         maxlength="30"
@@ -54,9 +54,11 @@
               <el-input type="password"
                         v-model.trim="loginForm.password"
                         name="password"
-                        auto-complete="on"
+                        autocomplete="new-password"
+                        auto-complete="off"
                         placeholder="请输入密码"
                         maxlength="30"
+                        @keyup.enter.native="handleLogin('loginForm')"
                         prefix-icon="el-icon-lock" />
               <!-- prefix-icon="el-icon-lock" -->
             </el-form-item>

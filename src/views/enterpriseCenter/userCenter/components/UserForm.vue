@@ -26,30 +26,30 @@
                           style="width:50%"></el-input>
                 <span v-if="!isAdd">{{ userForm.mobilePhone }}</span>
             </el-form-item>
-            <el-form-item label="图形验证码:" prop="graphImage" v-if="isAdd">
-                <div class="graphFrom">
-                    <el-input v-model="userForm.graphImage"
-                              autocomplete="new-password"
-                              class="graphInput"
-                              placeholder="请输入图形验证码"
-                              style="width:50%"></el-input>
-                    <div class="graphImage">
-                        <img src="@/assets/img/logo-w.png" alt="">
-                    </div>
-                </div>
-            </el-form-item>
-            <el-form-item label="短信验证码:" prop="graphCode" v-if="isAdd">
-                <div class="graphFrom">
-                    <el-input v-model="userForm.graphCode"
-                              autocomplete="new-password"
-                              class="graphInput"
-                              placeholder="请输入图形验证码"
-                              style="width:50%"></el-input>
-                    <div class="graphImage">
-                        <el-button size="mini" type="primary">获取验证码</el-button>
-                    </div>
-                </div>
-            </el-form-item>
+<!--            <el-form-item label="图形验证码:" prop="graphImage" v-if="isAdd">-->
+<!--                <div class="graphFrom">-->
+<!--                    <el-input v-model="userForm.graphImage"-->
+<!--                              autocomplete="new-password"-->
+<!--                              class="graphInput"-->
+<!--                              placeholder="请输入图形验证码"-->
+<!--                              style="width:50%"></el-input>-->
+<!--                    <div class="graphImage">-->
+<!--                        <img src="@/assets/img/logo-w.png" alt="">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </el-form-item>-->
+<!--            <el-form-item label="短信验证码:" prop="graphCode" v-if="isAdd">-->
+<!--                <div class="graphFrom">-->
+<!--                    <el-input v-model="userForm.graphCode"-->
+<!--                              autocomplete="new-password"-->
+<!--                              class="graphInput"-->
+<!--                              placeholder="请输入图形验证码"-->
+<!--                              style="width:50%"></el-input>-->
+<!--                    <div class="graphImage">-->
+<!--                        <el-button size="mini" type="primary">获取验证码</el-button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </el-form-item>--> 
             <el-form-item label="登陆密码:"
                           prop="password">
                 <el-input type="password"
