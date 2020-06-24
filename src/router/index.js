@@ -1,5 +1,5 @@
 // import Vue from "vue"
-import VueRouter from "vue-router"
+// import VueRouter from "vue-router"
 import Login from "@/views/login/index.vue"
 import Forbidden from "@/views/forbidden/forbidden.vue"
 import Dashboard from "@/views/dashboard/index"
