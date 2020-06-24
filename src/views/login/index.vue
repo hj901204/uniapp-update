@@ -26,10 +26,8 @@
                 账户密码登录
               </p>
               <el-input v-model.trim="loginForm.username"
-                        name="username"
                         type="text"
                         autocomplete="new-password"
-                        auto-complete="off"
                         class="username"
                         placeholder="输入手机号或者管理员账号"
                         maxlength="30"
@@ -53,9 +51,7 @@
               </p> -->
               <el-input type="password"
                         v-model.trim="loginForm.password"
-                        name="password"
                         autocomplete="new-password"
-                        auto-complete="off"
                         placeholder="请输入密码"
                         maxlength="30"
                         @keyup.enter.native="handleLogin('loginForm')"
@@ -101,17 +97,17 @@ export default {
       loginForm: {},
       loginRules: {
         username: [
-          {
-            required: true,
-            message: "账户不能为空",
-            trigger: "blur"
-          },
-          {
-            min: 3,
-            max: 50,
-            message: "长度在 3 到 50 个字符",
-            trigger: "blur"
-          }
+          // {
+          //   required: true,
+          //   message: "账户不能为空",
+          //   trigger: "blur"
+          // },
+          // {
+          //   min: 3,
+          //   max: 50,
+          //   message: "长度在 3 到 50 个字符",
+          //   trigger: "blur"
+          // }
         ],
         password: [
           {
