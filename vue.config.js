@@ -44,6 +44,14 @@ module.exports = {
     }
   },
   configureWebpack: {
+    externals: {
+      'vue': 'Vue',
+      'vuex': 'Vuex',
+      'vue-router': 'VueRouter',
+      'element-ui': 'ELEMENT',
+      'axios': 'axios',
+      'vue-clipboard2': 'VueClipboard'
+    },
     performance: {
       hints: false
     },

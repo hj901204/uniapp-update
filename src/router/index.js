@@ -1,4 +1,4 @@
-import Vue from "vue"
+// import Vue from "vue"
 import VueRouter from "vue-router"
 import Login from "@/views/login/index.vue"
 import Forbidden from "@/views/forbidden/forbidden.vue"
@@ -9,7 +9,7 @@ import Help from "@/views/help/index"
 
 import applicationRouter from "./application"
 import enterprise from "./enterprise"
-Vue.use(VueRouter)
+// Vue.use(VueRouter)
 
 export const constantRoutes = [
   // {
