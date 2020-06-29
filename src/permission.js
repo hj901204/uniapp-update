@@ -26,6 +26,7 @@ router.beforeEach(async(to, from, next) => {
   //如果有就拉取用户信息;
   //如果没有就跳转到登陆页面
   if (getToken()) {
+    console.log(to.path)
     if (whiteList.indexOf(to.path) !== -1) {
       // if is logged in, redirect to the home page
       next({ path: '/' })
