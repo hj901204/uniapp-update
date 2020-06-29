@@ -144,7 +144,15 @@
       handleAdd() {
         this.isShowMainPage = false
         this.isShowResetBtn = false // 是否显示重置按钮
-        this.userForm = { isEnable: true }
+        this.userForm = {
+          isEnable: true,
+          name: '',
+          mobilePhone: '',
+          graphImage: '',
+          graphCode: '',
+          password: '',
+          departId: ''
+        }
         this.isAdd = true
       },
       //返回

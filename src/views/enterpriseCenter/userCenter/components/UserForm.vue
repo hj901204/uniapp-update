@@ -1,5 +1,6 @@
 <template>
     <div class="user-form">
+        <el-button type="primary" @click="handleSubmit">主要按钮</el-button>
         <!-- 用户管理编辑表单 -->
         <el-form :model="userForm"
                  hide-required-asterisk
@@ -26,30 +27,32 @@
                           style="width:50%"></el-input>
                 <span v-if="!isAdd">{{ userForm.mobilePhone }}</span>
             </el-form-item>
-<!--            <el-form-item label="图形验证码:" prop="graphImage" v-if="isAdd">-->
-<!--                <div class="graphFrom">-->
-<!--                    <el-input v-model="userForm.graphImage"-->
-<!--                              autocomplete="new-password"-->
-<!--                              class="graphInput"-->
-<!--                              placeholder="请输入图形验证码"-->
-<!--                              style="width:50%"></el-input>-->
-<!--                    <div class="graphImage">-->
-<!--                        <img src="@/assets/img/logo-w.png" alt="">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </el-form-item>-->
-<!--            <el-form-item label="短信验证码:" prop="graphCode" v-if="isAdd">-->
-<!--                <div class="graphFrom">-->
-<!--                    <el-input v-model="userForm.graphCode"-->
-<!--                              autocomplete="new-password"-->
-<!--                              class="graphInput"-->
-<!--                              placeholder="请输入图形验证码"-->
-<!--                              style="width:50%"></el-input>-->
-<!--                    <div class="graphImage">-->
-<!--                        <el-button size="mini" type="primary">获取验证码</el-button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </el-form-item>-->
+            <el-form-item label="图形验证码:" prop="graphImage" v-if="isAdd">
+                <div class="graphFrom">
+                    <el-input v-model="userForm.graphImage"
+                              autocomplete="new-password"
+                              class="graphInput"
+                              maxlength="4"
+                              @input="aaa"
+                              placeholder="请输入图形验证码"
+                              style="width:50%"></el-input>
+                    <div class="graphImage" @click="changeCode">
+                        <identify class="identify" :identifyCode="identifyCode"></identify>
+                    </div>
+                </div>
+            </el-form-item>
+            <el-form-item label="短信验证码:" prop="graphCode" v-if="isAdd">
+                <div class="graphFrom">
+                    <el-input v-model="userForm.graphCode"
+                              autocomplete="new-password"
+                              class="graphInput"
+                              placeholder="请输入图形验证码"
+                              style="width:50%"></el-input>
+                    <div class="graphImage">
+                        <el-button size="mini" type="primary">获取验证码</el-button>
+                    </div>
+                </div>
+            </el-form-item>
             <el-form-item label="登陆密码:"
                           prop="password">
                 <el-input type="password"
@@ -119,6 +122,10 @@
     },
     data() {
       return {
+        // 验证码初始值
+        identifyCode: 'm6a8',
+        // 验证码的随机取值范围
+        identifyCodes: '123456789abcdefghjkmnpqrstuvwxyz',
         isFormDisabled: true,
         // userForm: { name: "aa" },
         defaultProps: { value: 'id', label: 'name', children: 'children' },
@@ -149,9 +156,45 @@
     },
     mounted() {
       this.getDepartTree()
+      this.identifyCode = ''
+      this.makeCode(this.identifyCodes, 4)
+      console.log(this.identifyCode)
       console.log(this.userForm)
     },
+    components: {
+      identify: resolve => require(['../components/identify'], resolve),
+    },
     methods: {
+      aaa(e){
+        console.log(e)
+      },
+      // 验证验证码
+      handleSubmit() {
+        console.log(this.identifyCode)
+        console.log(this.userForm.graphImage)
+        if (this.identifyCode !== this.userForm.graphImage ) {
+          console.log('验证码错误')
+          this.changeCode();// 改变验证码
+        } else {
+          console.log('验证码正确')
+        }
+      },
+      // 点击验证码刷新验证码
+      changeCode() {
+        this.identifyCode = ''
+        this.makeCode(this.identifyCodes, 4)
+      },
+      // 生成一个随机整数  randomNum(0, 10) 0 到 10 的随机整数， 包含 0 和 10
+      randomNum(min, max) {
+        max = max + 1
+        return Math.floor(Math.random() * (max - min) + min)
+      },
+      // 随机生成验证码字符串
+      makeCode(data, len) {
+        for (let i = 0; i < len; i++) {
+          this.identifyCode += data[this.randomNum(0, data.length - 1)]
+        }
+      },
       //返回
       handleBack() {
         this.$emit('handleBack')
@@ -232,7 +275,7 @@
                 width: 8%;
                 height: 32px;
 
-                img {
+                .identify {
                     width: 100%;
                     height: 100%;
                 }
