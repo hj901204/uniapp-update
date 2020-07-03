@@ -51,17 +51,19 @@
             this.code = result.data.enterprise.invCode
             this.enterName = result.data.enterprise.enterName
             this.cusSupStatistic = result.data.cusSupStatisticList[0] || {}
-            console.log(result.data.cusSupStatisticList[0],'dsdadasdadas')
+            console.log(result.data.cusSupStatisticList[0], 'dsdadasdadas')
             this.billAvgCostList = result.data.billAvgCostList
             if (result.data.appCount != 0) {
+              console.log(result.data.enterApps, 'enterApps')
               result.data.enterApps.map(x => {
                 if (x.appId == 'E5CD4719') {
-                  localStorage.setItem('enterpriseId', x.id)
+                  localStorage.setItem('enterpriseId', x.tsAppId)
+                  localStorage.setItem('enterpriseAppId', x.appId)
                 }
                 if (x.appId == 'E5CD4720') {
-                  localStorage.setItem('supplierId', x.id)
+                  localStorage.setItem('supplierId', x.tsAppId)
+                  localStorage.setItem('supplierAppId', x.appId)
                 }
-
               })
             }
             this.$nextTick(() => {

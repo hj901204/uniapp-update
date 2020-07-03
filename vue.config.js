@@ -35,8 +35,8 @@ module.exports = {
     proxy: {
       '/supplyx': {
         // target: "https://supplyx.goocidata.com/supplyx",//正式环境域名
-        // target: 'https://tsersmt.goocidata.com',//测试环境域名
-        target: 'http://49.233.100.59:8082',//开发环境ip
+        target: 'https://tsersmt.goocidata.com',//测试环境域名
+        // target: 'http://49.233.100.59:8082',//开发环境ip
         changeOrigin: true,
         pathRewrite: {
           '^/supplyx': '/supplyx'
