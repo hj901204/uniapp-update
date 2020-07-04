@@ -161,8 +161,6 @@
       },
       //添加用户保存
       handleSaveAdd() {
-        console.log(this.params)
-        return
         if (!this.selectObj) return this.$message.warning('请选择用户数据')
         this.selectinfo = {
           tsUserId: this.selectObj.id,
