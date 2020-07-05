@@ -1,6 +1,5 @@
 <template>
     <div class="user-form">
-        <el-button type="primary" @click="handleSubmit">主要按钮</el-button>
         <!-- 用户管理编辑表单 -->
         <el-form :model="userForm"
                  hide-required-asterisk
@@ -41,15 +40,15 @@
                     </div>
                 </div>
             </el-form-item>
-            <el-form-item label="短信验证码:" prop="graphCode" v-if="isAdd">
+            <el-form-item label="短信验证码:" prop="code" v-if="isAdd">
                 <div class="graphFrom">
-                    <el-input v-model="userForm.graphCode"
+                    <el-input v-model="userForm.code"
                               autocomplete="new-password"
                               class="graphInput"
-                              placeholder="请输入图形验证码"
+                              placeholder="请输入短信验证码"
                               style="width:50%"></el-input>
                     <div class="graphImage">
-                        <el-button size="mini" type="primary">获取验证码</el-button>
+                        <el-button size="mini" type="primary" @click="validCode">{{btnContent}}</el-button>
                     </div>
                 </div>
             </el-form-item>
@@ -122,6 +121,9 @@
     },
     data() {
       return {
+        btnContent:'获取验证码',
+        time: 60,
+        timer:'cloak',
         // 验证码初始值
         identifyCode: 'm6a8',
         // 验证码的随机取值范围
@@ -148,7 +150,9 @@
           // ],
           mobilePhone: [
             { required: true, message: '请输入手机号码', trigger: 'blur' }
-          ]
+          ],
+          graphImage:[{ required: true, message: '请输入图形验证码', trigger: 'blur' }],
+          code:[{ required: true, message: '请输入短信验证码', trigger: 'blur' }],
         },
 
         departOptions: []  //部门数组
@@ -165,19 +169,43 @@
       identify: resolve => require(['../components/identify'], resolve),
     },
     methods: {
+      //获取验证码
+      validCode () {
+        if(this.userForm.graphImage.length===0){
+          return this.$message.warning("请先输入图形验证码")
+        }
+        if (this.identifyCode !== this.userForm.graphImage ) {
+          this.changeCode();// 改变验证码
+          return this.$message.warning("图形验证码错误")
+        }
+        if(!this.userForm.mobilePhone) return this.$message.warning("请先输入手机号码")
+        let obj = {}
+        obj.mobile = this.userForm.mobilePhone
+        this.canClick = true
+        this.getTimeOut()
+        this.$api.post(this.$lesUiPath.code, obj).then(result => {
+          if (result.code == 0) {
+            return this.$message.success("短信验证码发送成功")
+          } else {
+            return this.$message.error(result.msg)
+          }
+        })
+      },
+      getTimeOut(){
+        this.cloak = setInterval( () => {
+          this.time--
+          if(this.time > 0){
+            this.btnContent = this.time + "s后重新发送"
+          }else if(this.time <= 0){
+            window.clearInterval(this.cloak)
+            this.btnContent = "重新发送"
+            this.time = 60
+            this.canClick = false
+          }
+        },1000)
+      },
       aaa(e){
         console.log(e)
-      },
-      // 验证验证码
-      handleSubmit() {
-        console.log(this.identifyCode)
-        console.log(this.userForm.graphImage)
-        if (this.identifyCode !== this.userForm.graphImage ) {
-          console.log('验证码错误')
-          this.changeCode();// 改变验证码
-        } else {
-          console.log('验证码正确')
-        }
       },
       // 点击验证码刷新验证码
       changeCode() {

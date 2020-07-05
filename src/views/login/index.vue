@@ -14,7 +14,18 @@
         </div> -->
         <div class="appletQr">
             <div class="appletQr_box">
-                <img src="../../assets/img/QR-code.jpg" alt="">
+                <div class="qr_code">
+                    <p>
+                        <img src="../../assets/img/QR-code.jpg" alt="">
+                        <span>公众号</span>
+                    </p>
+                </div>
+                <div class="qr_code">
+                    <p>
+                        <img src="../../assets/img/mini_code.jpg" alt="">
+                        <span>小程序</span>
+                    </p>
+                </div>
                 <div class="appletQr_text">
                     <p>让供需关系易如反掌</p>
                     <p>推荐使用小程序操作，无需下载快速便捷</p>
@@ -329,11 +340,25 @@
             color: white;
             display: flex;
             height: 100%;
+            .qr_code{
+                margin: auto 30px auto 30px;
+                font-size: 14px;
+                &:first-child{
+                    margin-left: 100px;
+                }
+                p{
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    img {
+                        width: 140px;
+                        height: 140px;
+                    }
+                    span{
+                        margin-top: 10px;
+                    }
+                }
 
-            img {
-                width: 140px;
-                height: 140px;
-                margin: auto 0 auto 65px;
             }
 
             .appletQr_text {
