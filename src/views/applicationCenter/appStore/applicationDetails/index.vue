@@ -14,11 +14,11 @@
                      size="small"
                      type="primary">已申请
           </el-button>
-          <!-- <el-button 
+          <!-- <el-button
             v-if="true"
             disabled
-            size="small" 
-            type="primary"  
+            size="small"
+            type="primary"
           >已使用
           </el-button> -->
           <el-button size="small"
@@ -47,109 +47,109 @@
 </template>
 
 <script>
-export default {
-  name: "apply-details",
-  data () {
-    return {
-      params: this.$route.query.params,
-      appDetail: {},
-      activeName: "first",
-      applied: '',
-      type: this.$store.getters.type
-      // used: 'true'
-    }
-  },
-  created () {
-    this.getAppDetail();
-  },
-  methods: {
-    // 应用详情
-    getAppDetail () {
-      let obj = { id: this.params }
-      this.$api.post(this.$lesUiPath.appDetail, obj).then(result => {
-        if (result.code == 0) {
-          this.appDetail = result.data
-          this.applied = result.data.applied
-        } else {
-          return this.$message.error(result.msg)
-        }
-      })
+  export default {
+    name: "apply-details",
+    data () {
+      return {
+        params: this.$route.query.params,
+        appDetail: {},
+        activeName: "first",
+        applied: '',
+        type: this.$store.getters.type
+        // used: 'true'
+      }
     },
-    // 申请应用
-    handleApply () {
-      let obj = { id: this.params }
-      this.$api.post(this.$lesUiPath.appApply, obj).then(result => {
-        if (result.code == 0) {
-          result.data.appName = this.appDetail.appName
-          this.$router.push({
-            path: "/application/appStore/apply",
-            query: { params: result.data }
-          })
-        } else {
-          return this.$message.error(result.msg)
-        }
-      })
+    created () {
+      this.getAppDetail();
     },
-    // 返回商城
-    handleJumpAppStore () {
-      this.$router.push({ path: "/application/appStore" })
+    methods: {
+      // 应用详情
+      getAppDetail () {
+        let obj = { id: this.params }
+        this.$api.post(this.$lesUiPath.appDetail, obj).then(result => {
+          if (result.code == 0) {
+            this.appDetail = result.data
+            this.applied = result.data.applied
+          } else {
+            return this.$message.error(result.msg)
+          }
+        })
+      },
+      // 申请应用
+      handleApply () {
+        let obj = { id: this.params }
+        this.$api.post(this.$lesUiPath.appApply, obj).then(result => {
+          if (result.code == 0) {
+            result.data.appName = this.appDetail.appName
+            this.$router.push({
+              path: "/application/appStore/apply",
+              query: { params: result.data }
+            })
+          } else {
+            return this.$message.error(result.msg)
+          }
+        })
+      },
+      // 返回商城
+      handleJumpAppStore () {
+        this.$router.push({ path: "/application/appStore" })
+      }
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>
-.apply-details {
-  text-align: left;
-  height: calc(100vh - 240px);
-  .apply-introduction {
-    margin-bottom: 20px;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(226, 226, 226);
-    border-radius: 8px;
-    padding: 20px;
-    .apply-title {
-      overflow: hidden;
-      height: 50px;
-      border-bottom: 1px solid rgb(226, 226, 226);
-      & > span,
-      i {
-        font-weight: bold;
-        font-size: 18px;
-        font-style: normal;
-        line-height: 32px;
+  .apply-details {
+    text-align: left;
+    height: calc(100vh - 240px);
+    .apply-introduction {
+      margin-bottom: 20px;
+      background-color: rgb(255, 255, 255);
+      border: 1px solid rgb(226, 226, 226);
+      border-radius: 8px;
+      padding: 20px;
+      .apply-title {
+        overflow: hidden;
+        height: 50px;
+        border-bottom: 1px solid rgb(226, 226, 226);
+        & > span,
         i {
-          margin: 0 5px;
+          font-weight: bold;
+          font-size: 18px;
+          font-style: normal;
+          line-height: 32px;
+          i {
+            margin: 0 5px;
+          }
+        }
+        .apply-btns {
+          float: right;
         }
       }
-      .apply-btns {
-        float: right;
-      }
-    }
-    .app-describe {
-      text-align: left;
-      padding: 24px 0;
-      margin-bottom: 20px;
-      & > p {
-        font-family: PingFangSC-Medium;
-        line-height: 1.5;
-        font-size: 14px;
-        color: #4a4a4a;
+      .app-describe {
         text-align: left;
+        padding: 24px 0;
+        margin-bottom: 20px;
+        & > p {
+          font-family: PingFangSC-Medium;
+          line-height: 1.5;
+          font-size: 14px;
+          color: #4a4a4a;
+          text-align: left;
+        }
       }
     }
+    .tab {
+      height: calc(100% - 52px);
+      background-color: rgb(255, 255, 255);
+      border: 1px solid rgb(226, 226, 226);
+      border-radius: 8px;
+      padding: 20px;
+      font-family: PingFangSC-Medium;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #4a4a4a;
+      text-align: left;
+    }
   }
-  .tab {
-    height: calc(100% - 52px);
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(226, 226, 226);
-    border-radius: 8px;
-    padding: 20px;
-    font-family: PingFangSC-Medium;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #4a4a4a;
-    text-align: left;
-  }
-}
 </style>
