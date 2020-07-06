@@ -116,6 +116,8 @@ const depart = baseUrl + "/depart/"
 
 //查询部门树
 const departTree = baseUrl + "/depart/tree"
+//订单分享生成二维码 / 采购商邀请供应商注册
+const createOrderQr = baseUrl + '/wxqr/getInvitationORShareLimitQr'
 
 export default {
   install(Vue) {
@@ -157,7 +159,8 @@ export default {
       forgetCode,
       enteruserVisit,
       supLinkEnter,
-      checkCode
+      checkCode,
+      createOrderQr
     }
   }
 }

@@ -154,9 +154,11 @@
                 }
                 localStorage.clear()
                 this.$api.post(this.$lesUiPath.enterAppFindList, data).then(result => {
+                  console.log(result)
                   if (result.code == 0) {
                     localStorage.setItem('appNum', result.data.statisticList[0] ? result.data.statisticList[0].appNum : '')
                     localStorage.setItem('enterName', result.data.enterprise.enterName)
+                    localStorage.setItem('eid', result.data.enterprise.id)
                     localStorage.setItem('xid', result.data.enterprise.xid)
                     localStorage.setItem('visitCount', result.data.statisticList[0] ? result.data.statisticList[0].visits : '')
                     localStorage.setItem('count', result.data.statisticList[0] ? result.data.statisticList[0].userNum : '')
@@ -340,21 +342,26 @@
             color: white;
             display: flex;
             height: 100%;
-            .qr_code{
+
+            .qr_code {
                 margin: auto 30px auto 30px;
                 font-size: 14px;
-                &:first-child{
+
+                &:first-child {
                     margin-left: 100px;
                 }
-                p{
+
+                p {
                     display: flex;
                     flex-direction: column;
                     text-align: center;
+
                     img {
                         width: 140px;
                         height: 140px;
                     }
-                    span{
+
+                    span {
                         margin-top: 10px;
                     }
                 }
@@ -377,6 +384,70 @@
                     &:last-child {
                         font-size: 16px;
                         margin-top: 5px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: 500px) and (max-width: 1366px) {
+        .appletQr {
+            left: 0;
+            right: 0;
+            margin-top: 66.5px;
+            height: 245px;
+            position: absolute;
+            top: 15%;
+            background-color: rgba(8, 31, 55, 0.7);
+            overflow: hidden;
+
+            .appletQr_box {
+                color: white;
+                display: flex;
+                height: 100%;
+
+                .qr_code {
+                    margin: auto 30px auto 30px;
+                    font-size: 14px;
+
+                    &:first-child {
+                        margin-left: 100px;
+                    }
+
+                    p {
+                        display: flex;
+                        flex-direction: column;
+                        text-align: center;
+
+                        img {
+                            width: 140px;
+                            height: 140px;
+                        }
+
+                        span {
+                            margin-top: 10px;
+                        }
+                    }
+
+                }
+
+                .appletQr_text {
+                    display: flex;
+                    flex-direction: column;
+
+                    p {
+                        margin: 0 auto 0 35px;
+
+                        &:first-child {
+                            font-size: 25px;
+                            font-weight: bold;
+                            margin-top: 74px;
+                        }
+
+                        &:last-child {
+                            font-size: 14px;
+                            margin-top: 5px;
+                        }
                     }
                 }
             }

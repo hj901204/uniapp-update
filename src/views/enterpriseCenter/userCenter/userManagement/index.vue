@@ -73,7 +73,9 @@
       return {
         isShowMainPage: true,
         isShowResetBtn: false,
-        userForm: {},
+        userForm: {
+          name: '', mobilePhone: '', graphImage: '', code: '', password: '', departId: ''
+        },
         tableHead: [
           {
             fieldNo: 'name',
@@ -255,7 +257,7 @@
 
 <style lang="scss" scoped>
     .user-management {
-        height: calc(100vh - 293px);
+        height: calc(100vh - 100px);
         text-align: left;
         overflow: hidden;
 

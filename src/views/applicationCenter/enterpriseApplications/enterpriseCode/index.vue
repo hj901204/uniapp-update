@@ -3,13 +3,11 @@
         <div class="enterpCode">
             <div class="codeBox">
                 <div class="codeTitle">微信扫码邀请注册</div>
-                <div class="codeImg"><img src="@/assets/img/QR-code.jpg" alt=""></div>
-                <div class="wechart">
-                    <div>关于使用微信扫分享</div>
-                    <div>您可以使用以下两种方式进行扫码分享。</div>
-                    <div style="margin-top:20px">1.在微信聊天中直接使用拍照功能，发送至您需要分享用户或群聊天。</div>
-                    <div style="margin-bottom:20px">2.手机扫码之后点击右上角的分享，分享至用户或群聊天。</div>
-                    <div style="margin-bottom:20px">通过该二维码注册的供应商将自动关联成为您的供应商。</div>
+                <div class="codeImg"><img :src="qrCode" alt=""></div>
+                <div class="wechart" style="padding: 30px 0">
+                    <div>关于使用微信扫码分享</div>
+                    <div>扫码进入小程序分享至您需要邀请的供应商。</div>
+                    <div style="margin-top:20px">通过该分享注册的供应商将自动关联成为您的供应商。</div>
                 </div>
             </div>
             <div class="codeLine"></div>
@@ -45,16 +43,27 @@
     components: {},
     mounted() {
       this.getCodeData()
+      this.handleShare()
     },
     data() {
       return {
-        message: this.$route.query.params
+        message: this.$route.query.params,
+        qrCode:''
       }
     },
     methods: {
       //复制
       handleCopy: function(e) {
         console.log('你刚刚复制: ' + e.text)
+      },
+      handleShare() {
+        this.$api.post(this.$lesUiPath.createOrderQr, {
+          path: `pages/invite/invite?eid=${localStorage.getItem('eid')}`,
+          eid: localStorage.getItem('eid')
+        }).then(result => {
+          console.log(result)
+          this.qrCode = `data:image/jpg;base64,${result.data}`
+        })
       },
       onError: function(e) {
         console.log('无法复制文本！')

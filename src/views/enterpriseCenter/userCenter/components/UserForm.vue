@@ -2,7 +2,6 @@
     <div class="user-form">
         <!-- 用户管理编辑表单 -->
         <el-form :model="userForm"
-                 hide-required-asterisk
                  ref="ruleForm"
                  label-width="100px"
                  size="small"
@@ -142,12 +141,12 @@
           //     trigger: ["blur", "change"]
           //   }
           // ],
-          // password: [
-          //   { required: true, message: "请输入登陆密码", trigger: "blur" }
-          // ],
-          // departId: [
-          //   { required: true, message: "请选择部门", trigger: 'blur' }
-          // ],
+          password: [
+            { required: true, message: "请输入登陆密码", trigger: "blur" }
+          ],
+          departId: [
+            { required: true, message: "请选择部门", trigger: 'change' }
+          ],
           mobilePhone: [
             { required: true, message: '请输入手机号码', trigger: 'blur' }
           ],
