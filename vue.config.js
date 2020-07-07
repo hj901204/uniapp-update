@@ -34,7 +34,7 @@ module.exports = {
     },
     proxy: {
       '/supplyx': {
-        // target: "https://supplyx.goocidata.com/supplyx",//正式环境域名
+        // target: "https://supplyx.goocidata.com",//正式环境域名
         target: 'https://tsersmt.goocidata.com',//测试环境域名
         // target: 'https://gooci.natapp4.cc',//通道地址
         // target: 'http://49.233.100.59:8082',//开发环境ip
@@ -46,6 +46,11 @@ module.exports = {
     }
   },
   configureWebpack: {
+    // configureWebpack 这部分打包文件添加时间戳，防止缓存不更新
+    output: { // 输出重构  打包编译后的 文件名称  【模块名称.版本号.时间戳】
+      filename: `[name].${new Date().getTime()}.js`,
+      chunkFilename: `[name].${new Date().getTime()}.js`
+    },
     externals: {
       'vue': 'Vue',
       'vuex': 'Vuex',

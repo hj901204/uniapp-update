@@ -383,7 +383,7 @@
 
                     &:last-child {
                         font-size: 16px;
-                        margin-top: 5px;
+                        margin-top: 15px;
                     }
                 }
             }
@@ -446,7 +446,7 @@
 
                         &:last-child {
                             font-size: 14px;
-                            margin-top: 5px;
+                            margin-top: 15px;
                         }
                     }
                 }
