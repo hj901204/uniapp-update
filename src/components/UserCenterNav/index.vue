@@ -50,17 +50,19 @@
             color: white;
             display: flex;
             font-size: 14px;
-            .user-center_box{
+
+            .user-center_box {
                 display: flex;
                 margin-left: auto;
-                span{
+
+                span {
                     margin: auto 20px auto 0;
                 }
-                .logout{
+
+                .logout {
                     cursor: pointer;
                 }
             }
-
         }
 
         .badge {
