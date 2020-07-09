@@ -24,7 +24,7 @@
           </el-form-item>
         </el-form>
       <div class="btns">
-        <el-button 
+        <el-button
                     size="small"
                     @click="handleBack">返 回</el-button>
         <el-button type="primary"
@@ -39,7 +39,7 @@
                   size="small"
                   hide-required-asterisk>
            <el-form-item prop="name"
-                        label="登录密码"
+                        label="登录账号"
                         label-width="90px">
             <span style="float:left">{{ passwordForm.name + "***" }}</span>
           </el-form-item>
@@ -56,7 +56,7 @@
           </el-form-item>
         </el-form>
       <div class="btns">
-        <el-button 
+        <el-button
                     size="small"
                     @click="handleReturn">返 回</el-button>
         <el-button type="primary"
@@ -144,7 +144,7 @@ export default {
       let obj = {}
       obj.mobile = this.mobileForm.mobile
       this.canClick = true
-      this.getTimeOut() 
+      this.getTimeOut()
       this.$api.post(this.$lesUiPath.forgetCode, obj).then(result => {
         if (result.code == 0) {
           this.passwordForm.name = result.data
@@ -186,7 +186,7 @@ export default {
             } else {
               return this.$message.error(result.data)
             }
-            
+
         })
         }
       })
@@ -225,6 +225,6 @@ export default {
       margin-left: 90px;
     }
   }
-  
+
 }
 </style>
