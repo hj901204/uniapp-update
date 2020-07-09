@@ -1,104 +1,76 @@
 <template>
-  <div class="user-nav">
-    <!-- <div class="username">
-      谷器数据
-    </div> -->
-    <div class="user-center">
-      <el-dropdown>
-        <span class="el-dropdown-link">
-          <i class="icon element-icons">&#xe604;</i>
-          <span> {{userName}}</span><i class="el-icon-arrow-down el-icon--right"></i>
-        </span>
-        <el-dropdown-menu slot="dropdown"
-                          class="user-dropdown">
-          <!-- <el-dropdown-item>修改密码</el-dropdown-item> -->
-          <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
+    <div class="user-nav">
+        <div class="user-center">
+            <div class="user-center_box">
+                <span>{{userName}}</span>
+                <span class="logout" @click="logout">退出</span>
+                <div class="badge"
+                     @click="handleToMessage">
+                    <el-badge class="item"
+                              hidden
+                              is-dot>
+                        <i class="el-icon-bell"></i>
+                    </el-badge>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="badge"
-         @click="handleToMessage">
-      <el-badge class="item"
-                hidden
-                is-dot>
-        <!-- <el-button icon="el-icon-bell" circle size="mini"></el-button> -->
-        <i class="el-icon-bell"></i>
-      </el-badge>
-    </div>
-  </div>
 </template>
 
 <script>
-export default {
-  name: "user-nav",
-  data () {
-    return {
-      userName: this.$store.getters.name
-    }
-  },
-  methods: {
-    logout () {
-      this.$store.dispatch("user/LogOut").then(() => {
-        location.reload() // In order to re-instantiate the vue-router object to avoid bugs
-      })
-      this.$router.push({ path: '/login' })
+  export default {
+    name: 'user-nav',
+    data() {
+      return {
+        userName: this.$store.getters.name
+      }
     },
-    handleToMessage () {
-      this.$router.push({ path: "/enterprise/messageCenter/systemInfo" })
-    }
-  }
-}
-</script>
-
-<style lang="scss">
-.user-nav {
-  height: 72px;
-  //width: 20%;
-  // line-height: 72px;
-  padding-top: 20px;
-  box-sizing: border-box;
-  display: flex;
-
-  .user-center {
-    width: 90%;
-    box-sizing: border-box;
-    text-align: left;
-    .el-dropdown {
-      width: 100%;
-      box-sizing: border-box;
-      .el-dropdown-link {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 0 8px;
-        display: inline-block;
-        height: 32px;
-        line-height: 32px;
-        background-color: #fff;
-        border-radius: 8px;
-        color: #7e7e7e;
-
-        .element-icons {
-          margin-right: 8px;
-        }
-        .el-icon--right {
-          text-align: right;
-        }
-        & > span {
-          display: inline-block;
-          width: 74%;
-        }
+    methods: {
+      logout() {
+        this.$store.dispatch('user/LogOut').then(() => {
+          location.reload() // In order to re-instantiate the vue-router object to avoid bugs
+        })
+        this.$router.push({ path: '/login' })
+      },
+      handleToMessage() {
+        this.$router.push({ path: '/enterprise/messageCenter/systemInfo' })
       }
     }
   }
-  .badge {
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 5px;
-    cursor: pointer;
-    i {
-      color: #fff;
-      font-size: 24px;
+</script>
+
+<style lang="scss">
+    .user-nav {
+        height: 72px;
+        box-sizing: border-box;
+        display: flex;
+
+        .user-center {
+            width: 100%;
+            color: white;
+            display: flex;
+            font-size: 14px;
+            .user-center_box{
+                display: flex;
+                margin-left: auto;
+                span{
+                    margin: auto 20px auto 0;
+                }
+                .logout{
+                    cursor: pointer;
+                }
+            }
+
+        }
+
+        .badge {
+            margin: auto 0;
+            cursor: pointer;
+
+            i {
+                color: #fff;
+                font-size: 24px;
+            }
+        }
     }
-  }
-}
 </style>

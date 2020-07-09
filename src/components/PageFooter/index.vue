@@ -3,9 +3,9 @@
     <div class="page-footer-box">
       <!-- <img src="@/assets/img/QR-code.jpg" alt="" /> -->
       <div class="footer-content">
-        <span>谷器数据<span>@2020</span>   v2020150400</span>
+        <span>谷器数据<span>@2020</span></span>
         <span style="display:inline-block;margin:0 10px">联系电话：400-0530-512</span>
-        <span>Email：marketing@zkyda.com</span>
+        <span>Email：marketing@goocidata.com</span>
       </div>
     </div>
   </div>

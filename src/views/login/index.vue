@@ -80,7 +80,7 @@
                         </el-form-item>
                     </el-form>
                     <div class="forgetpsd">
-                        <router-link to="/findPassword">管理员忘记密码</router-link>
+                        <router-link to="/findPassword">忘记密码？</router-link>
                     </div>
                     <el-button type="primary"
                                class="login-button"
@@ -103,7 +103,7 @@
             <div class="company-info">
                 <span>谷器数据<span>@2020</span></span>
                 <span style="display:inline-block;margin:0 10px">联系电话：400-0530-512</span>
-                <span>Email：marketing@zkyda.com</span>
+                <span>Email：marketing@goocidata.com</span>
             </div>
         </div>
     </div>
