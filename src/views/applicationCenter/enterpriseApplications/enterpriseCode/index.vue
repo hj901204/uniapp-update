@@ -55,6 +55,7 @@
       //复制
       handleCopy: function(e) {
         console.log('你刚刚复制: ' + e.text)
+        return this.$message.success('已复制')
       },
       handleShare() {
         this.$api.post(this.$lesUiPath.createOrderQr, {

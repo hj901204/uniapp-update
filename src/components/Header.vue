@@ -6,7 +6,7 @@
                 <el-col :span="6">
                     <div class="logo-img"
                          @click="handleToDashboard">
-                        <img src="@/assets/img/logo-w.png"
+                        <img src="@/assets/img/goocidata.png"
                              alt=""/>
                     </div>
                 </el-col>
