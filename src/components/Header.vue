@@ -11,7 +11,7 @@
                     </div>
                 </el-col>
                 <el-col :span="6" :offset="12">
-                    <UserCenterNav v-if="$route.path !== '/register'" />
+                    <UserCenterNav v-if="$route.path !== '/register'&&$route.path !== '/findPassword'"/>
                 </el-col>
             </el-row>
 
