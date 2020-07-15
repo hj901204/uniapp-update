@@ -32,7 +32,7 @@
                 <el-button type="primary"
                            size="small"
                            @click="handleAdd"
-                           v-if="type==1">添加用户
+                           v-if="type==1">使用微信添加用户
                 </el-button>
                 <el-button
                         size="small"
@@ -59,6 +59,7 @@
                       :isAdd="isAdd"
                       :isShowResetBtn="isShowResetBtn"/>
         </template>
+        <MiniCode ref="miniCode"></MiniCode>
     </div>
 </template>
 
@@ -67,7 +68,8 @@
     name: 'user-management',
     components: {
       Table: resolve => require(['@/components/Table'], resolve),
-      UserForm: resolve => require(['../components/UserForm'], resolve)
+      UserForm: resolve => require(['../components/UserForm'], resolve),
+      MiniCode: resolve => require(['@/components/MiniCode'], resolve)
     },
     data() {
       return {
@@ -144,18 +146,19 @@
       },
       //添加用户
       handleAdd() {
-        this.isShowMainPage = false
-        this.isShowResetBtn = false // 是否显示重置按钮
-        this.userForm = {
-          isEnable: true,
-          name: '',
-          mobilePhone: '',
-          graphImage: '',
-          graphCode: '',
-          password: '',
-          departId: ''
-        }
-        this.isAdd = true
+        this.$refs.miniCode.open()
+        // this.isShowMainPage = false
+        // this.isShowResetBtn = false // 是否显示重置按钮
+        // this.userForm = {
+        //   isEnable: true,
+        //   name: '',
+        //   mobilePhone: '',
+        //   graphImage: '',
+        //   graphCode: '',
+        //   password: '',
+        //   departId: ''
+        // }
+        // this.isAdd = true
       },
       //返回
       handleBack() {

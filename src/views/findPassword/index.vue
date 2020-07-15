@@ -26,7 +26,7 @@
                         </el-input>
                     </el-form-item>
                 </el-form>
-                <div class="btns">
+                <div class="c">
                     <el-button
                             size="small"
                             @click="handleBack">返 回
@@ -44,7 +44,7 @@
                          size="small"
                          hide-required-asterisk>
                     <el-form-item prop="name"
-                                  v-if="passwordForm.name!=='0'"
+                                  v-if="passwordForm.name!=='-1'"
                                   label="管理员账号"
                                   label-width="90px">
                         <span style="float:left">{{ passwordForm.name + '***' }}</span>
@@ -131,7 +131,7 @@
       },
       //下一步
       next() {
-        this.passwordForm = {}
+        // this.passwordForm = {}
         this.loading = false
         this.$refs['mobileForm'].validate((valid) => {
           if (valid) {
@@ -177,14 +177,12 @@
       handleSure() {
         this.$refs['passwordForm'].validate((valid) => {
           if (valid) {
-            this.loading = true
             let data = Object.assign(
               this.mobileForm,
               this.passwordForm
             )
             delete data.name
             this.$api.post(this.$lesUiPath.password, data).then(result => {
-              this.loading = false
               if (result.code == 0) {
                 this.$message.success('操作成功')
                 this.$router.push({
@@ -193,7 +191,6 @@
               } else {
                 return this.$message.error(result.data)
               }
-
             })
           }
         })
@@ -235,6 +232,7 @@
             .btns {
                 padding-top: 30px;
                 margin-left: 90px;
+                display: flex;
             }
         }
 

@@ -43,7 +43,7 @@
                              label-position="left">
                         <el-form-item prop="username">
                             <p style="text-align: left;height:20px;line-height:20px;margin-bottom:10px;color:#7e7e7e;">
-                                账户密码登录
+                                使用手机号或管理员账号登录
                             </p>
                             <el-input v-model.trim="loginForm.username"
                                       type="text"
