@@ -32,7 +32,7 @@
                 <el-button type="primary"
                            size="small"
                            @click="handleAdd"
-                           v-if="type==1">添加用户
+                           v-if="type==1">管理 / 添加用户
                 </el-button>
                 <el-button
                         size="small"
@@ -146,19 +146,19 @@
       },
       //添加用户
       handleAdd() {
-        // this.$refs.miniCode.open()
-        this.isShowMainPage = false
-        this.isShowResetBtn = false // 是否显示重置按钮
-        this.userForm = {
-          isEnable: true,
-          name: '',
-          mobilePhone: '',
-          graphImage: '',
-          graphCode: '',
-          password: '',
-          departId: ''
-        }
-        this.isAdd = true
+        this.$refs.miniCode.open()
+        // this.isShowMainPage = false
+        // this.isShowResetBtn = false // 是否显示重置按钮
+        // this.userForm = {
+        //   isEnable: true,
+        //   name: '',
+        //   mobilePhone: '',
+        //   graphImage: '',
+        //   graphCode: '',
+        //   password: '',
+        //   departId: ''
+        // }
+        // this.isAdd = true
       },
       //返回
       handleBack() {

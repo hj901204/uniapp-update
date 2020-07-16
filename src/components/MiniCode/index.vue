@@ -5,17 +5,12 @@
         <div class="mini_code-box">
             <img :src="qrCode" alt="">
             <p>
-                <span class="span_1">通过微信小程序邀请用户</span>
-                <span class="span_2">
-                    <span>扫码后进入小程序邀请企业用户</span>
-                    <span>请确保企业管理员进行操作</span>
+                <span class="span_1">管理员使用微信</span>
+                <span class="span_1">
+扫描小程序码进行添加
                 </span>
             </p>
         </div>
-        <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-  </span>
     </el-dialog>
 </template>
 
@@ -31,12 +26,12 @@
     },
     computed: {},
     mounted() {
+      this.handleGetScanEnterQr()
     },
     watch: {},
     methods: {
       open() {
         this.dialogVisible = true
-        this.handleGetScanEnterQr()
       },
       handleGetScanEnterQr() {
         this.$api.post(this.$lesUiPath.createOrderQr, {
@@ -54,6 +49,7 @@
 <style scoped lang="scss">
     .mini_code-box {
         display: flex;
+        padding-bottom: 20px;
 
         p {
             display: flex;
@@ -64,19 +60,12 @@
                 font-size: 16px;
                 font-weight: bold;
             }
-
-            .span_2 {
-                display: flex;
-                flex-direction: column;
-                font-size: 14px;
-                color: #505050;
-                margin-top: 50px;
-            }
         }
 
         img {
             width: 200px;
             height: 200px;
+            margin-left: 50px;
         }
     }
 

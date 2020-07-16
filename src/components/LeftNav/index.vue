@@ -60,7 +60,7 @@ export default {
       let allRoutes = this.$store.getters.permission_routes
       let route = this.$route.matched
       allRoutes = allRoutes.filter(x => {
-        return x.path != "/" && x.path != "/login" && x.path != "/forbidden" && x.path != "/findPassword" && x.path != "/register"
+        return x.path != "/" && x.path != "/login" && x.path != "/forbidden" && x.path != "/findPassword" && x.path != "/register" && x.path != "/error"
       })
       this.navList = allRoutes
       return this.navList

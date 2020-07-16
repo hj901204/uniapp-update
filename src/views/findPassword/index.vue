@@ -103,7 +103,11 @@
           ]
         },
         active: '1',
-        passwordForm: {},
+        passwordForm: {
+          name: '-1',
+          password: '',
+          confirmPassWord: ''
+        },
         passwordRules: {
           password: [
             { required: true, message: '30个长度以内的英文数字的组合', trigger: 'blur' },
@@ -131,7 +135,7 @@
       },
       //下一步
       next() {
-        // this.passwordForm = {}
+        this.passwordForm = {}
         this.loading = false
         this.$refs['mobileForm'].validate((valid) => {
           if (valid) {
@@ -148,16 +152,21 @@
       //获取验证码
       validCode() {
         if (!this.mobileForm.mobile) return this.$message.warning('请先输入手机号码')
+        const phoneReg = /(^1[3|4|5|7|8|9]\d{9}$)|(^09\d{8}$)/ //手机号码
+        if (!phoneReg.test(this.mobileForm.mobile)) {
+          return
+        }
         let obj = {}
         obj.mobile = this.mobileForm.mobile
         this.canClick = true
-        this.getTimeOut()
         this.$api.post(this.$lesUiPath.forgetCode, obj).then(result => {
           if (result.code == 0) {
+            this.getTimeOut()
             this.passwordForm.name = result.data
-          } else {
-            return this.$message.error(result.msg)
           }
+        }).catch(err => {
+          this.canClick = false
+          console.log(err)
         })
       },
       getTimeOut() {
