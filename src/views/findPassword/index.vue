@@ -44,10 +44,10 @@
                          size="small"
                          hide-required-asterisk>
                     <el-form-item prop="name"
-                                  v-if="passwordForm.name!=='-1'"
+                                  v-if="adminName!==''"
                                   label="管理员账号"
                                   label-width="90px">
-                        <span style="float:left">{{ passwordForm.name + '***' }}</span>
+                        <span style="float:left">{{ adminName + '***' }}</span>
                     </el-form-item>
                     <el-form-item prop="password"
                                   label="登录密码"
@@ -122,7 +122,8 @@
         btnContent: '获取验证码',
         canClick: false,
         time: 60,
-        timer: 'cloak'
+        timer: 'cloak',
+        adminName: ''
       }
     },
     methods: {
@@ -142,6 +143,11 @@
             this.$api.post(this.$lesUiPath.checkCode, this.mobileForm).then(result => {
               if (result.code == 0) {
                 this.active = 2
+                this.$api.post(this.$lesUiPath.showAdminAccount, { mobile: this.mobileForm.mobile }).then(res => {
+                  if (res.code == 0) {
+                    this.adminName = res.data
+                  }
+                })
               } else {
                 return this.$message.error(result.msg)
               }

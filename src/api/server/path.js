@@ -120,6 +120,10 @@ const departTree = baseUrl + "/depart/tree"
 const createOrderQr = baseUrl + '/wxqr/getInvitationORShareLimitQr'
 //企业邀请用户注册
 // const getScanEnterQr = baseUrl + '/wxqr/getScanEnterQr'
+// 获取管理员账号
+const showAdminAccount = baseUrl + '/h/code/showAdminAccount'
+
+
 
 
 
@@ -164,7 +168,8 @@ export default {
       enteruserVisit,
       supLinkEnter,
       checkCode,
-      createOrderQr
+      createOrderQr,
+      showAdminAccount
     }
   }
 }
