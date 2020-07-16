@@ -4,6 +4,7 @@ import Login from "@/views/login/index.vue"
 import Forbidden from "@/views/forbidden/forbidden.vue"
 import Dashboard from "@/views/dashboard/index"
 import FindPassword from "@/views/findPassword/index.vue"
+import Error from "@/views/error/index.vue"
 
 import Help from "@/views/help/index"
 
@@ -41,7 +42,6 @@ export const constantRoutes = [
   //应用中心
   applicationRouter,
   enterprise,
-
   //帮助
   {
     path: "/help",
@@ -84,6 +84,17 @@ export const constantRoutes = [
     meta: {
       title: "找回密码",
       breadcrumbTitle: "找回密码",
+      breadcrumb: true
+    }
+  },
+  //页面出错了
+  {
+    path: "/error",
+    name: "error",
+    component: Error,
+    meta: {
+      title: "页面出错了",
+      breadcrumbTitle: "页面出错了",
       breadcrumb: true
     }
   },

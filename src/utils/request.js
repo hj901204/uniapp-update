@@ -1,7 +1,7 @@
 // import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '../store'
-import { getToken, removeToken } from '@/utils/auth'
+import { getToken, removeToken, removeUserName } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
@@ -84,6 +84,8 @@ service.interceptors.response.use(
         removeUserName()
         window.location.href = res.data.url
       }
+    } else if (res.code == 400 || res.code == 404 || res.code == 500) {
+      window.location.href = '/#/error'
     } else {
       return res
     }

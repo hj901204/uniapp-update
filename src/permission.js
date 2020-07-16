@@ -11,6 +11,7 @@ NProgress.configure({
 const whiteList = [
   '/login',
   '/forbidden',
+  '/error',
   '/findPassword',
   '/register',
   '/register/firstStep',

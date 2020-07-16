@@ -118,6 +118,10 @@ const depart = baseUrl + "/depart/"
 const departTree = baseUrl + "/depart/tree"
 //订单分享生成二维码 / 采购商邀请供应商注册
 const createOrderQr = baseUrl + '/wxqr/getInvitationORShareLimitQr'
+//企业邀请用户注册
+// const getScanEnterQr = baseUrl + '/wxqr/getScanEnterQr'
+
+
 
 export default {
   install(Vue) {

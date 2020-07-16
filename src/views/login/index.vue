@@ -20,7 +20,7 @@
                         <span>公众号</span>
                     </p>
                 </div>
-                <div class="qr_code">
+                <div class="qr_code" @click="aaa">
                     <p>
                         <img src="../../assets/img/mini_code.jpg" alt="">
                         <span>小程序</span>
@@ -142,6 +142,11 @@
       }
     },
     methods: {
+      aaa() {
+        this.$router.push({
+          path: '/error'
+        })
+      },
       handleLogin(form) {
         this.$refs[form].validate(valid => {
           if (valid) {

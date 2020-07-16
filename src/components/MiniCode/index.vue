@@ -3,7 +3,7 @@
             :visible.sync="dialogVisible"
             width="30%">
         <div class="mini_code-box">
-            <img src="@/assets/img/QR-code.png" alt="">
+            <img :src="qrCode" alt="">
             <p>
                 <span class="span_1">通过微信小程序邀请用户</span>
                 <span class="span_2">
@@ -25,7 +25,8 @@
     props: {},
     data() {
       return {
-        dialogVisible: false
+        dialogVisible: false,
+        qrCode: ''
       }
     },
     computed: {},
@@ -35,6 +36,15 @@
     methods: {
       open() {
         this.dialogVisible = true
+        this.handleGetScanEnterQr()
+      },
+      handleGetScanEnterQr() {
+        this.$api.post(this.$lesUiPath.createOrderQr, {
+          path: `/pages/addEnterUser/addEnterUser?id=${localStorage.getItem('xid')}`
+        }).then(res => {
+          this.qrCode = `data:image/jpg;base64,${res.data}`
+          console.log(res)
+        })
       }
     },
     components: {}
@@ -62,6 +72,11 @@
                 color: #505050;
                 margin-top: 50px;
             }
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
         }
     }
 
