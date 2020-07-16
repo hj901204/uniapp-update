@@ -26,7 +26,7 @@
             <el-button size="small"
                        type="primary"
                        class="add-user-btn"
-                       @click="handleAddUser">使用微信添加用户
+                       @click="handleAddUser">添加关联用户
             </el-button>
             <Table :tableHead="tableHead"
                    :isShowOperation="true"
@@ -158,9 +158,9 @@
 
       // 添加用户按钮
       handleAddUser() {
-        this.$refs.miniCode.open()
-        // this.dialogVisible = true
-        // this.getUserData()
+        // this.$refs.miniCode.open()
+        this.dialogVisible = true
+        this.getUserData()
       },
       //添加用户保存
       handleSaveAdd() {
