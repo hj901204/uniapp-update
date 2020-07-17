@@ -1,7 +1,8 @@
 <template>
     <el-dialog
             :visible.sync="dialogVisible"
-            width="30%">
+            custom-class="custom-class"
+    >
         <div class="mini_code-box">
             <img :src="qrCode" alt="">
             <p>
@@ -47,6 +48,10 @@
 </script>
 
 <style scoped lang="scss">
+    /deep/ .custom-class {
+        width: 30%;
+    }
+
     .mini_code-box {
         display: flex;
         padding-bottom: 20px;
@@ -65,9 +70,19 @@
         img {
             width: 200px;
             height: 200px;
-            margin-left: 50px;
+            margin: auto 0 auto auto;
         }
     }
 
+    @media screen and (min-width: 500px) and (max-width: 1366px) {
+        /deep/ .custom-class {
+            width: 50%;
+        }
+    }
 
+    @media screen and (min-width: 1366px) and (max-width: 1440px) {
+        /deep/ .custom-class {
+            width: 40%;
+        }
+    }
 </style>
