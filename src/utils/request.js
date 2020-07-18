@@ -40,16 +40,20 @@ service.interceptors.response.use(
     // console.log("-------------------------------返回结束----------------------------");
     if (res.code == 1) {
       let errorMsg = ''
+      console.log(res)
       if (res.data) {
         errorMsg = res.data
       } else {
         errorMsg = res.msg
       }
-      Message({
-        message: errorMsg,
-        type: 'error',
-        duration: 5 * 1000
-      })
+      console.log(errorMsg)
+      if (errorMsg !== '' && errorMsg) {
+        Message({
+          message: errorMsg,
+          type: 'error',
+          duration: 5 * 1000
+        })
+      }
       return Promise.reject('error')
     } else if (res.code == 40401) {
       //登陆过期
