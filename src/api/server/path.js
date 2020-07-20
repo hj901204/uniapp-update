@@ -122,7 +122,6 @@ const createOrderQr = baseUrl + '/wxqr/getInvitationORShareLimitQr'
 // const getScanEnterQr = baseUrl + '/wxqr/getScanEnterQr'
 // 获取管理员账号
 const showAdminAccount = baseUrl + '/h/code/showAdminAccount'
-const error = baseUrl + '/sxapi/error'
 
 export default {
   install(Vue) {
@@ -166,8 +165,7 @@ export default {
       supLinkEnter,
       checkCode,
       createOrderQr,
-      showAdminAccount,
-      error
+      showAdminAccount
     }
   }
 }

@@ -101,12 +101,7 @@ export default {
         responseType: 'blob'
       })
     }
-    Api.prototype.error = (url, code) => {
-      return request({
-        url: `${url}?code=${code}`,
-        method: 'post'
-      })
-    }
+
     Vue.prototype.$api = new Api()
   }
 }
