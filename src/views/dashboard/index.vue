@@ -1,6 +1,9 @@
 <template>
     <div class="home">
         <div style="padding-left:210px;">
+            <el-button type="primary" @click="error(400)">400</el-button>
+            <el-button type="primary" @click="error(404)">404</el-button>
+            <el-button type="primary" @click="error(500)">500</el-button>
             <div style="display:flex">
                 <!-- 我的企业信息 -->
                 <MyCorporateInfo v-if="update" :billAvgCostList="billAvgCostList" :enterName="enterName"
@@ -40,6 +43,11 @@
       this.getMyApplication()
     },
     methods: {
+      error(code) {
+        this.$api.error(this.$lesUiPath.error, code).then(res => {
+          console.log(res)
+        })
+      },
       getMyApplication() {
         this.update = false
         let data = {
