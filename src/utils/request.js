@@ -1,7 +1,8 @@
 // import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '../store'
-import { getToken, removeToken } from '@/utils/auth'
+import { getToken, removeToken, removeUserName } from '@/utils/auth'
+import router, { resetRouter, constantRoutes } from '@/router'
 
 // create an axios instance
 const service = axios.create({
@@ -40,16 +41,20 @@ service.interceptors.response.use(
     // console.log("-------------------------------返回结束----------------------------");
     if (res.code == 1) {
       let errorMsg = ''
+      console.log(res)
       if (res.data) {
         errorMsg = res.data
       } else {
         errorMsg = res.msg
       }
-      Message({
-        message: errorMsg,
-        type: 'error',
-        duration: 5 * 1000
-      })
+      console.log(errorMsg)
+      if (errorMsg !== '' && errorMsg) {
+        Message({
+          message: errorMsg,
+          type: 'error',
+          duration: 5 * 1000
+        })
+      }
       return Promise.reject('error')
     } else if (res.code == 40401) {
       //登陆过期
@@ -84,6 +89,10 @@ service.interceptors.response.use(
         removeUserName()
         window.location.href = res.data.url
       }
+    } else if (res.code == 400 || res.code == 404 || res.code == 500) {
+      router.push({
+        path: '/error'
+      })
     } else {
       return res
     }

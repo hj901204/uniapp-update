@@ -20,7 +20,7 @@
                         <span>公众号</span>
                     </p>
                 </div>
-                <div class="qr_code">
+                <div class="qr_code" @click="aaa">
                     <p>
                         <img src="../../assets/img/mini_code.jpg" alt="">
                         <span>小程序</span>
@@ -43,7 +43,7 @@
                              label-position="left">
                         <el-form-item prop="username">
                             <p style="text-align: left;height:20px;line-height:20px;margin-bottom:10px;color:#7e7e7e;">
-                                账户密码登录
+                                使用手机号或管理员账号登录
                             </p>
                             <el-input v-model.trim="loginForm.username"
                                       type="text"
@@ -80,7 +80,7 @@
                         </el-form-item>
                     </el-form>
                     <div class="forgetpsd">
-                        <router-link to="/findPassword">管理员忘记密码</router-link>
+                        <router-link to="/findPassword">忘记密码？</router-link>
                     </div>
                     <el-button type="primary"
                                class="login-button"
@@ -103,7 +103,7 @@
             <div class="company-info">
                 <span>谷器数据<span>@2020</span></span>
                 <span style="display:inline-block;margin:0 10px">联系电话：400-0530-512</span>
-                <span>Email：marketing@zkyda.com</span>
+                <span>Email：marketing@goocidata.com</span>
             </div>
         </div>
     </div>
@@ -142,6 +142,11 @@
       }
     },
     methods: {
+      aaa() {
+        this.$router.push({
+          path: '/error'
+        })
+      },
       handleLogin(form) {
         this.$refs[form].validate(valid => {
           if (valid) {

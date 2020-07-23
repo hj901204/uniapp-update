@@ -1,13 +1,13 @@
-import request from "@/utils/request"
+import request from '@/utils/request'
 
 const pathSuffix = {
-  get: "page",
-  add: "add",
-  update: "update",
-  del: "delete",
-  details: "details",
-  export: "export",
-  custom: "custom"
+  get: 'page',
+  add: 'add',
+  update: 'update',
+  del: 'delete',
+  details: 'details',
+  export: 'export',
+  custom: 'custom'
 }
 
 export default {
@@ -19,15 +19,15 @@ export default {
     Api.prototype.get = (url, config) => {
       return request({
         url: url,
-        method: "get",
+        method: 'get',
         params: config
       })
     }
 
-    Api.prototype.post = async (url, config, params) =>  {
+    Api.prototype.post = async(url, config, params) => {
       return await request({
         url: url,
-        method: "post",
+        method: 'post',
         data: config,
         params: params
       })
@@ -36,7 +36,7 @@ export default {
     Api.prototype.update = (url, config) => {
       return request({
         url: url,
-        method: "put",
+        method: 'put',
         data: config
       })
     }
@@ -44,28 +44,28 @@ export default {
     Api.prototype.delete = (url, config) => {
       return request({
         url: url,
-        method: "delete"
+        method: 'delete'
       })
     }
 
     Api.prototype.findList = (url, config) => {
       return request({
         url: url + pathSuffix.get,
-        method: "post",
+        method: 'post',
         data: config
       })
     }
     Api.prototype.custom = (url, config) => {
       return request({
         url: url + pathSuffix.custom,
-        method: "post",
+        method: 'post',
         data: config
       })
     }
     Api.prototype.addData = (url, config) => {
       return request({
         url: url + pathSuffix.add,
-        method: "post",
+        method: 'post',
         data: config
       })
     }
@@ -73,7 +73,7 @@ export default {
     Api.prototype.updateData = (url, config) => {
       return request({
         url: url + pathSuffix.update,
-        method: "post",
+        method: 'post',
         data: config
       })
     }
@@ -81,7 +81,7 @@ export default {
     Api.prototype.delData = (url, config) => {
       return request({
         url: url + pathSuffix.del,
-        method: "post",
+        method: 'post',
         data: config
       })
     }
@@ -89,16 +89,16 @@ export default {
     Api.prototype.getById = (url, config) => {
       return request({
         url: url + pathSuffix.details,
-        method: "post",
+        method: 'post',
         data: config
       })
     }
     Api.prototype.export = (url, config) => {
       return request({
         url: url + pathSuffix.export,
-        method: "post",
+        method: 'post',
         data: config,
-        responseType: "blob"
+        responseType: 'blob'
       })
     }
 

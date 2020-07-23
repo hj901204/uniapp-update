@@ -23,15 +23,15 @@
         <!-- 添加用户 -->
         <div class="add-user-box">
             <h3>用户列表</h3>
-            <el-button size="small"
-                       type="primary"
-                       class="add-user-btn"
-                       @click="handleAddUser">添加关联用户
-            </el-button>
+<!--            <el-button size="small"-->
+<!--                       type="primary"-->
+<!--                       class="add-user-btn"-->
+<!--                       @click="handleAddUser">使用微信添加用户-->
+<!--            </el-button>-->
+            <!--                   :isShowOperation="true"-->
+            <!--                   :isShowStopBtns='true'-->
+            <!--                   :isShowDeleteBtn='true'-->
             <Table :tableHead="tableHead"
-                   :isShowOperation="true"
-                   :isShowStopBtns='true'
-                   :isShowDeleteBtn='true'
                    :tableData="tableData"
                    @handleStop="handleStop"
                    @handleStart="handleStart"
@@ -67,6 +67,7 @@
                    size="small">确 定</el-button>
       </span>
         </el-dialog>
+        <MiniCode ref="miniCode"></MiniCode>
     </div>
 </template>
 
@@ -74,7 +75,8 @@
   export default {
     name: 'application-setting',
     components: {
-      Table: resolve => require(['@/components/Table'], resolve)
+      Table: resolve => require(['@/components/Table'], resolve),
+      MiniCode: resolve => require(['@/components/MiniCode'], resolve)
     },
     mounted() {
       this.getBoardData()
@@ -156,8 +158,9 @@
 
       // 添加用户按钮
       handleAddUser() {
-        this.dialogVisible = true
-        this.getUserData()
+        this.$refs.miniCode.open()
+        // this.dialogVisible = true
+        // this.getUserData()
       },
       //添加用户保存
       handleSaveAdd() {
