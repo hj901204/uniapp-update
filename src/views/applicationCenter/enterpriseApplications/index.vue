@@ -34,7 +34,7 @@
                                    size="small"
                                    type="text">点击查看应用状态
                         </el-button>
-                        <el-button v-if="authType/1===1" @click="handleUserSetting(item)"
+                        <el-button v-if="authType/1===1&&item.appName!=='SupplyX·TS 工单系统'" @click="handleUserSetting(item)"
                                    size="small"
                                    type="text">用户设定
                         </el-button>
