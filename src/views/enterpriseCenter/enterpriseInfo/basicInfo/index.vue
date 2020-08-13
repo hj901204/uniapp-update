@@ -5,9 +5,14 @@
       <div class="edit-btn"
            style="margin:5px 20px 0 40px;text-align:right">
         <el-button type="primary"
-                   size="small"
-                   @click="handleEdit"
-                   v-if="type==1">修改
+          size="small"
+          @click="handleCheckBus"
+          >查看营业执照
+        </el-button>
+        <el-button type="primary"
+          size="small"
+          @click="handleEdit"
+          v-if="type==1">修改
         </el-button>
       </div>
       <div>
@@ -63,7 +68,7 @@
               <p>{{form.fpTitle}}</p>
             </li>
             <li>
-              <div>公司税号</div>
+              <div>统一社会信用代码</div>
               <p>{{form.fpTax}}</p>
             </li>
             <li>
@@ -142,13 +147,13 @@
 </template>
 
 <script>
-import { validateNumAndCh } from '@/utils/validate'
+import { validateNumAndCh } from "@/utils/validate";
 export default {
   name: "basic-info",
   components: {
     EditBtns: resolve => require(["../components/EditBtns"], resolve)
   },
-  data () {
+  data() {
     // 验证电话号码
     // var isMobileNumber= (rule, value, callback) => {
     //   if (!value) {
@@ -173,7 +178,7 @@ export default {
       type: this.$store.getters.type,
       isShowMainPage: true, //是否显示主页
       form: {},
-      supplyxId: '',
+      supplyxId: "",
       fields: [
         // {
         //   label: "SupplyX ID:",
@@ -286,134 +291,139 @@ export default {
           model: "fpRecAdd",
           index: 17,
           maxlength: 100
-        },
+        }
       ],
       rules: {
         enterName: [
-          { required: true, message: '请输入企业名称', trigger: 'blur' },
+          { required: true, message: "请输入企业名称", trigger: "blur" },
           { validator: validateNumAndCh.bind(this), trigger: "blur" }
         ],
         enterAddress: [
-          { required: true, message: '请输入企业地址', trigger: 'blur' }
+          { required: true, message: "请输入企业地址", trigger: "blur" }
         ],
         enterShortName: [
-          { required: true, message: '请输入企业简称', trigger: 'blur' },
+          { required: true, message: "请输入企业简称", trigger: "blur" },
           { validator: validateNumAndCh.bind(this), trigger: "blur" }
         ],
         enterTelNum: [
-          { required: true, message: '请输入联系电话', trigger: 'blur' },
+          { required: true, message: "请输入联系电话", trigger: "blur" }
           // { validator: isMobileNumber, trigger: "blur" }
         ],
         enterMail: [
-          { required: true, message: '请输入联系电话', trigger: 'blur' },
-          { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }
+          { required: true, message: "请输入联系电话", trigger: "blur" },
+          { type: "email", message: "请输入正确的邮箱地址", trigger: "blur" }
         ]
       },
       // 验证表单
-      validateFunc (ref) {
+      validateFunc(ref) {
         let flag;
-        this.$refs[ref].validate((valid) => {
+        this.$refs[ref].validate(valid => {
           if (valid) {
-            flag = true
-            return flag
+            flag = true;
+            return flag;
           }
-          flag = false
-          return flag
-        })
-        return flag
+          flag = false;
+          return flag;
+        });
+        return flag;
       },
       isFormDisabled: true, //表单是否禁用
-      diffData: {}  //修改后要提交的json
-    }
+      diffData: {} //修改后要提交的json
+    };
   },
-  created () {
+  created() {
     this.getEnterpriseBasicInfo();
   },
   methods: {
     // 获取企业信息
-    getEnterpriseBasicInfo (obj = {}) {
+    getEnterpriseBasicInfo(obj = {}) {
       // let obj = obj
       this.$api.post(this.$lesUiPath.enterpriseBasicInfo, obj).then(result => {
         if (result.code == 0) {
           // this.form = result.data
-          this.form = Object.assign({}, result.data)
-          this.copyForm = Object.assign({}, result.data)
+          this.form = Object.assign({}, result.data);
+          this.copyForm = Object.assign({}, result.data);
 
-          this.supplyxId = result.data.xid
-          this.diffData = { id: result.data.id }
+          this.supplyxId = result.data.xid;
+          this.diffData = { id: result.data.id };
         } else {
           if (result.msg) {
-            return this.$message.error(result.msg)
+            return this.$message.error(result.msg);
           }
         }
-      })
+      });
     },
     // 点击修改按钮
-    handleEdit () {
+    handleEdit() {
       // this.isFormDisabled = false
-      this.isShowMainPage = false
+      this.isShowMainPage = false;
       // this.getEnterpriseBasicInfo()
     },
 
     //点击保存按钮
-    handleSave () {
-      let valid = this.validateFunc('ruleForm')
+    handleSave() {
+      let valid = this.validateFunc("ruleForm");
       if (valid) {
         // let obj = {}
         // obj = Object.assign(this.form)
         // console.log(obj)
-        delete this.form.xid
-        delete this.copyForm.xid
-        let result = this.diffDevinfo(this.copyForm, this.form, this.diffData)
-        let keyCount = this.hasEditData(result)
+        delete this.form.xid;
+        delete this.copyForm.xid;
+        let result = this.diffDevinfo(this.copyForm, this.form, this.diffData);
+        let keyCount = this.hasEditData(result);
         if (keyCount == 1) {
-          return this.$message.warning('未修改数据')
+          return this.$message.warning("未修改数据");
         }
 
-        this.$api.post(this.$lesUiPath.editEnterpriseBasicInfo, result).then(result => {
-          if (result.code == 0) {
-            this.getEnterpriseBasicInfo()
-            this.isShowMainPage = true
-            return this.$message.success('修改成功')
-          } else {
-            if (result.msg) {
-              return this.$message.error(result.msg)
+        this.$api
+          .post(this.$lesUiPath.editEnterpriseBasicInfo, result)
+          .then(result => {
+            if (result.code == 0) {
+              this.getEnterpriseBasicInfo();
+              this.isShowMainPage = true;
+              return this.$message.success("修改成功");
+            } else {
+              if (result.msg) {
+                return this.$message.error(result.msg);
+              }
             }
-          }
-        })
+          });
       }
     },
     //返回
-    handleBack () {
-      this.getEnterpriseBasicInfo()
-      this.isShowMainPage = true
+    handleBack() {
+      this.getEnterpriseBasicInfo();
+      this.isShowMainPage = true;
     },
     //只提交修改的数据
-    diffDevinfo (originalForm, editForm, diffData) {
+    diffDevinfo(originalForm, editForm, diffData) {
       //originalForm原始数据不进行修改的表单
       //editForm v-modal绑定的表单可以进行修改的表单
       //diffData  对比后要提交的表单
       for (let k in editForm) {
         if (originalForm[k] != editForm[k]) {
-          diffData[k] = editForm[k]
+          diffData[k] = editForm[k];
         } else {
           if (k != "id") {
-            delete diffData[k]
+            delete diffData[k];
           }
         }
       }
-      return diffData
+      return diffData;
     },
     //判断修改数据有否有要修改的数据  如果有则提交数据 如果没有则不提交数据
-    hasEditData (obj) {
-      let count = 0
+    hasEditData(obj) {
+      let count = 0;
       for (let i in obj) {
-        count++
+        count++;
       }
-      return count
+      return count;
     },
+    handleCheckBus() {
+      window.open('http://www.baidu.com')
+    }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

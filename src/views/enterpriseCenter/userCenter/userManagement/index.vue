@@ -32,7 +32,7 @@
                 <el-button type="primary"
                            size="small"
                            @click="handleAdd"
-                           v-if="type==1">管理 / 添加用户
+                           v-if="type==1">使用微信添加用户
                 </el-button>
                 <el-button
                         size="small"
