@@ -59,7 +59,7 @@
                             <!-- 提示文字 -->
                             <el-tooltip class="tooltip"
                                         effect="dark"
-                                        content="请使用手机号码或企业账号登陆"
+                                        content="请使用手机号码或企业账号登录"
                                         placement="top">
                                 <i class="el-icon-question account-prompt"
                                    style="font-size:22px;vertical-align: middle"></i>
@@ -84,7 +84,7 @@
                     </div>
                     <el-button type="primary"
                                class="login-button"
-                               @click="handleLogin('loginForm')">登陆
+                               @click="handleLogin('loginForm')">登录
                     </el-button>
 
                     <!-- 注册 -->
