@@ -1,7 +1,7 @@
 <template>
     <div class="password-container">
         <div class="content">
-            <div class="title">{{ active == 1 ? '找回密码' : '重置密码' }}<span class="border"></span></div>
+            <div class="title">{{ active == 1 ? '重置密码' : '重置密码' }}<span class="border"></span></div>
             <div v-if="active == 1" class="form">
                 <el-form :model="mobileForm"
                          :rules="mobileRules"
@@ -203,10 +203,12 @@ export default {
       if (!phoneReg.test(this.mobileForm.mobile)) {
         return;
       }
-      if (!this.mobileForm.imgCode)
-        return this.$message.warning("请先输入图形验证码");
-      if (this.identifyCode != this.mobileForm.imgCode)
+      if (!this.mobileForm.imgCode) return this.$message.warning("请先输入图形验证码");
+      if (this.identifyCode != this.mobileForm.imgCode){
+        console.log(this.mobileForm.imgCode,'mgs')
+        this.randCode();
         return this.$message.error("图形验证码错误");
+      }
       let obj = {};
       obj.mobile = this.mobileForm.mobile;
       this.canClick = true;
@@ -217,11 +219,9 @@ export default {
             this.getTimeOut();
             this.passwordForm.name = result.data;
           }
-        })
-        .catch(err => {
+        }).finally(() => {
           this.canClick = false;
-          console.log(err);
-        });
+        })
     },
     getTimeOut() {
       this.cloak = setInterval(() => {

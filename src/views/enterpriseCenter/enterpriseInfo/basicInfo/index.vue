@@ -6,6 +6,7 @@
            style="margin:5px 20px 0 40px;text-align:right">
         <el-button type="primary"
           size="small"
+          :disabled="form.picUrl?false:true"
           @click="handleCheckBus"
           >查看营业执照
         </el-button>
@@ -420,7 +421,7 @@ export default {
       return count;
     },
     handleCheckBus() {
-      window.open('http://www.baidu.com')
+      window.open(this.form.picUrl)
     }
   }
 };
