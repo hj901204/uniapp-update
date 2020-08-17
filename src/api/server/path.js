@@ -117,7 +117,7 @@ const depart = baseUrl + "/depart/"
 //查询部门树
 const departTree = baseUrl + "/depart/tree"
 //订单分享生成二维码 / 采购商邀请供应商注册
-const createOrderQr = baseUrl + '/wxqr/getInvitationORShareLimitQr'
+const createOrderQr = baseUrl + '/mp/wxqr/getInvitationORShareLimitQr'
 //企业邀请用户注册
 // const getScanEnterQr = baseUrl + '/wxqr/getScanEnterQr'
 // 获取管理员账号
