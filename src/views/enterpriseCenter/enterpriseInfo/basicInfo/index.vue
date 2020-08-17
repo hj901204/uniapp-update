@@ -117,7 +117,7 @@
         <el-form :model="form"
                  status-icon
                  ref="ruleForm"
-                 label-width="110px"
+                 label-width="130px"
                  size="small"
                  :rules="rules"
                  inline-message>
@@ -246,7 +246,7 @@ export default {
           maxlength: 100
         },
         {
-          label: "公司税号:",
+          label: "统一社会信用代码:",
           model: "fpTax",
           index: 10,
           maxlength: 100
@@ -306,12 +306,15 @@ export default {
           { required: true, message: "请输入企业简称", trigger: "blur" },
           { validator: validateNumAndCh.bind(this), trigger: "blur" }
         ],
-        enterTelNum: [
-          { required: true, message: "请输入联系电话", trigger: "blur" }
-          // { validator: isMobileNumber, trigger: "blur" }
+        liaisonMan:[
+          { required: true, message: "请输入联系人", trigger: "blur" }
         ],
+        // enterTelNum: [
+        //   { required: true, message: "请输入联系电话", trigger: "blur" }
+        //   // { validator: isMobileNumber, trigger: "blur" }
+        // ],
         enterMail: [
-          { required: true, message: "请输入联系电话", trigger: "blur" },
+          { required: true, message: "请输入联系邮件", trigger: "blur" },
           { type: "email", message: "请输入正确的邮箱地址", trigger: "blur" }
         ]
       },
