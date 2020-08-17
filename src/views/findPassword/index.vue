@@ -227,9 +227,10 @@ export default {
       this.cloak = setInterval(() => {
         this.time--;
         if (this.time > 0) {
+          this.canClick = true;
           this.btnContent = this.time + "s后重新发送";
         } else if (this.time <= 0) {
-          window.clearInterval(this.cloak);
+          clearInterval(this.cloak);
           this.btnContent = "重新发送";
           this.time = 60;
           this.canClick = false;

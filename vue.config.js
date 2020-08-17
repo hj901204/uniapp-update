@@ -37,6 +37,7 @@ module.exports = {
         // target: 'https://supplyx.goocidata.com',//正式环境域名
         target: 'https://tsersmt.goocidata.com',//测试环境域名
         // target: 'https://gooci.natapp4.cc',//通道地址
+        // target: 'http://192.168.33.142:8862',//通道地址
         changeOrigin: true,
         pathRewrite: {
           '^/supplyx': '/supplyx'
