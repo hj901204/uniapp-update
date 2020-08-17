@@ -4,7 +4,7 @@
         <div class="nav-content">
             <el-row style="width:100%">
                 <el-col :span="6">
-                    <div class="logo-img"
+                    <div class="logo-img padding-left"
                          @click="handleToDashboard">
                         <img src="@/assets/img/goocidata.png"
                              alt=""/>
@@ -87,12 +87,12 @@
 
         .nav-content {
             overflow: hidden;
-            width: 79.2%;
+            // width: 79.2%;
             margin: 0 auto;
             display: flex;
 
             .logo-img {
-                // float: left;
+                text-align: left;
                 margin-right: 6%;
                 margin-top: 10px;
                 cursor: pointer;

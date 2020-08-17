@@ -1,5 +1,5 @@
 <template>
-  <div class="app-store">
+  <div class="app-store margin-lr-xs">
     <router-view> </router-view>
 
     <div v-if="$route.path == '/application/appStore'"
@@ -83,14 +83,16 @@ li {
       box-sizing: border-box;
       overflow: hidden;
       & > li {
+        &:nth-child(2n+1){
+          margin-right: 1%;
+        }
         background-color: rgb(255, 255, 255);
         border-radius: 8px;
-        width: 48.5%;
+        width: 49.5%;
         height: 190px;
         border: 1px solid rgb(226, 226, 226);
         float: left;
         box-sizing: border-box;
-        margin-right: 10px;
         padding: 10px 20px;
         margin-bottom: 10px;
         .app-title-box {

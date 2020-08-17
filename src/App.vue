@@ -66,7 +66,7 @@
     }
 
     .views {
-        width: 79.2%;
+        width: 100%;
         margin: 0 auto;
         margin-bottom: 120px;
         display: flex;

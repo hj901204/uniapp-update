@@ -1,5 +1,5 @@
 <template>
-    <div class="my-application">
+    <div class="my-application margin-lr-xs">
         <!-- 我的企业应用 -->
         <div v-if="$route.path == '/application/enterpriseApplications'">
             <ul>
@@ -162,7 +162,7 @@
                 background-color: #fff;
                 padding: 10px 20px;
                 box-sizing: border-box;
-                width: 49%;
+                width: 49.5%;
                 height: 192px;
                 float: left;
                 margin-bottom: 10px;
@@ -256,7 +256,7 @@
             }
 
             & > li:nth-child(2n) {
-                margin-left: 2%;
+                margin-left: 1%;
             }
         }
     }

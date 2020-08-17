@@ -1,8 +1,7 @@
 <template>
-  <div class="enterprise">
+  <div class="enterprise margin-lr-xs">
     <!-- <LeftNav /> -->
-    <PageTitle :isShowBreadcrub="false"
-               style="margin-left:210px;" />
+    <PageTitle :isShowBreadcrub="false" />
     <div style=""
          class="enterprise-views">
       <router-view />
@@ -27,7 +26,7 @@ export default {
 .enterprise {
   // height: calc(100vh - 240px);
   .enterprise-views {
-    margin-left: 210px;
+    // margin-left: 210px;
     background-color: #fff;
     // height: calc(100vh - 292px);
     // height: calc(100% - 52px);

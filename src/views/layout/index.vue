@@ -5,7 +5,7 @@
       <div class="companyInfo">
         <div class="name">
           <div style="font-weight:500;font-size:18px">{{ enterName  ||  '--' }}</div>
-          <div class="fontsize">{{ xid }}</div>
+          <div class="fontsize">{{ xid || '--'}}</div>
         </div>
         <div class="infoPosition">
           <div class="borderDiv">
@@ -87,7 +87,7 @@ export default {
 
 <style lang="scss" scoped>
 .layout{
-  margin-left: 200px;
+  // margin-left: 200px;
 }
 .second-nav {
   padding: 20px 0 10px 0;
