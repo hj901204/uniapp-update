@@ -1,7 +1,7 @@
 <template>
     <div class="user-nav">
         <div class="user-center">
-            <div class="user-center_box">
+            <div class="user-center_box padding-right">
                 <span>{{userName}}</span>
                 <span class="logout" @click="logout">退出</span>
                 <div class="badge"
@@ -54,7 +54,6 @@
             .user-center_box {
                 display: flex;
                 margin-left: auto;
-
                 span {
                     margin: auto 20px auto 0;
                 }

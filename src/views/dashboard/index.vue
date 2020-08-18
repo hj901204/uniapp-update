@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <div style="padding-left:210px;">
+        <div>
             <div style="display:flex">
                 <!-- 我的企业信息 -->
                 <MyCorporateInfo v-if="update" :billAvgCostList="billAvgCostList" :enterName="enterName"

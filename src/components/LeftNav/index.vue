@@ -72,15 +72,15 @@ export default {
 <style lang="scss">
 .left-nav {
   height: calc(100vh - 240px);
-  width: 200px;
+  width: 240px;
   background-color: #fff;
-  position: absolute;
-  left: 10.4%;
+  // position: absolute;
+  // left: 10.4%;
   // top: 116px;
   margin-top: 10px;
   text-align: left;
   .left-nav-part {
-    width: 200px;
+    width: 240px;
     // float: left;
 
     .el-submenu__title i,

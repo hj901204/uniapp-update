@@ -26,6 +26,8 @@ export default {
   background-color: #fff;
   border-radius: 8px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
   .title {
     float: left;
     line-height: 50px;
