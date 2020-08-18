@@ -14,62 +14,39 @@
             </div>
           </div>
           <div class="start-date">
-            <span v-if="item.appId == 'E5CD4720'">我的客户:<span>{{ cusSupStatistic.cusNum || '0' }}</span></span>
+            <span v-if="item.appId === 'E5CD4720' && item.applied">我的客户:<span>{{ cusSupStatistic.cusNum || '0' }}</span></span>
             <span
-                v-if="item.appId == 'E5CD4719' && item.isEnable != 2 ">我的供应商:<span>{{ cusSupStatistic.supNum || '0'}}</span></span>
+                v-if="item.appId === 'E5CD4719' && item.applied ">我的供应商:<span>{{ cusSupStatistic.supNum || '0'}}</span></span>
           </div>
           <div class="expiration-date">
-            <span v-if="item.appId == 'E5CD4720'">我的订单:<span>{{ cusSupStatistic.supPoNum || '0' }}</span></span>
-            <span v-if="item.appId == 'E5CD4719' && item.isEnable != 2 ">累计采购单:<span>{{
+            <span v-if="item.appId === 'E5CD4720' && item.applied">我的订单:<span>{{ cusSupStatistic.supPoNum || '0' }}</span></span>
+            <span v-if="item.appId === 'E5CD4719'  && item.applied">累计采购单:<span>{{
                 cusSupStatistic.purPoNum || '0'
               }}</span></span>
           </div>
-          <div v-if="item.appId == 'E5CD4719' && item.isEnable == 2">
+          <div v-if="item.applied===false">
             <div>
-              <span v-if="!isBlo&&type==1">当前应用未开通</span>
-              <span v-if="isBlo&&type==1">当前应用已申请，请耐心等待审核</span>
+              <span>当前应用未开通</span>
             </div>
             <div>
-              <el-button v-if="!isBlo&&type==1" type="primary" size="small" @click="handleApply">申请开通
-              </el-button>
-              <el-button
-                  v-if="isBlo&&type==1"
-                  disabled
-                  size="small"
-                  type="primary">已申请
+              <el-button type="primary" size="small" @click="handleApply(item)">申请开通
               </el-button>
             </div>
           </div>
-          <div class="my-apply-btns"
-               v-if="item.appId == 'E5CD4720' ||item.appId==='PCTS'|| (item.appId == 'E5CD4719' && item.isEnable != 2)">
+          <div class="my-apply-btns" v-if="item.applied">
             <el-button @click="handleToCode(item)"
-                       v-if="item.appId == 'E5CD4720'"
+                       v-if="item.appId === 'E5CD4720'"
                        size="small"
                        type="text">关联采购商
             </el-button>
             <el-button @click="handleToCode(item)"
-                       v-if="item.appId == 'E5CD4719'"
+                       v-if="item.appId === 'E5CD4719'"
                        size="small"
                        type="text">邀请供应商
             </el-button>
             <el-button @click="handleToApply(item)"
-                       v-if="item.appId == 'E5CD4719' || item.appId == 'E5CD4720'||item.appId==='PCTS'"
                        size="small"
                        type="text">进入应用
-            </el-button>
-          </div>
-        </li>
-        <li v-if="JSON.stringify(list).indexOf('E5CD4719') === -1">
-          <div class="apply-title-box">
-            <div class="apply-title">
-              SupplyX·SRM 采购商
-            </div>
-          </div>
-          <div>
-            <span>当前应用未开通</span>
-          </div>
-          <div>
-            <el-button type="primary" size="small" @click="handleApply">申请开通
             </el-button>
           </div>
         </li>
@@ -94,12 +71,10 @@ export default {
     return {
       isBlo: '',
       type: this.$store.getters.type
-      // type: this.$store.getters.type,
-      // list: [],
-      // code:''
     }
   },
   mounted() {
+    console.log(this.type)
     //localStorage.clear();
     //this.getMyApplication()
     this.getAppDetail()
@@ -109,6 +84,7 @@ export default {
       let obj = { id: '5ee8deecb2a64982b449797b9a62a4a6' }
       this.$api.post(this.$lesUiPath.appDetail, obj).then(result => {
         if (result.code == 0) {
+          console.log(result)
           this.isBlo = result.data.applied
         } else {
           return this.$message.error(result.msg)
@@ -173,11 +149,12 @@ export default {
         })
       }
     },
-    handleApply() {
+    handleApply(item) {
+      console.log(item)
       this.$router.push({
         path: '/application/appStore/applicationDetails',
         query: {
-          params: '5ee8deecb2a64982b449797b9a62a4a6'
+          params: item.id
         }
       })
     }
@@ -219,12 +196,13 @@ export default {
         text-align: center;
         border-radius: 8px;
         //color: #000000;
-        
+
         margin-bottom: 16px;
         font-size: 14px;
         cursor: pointer;
         border: 1px solid #ccc;
-        &:nth-child(2n+1){
+
+        &:nth-child(2n+1) {
           margin-right: 16px;
         }
       }
