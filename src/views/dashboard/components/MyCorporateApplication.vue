@@ -219,11 +219,14 @@ export default {
         text-align: center;
         border-radius: 8px;
         //color: #000000;
-        //margin-left: 16px;
+        
         margin-bottom: 16px;
         font-size: 14px;
         cursor: pointer;
         border: 1px solid #ccc;
+        &:nth-child(2n+1){
+          margin-right: 16px;
+        }
       }
     }
 

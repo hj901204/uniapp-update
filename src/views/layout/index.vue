@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <div class="layout margin-lr-xs">
     <div style="overflow:hidden" class="second-nav">
       <Breadcrumb style="float:left;margin-left: 20px;width:100%" />
       <div class="companyInfo">
