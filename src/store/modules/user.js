@@ -80,7 +80,6 @@ const actions = {
             }
 
             commit('SET_TOKEN', token)
-            commit('SET_AUTHTYPE', type)
             commit('SET_NAME', userName)
             setToken(token)
             setUserName(userName)
