@@ -33,7 +33,7 @@ const enterprise = {
           path: "basicInfo",
           component: () =>
             import(
-              "../views/enterpriseCenter/enterpriseInfo/basicInfo/index.vue"
+              "../views/enterpriseCenter/enterpriseInfo/basicInfo/newindex.vue"
             ),
           name: "basicInfo",
           meta: {
