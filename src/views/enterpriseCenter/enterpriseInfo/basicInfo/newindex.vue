@@ -2,32 +2,31 @@
 	<div class="base-info">
 		<div class="base-form">
 			<div class="Business-img">
-				<img v-image-preview src="../../../../assets/img/QR-code.jpg" />
+				<img v-image-preview :src="baseInfo.picUrl" />
 			</div>
 			<ul>
 				<li>
 					<div class="form-field">企业名称:</div>
 					<div class="form-val">{{baseInfo.enterName?baseInfo.enterName:"--"}}</div>
 				</li>
-				<li v-show="showed" >
+				<li v-show="showed">
 					<div class="form-field">联系人:</div>
-					<div class="form-val">{{baseInfo.liaisonMan?baseInfo.liaisonMan:"--"}}</div>	
+					<div class="form-val">{{baseInfo.liaisonMan?baseInfo.liaisonMan:"--"}}</div>
 				</li>
-				<li v-show="showed" >
+				<li v-show="showed">
 					<div class="form-field">联系电话:</div>
 					<div class="form-val">{{baseInfo.telNum?baseInfo.telNum:"--"}}</div>
 				</li>
-				<li v-show="showed" >
+				<li v-show="showed">
 					<div class="form-field">地址:</div>
 					<div class="form-val">{{baseInfo.enterAddress?baseInfo.enterAddress:"--"}}</div>
 				</li>
-				<li v-show="showed" >
+				<li v-show="showed">
 					<div class="form-field">联系邮件:</div>
 					<div class="form-val">{{baseInfo.enterMail?baseInfo.enterMail:"--"}}</div>
 				</li>
 				<li v-show="!showed">
-					<!-- :rules="rules" -->
-					<el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+					<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 						<el-form-item label="联系人:" prop="liaisonMan">
 							<el-input size="mini" v-model="ruleForm.liaisonMan"></el-input>
 						</el-form-item>
@@ -67,7 +66,7 @@
 					<div class="form-val">{{baseInfo.businessLicense?baseInfo.businessLicense:"--"}}</div>
 				</li>
 			</ul>
-			<div class="btns">
+			<div class="btns" v-if="isAdmin == '1'">
 				<el-button v-show="showed" type="primary" size="small" @click="editEnterpriseInfor">编辑企业信息</el-button>
 				<el-button v-show="!showed" type="primary" size="small" @click="saveEnterpriseInfor">确认提交</el-button>
 				<el-button v-show="!showed" size="small" @click="goback">返回</el-button>
@@ -78,10 +77,12 @@
 
 <script>
 	import { validateEmail } from '@/utils/validate'
+	import { getAuthType } from '@/utils/auth.js'
 	export default {
 		name: "base-info",
 		data() {
 			return {
+				isAdmin:getAuthType(),
 				message: "",
 				baseInfo: {},
 				dialogVisibleEv: false,
@@ -94,11 +95,20 @@
 				},
 				rules: {
 					telNum: [{
-						required: false,
-						pattern: /(^1[3|4|5|6|7|8|9]\d{9}$)|(^09\d{8}$)/,
-						message: '请输入正确的联系电话',
-						trigger: 'blur'
-					}, ],
+							required: false,
+							min: 11,
+							max: 11,
+							message: '请输入正确的联系电话',
+							trigger: 'blur'
+						}
+						// 	{
+						// 	required: false,
+						// 	// pattern: /(^1[3|4|5|6|7|8|9]\d{9}$)|(^09\d{8}$)/,
+
+						// 	message: '请输入正确的联系电话',
+						// 	trigger: 'blur'
+						// }, 
+					],
 					enterMail: [{
 						required: false,
 						pattern: /^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/,
@@ -117,6 +127,10 @@
 				this.$api.post(this.$lesUiPath.queryEnterprise).then(result => {
 					if (result.code == 0) {
 						this.baseInfo = result.data
+						this.ruleForm.liaisonMan = this.baseInfo.liaisonMan
+						this.ruleForm.telNum = this.baseInfo.telNum
+						this.ruleForm.enterAddress = this.baseInfo.enterAddress
+						this.ruleForm.enterMail = this.baseInfo.enterMail
 						this.showed = true
 					}
 				})
@@ -125,11 +139,8 @@
 			// 编辑企业信息
 			editEnterpriseInfor() {
 				this.showed = false;
-				this.ruleForm = {};
-				this.ruleForm.liaisonMan = this.baseInfo.liaisonMan
-				this.ruleForm.telNum = this.baseInfo.telNum
-				this.ruleForm.enterAddress = this.baseInfo.enterAddress
-				this.ruleForm.enterMail = this.baseInfo.enterMail
+				// this.ruleForm = {};
+				
 			},
 
 			// 保存编辑企业信息
@@ -170,10 +181,12 @@
 				position: absolute;
 				top: 20px;
 				right: 20px;
-
+				width: 154px;
+				height: 112px;
+				overflow: hidden;
+				text-align: center;
 				img {
-					width: 154px;
-					height: 112px;
+					height: 100%;
 				}
 			}
 
@@ -214,49 +227,7 @@
 			}
 		}
 
-		//发票信息
-		.invoice-info {
-			background-color: #fff;
-			padding: 20px;
-			border: 1px solid rgba(0, 0, 0, 0.1);
-			margin-top: 10px;
 
-			.form-title {
-				line-height: 30px;
-				border-bottom: 2px solid #f1f2f5;
-				margin-bottom: 20px;
-				font-weight: 500;
-				font-size: 16px;
-			}
-
-			.invoice-info-box {
-				width: 90%;
-				margin: 0 auto;
-				margin-top: 40px;
-				font-size: 14px;
-
-				&>li {
-					border: 1px solid rgba(0, 0, 0, 0.1);
-					line-height: 40px;
-					margin-bottom: -1px;
-
-					&>div {
-						width: 200px;
-						background-color: #edf4fc;
-						color: #336eb1;
-						text-align: center;
-						border-right: 1px solid rgba(0, 0, 0, 0.1);
-						display: inline-block;
-						font-weight: 500;
-					}
-
-					&>p {
-						display: inline-block;
-						padding-left: 20px;
-					}
-				}
-			}
-		}
 	}
 
 	.inblock {
@@ -264,7 +235,7 @@
 	}
 
 	.form-val {
-		margin-left: 6px;
+		margin-left: 8px;
 	}
 
 	/deep/.el-input {
