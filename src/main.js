@@ -14,6 +14,13 @@ import VXETable from 'vxe-table'
 import 'vxe-table/lib/index.css'
 // import VueClipboard from "vue-clipboard2" //复制功能
 
+
+// 图片放大
+import VueDirectiveImagePreviewer from 'vue-directive-image-previewer'
+import 'vue-directive-image-previewer/dist/assets/style.css'
+Vue.use(VueDirectiveImagePreviewer) 
+
+
 import Api from "./api/server/Api" // api 放置
 import Path from "./api/server/path" // path放置
 import Global from "./utils/vueGlobal" // path放置

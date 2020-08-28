@@ -122,6 +122,10 @@ const createOrderQr = baseUrl + '/mp/wxqr/getInvitationORShareLimitQr'
 // const getScanEnterQr = baseUrl + '/wxqr/getScanEnterQr'
 // 获取管理员账号
 const showAdminAccount = baseUrl + '/h/code/showAdminAccount'
+//查询企业基本信息
+const queryEnterprise = baseUrl + '/enterprise/findEnt'
+//保存编辑企业信息 
+const updateEnterprise = baseUrl + '/enterprise/update'
 
 export default {
   install(Vue) {
@@ -165,7 +169,9 @@ export default {
       supLinkEnter,
       checkCode,
       createOrderQr,
-      showAdminAccount
+      showAdminAccount,
+	  queryEnterprise,
+	  updateEnterprise
     }
   }
 }
