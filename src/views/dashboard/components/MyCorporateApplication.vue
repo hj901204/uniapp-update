@@ -15,8 +15,7 @@
           </div>
           <div class="start-date">
             <span v-if="item.appId === 'E5CD4720' && item.applied">我的客户:<span>{{ cusSupStatistic.cusNum || '0' }}</span></span>
-            <span
-                v-if="item.appId === 'E5CD4719' && item.applied ">我的供应商:<span>{{ cusSupStatistic.supNum || '0'}}</span></span>
+            <span v-if="item.appId === 'E5CD4719' && item.applied ">我的供应商:<span>{{ cusSupStatistic.supNum || '0'}}</span></span>
           </div>
           <div class="expiration-date">
             <span v-if="item.appId === 'E5CD4720' && item.applied">我的订单:<span>{{ cusSupStatistic.supPoNum || '0' }}</span></span>
@@ -26,15 +25,15 @@
           </div>
           <div v-if="item.applied===false">
             <div>
-              <span>当前应用未开通</span>
+              <span class="infoSpan">当前应用未开通</span>
             </div>
             <div>
-              <el-button type="primary" size="small" @click="handleApply(item)">申请开通
+              <el-button class="margin-bottom-xs" type="primary" size="small" @click="handleApply(item)">申请开通
               </el-button>
             </div>
           </div>
           <div class="my-apply-btns" v-if="item.applied">
-            <el-button @click="handleToCode(item)"
+            <!-- <el-button @click="handleToCode(item)"
                        v-if="item.appId === 'E5CD4720'"
                        size="small"
                        type="text">关联采购商
@@ -43,7 +42,7 @@
                        v-if="item.appId === 'E5CD4719'"
                        size="small"
                        type="text">邀请供应商
-            </el-button>
+            </el-button> -->
             <el-button @click="handleToApply(item)"
                        size="small"
                        type="text">进入应用
@@ -186,30 +185,33 @@ export default {
   .apply-box {
     & > ul {
       height: 430px;
-      overflow: scroll;
+      // overflow: scroll;
       padding-top: 16px;
 
       & > li {
         float: left;
-        width: 240px;
-        line-height: 48px;
+        width: 49%;
+        line-height: 34px;
         text-align: center;
-        border-radius: 8px;
+        // border-radius: 8px;
         //color: #000000;
 
         margin-bottom: 16px;
         font-size: 14px;
         cursor: pointer;
         border: 1px solid #ccc;
-
-        &:nth-child(2n+1) {
-          margin-right: 16px;
+        .infoSpan{
+          display: inline-block;
+          padding: 16px 0 9px;
+        }
+        &:nth-child(2n) {
+          float: right;
         }
       }
     }
 
     .apply-title {
-      background-color: #31425b;
+	    background-color: rgba(83, 113, 146, 1);
       color: #fff;
     }
 

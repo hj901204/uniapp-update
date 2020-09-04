@@ -3,11 +3,11 @@
         <div>
             <div style="display:flex">
                 <!-- 我的企业信息 -->
-                <MyCorporateInfo v-if="update" :billAvgCostList="billAvgCostList" :enterName="enterName"
-                                 style="width:65%;margin:10px"/>
+                <MyCorporateInfoCharts v-if="update" :billAvgCostList="billAvgCostList" :enterName="enterName"
+                                 style="width:50%;margin:10px"/>
                 <!-- 我的企业应用 -->
                 <MyCorporateApplication :list="list" :code="code" :cusSupStatistic="cusSupStatistic"
-                                        style="width:32%;margin:10px"/>
+                                        style="width:50%;margin:10px"/>
             </div>
             <!-- 企业用户信息 -->
             <EnterpriseUserInfo style="margin:10px"/>
@@ -29,8 +29,8 @@
       }
     },
     components: {
-      MyCorporateInfo: resolve =>
-        require(['./components/MyCorporateInfo'], resolve),
+      MyCorporateInfoCharts: resolve =>
+        require(['./components/MyCorporateInfoCharts'], resolve),
       MyCorporateApplication: resolve =>
         require(['./components/MyCorporateApplication'], resolve),
       EnterpriseUserInfo: resolve =>

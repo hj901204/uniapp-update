@@ -1,11 +1,19 @@
 <template>
-  <div id="container" />
+  <div id="container"/>
 </template>
 <script>
 export default {
   data() {
     return {
-      loginData: []
+      loginData: [
+        {daydate:'1日',daycount:0},
+        {daydate:'2日',daycount:0},
+        {daydate:'2020-09-03',daycount:0},
+        {daydate:'2020-09-04',daycount:0},
+        {daydate:'5日',daycount:0},
+        {daydate:'6日',daycount:0},
+        {daydate:'7日',daycount:0},
+      ]
     }
   },
   mounted() {
@@ -16,8 +24,9 @@ export default {
 
       const chart = new G2.Chart({
         container: "container",
-        height: 300,
-        width: 800,
+        forceFit: true,
+        animate: false,
+        height: 350,
         title: true
       })
 
@@ -28,24 +37,17 @@ export default {
 
       this.$api.post(this.$lesUiPath.enteruserLogin, obj).then(result => {
         if (result.code == 0) {
-          this.loginData = result.data
+          result.data.map(v=>{
+            if(this.loginData.findIndex(val=>val.daydate==v.daydate)!=-1){
+              let len = this.loginData.findIndex(val=>val.daydate==v.daydate)
+              this.loginData[len]={...this.loginData[len],daycount:v.daycount}
+            }
+          })
           chart.source(this.loginData)
           chart.animate(true) 
           chart.scale("daycount", {
             min: 0
           })
-          // chart.scale("daydate", {
-          //   alias: ""
-          // })
-          // chart.axis("daydate", {
-          //   title: {
-          //     textStyle: {
-          //       fontSize: 14, // 文本大小
-          //       textAlign: "center", // 文本对齐方式
-          //       fill: "#3A3E51" // 文本颜色
-          //     }
-          //   }
-          // })
 
           chart.tooltip({
             crosshairs: {
