@@ -202,12 +202,15 @@
 					.form-field {
 						display: inline-block;
 						font-weight: bold;
+						// margin-right: 10px;
 						width: 110px;
 						text-align: right;
+						vertical-align: top;
 					}
 
 					.form-val {
 						display: inline-block;
+						width: 80%;
 					}
 
 					.copyBtn {
