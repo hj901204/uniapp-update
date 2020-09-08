@@ -34,16 +34,16 @@
             </div>
           </div>
           <div class="my-apply-btns" v-if="item.applied">
-            <el-button @click="handleToCode(item)"
+            <!-- <el-button @click="handleToCode(item)"
                        v-if="item.appId === 'E5CD4720'"
                        size="small"
                        type="text">关联采购商
-            </el-button>
-            <el-button @click="handleToCode(item)"
+            </el-button> -->
+            <!-- <el-button @click="handleToCode(item)"
                        v-if="item.appId === 'E5CD4719'"
                        size="small"
                        type="text">邀请供应商
-            </el-button>
+            </el-button> -->
             <el-button @click="handleToApply(item)"
                        size="small"
                        type="text">进入应用
