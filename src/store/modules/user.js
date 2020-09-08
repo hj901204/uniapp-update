@@ -69,7 +69,6 @@ const actions = {
       loginByUsername(username, password)
         .then(response => {
           if (response.code == 0) {
-            console.log(response,'type')
             const token = response.data.token
             const type = response.data.authType.toString()
             let userName = ''
@@ -80,7 +79,6 @@ const actions = {
             }
 
             commit('SET_TOKEN', token)
-            commit('SET_AUTHTYPE', type)
             commit('SET_NAME', userName)
             setToken(token)
             setUserName(userName)
