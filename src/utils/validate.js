@@ -64,3 +64,13 @@ export function validatePhone(rule, value, callback) {
     }
   }
 }
+ //保留两位小数 
+ //功能：将浮点数四舍五入，取小数点后2位 
+ export function toDecimal(x) { 
+  var f = parseFloat(x); 
+  if (isNaN(f)) { 
+    return; 
+  } 
+  f = Math.round(x*100)/100; 
+  return f; 
+}

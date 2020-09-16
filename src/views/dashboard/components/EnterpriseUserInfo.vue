@@ -33,9 +33,9 @@
           <div style="font-size:14px;color:#505050;margin:10px">
             近7日登录次数排行
           </div>
-          <div v-for="(list,index) in topList" :key="index" class="flex justify-between margin-bottom-xs padding-lr-sm">
-            <span>{{list.name}}</span>
-            <span>{{list.sum}}</span>
+          <div v-for="(list,index) in countNearUserLoginList" :key="index" class="flex justify-between margin-bottom-xs padding-lr-sm">
+            <span>{{list.NAME}}</span>
+            <span>{{list.daycount}}</span>
           </div>
         </div>
       </div>
@@ -46,11 +46,11 @@
 import Chart from "./Chart"
 export default {
   name: "enterprise-user-info",
+  props:['countNearUserLoginList'],
   data () {
     return {
       count: 0,
       type: this.$store.getters.type,
-      topList:[{name:'zhangsan',sum:299},{name:'zhangsan',sum:299},{name:'zhangsan',sum:299},{name:'zhangsan',sum:299},{name:'zhangsan',sum:299},{name:'zhangsan',sum:299},{name:'zhangsan',sum:299},{name:'zhangsan',sum:299},{name:'zhangsan',sum:299},{name:'zhangsan',sum:299}]
     }
   },
   mounted () {

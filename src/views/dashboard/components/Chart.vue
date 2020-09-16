@@ -5,15 +5,7 @@
 export default {
   data() {
     return {
-      loginData: [
-        {daydate:'1日',daycount:0},
-        {daydate:'2日',daycount:0},
-        {daydate:'2020-09-03',daycount:0},
-        {daydate:'2020-09-04',daycount:0},
-        {daydate:'5日',daycount:0},
-        {daydate:'6日',daycount:0},
-        {daydate:'7日',daycount:0},
-      ]
+      loginData: []
     }
   },
   mounted() {
@@ -37,27 +29,27 @@ export default {
 
       this.$api.post(this.$lesUiPath.enteruserLogin, obj).then(result => {
         if (result.code == 0) {
-          result.data.map(v=>{
-            if(this.loginData.findIndex(val=>val.daydate==v.daydate)!=-1){
-              let len = this.loginData.findIndex(val=>val.daydate==v.daydate)
-              this.loginData[len]={...this.loginData[len],daycount:v.daycount}
-            }
-          })
+          this.loginData = result.data
           chart.source(this.loginData)
           chart.animate(true) 
           chart.scale("daycount", {
             min: 0
           })
 
+          // chart.tooltip({
+          //   crosshairs: {
+          //     type: "line"
+          //   }
+            
+          // })
           chart.tooltip({
-            crosshairs: {
-              type: "line"
-            }
-          })
-          chart.line().position("daydate*daycount")
+                showTitle: false,
+                itemTpl: '<li><span style="background-color:{color};" class="g2-tooltip-marker"></span>数据<span style="margin-left:20px;">{value}</span></li>'
+            });
+          chart.line().position("num*daycount")
           chart
             .point()
-            .position("daydate*daycount")
+            .position("num*daycount")
             .size(4)
             .shape("circle")
             .style({
