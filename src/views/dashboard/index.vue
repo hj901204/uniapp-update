@@ -3,14 +3,14 @@
         <div>
             <div style="display:flex">
                 <!-- 我的企业信息 -->
-                <MyCorporateInfo v-if="update" :billAvgCostList="billAvgCostList" :enterName="enterName"
-                                 style="width:65%;margin:10px"/>
+                <MyCorporateInfoCharts v-if="update" :billAvgCostList="billAvgCostList" :enterName="enterName"
+                  :countAppUseAnalyseList="countAppUseAnalyseList"  style="width:50%;margin:10px"/>
                 <!-- 我的企业应用 -->
                 <MyCorporateApplication :list="list" :code="code" :cusSupStatistic="cusSupStatistic"
-                                        style="width:32%;margin:10px"/>
+                                        style="width:50%;margin:10px"/>
             </div>
             <!-- 企业用户信息 -->
-            <EnterpriseUserInfo style="margin:10px"/>
+            <EnterpriseUserInfo :countNearUserLoginList="countNearUserLoginList" style="margin:10px"/>
         </div>
     </div>
 </template>
@@ -25,12 +25,14 @@
         enterName: '',
         cusSupStatistic: {},
         billAvgCostList: [],
-        update: true
+        update: true,
+        countNearUserLoginList:[],//七日排行
+        countAppUseAnalyseList:[]//应用使用分析
       }
     },
     components: {
-      MyCorporateInfo: resolve =>
-        require(['./components/MyCorporateInfo'], resolve),
+      MyCorporateInfoCharts: resolve =>
+        require(['./components/MyCorporateInfoCharts'], resolve),
       MyCorporateApplication: resolve =>
         require(['./components/MyCorporateApplication'], resolve),
       EnterpriseUserInfo: resolve =>
@@ -51,10 +53,10 @@
             this.code = result.data.enterprise.invCode
             this.enterName = result.data.enterprise.enterName
             this.cusSupStatistic = result.data.cusSupStatisticList[0] || {}
-            console.log(result.data.cusSupStatisticList[0], 'dsdadasdadas')
             this.billAvgCostList = result.data.billAvgCostList
+            this.countNearUserLoginList = result.data.countNearUserLoginList
+            this.countAppUseAnalyseList = result.data.countAppUseAnalyseList
             if (result.data.appCount != 0) {
-              console.log(result.data.enterApps, 'enterApps')
               result.data.enterApps.map(x => {
                 if (x.appId == 'E5CD4719') {
                   localStorage.setItem('enterpriseId', x.tsAppId)

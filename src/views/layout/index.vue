@@ -2,9 +2,9 @@
   <div class="layout margin-lr-xs">
     <div style="overflow:hidden" class="second-nav">
       <Breadcrumb style="float:left;margin-left: 20px;width:100%" />
-      <div class="companyInfo">
+      <div class="companyInfo padding-top-xs">
         <div class="name">
-          <div style="font-weight:500;font-size:18px">{{ enterName  ||  '--' }}</div>
+          <div class="font20">{{ enterName  ||  '--' }}</div>
           <div class="fontsize">{{ xid || '--'}}</div>
         </div>
         <div class="infoPosition">
@@ -12,9 +12,17 @@
             <div class="fontsize">当前应用</div>
             <div class="numberSize">{{ appNum || '0' }}</div>
           </div>
-          <div class="border">
-            <div class="fontsize">企业用户数</div>
-            <div class="numberSize">{{ count || '0' }}<i @click="handleJump" class="countImg"><img src="@/assets/img/userCount.png" alt=""></i></div>
+          <div class="border flex align-center">
+            <span></span>
+            <div class="padding-lr">
+              <div class="fontsize">企业用户数</div>
+              <div class="numberSize flex align-center justify-center ">{{ count || '0' }}
+                <i @click="handleJump" class="countImg flex align-center">
+                  <img src="@/assets/img/userCount.png" alt="">
+                </i>
+                </div>
+            </div>
+            <span></span>
           </div>
           <div class="borderDiv">
             <div class="fontsize">累计访问</div>
@@ -114,14 +122,18 @@ export default {
     color: #00000073;
   }
   .border{
-    border-right: 1px solid #e9e9e9;
-    border-left: 1px solid #e9e9e9;
     padding: 10px;
     margin: 0 10px;
     text-align: right;
+    span{
+      width: 1px;
+      height: 40px;
+      background: #e9e9e9;
+      display: inline-block;
+    }
   }
   .numberSize{
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 500;
     padding-top: 8px;
     .countImg{

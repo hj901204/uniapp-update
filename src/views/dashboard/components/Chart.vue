@@ -1,5 +1,5 @@
 <template>
-  <div id="container" />
+  <div id="container"/>
 </template>
 <script>
 export default {
@@ -16,8 +16,9 @@ export default {
 
       const chart = new G2.Chart({
         container: "container",
-        height: 300,
-        width: 800,
+        forceFit: true,
+        animate: false,
+        height: 350,
         title: true
       })
 
@@ -34,28 +35,21 @@ export default {
           chart.scale("daycount", {
             min: 0
           })
-          // chart.scale("daydate", {
-          //   alias: ""
-          // })
-          // chart.axis("daydate", {
-          //   title: {
-          //     textStyle: {
-          //       fontSize: 14, // 文本大小
-          //       textAlign: "center", // 文本对齐方式
-          //       fill: "#3A3E51" // 文本颜色
-          //     }
-          //   }
-          // })
 
+          // chart.tooltip({
+          //   crosshairs: {
+          //     type: "line"
+          //   }
+            
+          // })
           chart.tooltip({
-            crosshairs: {
-              type: "line"
-            }
-          })
-          chart.line().position("daydate*daycount")
+                showTitle: false,
+                itemTpl: '<li><span style="background-color:{color};" class="g2-tooltip-marker"></span>数据<span style="margin-left:20px;">{value}</span></li>'
+            });
+          chart.line().position("num*daycount")
           chart
             .point()
-            .position("daydate*daycount")
+            .position("num*daycount")
             .size(4)
             .shape("circle")
             .style({

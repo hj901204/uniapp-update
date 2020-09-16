@@ -20,13 +20,25 @@
         <p class="num-description">企业用户数</p>
       </div>
     </div> -->
-      <div style="font-size:14px;color:#505050;margin:10px">
-        近7日系统登陆人次
+      <div class="flex">
+        <div class="userinfo-charts">
+          <div style="font-size:14px;color:#505050;margin:10px">
+            近7日企业用户登录情况
+          </div>
+          <div class="chart-box">
+            <Chart />
+          </div>
+        </div>
+        <div class="userinfo-top">
+          <div style="font-size:14px;color:#505050;margin:10px">
+            近7日登录次数排行
+          </div>
+          <div v-for="(list,index) in countNearUserLoginList" :key="index" class="flex justify-between margin-bottom-xs padding-lr-sm">
+            <span>{{list.NAME}}</span>
+            <span>{{list.daycount}}</span>
+          </div>
+        </div>
       </div>
-    <!-- 图表 -->
-    <div class="chart-box">
-      <Chart />
-    </div>
   </div>
 </template>
 
@@ -34,10 +46,11 @@
 import Chart from "./Chart"
 export default {
   name: "enterprise-user-info",
+  props:['countNearUserLoginList'],
   data () {
     return {
       count: 0,
-      type: this.$store.getters.type
+      type: this.$store.getters.type,
     }
   },
   mounted () {
@@ -73,6 +86,13 @@ export default {
   background-color: #fff;
   overflow: hidden;
   padding: 16px;
+  .userinfo-top{
+    width: 25%;
+    height: 286px;
+  }
+  .userinfo-charts{
+    flex:1;
+  }
   .my-corporate-title {
     overflow: hidden;
     border-bottom: 2px solid #f1f2f5;
@@ -120,6 +140,7 @@ export default {
   }
   .chart-box {
     float: left;
+    width: 100%;
     // width: 500px;
   }
   // }
