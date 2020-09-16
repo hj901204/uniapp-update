@@ -36,7 +36,7 @@
       },
       handleGetScanEnterQr() {
         this.$api.post(this.$lesUiPath.createOrderQr, {
-          path: `/pages/addEnterUser/addEnterUser?id=${localStorage.getItem('xid')}`
+          path: `/pages/user/verifyAdmin/verifyAdmin?id=${localStorage.getItem('xid')}`
         }).then(res => {
           this.qrCode = `data:image/jpg;base64,${res.data}`
           console.log(res)
