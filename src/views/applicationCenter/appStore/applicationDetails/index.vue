@@ -4,12 +4,12 @@
       <div class="apply-title">
         <span><i>SupplyX</i>{{ appDetail.appName }}</span>
         <div class="apply-btns">
-          <el-button v-if="!applied&&type==1"
+          <el-button v-if="!applied && type==1 && uver != 'SUP'"
                      size="small"
                      type="primary"
                      @click="handleApply">立即申请
           </el-button>
-          <el-button v-if="applied&&type==1"
+          <el-button v-if="applied && type==1 && uver != 'SUP'"
                      disabled
                      size="small"
                      type="primary">已申请
@@ -55,12 +55,14 @@
         appDetail: {},
         activeName: "first",
         applied: '',
-        type: this.$store.getters.type
+        type: this.$store.getters.type,
+		uver:"",
         // used: 'true'
       }
     },
     created () {
-      this.getAppDetail();
+		console.log()
+      this.getAppDetail(this.$store.getters.type,"this.$store.getters.type");
     },
     methods: {
       // 应用详情
@@ -70,6 +72,7 @@
           if (result.code == 0) {
             this.appDetail = result.data
             this.applied = result.data.applied
+			this.uver = result.data.uver
           } else {
             return this.$message.error(result.msg)
           }
