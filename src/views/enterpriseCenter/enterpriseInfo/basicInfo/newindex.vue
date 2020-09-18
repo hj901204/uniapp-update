@@ -27,16 +27,16 @@
 				</li>
 				<li v-show="!showed">
 					<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-						<el-form-item label="联系人:" prop="liaisonMan">
+						<el-form-item label="联系人:"  prop="liaisonMan">
 							<el-input size="mini" v-model="ruleForm.liaisonMan"></el-input>
 						</el-form-item>
-						<el-form-item label="联系电话:" prop="telNum">
+						<el-form-item label="联系电话:"  prop="telNum">
 							<el-input size="mini" v-model="ruleForm.telNum"></el-input>
 						</el-form-item>
-						<el-form-item label="地址:" prop="enterAddress">
+						<el-form-item label="地址:"  prop="enterAddress">
 							<el-input size="mini" v-model="ruleForm.enterAddress"></el-input>
 						</el-form-item>
-						<el-form-item label="联系邮件:" prop="enterMail">
+						<el-form-item label="联系邮件:"  prop="enterMail">
 							<el-input size="mini" v-model="ruleForm.enterMail"></el-input>
 						</el-form-item>
 					</el-form>
@@ -94,27 +94,26 @@
 					enterMail: '',
 				},
 				rules: {
-					telNum: [{
-							required: false,
-							min: 11,
-							max: 11,
-							message: '请输入正确的联系电话',
-							trigger: 'blur'
-						}
-						// 	{
-						// 	required: false,
-						// 	// pattern: /(^1[3|4|5|6|7|8|9]\d{9}$)|(^09\d{8}$)/,
-
-						// 	message: '请输入正确的联系电话',
-						// 	trigger: 'blur'
-						// }, 
+					telNum: [
+						{ required: true, message: '请输入联系电话', trigger: 'blur' },
+						{ required: true, min: 11, max: 11, message: '请输入正确的联系电话', trigger: 'blur' },
+						{ required: true, pattern: /(^1[3|4|5|6|7|8|9]\d{9}$)|(^09\d{8}$)/, message: '请输入正确的联系电话', trigger: 'blur' }, 
 					],
-					enterMail: [{
-						required: false,
-						pattern: /^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/,
-						message: '请输入正确的邮件地址',
-						trigger: 'blur'
-					}],
+					enterMail: [
+						{ required: true, message: '请输入联系邮箱', trigger: 'blur' },
+						{
+							required: true,
+							pattern: /^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/,
+							message: '请输入正确的邮件地址',
+							trigger: 'blur'
+						},
+					],
+					enterAddress:[
+						{ required: true, message: '请输入地址', trigger: 'blur' },
+					],
+					liaisonMan:[
+						{ required: true, message: '请输入联系人', trigger: 'blur' },
+					]
 				}
 			}
 		},
@@ -145,18 +144,25 @@
 
 			// 保存编辑企业信息
 			saveEnterpriseInfor() {
-				let params = {
-					id: this.baseInfo.id,
-					liaisonMan: this.ruleForm.liaisonMan,
-					telNum: this.ruleForm.telNum,
-					enterAddress: this.ruleForm.enterAddress,
-					enterMail: this.ruleForm.enterMail
-				}
-				this.$api.post(this.$lesUiPath.updateEnterprise, params).then(result => {
-					if (result.code == 0) {
-						this.getEnterData();
+				this.$refs["ruleForm"].validate((valid) => {
+					if (valid) {
+						let params = {
+							id: this.baseInfo.id,
+							liaisonMan: this.ruleForm.liaisonMan,
+							telNum: this.ruleForm.telNum,
+							enterAddress: this.ruleForm.enterAddress,
+							enterMail: this.ruleForm.enterMail
+						}
+						this.$api.post(this.$lesUiPath.updateEnterprise, params).then(result => {
+							if (result.code == 0) {
+								this.getEnterData();
+							}
+						})
+					} else {
+						console.log('error submit!!');
+						return false;
 					}
-				})
+				});
 			},
 
 			// 返回
