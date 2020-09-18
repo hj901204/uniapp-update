@@ -28,7 +28,7 @@
               <span class="infoSpan">当前应用未开通</span>
             </div>
             <div>
-              <el-button v-if="uver ! = 'SUP'" class="margin-bottom-xs" type="primary" size="small" @click="handleApply(item)">申请开通
+              <el-button v-if="uver != 'SUP'" class="margin-bottom-xs" type="primary" size="small" @click="handleApply(item)">申请开通
               </el-button>
             </div>
           </div>
