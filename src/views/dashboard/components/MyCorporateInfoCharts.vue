@@ -59,7 +59,7 @@ import { toDecimal } from '@/utils/validate'
             // 辅助文本
             chart.guide().html({
                 position: [ '50%', '50%' ],
-                html: '<div style="color:#8c8c8c;font-size: 14px;text-align: center;width: 10em;">采购分类<br><span style="color:#8c8c8c;font-size:20px">'+total+'</span></div>',
+                html: '<div style="color:#8c8c8c;font-size: 14px;text-align: center;width: 10em;">累积使用<br><span style="color:#8c8c8c;font-size:20px">'+total+'</span></div>',
                 alignX: 'middle',
                 alignY: 'middle'
             });
