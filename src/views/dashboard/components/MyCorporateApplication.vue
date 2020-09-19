@@ -29,7 +29,7 @@
 			  <span v-if="item.uver == 'SUP'" class="infoSpan">如需开通,请联系平台客服人员</span>
             </div>
             <div>
-				<el-button v-if="item.uver == 'SUP'" :disabled="true" class="margin-bottom-xs" type="primary" size="small">申请开通
+				<el-button v-if="item.uver == 'SUP'" :disabled="true" class="margin-bottom-xs disabledstyle" type="primary" size="small">申请开通
 				</el-button>
               <el-button v-if="item.uver != 'SUP'" class="margin-bottom-xs" type="primary" size="small" @click="handleApply(item)">申请开通
               </el-button>
@@ -226,6 +226,10 @@ export default {
   .enable {
     background-color: #4a90e257 !important;
     cursor: default !important;
+  }
+  .disabledstyle {
+	background-color: #cccfd6 !important;
+	border-color: #cccfd6 !important;
   }
 }
 </style>
