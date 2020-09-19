@@ -25,9 +25,12 @@
           </div>
           <div v-if="item.applied===false">
             <div>
-              <span class="infoSpan">当前应用未开通</span>
+              <span v-if="item.uver != 'SUP'" class="infoSpan">当前应用未开通</span>
+			  <span v-if="item.uver == 'SUP'" class="infoSpan">如需开通,请联系平台客服人员</span>
             </div>
             <div>
+				<el-button v-if="item.uver == 'SUP'" :disabled="true" class="margin-bottom-xs" type="primary" size="small">申请开通
+				</el-button>
               <el-button v-if="item.uver != 'SUP'" class="margin-bottom-xs" type="primary" size="small" @click="handleApply(item)">申请开通
               </el-button>
             </div>
