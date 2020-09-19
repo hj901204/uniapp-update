@@ -35,12 +35,15 @@
     <!-- tab切换 -->
     <div class="tab">
       <el-tabs v-model="activeName">
-        <el-tab-pane label="产品详情"
-                     name="first">{{ appDetail.appDetails }}</el-tab-pane>
-        <el-tab-pane label="使用说明"
-                     name="second">{{ appDetail.appExplain }}</el-tab-pane>
-        <el-tab-pane label="成功案例"
-                     name="third">{{ appDetail.appCase }}</el-tab-pane>
+        <el-tab-pane label="产品详情" name="first">
+			<div v-html="appDetail.appDetails"></div>
+		</el-tab-pane>
+        <el-tab-pane label="使用说明" name="second">
+			<div v-html="appDetail.appExplain"></div>
+		</el-tab-pane>
+        <el-tab-pane label="成功案例" name="third">
+			<div v-html="appDetail.appCase"></div>
+		</el-tab-pane>
       </el-tabs>
     </div>
   </div>
