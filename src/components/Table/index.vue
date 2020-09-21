@@ -63,7 +63,7 @@
                        v-else>启用
             </el-button>
           </div>
-          <!-- <el-button @click="handleEdit(scope.row)"
+          <el-button @click="handleEdit(scope.row)"
                      type="primary"
                      plain
                      size="small"
@@ -73,7 +73,7 @@
                      size="mini"
                      plain
                      v-if="isShowDeleteBtn"
-                     @click="handleDelete(scope.row)">删除</el-button> -->
+                     @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
