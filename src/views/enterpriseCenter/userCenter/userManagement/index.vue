@@ -39,8 +39,6 @@
                         @click="handleFresh">刷新
                 </el-button>
             </div>
-			<!-- :isShowEditBtn="type==1" -->
-			<!-- :isShowDeleteBtn='type==1' -->
             <Table :tableHead="tableHead"
                    :tableData="tableData"
                    :isShowOperation="false"
