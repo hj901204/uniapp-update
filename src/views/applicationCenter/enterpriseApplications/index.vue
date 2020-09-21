@@ -26,15 +26,13 @@
 					<div class="my-apply-btns">
 						<el-button size="small" type="text" @click="handleApplyStatus(item)">点击查看应用状态
 						</el-button>
-						<el-button v-if="authType/1===1&&item.appName!=='SupplyX·TS 工单系统'" size="small" type="text" @click="handleUserSetting(item)">用户设定
-						</el-button>
+						<!-- <el-button v-if="authType/1===1&&item.appName!=='SupplyX·TS 工单系统'" size="small" type="text" @click="handleUserSetting(item)">用户设定</el-button> -->
 						<!-- <el-button @click="handleJumpUserList(item)"
 						               size="small"
 						               v-if="item.userListBtn"
 						               type="text">用户列表
 						    </el-button> -->
-						<el-button v-if="item.purBtn" size="small" type="text" @click="handleSupplier(item)">邀请供应商
-						</el-button>
+						<!-- <el-button v-if="item.purBtn" size="small" type="text" @click="handleSupplier(item)">邀请供应商</el-button> -->
 						<el-button v-if="item.supBtn" size="small" type="text" @click="handleEnter(item)">关联采购商
 						</el-button>
 					</div>
