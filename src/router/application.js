@@ -25,7 +25,6 @@ const applicationRouter = {
         breadcrumb: true,
         path: "/application/appStore",
         isOnlyRoute: true, //用来左侧菜单栏隐藏路由的作用
-        
       },
       children: [
         {
