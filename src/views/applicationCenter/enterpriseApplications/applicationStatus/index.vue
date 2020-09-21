@@ -6,14 +6,14 @@
           <div class="apply-title">
             <img src="@/assets/img/application/biaoqian.png"
                  alt="" />
-            <span><i>SupplyX </i>{{ paramsObj.appName }}</span>
+            <span>{{ paramsObj.appName }}</span>
           </div>
           <img src="@/assets/img/application/242-01.png"
                alt="">
         </div>
         <div class="apply-info">
           <div class="start-date">
-            <p>开始日期 :</p><span>{{paramsObj.initiateTime}}</span>
+            <p>开始日期 :</p><span>{{paramsObj.initiateTimeEpp}}</span>
           </div>
           <div class="expiration-date">
             <p v-if="paramsObj.expireTime">过期时间 :</p><span v-if="">{{paramsObj.expireTime}}</span>
