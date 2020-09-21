@@ -39,11 +39,11 @@
                         @click="handleFresh">刷新
                 </el-button>
             </div>
+			<!-- :isShowEditBtn="type==1" -->
+			<!-- :isShowDeleteBtn='type==1' -->
             <Table :tableHead="tableHead"
                    :tableData="tableData"
-                   :isShowOperation="type==1"
-                   :isShowEditBtn="type==1"
-                   :isShowDeleteBtn='type==1'
+                   :isShowOperation="false"
                    :currentPage='currentPage'
                    :total='total'
                    :currentSize='currentSize'
