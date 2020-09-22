@@ -2,7 +2,7 @@
   <div class="apply-details">
     <div class="apply-introduction">
       <div class="apply-title">
-        <span><i>SupplyX</i>{{ appDetail.appName }}</span>
+        <span>{{ appDetail.appName }}</span>
         <div class="apply-btns">
           <el-button v-if="!applied && type==1 && uver != 'SUP'"
                      size="small"
