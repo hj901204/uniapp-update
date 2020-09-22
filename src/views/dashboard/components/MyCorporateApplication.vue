@@ -133,7 +133,7 @@ export default {
       if (item.appId == 'PCTS') {
         //this.$router.push('/application/enterpriseApplications')
         let token = this.$store.getters.token
-        window.open(this.$lesUiPath.enterAppRun + '?appId=' + item.appId + '&token=' + token)
+        window.open('https://tsersmt.goocidata.com/supplyx-ts-ui/#/dashboard'+ '?token=' + token)
       }
     },
     handleToCode(item) {
