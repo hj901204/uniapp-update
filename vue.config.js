@@ -34,16 +34,20 @@ module.exports = {
     },
     proxy: {
       '/supplyx': {
-        target: 'https://supplyx.goocidata.com',//正式环境域名
+        // target: 'https://supplyx.goocidata.com',//正式环境域名
         // target: 'https://tsersmt.goocidata.com',//测试环境域名
         // target: 'https://gooci.natapp4.cc',//通道地址
         // target: 'http://192.168.33.142:8862',//通道地址
+        target: 'http://81.70.36.15', // 开发环境ip
         changeOrigin: true,
         pathRewrite: {
           '^/supplyx': '/supplyx'
         }
       }
     }
+  },
+  css: {
+    extract: true
   },
   configureWebpack: {
     // configureWebpack 这部分打包文件添加时间戳，防止缓存不更新
@@ -79,7 +83,7 @@ module.exports = {
       // })
       new CompressionPlugin({
         algorithm: 'gzip',
-        test: /\.(js|css|svg|woff|ttf|json|html)$/,// 匹配文件名
+        test: /\.(js|css|svg|woff|ttf|json|html)$/, // 匹配文件名
         threshold: 10240, // 对超过10k的数据压缩
         deleteOriginalAssets: false, // 不删除源文件
         minRatio: 0.8 // 压缩比
@@ -144,6 +148,7 @@ module.exports = {
           }
         ])
         .end()
+      config.optimization.minimize(true)
       config.optimization.splitChunks({
         chunks: 'all',
         cacheGroups: {
