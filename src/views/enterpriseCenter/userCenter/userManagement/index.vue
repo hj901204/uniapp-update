@@ -134,7 +134,8 @@
       // 分页
       sizeChange(val) {
         this.currentSize = val
-        this.searchInfo.page = val
+        this.searchInfo.page = 1
+		this.searchInfo.length = val
         this.getUserData(this.searchInfo)
       },
       currentChange(val) {
