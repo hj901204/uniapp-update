@@ -46,9 +46,6 @@ module.exports = {
       }
     }
   },
-  css: {
-    extract: true
-  },
   configureWebpack: {
     // configureWebpack 这部分打包文件添加时间戳，防止缓存不更新
     output: { // 输出重构  打包编译后的 文件名称  【模块名称.版本号.时间戳】
@@ -67,20 +64,6 @@ module.exports = {
       hints: false
     },
     plugins: [
-      new webpack.ProvidePlugin({
-        $: 'jquery',
-        jquery: 'jquery',
-        'window.jQuery': 'jquery',
-        jQuery: 'jquery'
-      }),
-      // new CompressionPlugin({
-      //   asset: "[path].gz[query]",
-      //   algorithm: "gzip",
-      //   test: /\.js$|\.html$|\.css$|\.jpg$|\.jpeg$|\.png/,
-      //   //new RegExp("\\.(" + productionGzipExtensions.join("|") + ")$"),
-      //   threshold: 10240,
-      //   minRatio: 0.8
-      // })
       new CompressionPlugin({
         algorithm: 'gzip',
         test: /\.(js|css|svg|woff|ttf|json|html)$/, // 匹配文件名
@@ -148,7 +131,17 @@ module.exports = {
           }
         ])
         .end()
-      config.optimization.minimize(true)
+      config.plugin('uglifyjs-plugin').use('uglifyjs-webpack-plugin', [{
+        uglifyOptions: {
+          warnings: false,
+          compress: {
+            drop_console: true,
+            drop_debugger: false,
+            pure_funcs: ['console.log']
+          }
+        }
+      }])
+        .end()
       config.optimization.splitChunks({
         chunks: 'all',
         cacheGroups: {
@@ -173,6 +166,10 @@ module.exports = {
         }
       })
       config.optimization.runtimeChunk('single')
+      config.plugin('chunkPlugin').use(webpack.optimize.LimitChunkCountPlugin, [{
+        maxChunks: 5, // 必须大于或等于 1
+        minChunkSize: 10000
+      }])
     })
   }
 }
