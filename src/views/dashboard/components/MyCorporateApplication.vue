@@ -119,11 +119,8 @@ export default {
     //   })
     // },
     handleToApply(item) {
-      let token = this.$store.getters.token
-      if (item.appId == 'PCTS') {
-        window.open( 'https://tsersmt.goocidata.com/supplyx-ts-ui/#/workOrderDeploy/inSet?token=' + token)
-        
-      }else{
+      if (item.appId) {
+        let token = this.$store.getters.token
         window.open(this.$lesUiPath.enterAppRun + '?appId=' + item.appId + '&token=' + token)
       }
     },
