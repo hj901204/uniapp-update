@@ -119,6 +119,10 @@ export default {
     //   })
     // },
     handleToApply(item) {
+      if(item.appId == 'PCTS'){
+        let token = this.$store.getters.token
+        return window.open('https://tsersmt.goocidata.com/supplyx-ts-ui/#/workOrder?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcHBpZCI6IlBDVFMiLCJ1dmVyIjoiUENUUyIsInVzZXJuYW1lIjoiMTgyNTIwMDM2NDQifQ.wVOhsoz_q0Pu2qW4QX3EcGG6wLsq3L9auCsU44tNNIQ')
+      }
       if (item.appId) {
         let token = this.$store.getters.token
         window.open(this.$lesUiPath.enterAppRun + '?appId=' + item.appId + '&token=' + token)
