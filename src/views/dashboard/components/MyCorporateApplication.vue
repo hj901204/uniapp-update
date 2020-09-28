@@ -118,6 +118,7 @@ export default {
     //     }
     //   })
     // },
+    //跳转
     handleToApply(item) {
       if (item.appId) {
         let token = this.$store.getters.token
